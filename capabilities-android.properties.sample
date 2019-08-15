@@ -1,0 +1,8 @@
+platformName=Android
+platformVersion=
+app=
+deviceName=
+udid=
+Debug=true
+automationName=UiAutomator2
+Port=4723

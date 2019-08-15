@@ -1,0 +1,14 @@
+platformName=iOS
+automationName=XCUITest
+newCommandTimeout=60
+platformVersion=
+app=
+deviceName=
+fullReset=true
+autoAcceptAlerts=true
+xcodeOrgId=
+xcodeSigningId=iPhone Developer
+udid=
+xcodeConfigfile=
+useNewWDA=true
+showXcodeLog=true
