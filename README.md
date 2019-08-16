@@ -1,14 +1,14 @@
 # golang-automation
 
-**Description**\n
+**Description**<br/>
 The real development of https://github.com/mpermperpisang/go-cucumber
 Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-boil-web-automation-with-go-language-98b715800d70
 
-**Init Package**\n
+**Init Package**<br/>
 `$ make vendor-prepare`
 
-**Init Docker**\n
+**Init Docker**<br/>
 `$ make`
 
-**Running**\n
+**Running**<br/>
 `godog --tags=@initiate`
