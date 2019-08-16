@@ -22,3 +22,9 @@ Feature: Initiate Automation
   Scenario: Initiate API
     When client sends a GET request to "ENV:ENDPOINT"
     Then response status should be "200"
+
+  @initiate-unit
+  Scenario: Initiate Unit Testing
+    Given user has a name "Banana"
+    When Testivus meet user
+    Then Testivus say "Hello Banana!"
