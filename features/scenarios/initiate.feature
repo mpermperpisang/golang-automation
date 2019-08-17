@@ -20,6 +20,7 @@ Feature: Initiate Automation
 
   @initiate-api
   Scenario: Initiate API
+    Given client has "ENV:API_BASE_URL" as base api
     When client sends a GET request to "ENV:ENDPOINT"
     Then response status should be "200"
 

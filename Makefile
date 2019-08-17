@@ -8,6 +8,7 @@ vendor-prepare:
 	@go get -u github.com/logrusorgru/aurora
 	@go get github.com/sclevine/agouti
 	@go get -u github.com/magiconair/properties
+	@go get github.com/yalp/jsonpath
 	@echo "Package installed"
 
 kill-port:

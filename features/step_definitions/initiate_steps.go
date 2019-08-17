@@ -45,6 +45,12 @@ func OpenIOS() error {
 	return nil
 }
 
+func BaseAPI(base string) error {
+	api.BaseAPI(base)
+
+	return nil
+}
+
 func RequestAPI(verbose string, request string) error {
 	api.RetrieveAPI(verbose, request)
 
