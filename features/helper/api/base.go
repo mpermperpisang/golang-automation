@@ -1,7 +1,7 @@
 package api
 
 import (
-	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -10,7 +10,20 @@ import (
 	. "github.com/logrusorgru/aurora"
 )
 
-var httpResponse *http.Response
+var HttpResponse *http.Response
+var Base string
+var ResponseBody []byte
+
+func BaseAPI(base string) error {
+	readEndpoint := strings.HasPrefix(base, "ENV")
+	readENV := strings.TrimPrefix(base, "ENV:")
+
+	if readEndpoint {
+		Base = os.Getenv(readENV)
+	}
+
+	return nil
+}
 
 func RetrieveAPI(verbose string, request string) error {
 	readEndpoint := strings.HasPrefix(request, "ENV")
@@ -21,25 +34,24 @@ func RetrieveAPI(verbose string, request string) error {
 		request = os.Getenv(readENV)
 	}
 
-	readURL := os.Getenv("API_BASE_URL") + request
+	readURL := Base + request
 	client := &http.Client{}
 	httpRequest, _ := http.NewRequest(readVerbose, readURL, nil)
 
 	httpRequest.Header.Set("Accept", "application/json")
 	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
-	httpResponse, _ = client.Do(httpRequest)
+	HttpResponse, _ = client.Do(httpRequest)
+	ResponseBody, _ = ioutil.ReadAll(HttpResponse.Body)
 
 	return nil
 }
 
 func ResponseAPI(response int) error {
-	actualCode := httpResponse.StatusCode
+	actualCode := HttpResponse.StatusCode
 
 	if expectCode := (response); actualCode != expectCode {
 		log.Fatalln("actual status code :", Bold(Red(actualCode)))
-	} else {
-		fmt.Println(Bold(Magenta("SCENARIO IS SUCCESS")))
 	}
 
 	return nil

@@ -14,6 +14,7 @@ var p *properties.Properties
 
 func DriverConnect() error {
 	p = properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-ios.properties", properties.UTF8)
+
 	options := appium.Desired(agouti.Capabilities{
 		"automationName":    p.MustGetString("automationName"),
 		"platformName":      p.MustGetString("platformName"),
