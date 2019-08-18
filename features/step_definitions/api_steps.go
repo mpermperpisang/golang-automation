@@ -11,23 +11,23 @@ import (
 
 var httpResponse interface{}
 
-func ResponseMatchingKey(data string) error {
+func ResponseFindKey(key string) error {
 	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
-		log.Fatal(Bold(Red(err)))
+		log.Fatalln(Bold(Red(err)))
 	}
 
-	if _, err := jsonpath.Read(httpResponse, data); err != nil {
-		log.Fatal(Bold(Red(err)))
+	if _, err := jsonpath.Read(httpResponse, key); err != nil {
+		log.Fatalln(Bold(Red(err)))
 	}
 
 	return nil
 }
 
-func ResponseMatchingValue(data string, response string) error {
-	http, _ := jsonpath.Prepare(data)
+func ResponseMatchingValue(key string, response string) error {
+	http, _ := jsonpath.Prepare(key)
 
 	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
-		log.Fatal(Bold(Red(err)))
+		log.Fatalln(Bold(Red(err)))
 	}
 
 	actualResult, _ := http(httpResponse)

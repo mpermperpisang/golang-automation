@@ -11,7 +11,7 @@ import (
 )
 
 var HttpResponse *http.Response
-var Base string
+var BaseURL string
 var ResponseBody []byte
 
 func BaseAPI(base string) error {
@@ -19,22 +19,22 @@ func BaseAPI(base string) error {
 	readENV := strings.TrimPrefix(base, "ENV:")
 
 	if readEndpoint {
-		Base = os.Getenv(readENV)
+		BaseURL = os.Getenv(readENV)
 	}
 
 	return nil
 }
 
-func RetrieveAPI(verbose string, request string) error {
-	readEndpoint := strings.HasPrefix(request, "ENV")
-	readENV := strings.TrimPrefix(request, "ENV:")
+func RetrieveAPI(verbose string, endpoint string) error {
+	readEndpoint := strings.HasPrefix(endpoint, "ENV")
+	readENV := strings.TrimPrefix(endpoint, "ENV:")
 	readVerbose := strings.ToUpper(verbose)
 
 	if readEndpoint {
-		request = os.Getenv(readENV)
+		endpoint = os.Getenv(readENV)
 	}
 
-	readURL := Base + request
+	readURL := BaseURL + endpoint
 	client := &http.Client{}
 	httpRequest, _ := http.NewRequest(readVerbose, readURL, nil)
 
@@ -47,7 +47,7 @@ func RetrieveAPI(verbose string, request string) error {
 	return nil
 }
 
-func ResponseAPI(response int) error {
+func ResponseStatusCodeAPI(response int) error {
 	actualCode := HttpResponse.StatusCode
 
 	if expectCode := (response); actualCode != expectCode {

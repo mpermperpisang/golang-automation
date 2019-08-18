@@ -4,12 +4,12 @@ import (
 	"log"
 
 	"github.com/joho/godotenv"
-	. "github.com/logrusorgru/aurora"
+	"github.com/logrusorgru/aurora"
 )
 
 func init() {
 	if env := godotenv.Load(); env != nil {
-		log.Fatalln(Bold(Red(env)))
+		log.Fatalln(aurora.Bold(aurora.Red(env)))
 	}
 }
 

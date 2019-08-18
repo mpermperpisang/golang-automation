@@ -34,11 +34,11 @@ func DriverConnect() error {
 	Driver = appium.New(options)
 
 	if err := Driver.Start(); err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 	if _, err := Driver.NewDevice(); err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 	if err := Device.Reset(); err != nil {

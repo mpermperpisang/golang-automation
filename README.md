@@ -18,5 +18,8 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 **Running**<br/>
 `godog --tags=@initiate`
 
+**Linter**<br/>
+`golint`
+
 **Contact**<br/>
 `mpermperpisang@gmail.com`

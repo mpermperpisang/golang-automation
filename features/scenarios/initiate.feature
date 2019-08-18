@@ -1,6 +1,6 @@
 @initiate
 Feature: Initiate Automation
-  Try automation with golang and cucumber
+  Automation with golang and cucumber
 
   @initiate-dweb
   Scenario: Initiate DWEB
@@ -25,7 +25,7 @@ Feature: Initiate Automation
     Then response status should be "200"
 
   @initiate-unit
-  Scenario: Initiate Unit Testing
+  Scenario: Initiate Unit
     Given user has a name "Banana"
     When Testivus meet user
     Then Testivus say "Hello Banana!"
