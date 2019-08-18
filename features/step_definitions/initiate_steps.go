@@ -57,8 +57,8 @@ func RequestAPI(verbose string, request string) error {
 	return nil
 }
 
-func ResponseAPI(response int) error {
-	api.ResponseAPI(response)
+func ResponseStatusCodeAPI(response int) error {
+	api.ResponseStatusCodeAPI(response)
 
 	return nil
 }
@@ -76,7 +76,10 @@ func MeetUserName() error {
 }
 
 func SayHelloName(greet string) error {
-	if meetName != greet {
+	actualResult := meetName
+	expectResult := greet
+
+	if actualResult != expectResult {
 		log.Fatalf("hello(\"Banana\") failed, expected %v, got %v", "Hello Dude!", meetName)
 	}
 

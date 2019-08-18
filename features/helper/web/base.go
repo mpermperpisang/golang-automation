@@ -20,7 +20,7 @@ func GoToURL(url string) error {
 
 	if os.Getenv("DWEB_BASE_URL") != "" {
 		base = os.Getenv("DWEB_BASE_URL")
-	} else {
+	} else if os.Getenv("MWEB_BASE_URL") != "" {
 		base = os.Getenv("MWEB_BASE_URL")
 	}
 

@@ -10,11 +10,11 @@ var Device *appium.Device
 
 func GoToApp() error {
 	if err := Device.LaunchApp(); err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 	if err := Device.CloseApp(); err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 	return nil

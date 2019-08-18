@@ -4,11 +4,12 @@ all: docker-clean docker-hub docker-browser
 vendor-prepare:
 	@go get github.com/DATA-DOG/godog/cmd/godog
 	@go get -t -d github.com/tebeka/selenium
+	@go get github.com/sclevine/agouti
 	@go get github.com/joho/godotenv
 	@go get -u github.com/logrusorgru/aurora
-	@go get github.com/sclevine/agouti
 	@go get -u github.com/magiconair/properties
 	@go get github.com/yalp/jsonpath
+	@go get -u golang.org/x/lint/golint
 	@echo "Package installed"
 
 kill-port:
