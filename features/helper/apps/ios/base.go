@@ -3,6 +3,7 @@ package ios
 import (
 	"log"
 
+	"github.com/logrusorgru/aurora"
 	"github.com/magiconair/properties"
 	"github.com/sclevine/agouti"
 	"github.com/sclevine/agouti/appium"
@@ -29,6 +30,7 @@ func DriverConnect() error {
 		"udid":              p.MustGetString("udid"),
 		"xcodeConfigfile":   p.MustGetString("xcodeConfigfile"),
 		"useNewWDA":         p.MustGetString("useNewWDA"),
+		"showXcodeLog":      p.MustGetString("showXcodeLog"),
 	})
 
 	Driver = appium.New(options)
@@ -38,15 +40,7 @@ func DriverConnect() error {
 	}
 
 	if _, err := Driver.NewDevice(); err != nil {
-		log.Fatalln(err)
-	}
-
-	if err := Device.Reset(); err != nil {
-		log.Fatalln(err)
-	}
-
-	if err := Device.InstallApp("{{.app}}"); err != nil {
-		log.Fatalln(err)
+		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
 	return nil

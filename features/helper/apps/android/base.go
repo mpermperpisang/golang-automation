@@ -47,13 +47,5 @@ func DriverConnect() error {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
-	if err := Device.Reset(); err != nil {
-		log.Fatalln(err)
-	}
-
-	if err := Device.InstallApp("{{.app}}"); err != nil {
-		log.Fatalln(err)
-	}
-
 	return nil
 }
