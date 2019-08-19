@@ -1,13 +1,11 @@
-package step_definitions
+package stepdefinitions
 
 import (
-	"fmt"
 	"log"
 	"os"
 
 	"github.com/golang-automation/features/demo"
 	"github.com/golang-automation/features/helper/api"
-	"github.com/golang-automation/features/helper/apps"
 	"github.com/golang-automation/features/helper/apps/android"
 	"github.com/golang-automation/features/helper/apps/ios"
 	"github.com/golang-automation/features/helper/web"
@@ -15,66 +13,72 @@ import (
 
 var usersName, meetName string
 
+/*OpenDWEB is function to initiate dweb scenario*/
 func OpenDWEB() error {
 	web.DriverConnect()
 	web.GoToDWEBURL(os.Getenv("URL"))
-	fmt.Println(web.Driver.CurrentURL())
 
 	return nil
 }
 
+/*OpenMWEB is function to initiate mweb scenario*/
 func OpenMWEB() error {
 	web.DriverConnect()
 	web.GoToMWEBURL(os.Getenv("URL"))
-	fmt.Println(web.Driver.CurrentURL())
 
 	return nil
 }
 
+/*OpenAndroid is function to initiate android scenario*/
 func OpenAndroid() error {
 	android.DriverConnect()
-	apps.GoToApp()
 
 	return nil
 }
 
+/*OpenIOS is function to initiate ios scenario*/
 func OpenIOS() error {
 	ios.DriverConnect()
-	apps.GoToApp()
 
 	return nil
 }
 
+/*BaseAPI is function to initiate base url for API*/
 func BaseAPI(base string) error {
 	api.BaseAPI(base)
 
 	return nil
 }
 
+/*RequestAPI is function to initiate request API*/
 func RequestAPI(verbose string, request string) error {
 	api.RetrieveAPI(verbose, request)
 
 	return nil
 }
 
+/*ResponseStatusCodeAPI is function to validate response API*/
 func ResponseStatusCodeAPI(response int) error {
 	api.ResponseStatusCodeAPI(response)
 
 	return nil
 }
 
+/*GivenUserName is function to assign name to user*/
 func GivenUserName(name string) error {
 	usersName = name
 
 	return nil
 }
 
+/*MeetUserName is function to call unit*/
 func MeetUserName() error {
 	meetName = demo.Hello(usersName)
 
 	return nil
 }
 
+/*SayHelloName is function to validate unit*/
 func SayHelloName(greet string) error {
 	actualResult := meetName
 	expectResult := greet
