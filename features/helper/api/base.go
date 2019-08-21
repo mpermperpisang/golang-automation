@@ -11,12 +11,19 @@ import (
 )
 
 var HttpResponse *http.Response
-var BaseURL string
+var BaseURL, readENV string
 var ResponseBody []byte
+var readEndpoint bool
+
+func envreader(env string) error {
+	readEndpoint = strings.HasPrefix(env, "ENV")
+	readENV = strings.TrimPrefix(env, "ENV:")
+
+	return nil
+}
 
 func BaseAPI(base string) error {
-	readEndpoint := strings.HasPrefix(base, "ENV")
-	readENV := strings.TrimPrefix(base, "ENV:")
+	envreader(base)
 
 	if readEndpoint {
 		BaseURL = os.Getenv(readENV)
@@ -26,8 +33,7 @@ func BaseAPI(base string) error {
 }
 
 func RetrieveAPI(verbose string, endpoint string) error {
-	readEndpoint := strings.HasPrefix(endpoint, "ENV")
-	readENV := strings.TrimPrefix(endpoint, "ENV:")
+	envreader(endpoint)
 	readVerbose := strings.ToUpper(verbose)
 
 	if readEndpoint {
