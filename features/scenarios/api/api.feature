@@ -21,7 +21,7 @@ Feature: Variant API
     And response should have "$[0].latt_long"
 
 @variant-api-3
-  Scenario: Variant API with autothentication without body
+  Scenario: Variant API with authentication without body
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
     And client has "ENV:API_BASE_URL" as base api
@@ -29,7 +29,7 @@ Feature: Variant API
     Then response status should be "502"
 
 @variant-api-4
-  Scenario: Variant API with autothentication with body
+  Scenario: Variant API with authentication with body
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
     And client has "ENV:API_BASE_URL" as base api

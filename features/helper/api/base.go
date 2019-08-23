@@ -26,6 +26,7 @@ func envreader(env string) error {
 	return nil
 }
 
+/*BaseAPI is function to set base url for API*/
 func BaseAPI(base string) error {
 	envreader(base)
 
@@ -36,6 +37,7 @@ func BaseAPI(base string) error {
 	return nil
 }
 
+/*Authentication is function to get access token*/
 func Authentication(account string) error {
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
@@ -71,6 +73,7 @@ func Authentication(account string) error {
 	return nil
 }
 
+/*RetrieveAPI is function to send request*/
 func RetrieveAPI(verbose string, endpoint string, body string) error {
 	envreader(endpoint)
 	readVerbose := strings.ToUpper(verbose)
@@ -80,7 +83,6 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	}
 
 	requestBody := []byte(body)
-
 	readURL := BaseURL + endpoint
 	client := &http.Client{}
 	httpRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer(requestBody))
@@ -88,6 +90,7 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	if AccessToken != nil {
 		httpRequest.Header.Add("Authorization", "Bearer "+AccessToken.(string))
 	}
+
 	httpRequest.Header.Set("Content-Type", "application/json")
 	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
@@ -97,6 +100,7 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	return nil
 }
 
+/*ResponseStatusCodeAPI is function to get response code*/
 func ResponseStatusCodeAPI(response int) error {
 	actualCode := HttpResponse.StatusCode
 

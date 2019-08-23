@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/DATA-DOG/godog/gherkin"
 	"github.com/golang-automation/features/demo"
 	"github.com/golang-automation/features/helper/api"
 	"github.com/golang-automation/features/helper/apps/android"
@@ -50,9 +51,16 @@ func BaseAPI(base string) error {
 	return nil
 }
 
-/*RequestAPI is function to initiate request API*/
-func RequestAPI(verbose string, request string, body string) error {
-	api.RetrieveAPI(verbose, request, body)
+/*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
+func RequestAPIWithoutBody(verbose string, request string) error {
+	api.RetrieveAPI(verbose, request, "")
+
+	return nil
+}
+
+/*RequestAPIWithBody is function to initiate request API with body*/
+func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString) error {
+	api.RetrieveAPI(verbose, request, body.Content)
 
 	return nil
 }
@@ -81,9 +89,8 @@ func MeetUserName() error {
 /*SayHelloName is function to validate unit*/
 func SayHelloName(greet string) error {
 	actualResult := meetName
-	expectResult := greet
 
-	if actualResult != expectResult {
+	if expectResult := (greet); actualResult != expectResult {
 		log.Fatalf("hello(\"Banana\") failed, expected %v, got %v", "Hello Dude!", meetName)
 	}
 
