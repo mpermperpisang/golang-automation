@@ -15,7 +15,7 @@ func InitiateAutomation(s *godog.Suite) {
 	s.Step(`^visit ios$`, stepdefinitions.OpenIOS)
 	// api
 	s.Step(`^client has "([^\"]*)" as base api$`, stepdefinitions.BaseAPI)
-	s.Step(`^client sends a ([^\"]*) request to "([^\"]*)"$`, stepdefinitions.RequestAPI)
+	s.Step(`^client sends a ([^\"]*) request to "([^\"]*)"(?: with body:)?(?: """)?({[^}]*})?(?:""")?$`, stepdefinitions.RequestAPI)
 	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseStatusCodeAPI)
 	// unit
 	s.Step(`^user has a name "([^\"]*)"$`, stepdefinitions.GivenUserName)
