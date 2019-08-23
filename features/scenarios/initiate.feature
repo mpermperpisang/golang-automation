@@ -22,7 +22,7 @@ Feature: Initiate Automation
   Scenario: Initiate API
     Given client has "ENV:API_BASE_URL" as base api
     When client sends a GET request to "ENV:ENDPOINT"
-    Then response status should be "200"
+    Then response status should be "401"
 
   @initiate-unit
   Scenario: Initiate Unit
