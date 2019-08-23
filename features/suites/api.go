@@ -6,6 +6,7 @@ import (
 )
 
 func AutomationAPI(s *godog.Suite) {
+	s.Step(`^client login as "([^"]*)"$`, stepdefinitions.Authentication)
 	s.Step(`^response should have "([^"]*)"$`, stepdefinitions.ResponseFindKey)
 	s.Step(`^response should have "([^"]*)" matching "([^"]*)"$`, stepdefinitions.ResponseMatchingValue)
 }

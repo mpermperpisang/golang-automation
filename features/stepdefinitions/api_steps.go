@@ -11,6 +11,12 @@ import (
 
 var httpResponse interface{}
 
+func Authentication(account string) error {
+	api.Authentication(account)
+
+	return nil
+}
+
 /*ResponseFindKey is function to find key of response API*/
 func ResponseFindKey(key string) error {
 	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
@@ -33,9 +39,8 @@ func ResponseMatchingValue(key string, response string) error {
 	}
 
 	actualResult, _ := http(httpResponse)
-	expectResult := response
 
-	if actualResult != expectResult {
+	if expectResult := (response); actualResult != expectResult {
 		log.Fatalln("actual status code :", aurora.Bold(aurora.Red(actualResult)))
 	}
 
