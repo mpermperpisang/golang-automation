@@ -29,3 +29,10 @@ Feature: Variant API
     And response should have "$[0].location_type"
     And response should have "$[0].woeid"
     And response should have "$[0].latt_long"
+
+@variant-api-3
+  Scenario: Variant API with autothentication staging136
+    Given client has "ENV:ACCOUNT_BASE_URL" as base api
+    And client login as "USER"
+    When client sends a GET request to "ENV:ENDPOINT_3"
+    Then response status should be "200"
