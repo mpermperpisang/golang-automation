@@ -11,6 +11,7 @@ import (
 
 var httpResponse interface{}
 
+/*Authentication is function to login auth*/
 func Authentication(account string) error {
 	api.Authentication(account)
 
