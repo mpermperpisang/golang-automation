@@ -37,6 +37,7 @@ Feature: Variant API
     And response should have "$..data..latitude"
     And response should have "$..data..longitude"
     And response should have "$..data..status"
+    And response should have "$.data.status" matching "available"
     And response should have "$..data..address"
     And response should have "$..data..location"
     And response should have "$..data..distance"
