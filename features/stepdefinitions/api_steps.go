@@ -3,6 +3,7 @@ package stepdefinitions
 import (
 	"encoding/json"
 	"log"
+	"strconv"
 
 	"github.com/golang-automation/features/helper/api"
 	"github.com/logrusorgru/aurora"
@@ -11,6 +12,7 @@ import (
 
 var httpResponse interface{}
 
+/*Authentication is function to login auth*/
 func Authentication(account string) error {
 	api.Authentication(account)
 
@@ -23,8 +25,9 @@ func ResponseFindKey(key string) error {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
-	if _, err := jsonpath.Read(httpResponse, key); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+	countKey, _ := jsonpath.Read(httpResponse, key)
+	if err := len(countKey.([]interface{})); err == 0 {
+		log.Fatalln(aurora.Bold(aurora.Red(key + " is " + strconv.Itoa(err))))
 	}
 
 	return nil
@@ -40,8 +43,8 @@ func ResponseMatchingValue(key string, response string) error {
 
 	actualResult, _ := http(httpResponse)
 
-	if expectResult := (response); actualResult != expectResult {
-		log.Fatalln("actual status code :", aurora.Bold(aurora.Red(actualResult)))
+	if expectResult := response; actualResult != expectResult {
+		log.Fatalln("actual result :", aurora.Bold(aurora.Red(actualResult)))
 	}
 
 	return nil
