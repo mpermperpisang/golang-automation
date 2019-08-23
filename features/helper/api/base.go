@@ -3,7 +3,6 @@ package api
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -59,22 +58,20 @@ func Authentication(account string) error {
 
 	HTTPResponse, _ := client.Do(httpRequest)
 	ResponseBody, _ := ioutil.ReadAll(HTTPResponse.Body)
-	http, _ := jsonpath.Prepare("$..access_token")
+	http, _ := jsonpath.Prepare("$.access_token")
 
 	if err := json.Unmarshal(ResponseBody, &httpResponse); err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
 	AccessToken, _ = http(httpResponse)
-	fmt.Println(string(readURL))
 
 	return nil
 }
 
-func RetrieveAPI(verbose string, endpoint string, body string) error {
+func RetrieveAPI(verbose string, endpoint string) error {
+	envreader(endpoint)
 	readVerbose := strings.ToUpper(verbose)
-	requestBody := []byte(
-		`` + body + ``)
 
 	if readEndpoint {
 		endpoint = os.Getenv(readENV)
@@ -82,19 +79,16 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 
 	readURL := BaseURL + endpoint
 	client := &http.Client{}
-	httpRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer(requestBody))
+	httpRequest, _ := http.NewRequest(readVerbose, readURL, nil)
 
-	// fmt.Println(AccessToken)
-	// fmt.Println("Bearer " + AccessToken.([]string))
-
-	// httpRequest.Header.Set("Authorization", "Bearer "+AccessToken.(string))
-	// httpRequest.Header.Set("Content-Type", "application/json")
+	if AccessToken != nil {
+		httpRequest.Header.Set("Authorization", "Bearer "+AccessToken.(string))
+	}
 	httpRequest.Header.Set("Accept", "application/json")
 	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	HttpResponse, _ = client.Do(httpRequest)
 	ResponseBody, _ = ioutil.ReadAll(HttpResponse.Body)
-	fmt.Println(string(ResponseBody))
 
 	return nil
 }

@@ -51,8 +51,8 @@ func BaseAPI(base string) error {
 }
 
 /*RequestAPI is function to initiate request API*/
-func RequestAPI(verbose string, request string, body string) error {
-	api.RetrieveAPI(verbose, request, body)
+func RequestAPI(verbose string, request string) error {
+	api.RetrieveAPI(verbose, request)
 
 	return nil
 }

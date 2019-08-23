@@ -30,16 +30,9 @@ Feature: Variant API
     And response should have "$[0].woeid"
     And response should have "$[0].latt_long"
 
-  @variant-api-3
+@variant-api-3
   Scenario: Variant API with autothentication staging136
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
     When client sends a GET request to "ENV:ENDPOINT_3"
-    # Then response status should be "200"
-
-  @variant-api-4
-  Scenario: Variant API with autothentication staging130
-    Given client has "ENV:ACCOUNT_BASE_URL" as base api
-    And client login as "USER"
-    When client sends a GET request to "ENV:ENDPOINT_4" with body: "{'name': 'Serbu Seru Serba Seru 1','start_time': '2019-04-15T11:23:44.000Z','end_time': '2019-04-16T11:23:44.000Z','price': 10000,'email_stakeholders': 'dalijo@bukalapak.com','event_id': 30}"
     Then response status should be "200"
