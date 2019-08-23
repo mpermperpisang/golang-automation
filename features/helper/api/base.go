@@ -40,6 +40,7 @@ func Authentication(account string) error {
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
 	password := os.Getenv(envLogin + "_PASSWORD")
+
 	body := []byte(
 		`{
 			"grant_type": "password", 
@@ -49,6 +50,7 @@ func Authentication(account string) error {
 			"client_secret": "` + os.Getenv("API_CLIENT_SECRET") + `", 
 			"scope": "public user"
 		}`)
+
 	readURL := BaseURL + os.Getenv("AUTH_ENDPOINT")
 	client := &http.Client{}
 	httpRequest, _ := http.NewRequest("POST", readURL, bytes.NewBuffer(body))
@@ -69,7 +71,7 @@ func Authentication(account string) error {
 	return nil
 }
 
-func RetrieveAPI(verbose string, endpoint string) error {
+func RetrieveAPI(verbose string, endpoint string, body string) error {
 	envreader(endpoint)
 	readVerbose := strings.ToUpper(verbose)
 
@@ -77,14 +79,16 @@ func RetrieveAPI(verbose string, endpoint string) error {
 		endpoint = os.Getenv(readENV)
 	}
 
+	requestBody := []byte(body)
+
 	readURL := BaseURL + endpoint
 	client := &http.Client{}
-	httpRequest, _ := http.NewRequest(readVerbose, readURL, nil)
+	httpRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer(requestBody))
 
 	if AccessToken != nil {
-		httpRequest.Header.Set("Authorization", "Bearer "+AccessToken.(string))
+		httpRequest.Header.Add("Authorization", "Bearer "+AccessToken.(string))
 	}
-	httpRequest.Header.Set("Accept", "application/json")
+	httpRequest.Header.Set("Content-Type", "application/json")
 	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	HttpResponse, _ = client.Do(httpRequest)

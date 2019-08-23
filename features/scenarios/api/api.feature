@@ -3,21 +3,11 @@ Feature: Variant API
 
   @variant-api-1
   Scenario: Variant API with non array body
-    Given client has "ENV:API_BASE_URL" as base api
+    Given client has "ENV:ACCOUNT_BASE_URL" as base api
+    And client login as "USER"
+    And client has "ENV:API_BASE_URL" as base api
     When client sends a GET request to "ENV:ENDPOINT"
-    Then response status should be "200"
-    And response should have "$.status" matching "OK"
-    And response should have "$.promo_due"
-    And response should have "$.tag_page"
-    And response should have "$.banner"
-    And response should have "$.products"
-    And response should have "$.categories"
-    And response should have "$.message"
-    And response should have "$.facets"
-    And response should have "$.labels"
-    And response should have "$.related_keywords"
-    And response should have "$.recommended_products"
-    And response should have "$.product_deeplink"
+    Then response status should be "500"
 
   @variant-api-2
   Scenario: Variant API with array body
@@ -31,8 +21,17 @@ Feature: Variant API
     And response should have "$[0].latt_long"
 
 @variant-api-3
-  Scenario: Variant API with autothentication staging136
+  Scenario: Variant API with autothentication without body
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
+    And client has "ENV:API_BASE_URL" as base api
     When client sends a GET request to "ENV:ENDPOINT_3"
-    Then response status should be "200"
+    Then response status should be "502"
+
+@variant-api-4
+  Scenario: Variant API with autothentication with body
+    Given client has "ENV:ACCOUNT_BASE_URL" as base api
+    And client login as "USER"
+    And client has "ENV:API_BASE_URL" as base api
+    When client sends a POST request to "ENV:ENDPOINT_4" with body: """{"name": "Serbu Seru Serba Seru 1", "start_time": "2019-04-15T11:23:44.000Z", "end_time": "2019-04-16T11:23:44.000Z", "price": 10000, "email_stakeholders": "dalijo@bukalapak.com", "event_id": 30}"""
+    Then response status should be "422"
