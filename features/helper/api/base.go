@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/logrusorgru/aurora"
@@ -40,18 +41,19 @@ func Authentication(account string) error {
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
 	password := os.Getenv(envLogin + "_PASSWORD")
+	readURL := BaseURL + os.Getenv("AUTH_ENDPOINT")
+	var number = regexp.MustCompile(`\d+`).FindString(BaseURL)
 
 	body := []byte(
 		`{
-			"grant_type": "password", 
-			"username": "` + username + `", 
-			"password": "` + password + `", 
-			"client_id": "` + os.Getenv("API_CLIENT_ID") + `", 
-			"client_secret": "` + os.Getenv("API_CLIENT_SECRET") + `", 
+			"grant_type": "password",
+			"username": "` + username + `",
+			"password": "` + password + `",
+			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+number) + `",
+			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+number) + `",
 			"scope": "public user"
 		}`)
 
-	readURL := BaseURL + os.Getenv("AUTH_ENDPOINT")
 	client := &http.Client{}
 	httpRequest, _ := http.NewRequest("POST", readURL, bytes.NewBuffer(body))
 
