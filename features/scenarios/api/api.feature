@@ -33,5 +33,16 @@ Feature: Variant API
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
     And client has "ENV:API_BASE_URL" as base api
-    When client sends a POST request to "ENV:ENDPOINT_4" with body: """{"name": "Serbu Seru Serba Seru 1", "start_time": "2019-04-15T11:23:44.000Z", "end_time": "2019-04-16T11:23:44.000Z", "price": 10000, "email_stakeholders": "dalijo@bukalapak.com", "event_id": 30}"""
+    When client sends a POST request to "ENV:ENDPOINT_4" with body:
+    """
+    {
+      "name": "Serbu Seru Serba Seru 1",
+      "start_time": "2019-04-15T11:23:44.000Z",
+      "end_time": "2019-04-16T11:23:44.000Z",
+      "price": 10000,
+      "email_stakeholders":
+      "dalijo@bukalapak.com",
+      "event_id": 30
+    }
+    """
     Then response status should be "422"
