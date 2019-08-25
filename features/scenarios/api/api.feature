@@ -53,13 +53,12 @@ Feature: Variant API
     When client sends a POST request to "ENV:ENDPOINT_4" with body:
     """
     {
-      "name": "Serbu Seru Serba Seru 1",
-      "start_time": "2019-04-15T11:23:44.000Z",
-      "end_time": "2019-04-16T11:23:44.000Z",
-      "price": 10000,
-      "email_stakeholders":
-      "dalijo@bukalapak.com",
-      "event_id": 30
+      "name": ENV:NAME,
+      "start_time": "ENV:START_TIME",
+      "end_time": "ENV:END_TIME",
+      "price": "ENV:PRICE",
+      "email_stakeholders": "ENV:EMAIL_STAKEHOLDERS",
+      "event_id": "ENV:EVENT_ID"
     }
     """
     Then response status should be "422"
