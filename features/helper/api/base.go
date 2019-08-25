@@ -3,7 +3,6 @@ package api
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -88,17 +87,17 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	requestBody := []byte(body)
 	regexENV := regexp.MustCompile(`ENV:([a-zA-Z0-9_]+)`)
 	findENV := regexENV.FindAllString(string(requestBody), -1)
-	var strBody = string(requestBody)
+	var stringBody = string(requestBody)
 
 	for _, env := range findENV {
 		getENV := strings.TrimPrefix(env, "ENV:")
-		replaceENV := strings.ReplaceAll(strBody, env, os.Getenv(getENV))
-		strBody = replaceENV
+		replaceENV := strings.ReplaceAll(stringBody, env, os.Getenv(getENV))
+		stringBody = replaceENV
 	}
 
 	readURL := BaseURL + endpoint
 	client := &http.Client{}
-	httpRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer([]byte(strBody)))
+	httpRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer([]byte(stringBody)))
 
 	if AccessToken != nil {
 		httpRequest.Header.Add("Authorization", "Bearer "+AccessToken.(string))
@@ -108,7 +107,7 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	HttpResponse, _ = client.Do(httpRequest)
-	ResponseBody, _ = ioutil.ReadAll(HttpResponse.Body)¥
+	ResponseBody, _ = ioutil.ReadAll(HttpResponse.Body)
 
 	return nil
 }
