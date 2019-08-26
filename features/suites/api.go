@@ -12,5 +12,5 @@ func AutomationAPI(s *godog.Suite) {
 	s.Step(`^client sends a ([^\"]*) request to "([^\"]*)"(?: with body:)$`, stepdefinitions.RequestAPIWithBody)
 	s.Step(`^response should have "([^"]*)"$`, stepdefinitions.ResponseFindKey)
 	s.Step(`^response should have "([^"]*)" matching "([^"]*)"$`, stepdefinitions.ResponseMatchingValue)
-	// s.Step(`^response "([^"]*)" should be (integer|string|float64)$`, stepdefinitions.ResponseDataType)
+	s.Step(`^response "([^"]*)" should be (integer|string|float64)$`, stepdefinitions.ResponseDataType)
 }

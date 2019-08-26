@@ -32,7 +32,7 @@ Feature: Variant API
     When client sends a GET request to "ENV:ENDPOINT_3"
     Then response status should be "200"
     And response should have "$..data..id"
-    # And response "$.data.id" should be float64
+    And response "$.data.id" should be float64
     And response should have "$..data..qr_code"
     And response should have "$..data..bike_code"
     And response should have "$..data..latitude"

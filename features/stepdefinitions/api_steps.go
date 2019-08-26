@@ -3,10 +3,10 @@ package stepdefinitions
 import (
 	"encoding/json"
 	"fmt"
-	"go-cucumber/gherkin"
 	"log"
 	"strconv"
 
+	"github.com/DATA-DOG/godog/gherkin"
 	"github.com/golang-automation/features/helper/api"
 	"github.com/logrusorgru/aurora"
 	"github.com/yalp/jsonpath"
@@ -23,7 +23,9 @@ func AuthenticationAPI(account string) error {
 
 /*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
 func RequestAPIWithoutBody(verbose string, request string) error {
+	fmt.Println("a")
 	api.RetrieveAPI(verbose, request, "")
+	fmt.Println("b")
 
 	return nil
 }
