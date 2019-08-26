@@ -3,9 +3,9 @@ package suites
 import (
 	"github.com/DATA-DOG/godog"
 	"github.com/golang-automation/features/stepdefinitions"
-	"github.com/golang-automation/features/support"
 )
 
+/*InitiateAutomation is suites for initial run*/
 func InitiateAutomation(s *godog.Suite) {
 	// web
 	s.Step(`^visit dweb$`, stepdefinitions.OpenDWEB)
@@ -15,13 +15,9 @@ func InitiateAutomation(s *godog.Suite) {
 	s.Step(`^visit ios$`, stepdefinitions.OpenIOS)
 	// api
 	s.Step(`^client has "([^\"]*)" as base api$`, stepdefinitions.BaseAPI)
-	s.Step(`^client sends a ([^\"]*) request to "([^\"]*)"$`, stepdefinitions.RequestAPIWithoutBody)
-	s.Step(`^client sends a ([^\"]*) request to "([^\"]*)"(?: with body:)$`, stepdefinitions.RequestAPIWithBody)
-	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseStatusCodeAPI)
+	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseAPI)
 	// unit
 	s.Step(`^user has a name "([^\"]*)"$`, stepdefinitions.GivenUserName)
 	s.Step(`^Testivus meet user$`, stepdefinitions.MeetUserName)
 	s.Step(`^Testivus say "([^\"]*)"$`, stepdefinitions.SayHelloName)
-
-	support.GodogMainSupport(s)
 }

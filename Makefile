@@ -10,6 +10,7 @@ vendor-prepare:
 	@go get -u github.com/magiconair/properties
 	@go get github.com/yalp/jsonpath
 	@go get -u golang.org/x/lint/golint
+	@go get github.com/asaskevich/govalidator
 	@echo "Package installed"
 
 kill-port:
