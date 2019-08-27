@@ -2,7 +2,7 @@
 Feature: Variant API
 
   @variant-api-1
-  Scenario: Variant API with non array body
+  Scenario: Variant API With Non Array Body
     Given client has "ENV:ACCOUNT_BASE_URL_2" as base api
     And client login as "USER"
     And client has "ENV:API_BASE_URL_3" as base api
@@ -12,7 +12,7 @@ Feature: Variant API
     And response should have "$.data..assurance"
 
   @variant-api-2
-  Scenario: Variant API with array body
+  Scenario: Variant API With Array Body
     Given client has "ENV:API_BASE_URL_2" as base api
     When client sends a GET request to "ENV:ENDPOINT_2"
     Then response status should be "200"
@@ -25,13 +25,14 @@ Feature: Variant API
     And response should have "$[0].latt_long" matching "-6.171440,106.827820"
 
 @variant-api-3
-  Scenario: Variant API with authentication without body
+  Scenario: Variant API Without Body
     Given client has "ENV:ACCOUNT_BASE_URL_2" as base api
     And client login as "USER"
     And client has "ENV:API_BASE_URL_3" as base api
     When client sends a GET request to "ENV:ENDPOINT_3"
     Then response status should be "200"
     And response should have "$..data..id"
+    And response "$.data.id" should be float64
     And response should have "$..data..qr_code"
     And response should have "$..data..bike_code"
     And response should have "$..data..latitude"
@@ -46,7 +47,7 @@ Feature: Variant API
     And response should have "$..data..estimated_walking_time"
 
 @variant-api-4
-  Scenario: Variant API with authentication with body
+  Scenario: Variant API With Body
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
     And client has "ENV:API_BASE_URL" as base api

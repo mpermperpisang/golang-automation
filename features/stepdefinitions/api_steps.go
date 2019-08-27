@@ -5,6 +5,7 @@ import (
 	"log"
 	"strconv"
 
+	"github.com/DATA-DOG/godog/gherkin"
 	"github.com/golang-automation/features/helper/api"
 	"github.com/logrusorgru/aurora"
 	"github.com/yalp/jsonpath"
@@ -12,9 +13,23 @@ import (
 
 var httpResponse interface{}
 
-/*Authentication is function to login auth*/
-func Authentication(account string) error {
-	api.Authentication(account)
+/*AuthenticationAPI is function to login auth*/
+func AuthenticationAPI(account string) error {
+	api.AuthenticationAPI(account)
+
+	return nil
+}
+
+/*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
+func RequestAPIWithoutBody(verbose string, request string) error {
+	api.RetrieveAPI(verbose, request, "")
+
+	return nil
+}
+
+/*RequestAPIWithBody is function to initiate request API with body*/
+func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString) error {
+	api.RetrieveAPI(verbose, request, body.Content)
 
 	return nil
 }
@@ -45,6 +60,36 @@ func ResponseMatchingValue(key string, response string) error {
 
 	if expectResult := response; actualResult != expectResult {
 		log.Fatalln("actual result :", aurora.Bold(aurora.Red(actualResult)))
+	}
+
+	return nil
+}
+
+/*ResponseDataType is function to find and matching key value with data type*/
+func ResponseDataType(key string, expectType string) error {
+	var actualType string
+
+	http, _ := jsonpath.Prepare(key)
+
+	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
+		log.Fatalln(aurora.Bold(aurora.Red(err)))
+	}
+
+	actualResult, _ := http(httpResponse)
+
+	switch actualResult.(type) {
+	case int:
+		actualType = "integer"
+	case float64:
+		actualType = "float64"
+	case string:
+		actualType = "string"
+	default:
+		actualType = "unknown"
+	}
+
+	if actualType != expectType {
+		log.Fatalln(aurora.Bold(aurora.Red("actual data type : " + actualType)))
 	}
 
 	return nil

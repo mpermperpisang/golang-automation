@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/DATA-DOG/godog/gherkin"
 	"github.com/golang-automation/features/demo"
 	"github.com/golang-automation/features/helper/api"
 	"github.com/golang-automation/features/helper/apps/android"
@@ -51,23 +50,9 @@ func BaseAPI(base string) error {
 	return nil
 }
 
-/*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
-func RequestAPIWithoutBody(verbose string, request string) error {
-	api.RetrieveAPI(verbose, request, "")
-
-	return nil
-}
-
-/*RequestAPIWithBody is function to initiate request API with body*/
-func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString) error {
-	api.RetrieveAPI(verbose, request, body.Content)
-
-	return nil
-}
-
-/*ResponseStatusCodeAPI is function to validate response API*/
-func ResponseStatusCodeAPI(response int) error {
-	api.ResponseStatusCodeAPI(response)
+/*ResponseAPI is function to validate response code API*/
+func ResponseAPI(response int) error {
+	api.ResponseAPI(response)
 
 	return nil
 }

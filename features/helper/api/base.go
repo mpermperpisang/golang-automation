@@ -39,7 +39,7 @@ func BaseAPI(base string) error {
 }
 
 /*Authentication is function to get access token*/
-func Authentication(account string) error {
+func AuthenticationAPI(account string) error {
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
 	password := os.Getenv(envLogin + "_PASSWORD")
@@ -85,9 +85,9 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	}
 
 	requestBody := []byte(body)
+	var stringBody = string(requestBody)
 	regexENV := regexp.MustCompile(`ENV:([a-zA-Z0-9_]+)`)
 	findENV := regexENV.FindAllString(string(requestBody), -1)
-	var stringBody = string(requestBody)
 
 	for _, env := range findENV {
 		getENV := strings.TrimPrefix(env, "ENV:")
@@ -112,8 +112,8 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	return nil
 }
 
-/*ResponseStatusCodeAPI is function to get response code*/
-func ResponseStatusCodeAPI(response int) error {
+/*ResponseAPI is function to get response code*/
+func ResponseAPI(response int) error {
 	actualCode := HttpResponse.StatusCode
 
 	if expectCode := (response); actualCode != expectCode {
