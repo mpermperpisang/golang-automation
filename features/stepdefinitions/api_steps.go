@@ -2,7 +2,6 @@ package stepdefinitions
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"strconv"
 
@@ -23,18 +22,14 @@ func AuthenticationAPI(account string) error {
 
 /*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
 func RequestAPIWithoutBody(verbose string, request string) error {
-	fmt.Println("a")
 	api.RetrieveAPI(verbose, request, "")
-	fmt.Println("b")
 
 	return nil
 }
 
 /*RequestAPIWithBody is function to initiate request API with body*/
 func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString) error {
-	fmt.Println("1")
 	api.RetrieveAPI(verbose, request, body.Content)
-	fmt.Println("2")
 
 	return nil
 }

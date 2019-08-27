@@ -10,7 +10,7 @@ var (
 	/*WindowConfirm element text for window confirmation*/
 	WindowConfirm = "Konfirmasi Nomor Handphone"
 	/*BtnSend element text for button send*/
-	BtnSend = "Kirim kode lewat SMS"
+	BtnSend = ".js-tfa-request__button.js-tfa-step--request"
 	/*FieldOTP element id for textfield OTP*/
 	FieldOTP = "otp"
 	/*BtnConfirm element text for button confirmation*/
