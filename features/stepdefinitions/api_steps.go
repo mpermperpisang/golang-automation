@@ -11,7 +11,7 @@ import (
 	"github.com/yalp/jsonpath"
 )
 
-var httpResponse interface{}
+var jsonResponse interface{}
 
 /*AuthenticationAPI is function to login auth*/
 func AuthenticationAPI(account string) error {
@@ -36,11 +36,12 @@ func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString)
 
 /*ResponseFindKey is function to find key of response API*/
 func ResponseFindKey(key string) error {
-	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
+	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
-	countKey, _ := jsonpath.Read(httpResponse, key)
+	countKey, _ := jsonpath.Read(jsonResponse, key)
+
 	if err := len(countKey.([]interface{})); err == 0 {
 		log.Fatalln(aurora.Bold(aurora.Red(key + " is " + strconv.Itoa(err))))
 	}
@@ -49,16 +50,16 @@ func ResponseFindKey(key string) error {
 }
 
 /*ResponseMatchingValue is function to find and matching key value of response API*/
-func ResponseMatchingValue(key string, response string) error {
-	http, _ := jsonpath.Prepare(key)
+func ResponseMatchingValue(key string, expectResult string) error {
+	HTTPJson, _ := jsonpath.Prepare(key)
 
-	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
+	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
-	actualResult, _ := http(httpResponse)
+	actualResult, _ := HTTPJson(jsonResponse)
 
-	if expectResult := response; actualResult != expectResult {
+	if actualResult != expectResult {
 		log.Fatalln("actual result :", aurora.Bold(aurora.Red(actualResult)))
 	}
 
@@ -69,13 +70,13 @@ func ResponseMatchingValue(key string, response string) error {
 func ResponseDataType(key string, expectType string) error {
 	var actualType string
 
-	http, _ := jsonpath.Prepare(key)
+	HTTPJson, _ := jsonpath.Prepare(key)
 
-	if err := json.Unmarshal(api.ResponseBody, &httpResponse); err != nil {
+	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
-	actualResult, _ := http(httpResponse)
+	actualResult, _ := HTTPJson(jsonResponse)
 
 	switch actualResult.(type) {
 	case int:

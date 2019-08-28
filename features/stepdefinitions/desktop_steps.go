@@ -23,12 +23,13 @@ func LoginWEB(user string, platform string) error {
 		password = os.Getenv(user + "_PASSWORD")
 	}
 
-	web.DriverConnect()
 	if platform == "desktop" {
 		web.GoToDWEBURL(os.Getenv("URL_2"))
 	} else {
 		web.GoToMWEBURL(os.Getenv("URL_2"))
 	}
+
+	web.DriverConnect()
 	web.FindElementByID(objectabstractions.FieldUsername).SendKeys(username)
 	web.FindElementByID(objectabstractions.FieldPassword).SendKeys(password)
 	web.FindElementByText(objectabstractions.BtnLogin).Click()
