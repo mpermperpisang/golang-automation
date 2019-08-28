@@ -10,15 +10,24 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/golang-automation/features/helper"
 	"github.com/logrusorgru/aurora"
 	"github.com/yalp/jsonpath"
 )
 
-var HttpResponse *http.Response
-var BaseURL, readENV string
+/*HTTPResponse variable*/
+var HTTPResponse *http.Response
+
+/*BaseURL variable*/
+var BaseURL, readENV, endpoint string
+
+/*ResponseBody variable*/
 var ResponseBody []byte
 var readEndpoint bool
-var httpResponse, AccessToken interface{}
+
+/*AccessToken variable*/
+var AccessToken interface{}
+var err error
 
 func envreader(env string) error {
 	readEndpoint = strings.HasPrefix(env, "ENV:")
@@ -38,83 +47,93 @@ func BaseAPI(base string) error {
 	return nil
 }
 
-/*Authentication is function to get access token*/
+/*AuthenticationAPI is function to get access token*/
 func AuthenticationAPI(account string) error {
+	var jsonResponse interface{}
+	var number = regexp.MustCompile(`\d+`).FindString(BaseURL)
+
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
 	password := os.Getenv(envLogin + "_PASSWORD")
 	readURL := BaseURL + os.Getenv("AUTH_ENDPOINT")
-	var number = regexp.MustCompile(`\d+`).FindString(BaseURL)
 
 	body := []byte(
 		`{
-			"grant_type": "password",
+			"grant_type": "` + os.Getenv("GRANT_TYPE") + `",
 			"username": "` + username + `",
 			"password": "` + password + `",
 			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+number) + `",
 			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+number) + `",
-			"scope": "public user"
+			"scope": "` + os.Getenv("SCOPE") + `"
 		}`)
 
 	client := &http.Client{}
-	httpRequest, _ := http.NewRequest("POST", readURL, bytes.NewBuffer(body))
+	sendRequest, _ := http.NewRequest("POST", readURL, bytes.NewBuffer(body))
 
-	httpRequest.Header.Set("Content-Type", "application/json")
-	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
+	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))
+	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
-	HTTPResponse, _ := client.Do(httpRequest)
-	ResponseBody, _ := ioutil.ReadAll(HTTPResponse.Body)
-	http, _ := jsonpath.Prepare("$.access_token")
-
-	if err := json.Unmarshal(ResponseBody, &httpResponse); err != nil {
+	if HTTPResponse, err = client.Do(sendRequest); err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
-	AccessToken, _ = http(httpResponse)
+	ResponseBody, _ := ioutil.ReadAll(HTTPResponse.Body)
+	HTTPJson, _ := jsonpath.Prepare(os.Getenv("JSON_PATH"))
+
+	if err := json.Unmarshal(ResponseBody, &jsonResponse); err != nil {
+		log.Fatalln(aurora.Bold(aurora.Red(err)))
+	}
+
+	AccessToken, _ = HTTPJson(jsonResponse)
 
 	return nil
 }
 
 /*RetrieveAPI is function to send request*/
 func RetrieveAPI(verbose string, endpoint string, body string) error {
+	var stringBody string
+
 	envreader(endpoint)
-	readVerbose := strings.ToUpper(verbose)
 
 	if readEndpoint {
 		endpoint = os.Getenv(readENV)
 	}
 
+	readVerbose := strings.ToUpper(verbose)
 	requestBody := []byte(body)
-	var stringBody = string(requestBody)
-	regexENV := regexp.MustCompile(`ENV:([a-zA-Z0-9_]+)`)
+	stringBody = string(requestBody)
+	regexENV := regexp.MustCompile(helper.RegexReadENV())
 	findENV := regexENV.FindAllString(string(requestBody), -1)
 
 	for _, env := range findENV {
-		getENV := strings.TrimPrefix(env, "ENV:")
-		replaceENV := strings.ReplaceAll(stringBody, env, os.Getenv(getENV))
+		readENV = strings.TrimPrefix(env, "ENV:")
+		replaceENV := strings.ReplaceAll(stringBody, env, os.Getenv(readENV))
 		stringBody = replaceENV
 	}
 
 	readURL := BaseURL + endpoint
 	client := &http.Client{}
-	httpRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer([]byte(stringBody)))
+	sendRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer([]byte(stringBody)))
 
 	if AccessToken != nil {
-		httpRequest.Header.Add("Authorization", "Bearer "+AccessToken.(string))
+		sendRequest.Header.Add("Authorization", "Bearer "+AccessToken.(string))
 	}
 
-	httpRequest.Header.Set("Content-Type", "application/json")
-	httpRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
+	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))
+	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
-	HttpResponse, _ = client.Do(httpRequest)
-	ResponseBody, _ = ioutil.ReadAll(HttpResponse.Body)
+	if HTTPResponse, err = client.Do(sendRequest); err != nil {
+		log.Fatalln(aurora.Bold(aurora.Red(err)))
+	}
+
+	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
 
 	return nil
 }
 
 /*ResponseAPI is function to get response code*/
 func ResponseAPI(response int) error {
-	actualCode := HttpResponse.StatusCode
+	actualCode := HTTPResponse.StatusCode
 
 	if expectCode := (response); actualCode != expectCode {
 		log.Fatalln("actual status code :", aurora.Bold(aurora.Red(actualCode)))
