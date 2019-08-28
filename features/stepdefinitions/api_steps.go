@@ -85,7 +85,7 @@ func ResponseDataType(key string, expectType string) error {
 	case string:
 		actualType = "string"
 	default:
-		actualType = "unknown"
+		actualType = actualResult.(string)
 	}
 
 	if actualType != expectType {

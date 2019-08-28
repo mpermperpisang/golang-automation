@@ -13,4 +13,3 @@ Feature: Variant Desktop Web
     | user       |
     | ENV:USER   |
     | ENV:USER_2 |
-
