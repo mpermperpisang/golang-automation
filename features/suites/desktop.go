@@ -7,5 +7,5 @@ import (
 
 /*AutomationDWEB is suites for desktop web*/
 func AutomationDWEB(s *godog.Suite) {
-	s.Step(`^client login as "([^"]*)" via desktop$`, stepdefinitions.LoginDWEB)
+	s.Step(`^client login as "([^"]*)" via (desktop|mobile)$`, stepdefinitions.LoginWEB)
 }

@@ -8,8 +8,8 @@ import (
 	"github.com/golang-automation/features/objectabstractions"
 )
 
-/*LoginDWEB is function to login into desktop web*/
-func LoginDWEB(user string) error {
+/*LoginWEB is function to login into desktop and mobile web*/
+func LoginWEB(user string, platform string) error {
 	var username, password string
 
 	readUser := strings.HasPrefix(user, "ENV:")
@@ -24,7 +24,11 @@ func LoginDWEB(user string) error {
 	}
 
 	web.DriverConnect()
-	web.GoToDWEBURL(os.Getenv("URL_2"))
+	if platform == "desktop" {
+		web.GoToDWEBURL(os.Getenv("URL_2"))
+	} else {
+		web.GoToMWEBURL(os.Getenv("URL_2"))
+	}
 	web.FindElementByID(objectabstractions.FieldUsername).SendKeys(username)
 	web.FindElementByID(objectabstractions.FieldPassword).SendKeys(password)
 	web.FindElementByText(objectabstractions.BtnLogin).Click()

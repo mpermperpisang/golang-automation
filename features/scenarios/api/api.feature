@@ -24,7 +24,7 @@ Feature: Variant API
     And response should have "$[0]..latt_long"
     And response should have "$[0].latt_long" matching "-6.171440,106.827820"
 
-@variant-api-3
+  @variant-api-3
   Scenario: Variant API Without Body
     Given client has "ENV:ACCOUNT_BASE_URL_2" as base api
     And client login as "USER"
@@ -46,7 +46,7 @@ Feature: Variant API
     And response should have "$..data..fare"
     And response should have "$..data..estimated_walking_time"
 
-@variant-api-4
+  @variant-api-4
   Scenario: Variant API With Body
     Given client has "ENV:ACCOUNT_BASE_URL" as base api
     And client login as "USER"
