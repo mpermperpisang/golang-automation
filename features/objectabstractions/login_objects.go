@@ -7,8 +7,6 @@ var (
 	FieldPassword = "user_session_password"
 	/*BtnLogin element text for button login*/
 	BtnLogin = "Login"
-	/*LabelInputCode element text for window confirmation*/
-	LabelInputCode = "Masukkan kode ke kotak isian di bawah ini "
 	/*BtnSend element text for button send*/
 	BtnSend = ".js-tfa-request__button"
 	/*FieldOTP element id for textfield OTP*/

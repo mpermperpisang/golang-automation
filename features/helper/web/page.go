@@ -95,8 +95,7 @@ func FindElementByClickScript(locator string) error {
 	time.Sleep(time.Second * 1)
 	_, err := Driver.ExecuteScriptRaw(`$('`+locator+`').click();`, nil)
 	if err != nil {
-		panic(err)
-		// log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 
 	return nil
