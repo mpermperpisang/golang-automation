@@ -2,6 +2,7 @@ package web
 
 import (
 	"log"
+	"time"
 
 	"github.com/logrusorgru/aurora"
 	"github.com/tebeka/selenium"
@@ -87,6 +88,18 @@ func FindElementByText(locator string) selenium.WebElement {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 	return element
+}
+
+/*FindElementByClickScript does find element by javascript*/
+func FindElementByClickScript(locator string) error {
+	time.Sleep(time.Second * 1)
+	_, err := Driver.ExecuteScriptRaw(`$('`+locator+`').click();`, nil)
+	if err != nil {
+		panic(err)
+		// log.Fatalln(aurora.Bold(aurora.Red(err)))
+	}
+
+	return nil
 }
 
 /*FindElementsByID does find element by multiple ID*/
