@@ -7,14 +7,12 @@ var (
 	FieldPassword = "user_session_password"
 	/*BtnLogin element text for button login*/
 	BtnLogin = "Login"
-	/*WindowConfirm element text for window confirmation*/
-	WindowConfirm = "Konfirmasi Nomor Handphone"
 	/*BtnSend element text for button send*/
-	BtnSend = ".js-tfa-request__button.js-tfa-step--request"
+	BtnSend = ".js-tfa-request__button"
 	/*FieldOTP element id for textfield OTP*/
 	FieldOTP = "otp"
 	/*BtnConfirm element text for button confirmation*/
-	BtnConfirm = "Konfirmasi"
-	/*IconProfile element class for profile*/
-	IconProfile = ".c-icon.c-icon--arrow-dropdown.u-txt--large"
+	BtnConfirm = ".js-tfa-submit"
+	/*BtnOke element text for button okay*/
+	BtnOke = ".c-btn--red.js-tfa-step--finish"
 )

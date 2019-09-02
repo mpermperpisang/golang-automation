@@ -34,14 +34,16 @@ func GoToURL(url string) error {
 
 /*GoToDWEBURL is function to access dweb url*/
 func GoToDWEBURL(url string) error {
-	website := Driver.Get(os.Getenv("DWEB_BASE_URL") + url)
+	BaseURL := os.Getenv("DWEB_BASE_URL") + url
+	website := Driver.Get(BaseURL)
 
 	return website
 }
 
 /*GoToMWEBURL is function to access mweb url*/
 func GoToMWEBURL(url string) error {
-	website := Driver.Get(os.Getenv("MWEB_BASE_URL") + url)
+	BaseURL := os.Getenv("MWEB_BASE_URL") + url
+	website := Driver.Get(BaseURL)
 
 	return website
 }
