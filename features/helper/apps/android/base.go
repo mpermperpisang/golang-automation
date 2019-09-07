@@ -9,10 +9,14 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
+/*Driver global variable*/
 var Driver *appium.WebDriver
+
+/*Device global variable*/
 var Device *appium.Device
 var p *properties.Properties
 
+/*DriverConnect for android*/
 func DriverConnect() error {
 	p = properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-android.properties", properties.UTF8)
 
@@ -35,6 +39,8 @@ func DriverConnect() error {
 		"deviceReadyTimeout":          p.MustGetString("deviceReadyTimeout"),
 		"espressoServerLaunchTimeout": p.MustGetString("espressoServerLaunchTimeout"),
 		"Address":                     p.MustGetString("Address"),
+		"appWaitActivity":             p.MustGetString("appWaitActivity"),
+		"forceEspressoRebuild":        p.MustGetString("forceEspressoRebuild"),
 	})
 
 	Driver = appium.New(options)
