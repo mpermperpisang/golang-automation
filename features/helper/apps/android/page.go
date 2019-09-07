@@ -3,9 +3,8 @@ package android
 import (
 	"log"
 
-	"github.com/sclevine/agouti"
-
 	"github.com/logrusorgru/aurora"
+	"github.com/sclevine/agouti"
 )
 
 /*FindElementByClass does find element by class name*/
