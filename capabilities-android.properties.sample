@@ -16,3 +16,5 @@ Port=4723
 Debug=true
 espressoServerLaunchTimeout=
 Address=
+appWaitActivity=
+forceEspressoRebuild=true

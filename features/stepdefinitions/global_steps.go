@@ -1,12 +1,14 @@
 package stepdefinitions
 
 import (
+	"log"
 	"os"
 	"strings"
 	"time"
 
+	"github.com/golang-automation/features/helper/apps/android"
+	"github.com/golang-automation/features/helper/apps/ios"
 	"github.com/golang-automation/features/helper/web"
-	"github.com/golang-automation/features/objectabstractions"
 )
 
 var username, password string
@@ -15,6 +17,8 @@ var username, password string
 func LoginWEB(user string, platform string) error {
 	web.DriverConnect()
 
+/*LoginUI is function to set login data*/
+func LoginUI(user string, platform string) error {
 	readUser := strings.HasPrefix(user, "ENV:")
 	readENV := strings.TrimPrefix(user, "ENV:")
 
@@ -26,12 +30,22 @@ func LoginWEB(user string, platform string) error {
 		password = os.Getenv(user + "_PASSWORD")
 	}
 
-	if platform == "desktop" {
+	switch platform {
+	case "desktop":
+		web.DriverConnect()
 		web.GoToDWEBURL(os.Getenv("URL_2"))
-	} else {
+	case "mobile":
+		web.DriverConnect()
 		web.GoToMWEBURL(os.Getenv("URL_2"))
+	case "android":
+		android.DriverConnect()
+	case "ios":
+		ios.DriverConnect()
+	default:
+		log.Fatalln("Driver not found")
 	}
 
+<<<<<<< HEAD:features/stepdefinitions/desktop_steps.go
 	return nil
 }
 
@@ -54,5 +68,7 @@ func ValidateLoggedUser() error {
 	time.Sleep(time.Second * 10)
 	web.FindElementByXpath(objectabstractions.IconProfile).IsEnabled()
 
+=======
+>>>>>>> 546b5170fabf7460a74141d9503afd7a8d224c64:features/stepdefinitions/global_steps.go
 	return nil
 }

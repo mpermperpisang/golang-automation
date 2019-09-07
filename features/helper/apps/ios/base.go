@@ -9,10 +9,14 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
+/*Driver global variable*/
 var Driver *appium.WebDriver
+
+/*Device global variable*/
 var Device *appium.Device
 var p *properties.Properties
 
+/*DriverConnect for ios*/
 func DriverConnect() error {
 	p = properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-ios.properties", properties.UTF8)
 
