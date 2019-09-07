@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/golang-automation/features/helper/apps/android"
 	"github.com/golang-automation/features/helper/apps/ios"
@@ -12,10 +11,6 @@ import (
 )
 
 var username, password string
-
-/*LoginWEB is function to set login data*/
-func LoginWEB(user string, platform string) error {
-	web.DriverConnect()
 
 /*LoginUI is function to set login data*/
 func LoginUI(user string, platform string) error {
@@ -45,30 +40,5 @@ func LoginUI(user string, platform string) error {
 		log.Fatalln("Driver not found")
 	}
 
-<<<<<<< HEAD:features/stepdefinitions/desktop_steps.go
-	return nil
-}
-
-/*InputLogin is function to input username and password*/
-func InputLogin() error {
-	web.FindElementByID(objectabstractions.FieldUsername).SendKeys(username)
-	web.FindElementByID(objectabstractions.FieldPassword).SendKeys(password)
-	web.FindElementByText(objectabstractions.BtnLogin).Click()
-	web.FindElementByClickScript(objectabstractions.BtnSend)
-	time.Sleep(time.Second * 1)
-	web.FindElementByID(objectabstractions.FieldOTP).SendKeys(os.Getenv("OTP"))
-	web.FindElementByClickScript(objectabstractions.BtnConfirm)
-	web.FindElementByClickScript(objectabstractions.BtnOke)
-
-	return nil
-}
-
-/*ValidateLoggedUser is function to check if user has login successfully*/
-func ValidateLoggedUser() error {
-	time.Sleep(time.Second * 10)
-	web.FindElementByXpath(objectabstractions.IconProfile).IsEnabled()
-
-=======
->>>>>>> 546b5170fabf7460a74141d9503afd7a8d224c64:features/stepdefinitions/global_steps.go
 	return nil
 }
