@@ -25,7 +25,7 @@ func InputLogin() error {
 /*ValidateLoggedUser is function to check if user has login successfully*/
 func ValidateLoggedUser() error {
 	time.Sleep(time.Second * 10)
-	web.FindElementByXpath(objectabstractions.IconProfile).IsEnabled()
+	web.FindElementByCSS(objectabstractions.IconProfile).IsDisplayed()
 
 	return nil
 }

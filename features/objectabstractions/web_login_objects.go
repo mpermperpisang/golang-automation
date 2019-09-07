@@ -10,7 +10,7 @@ var (
 	/*LabelInputCode element text for window confirmation*/
 	LabelInputCode = "Masukkan kode ke kotak isian di bawah ini "
 	/*BtnSend element text for button send*/
-	BtnSend = ".js-tfa-request__button"
+	BtnSend = ".c-btn__text"
 	/*FieldOTP element id for textfield OTP*/
 	FieldOTP = "otp"
 	/*BtnConfirm element text for button confirmation*/

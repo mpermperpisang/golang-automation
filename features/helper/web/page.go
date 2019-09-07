@@ -92,8 +92,8 @@ func FindElementByText(locator string) selenium.WebElement {
 
 /*FindElementByClickScript does find element by javascript*/
 func FindElementByClickScript(locator string) error {
-	time.Sleep(time.Second * 1)
-	_, err := Driver.ExecuteScriptRaw(`$('`+locator+`').click();`, nil)
+	time.Sleep(time.Second * 3)
+	_, err := Driver.ExecuteScriptRaw(`$('`+locator+`')[0].click();`, nil)
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
