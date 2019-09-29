@@ -39,6 +39,11 @@ func DriverConnect() error {
 
 	Driver = appium.New(options)
 
+	return nil
+}
+
+/*OpenIOSApps start and create new device ios*/
+func OpenIOSApps() error {
 	if err := Driver.Start(); err != nil {
 		log.Fatalln(err)
 	}

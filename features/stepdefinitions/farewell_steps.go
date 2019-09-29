@@ -8,6 +8,7 @@ func FarewellOne() error {
 		"人も街も明るめに着替えた\n" +
 		"風に誘われ気づけば知らずに\n" +
 		"僕は口ずさんでいた")
+
 	return nil
 }
 
@@ -19,6 +20,7 @@ func FarewellTwo() error {
 		"愛しさはいつも ずっと前から準備してる\n" +
 		"ノイズだらけのRadioが聴こえて来たんだ\n" +
 		"歳月(とき)を超え…")
+
 	return nil
 }
 
@@ -30,6 +32,7 @@ func FarewellThree() error {
 		"僕のメロディー メロディー\n" +
 		"サビだけを覚えてる若さは切なく\n" +
 		"輝いた日々が蘇るよ")
+
 	return nil
 }
 
@@ -39,6 +42,7 @@ func FarewellFour() error {
 		"通りに抜ける青春に迷って\n" +
 		"知らないうちに大人になってた\n" +
 		"歌を聴くこともなく")
+
 	return nil
 }
 
@@ -47,6 +51,7 @@ func FarewellFive() error {
 	fmt.Println("何を忘れてしまったのだろう?\n" +
 		"新しいものばかりを探して\n" +
 		"今の自分に問いかけるようなあのMusic")
+
 	return nil
 }
 
@@ -54,6 +59,7 @@ func FarewellFive() error {
 func FarewellSix() error {
 	fmt.Println("偶然はいつも 教えてくれる意味があると…\n" +
 		"思いがけない未来眠ってた恋が目を覚ます")
+
 	return nil
 }
 
@@ -65,6 +71,7 @@ func FarewellSeven() error {
 		"ふいにメモリー メモリー\n" +
 		"面影も鮮やかに無意識にそっと\n" +
 		"口ずさむ僕は今でもまだ…")
+
 	return nil
 }
 
@@ -72,6 +79,7 @@ func FarewellSeven() error {
 func FarewellEight() error {
 	fmt.Println("振り返るように君も思い出すだろうか?\n" +
 		"あの頃 いつも流れたヒットソング")
+
 	return nil
 }
 
@@ -83,6 +91,7 @@ func FarewellNine() error {
 		"僕のメロディー メロディー\n" +
 		"サビだけを覚えてる\n" +
 		"ほろ苦い感情が溢れ出す今も…")
+
 	return nil
 }
 
@@ -91,11 +100,13 @@ func FarewellTen() error {
 	fmt.Println("こんなメロディー メロディー\n" +
 		"きっとどこかで 君だって口ずさむだろう\n" +
 		"思い出は時にはやさしい")
+
 	return nil
 }
 
 /*FarewellEleven function to say goodbye*/
 func FarewellEleven() error {
 	fmt.Println("口ずさむだろういつの日にかあの頃のメロディー")
+
 	return nil
 }

@@ -11,6 +11,7 @@ func GoToAndroidLogin() error {
 	// there is an error framework, need to find out later
 	android.FindElementByXpath(objectabstractions.BtnStart).Click()
 	android.FindElementByButton(objectabstractions.BtnLoginAndroid).Click()
+
 	return nil
 }
 

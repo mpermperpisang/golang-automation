@@ -23,14 +23,14 @@ var BaseURL, readENV, endpoint string
 
 /*ResponseBody variable*/
 var ResponseBody []byte
-var readEndpoint bool
+var endpointENV bool
 
 /*AccessToken variable*/
 var AccessToken interface{}
 var err error
 
 func envreader(env string) error {
-	readEndpoint = strings.HasPrefix(env, "ENV:")
+	endpointENV = strings.HasPrefix(env, "ENV:")
 	readENV = strings.TrimPrefix(env, "ENV:")
 
 	return nil
@@ -40,7 +40,7 @@ func envreader(env string) error {
 func BaseAPI(base string) error {
 	envreader(base)
 
-	if readEndpoint {
+	if endpointENV {
 		BaseURL = os.Getenv(readENV)
 	}
 
@@ -50,8 +50,8 @@ func BaseAPI(base string) error {
 /*AuthenticationAPI is function to get access token*/
 func AuthenticationAPI(account string) error {
 	var jsonResponse interface{}
-	var number = regexp.MustCompile(`\d+`).FindString(BaseURL)
 
+	number := regexp.MustCompile(`\d+`).FindString(BaseURL)
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
 	password := os.Getenv(envLogin + "_PASSWORD")
@@ -95,7 +95,7 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 
 	envreader(endpoint)
 
-	if readEndpoint {
+	if endpointENV {
 		endpoint = os.Getenv(readENV)
 	}
 

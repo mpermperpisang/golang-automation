@@ -13,7 +13,7 @@ import (
 /*GodogMainSupport does something todo before and after scenario*/
 func GodogMainSupport(s *godog.Suite) {
 	s.BeforeScenario(func(interface{}) {
-		fmt.Println("Preparing for run automation")
+		fmt.Println("Preparing scenario")
 	})
 
 	s.AfterScenario(func(interface{}, error) {
@@ -25,6 +25,6 @@ func GodogMainSupport(s *godog.Suite) {
 			ios.Driver.Stop()
 		}
 
-		fmt.Println("Quitting driver")
+		fmt.Println("Quitting scenario")
 	})
 }

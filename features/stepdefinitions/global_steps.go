@@ -14,10 +14,10 @@ var username, password string
 
 /*LoginUI is function to set login data*/
 func LoginUI(user string, platform string) error {
-	readUser := strings.HasPrefix(user, "ENV:")
+	userENV := strings.HasPrefix(user, "ENV:")
 	readENV := strings.TrimPrefix(user, "ENV:")
 
-	if readUser {
+	if userENV {
 		username = os.Getenv(readENV + "_USERNAME")
 		password = os.Getenv(readENV + "_PASSWORD")
 	} else {
@@ -34,8 +34,10 @@ func LoginUI(user string, platform string) error {
 		web.GoToMWEBURL(os.Getenv("URL_2"))
 	case "android":
 		android.DriverConnect()
+		android.OpenAndroidApps()
 	case "ios":
 		ios.DriverConnect()
+		ios.OpenIOSApps()
 	default:
 		log.Fatalln("Driver not found")
 	}

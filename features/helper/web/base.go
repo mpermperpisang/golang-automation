@@ -20,21 +20,6 @@ func DriverConnect() error {
 	return nil
 }
 
-/*GoToURL is global function*/
-func GoToURL(url string) error {
-	var base string
-
-	if os.Getenv("DWEB_BASE_URL") != "" {
-		base = os.Getenv("DWEB_BASE_URL")
-	} else if os.Getenv("MWEB_BASE_URL") != "" {
-		base = os.Getenv("MWEB_BASE_URL")
-	}
-
-	website := Driver.Get(base + url)
-
-	return website
-}
-
 /*GoToDWEBURL is function to access dweb url*/
 func GoToDWEBURL(url string) error {
 	BaseURL = os.Getenv("DWEB_BASE_URL") + url

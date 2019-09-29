@@ -45,6 +45,11 @@ func DriverConnect() error {
 
 	Driver = appium.New(options)
 
+	return nil
+}
+
+/*OpenAndroidApps start and create new device android*/
+func OpenAndroidApps() error {
 	if err := Driver.Start(); err != nil {
 		log.Fatalln(err)
 	}

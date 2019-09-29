@@ -24,6 +24,7 @@ func FindElementByID(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -33,6 +34,7 @@ func FindElementByXpath(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -42,6 +44,7 @@ func FindElementByLinkText(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -51,6 +54,7 @@ func FindElementByPartialLink(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -60,6 +64,7 @@ func FindElementByName(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -69,6 +74,7 @@ func FindElementByTag(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -78,6 +84,7 @@ func FindElementByClass(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -87,6 +94,7 @@ func FindElementByText(locator string) selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -107,6 +115,7 @@ func FindElementsByID(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -116,6 +125,7 @@ func FindElementsByXpath(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -125,6 +135,7 @@ func FindElementsByText(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -134,6 +145,7 @@ func FindElementsByLinkText(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -143,6 +155,7 @@ func FindElementsByPartialLink(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -152,6 +165,7 @@ func FindElementsByName(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -161,6 +175,7 @@ func FindElementsByTag(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -170,6 +185,7 @@ func FindElementsByClass(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -179,6 +195,7 @@ func FindElementsByCSS(locator string) []selenium.WebElement {
 	if err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
+
 	return element
 }
 
@@ -189,5 +206,6 @@ func MouseHoverToElement(locator string) selenium.WebElement {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 	element.MoveTo(0, 0)
+
 	return element
 }

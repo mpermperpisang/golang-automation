@@ -32,6 +32,7 @@ func OpenMWEB() error {
 /*OpenAndroid is function to initiate android scenario*/
 func OpenAndroid() error {
 	android.DriverConnect()
+	android.OpenAndroidApps()
 
 	return nil
 }
@@ -39,6 +40,7 @@ func OpenAndroid() error {
 /*OpenIOS is function to initiate ios scenario*/
 func OpenIOS() error {
 	ios.DriverConnect()
+	ios.OpenIOSApps()
 
 	return nil
 }
