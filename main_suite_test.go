@@ -12,6 +12,7 @@ func GodogMainSuites(s *godog.Suite) {
 	suites.AutomationAPI(s)
 	suites.AutomationWeb(s)
 	suites.AutomationApps(s)
+	suites.FarewellGreeting(s)
 
 	support.GodogMainSupport(s)
 }
