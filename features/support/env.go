@@ -20,8 +20,12 @@ func GodogMainSupport(s *godog.Suite) {
 		if web.Driver != nil {
 			web.Driver.Quit()
 		} else if android.Driver != nil {
+			// android.Device.ClearCookies()
+			// android.Device.Reset()
 			android.Driver.Stop()
 		} else if ios.Driver != nil {
+			// ios.Device.ClearCookies()
+			// ios.Device.Reset()
 			ios.Driver.Stop()
 		}
 
