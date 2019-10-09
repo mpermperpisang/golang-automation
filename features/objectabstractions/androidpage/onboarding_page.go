@@ -1,4 +1,4 @@
-package objectabstractions
+package androidpage
 
 var (
 	/*BtnMulai element button Mulai*/

@@ -1,4 +1,4 @@
-package stepdefinitions
+package apisteps
 
 import (
 	"encoding/json"

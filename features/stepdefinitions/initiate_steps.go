@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/golang-automation/features/demo"
+	"github.com/golang-automation/features/helper/android"
 	"github.com/golang-automation/features/helper/api"
-	"github.com/golang-automation/features/helper/apps/android"
-	"github.com/golang-automation/features/helper/apps/ios"
+	"github.com/golang-automation/features/helper/ios"
 	"github.com/golang-automation/features/helper/web"
 )
 

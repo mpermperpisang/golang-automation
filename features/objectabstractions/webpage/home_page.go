@@ -1,4 +1,4 @@
-package objectabstractions
+package webpage
 
 var (
 	/*IconProfile element class for profile*/

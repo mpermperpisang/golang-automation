@@ -10,7 +10,7 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `cp capabilities-ios.properties.sample capabilities-ios.properties`
 
 **Install Package**<br/>
-`$ make vendor-prepare`
+`$ make package`
 
 **Setup and running Docker selenium-hub and browser**<br/>
 `$ make`

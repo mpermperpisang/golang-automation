@@ -1,7 +1,7 @@
 # I don't really understand Makefile and docker. Have a lot of things to learn
 all: docker-clean docker-hub docker-browser
 
-framework:
+package:
 	@go get github.com/DATA-DOG/godog/cmd/godog
 	@go get -t -d github.com/tebeka/selenium
 	@go get github.com/sclevine/agouti

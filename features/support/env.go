@@ -3,10 +3,9 @@ package support
 import (
 	"fmt"
 
-	"github.com/golang-automation/features/helper/apps/android"
-	"github.com/golang-automation/features/helper/apps/ios"
-
 	"github.com/DATA-DOG/godog"
+	"github.com/golang-automation/features/helper/android"
+	"github.com/golang-automation/features/helper/ios"
 	"github.com/golang-automation/features/helper/web"
 )
 
@@ -20,12 +19,8 @@ func GodogMainSupport(s *godog.Suite) {
 		if web.Driver != nil {
 			web.Driver.Quit()
 		} else if android.Driver != nil {
-			// android.Device.ClearCookies()
-			// android.Device.Reset()
 			android.Driver.Stop()
 		} else if ios.Driver != nil {
-			// ios.Device.ClearCookies()
-			// ios.Device.Reset()
 			ios.Driver.Stop()
 		}
 

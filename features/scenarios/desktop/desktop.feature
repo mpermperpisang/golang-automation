@@ -8,7 +8,7 @@ Feature: Variant Desktop Web
     Then client must be in logged home page
 
   @variant-dweb-2
-  Scenario Outline: Variant Desktop Web Without Examples
+  Scenario Outline: Variant Desktop Web With Examples
     Given there is client who wants to login as "<user>" via desktop
     When client input valid data login
     Then client must be in logged home page

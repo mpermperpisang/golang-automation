@@ -8,7 +8,7 @@ Feature: Variant Mobile Web
     Then client must be in logged home page
 
   @variant-mweb-2
-  Scenario Outline: Variant Mobile Web Without Examples
+  Scenario Outline: Variant Mobile Web With Examples
     Given there is client who wants to login as "<user>" via mobile
     When client input valid data login
     Then client must be in logged home page

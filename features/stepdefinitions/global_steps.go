@@ -5,24 +5,28 @@ import (
 	"os"
 	"strings"
 
-	"github.com/golang-automation/features/helper/apps/android"
-	"github.com/golang-automation/features/helper/apps/ios"
+	"github.com/golang-automation/features/helper/android"
+	"github.com/golang-automation/features/helper/ios"
 	"github.com/golang-automation/features/helper/web"
 )
 
-var username, password string
+/*Username variabel*/
+var Username string
 
-/*LoginUI is function to set login data*/
-func LoginUI(user string, platform string) error {
+/*Password variabel*/
+var Password string
+
+/*LoginData is function to set login data*/
+func LoginData(user string, platform string) error {
 	userENV := strings.HasPrefix(user, "ENV:")
 	readENV := strings.TrimPrefix(user, "ENV:")
 
 	if userENV {
-		username = os.Getenv(readENV + "_USERNAME")
-		password = os.Getenv(readENV + "_PASSWORD")
+		Username = os.Getenv(readENV + "_USERNAME")
+		Password = os.Getenv(readENV + "_PASSWORD")
 	} else {
-		username = os.Getenv(user + "_USERNAME")
-		password = os.Getenv(user + "_PASSWORD")
+		Username = os.Getenv(user + "_USERNAME")
+		Password = os.Getenv(user + "_PASSWORD")
 	}
 
 	switch platform {
