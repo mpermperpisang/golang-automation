@@ -18,3 +18,4 @@ espressoServerLaunchTimeout=
 Address=
 appWaitActivity=
 forceEspressoRebuild=true
+uninstallOtherPackages=

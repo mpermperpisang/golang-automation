@@ -41,6 +41,7 @@ func DriverConnect() error {
 		"Address":                     p.MustGetString("Address"),
 		"appWaitActivity":             p.MustGetString("appWaitActivity"),
 		"forceEspressoRebuild":        p.MustGetString("forceEspressoRebuild"),
+		"uninstallOtherPackages":      p.MustGetString("uninstallOtherPackages"),
 	})
 
 	Driver = appium.New(options)
@@ -50,11 +51,13 @@ func DriverConnect() error {
 
 /*OpenAndroidApps start and create new device android*/
 func OpenAndroidApps() error {
+	var err error
+
 	if err := Driver.Start(); err != nil {
 		log.Fatalln(err)
 	}
 
-	if _, err := Driver.NewDevice(); err != nil {
+	if Device, err = Driver.NewDevice(); err != nil {
 		log.Fatalln(aurora.Bold(aurora.Red(err)))
 	}
 

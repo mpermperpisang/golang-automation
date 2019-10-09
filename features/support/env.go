@@ -3,10 +3,9 @@ package support
 import (
 	"fmt"
 
-	"github.com/golang-automation/features/helper/apps/android"
-	"github.com/golang-automation/features/helper/apps/ios"
-
 	"github.com/DATA-DOG/godog"
+	"github.com/golang-automation/features/helper/android"
+	"github.com/golang-automation/features/helper/ios"
 	"github.com/golang-automation/features/helper/web"
 )
 
