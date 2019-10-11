@@ -62,4 +62,5 @@ Feature: Variant API
       "event_id": ENV:EVENT_ID
     }
     """
-    Then response status should be "422"
+    Then response status should be "401"
+    And response should have "$.errors[0].message" matching "User login tidak valid"

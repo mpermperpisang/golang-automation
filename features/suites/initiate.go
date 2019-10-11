@@ -15,7 +15,7 @@ func InitiateAutomation(s *godog.Suite) {
 	s.Step(`^visit ios$`, stepdefinitions.OpenIOS)
 	// api
 	s.Step(`^client has "([^\"]*)" as base api$`, stepdefinitions.BaseAPI)
-	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseAPI)
+	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseStatusAPI)
 	// unit
 	s.Step(`^user has a name "([^\"]*)"$`, stepdefinitions.GivenUserName)
 	s.Step(`^Testivus meet user$`, stepdefinitions.MeetUserName)

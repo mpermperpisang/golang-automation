@@ -2,12 +2,12 @@ package apisteps
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"strconv"
 
 	"github.com/DATA-DOG/godog/gherkin"
 	"github.com/golang-automation/features/helper/api"
-	"github.com/logrusorgru/aurora"
 	"github.com/yalp/jsonpath"
 )
 
@@ -22,14 +22,14 @@ func AuthenticationAPI(account string) error {
 
 /*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
 func RequestAPIWithoutBody(verbose string, request string) error {
-	api.RetrieveAPI(verbose, request, "")
+	api.RequestAPI(verbose, request, "")
 
 	return nil
 }
 
 /*RequestAPIWithBody is function to initiate request API with body*/
 func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString) error {
-	api.RetrieveAPI(verbose, request, body.Content)
+	api.RequestAPI(verbose, request, body.Content)
 
 	return nil
 }
@@ -37,13 +37,13 @@ func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString)
 /*ResponseFindKey is function to find key of response API*/
 func ResponseFindKey(key string) error {
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	countKey, _ := jsonpath.Read(jsonResponse, key)
 
 	if err := len(countKey.([]interface{})); err == 0 {
-		log.Fatalln(aurora.Bold(aurora.Red(key + " is " + strconv.Itoa(err))))
+		log.Panicln(fmt.Errorf("Reason: %s", strconv.Itoa(err)))
 	}
 
 	return nil
@@ -54,13 +54,13 @@ func ResponseMatchingValue(key string, expectResult string) error {
 	HTTPJson, _ := jsonpath.Prepare(key)
 
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	actualResult, _ := HTTPJson(jsonResponse)
 
 	if actualResult != expectResult {
-		log.Fatalln("actual result :", aurora.Bold(aurora.Red(actualResult)))
+		log.Panicln(fmt.Errorf("Reason: %s", actualResult))
 	}
 
 	return nil
@@ -73,7 +73,7 @@ func ResponseDataType(key string, expectType string) error {
 	HTTPJson, _ := jsonpath.Prepare(key)
 
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	actualResult, _ := HTTPJson(jsonResponse)
@@ -90,7 +90,7 @@ func ResponseDataType(key string, expectType string) error {
 	}
 
 	if actualType != expectType {
-		log.Fatalln(aurora.Bold(aurora.Red("actual data type : " + actualType)))
+		log.Panicln(fmt.Errorf("Reason: %s", actualType))
 	}
 
 	return nil

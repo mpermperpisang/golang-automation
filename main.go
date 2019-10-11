@@ -1,15 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/joho/godotenv"
-	"github.com/logrusorgru/aurora"
 )
 
 func init() {
 	if env := godotenv.Load(); env != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(env)))
+		log.Panicln(fmt.Errorf("Reason: %s", env))
 	}
 }
 

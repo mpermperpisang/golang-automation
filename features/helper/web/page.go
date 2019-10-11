@@ -1,10 +1,10 @@
 package web
 
 import (
+	"fmt"
 	"log"
 	"time"
 
-	"github.com/logrusorgru/aurora"
 	"github.com/tebeka/selenium"
 )
 
@@ -12,7 +12,7 @@ import (
 func FindElementByCSS(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByCSSSelector, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -22,7 +22,7 @@ func FindElementByCSS(locator string) selenium.WebElement {
 func FindElementByID(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByID, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -32,7 +32,7 @@ func FindElementByID(locator string) selenium.WebElement {
 func FindElementByXpath(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByXPATH, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -42,7 +42,7 @@ func FindElementByXpath(locator string) selenium.WebElement {
 func FindElementByLinkText(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByLinkText, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -52,7 +52,7 @@ func FindElementByLinkText(locator string) selenium.WebElement {
 func FindElementByPartialLink(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByPartialLinkText, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -62,7 +62,7 @@ func FindElementByPartialLink(locator string) selenium.WebElement {
 func FindElementByName(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByName, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -72,7 +72,7 @@ func FindElementByName(locator string) selenium.WebElement {
 func FindElementByTag(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByTagName, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -82,7 +82,7 @@ func FindElementByTag(locator string) selenium.WebElement {
 func FindElementByClass(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByClassName, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -92,7 +92,7 @@ func FindElementByClass(locator string) selenium.WebElement {
 func FindElementByText(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -103,7 +103,7 @@ func FindElementByClickScript(locator string) error {
 	time.Sleep(time.Second * 3)
 	_, err := Driver.ExecuteScriptRaw(`$('`+locator+`')[0].click();`, nil)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return nil
@@ -113,7 +113,7 @@ func FindElementByClickScript(locator string) error {
 func FindElementsByID(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByID, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -123,7 +123,7 @@ func FindElementsByID(locator string) []selenium.WebElement {
 func FindElementsByXpath(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByXPATH, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -133,7 +133,7 @@ func FindElementsByXpath(locator string) []selenium.WebElement {
 func FindElementsByText(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByXPATH, "//*[contains(text(), "+locator+")]")
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -143,7 +143,7 @@ func FindElementsByText(locator string) []selenium.WebElement {
 func FindElementsByLinkText(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByLinkText, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -153,7 +153,7 @@ func FindElementsByLinkText(locator string) []selenium.WebElement {
 func FindElementsByPartialLink(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByPartialLinkText, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -163,7 +163,7 @@ func FindElementsByPartialLink(locator string) []selenium.WebElement {
 func FindElementsByName(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByName, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -173,7 +173,7 @@ func FindElementsByName(locator string) []selenium.WebElement {
 func FindElementsByTag(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByTagName, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -183,7 +183,7 @@ func FindElementsByTag(locator string) []selenium.WebElement {
 func FindElementsByClass(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByClassName, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -193,7 +193,7 @@ func FindElementsByClass(locator string) []selenium.WebElement {
 func FindElementsByCSS(locator string) []selenium.WebElement {
 	element, err := Driver.FindElements(selenium.ByCSSSelector, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	return element
@@ -203,7 +203,7 @@ func FindElementsByCSS(locator string) []selenium.WebElement {
 func MouseHoverToElement(locator string) selenium.WebElement {
 	element, err := Driver.FindElement(selenium.ByCSSSelector, locator)
 	if err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 	element.MoveTo(0, 0)
 

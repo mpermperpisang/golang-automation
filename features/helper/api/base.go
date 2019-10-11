@@ -3,15 +3,16 @@ package api
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/golang-automation/features/helper"
-	"github.com/logrusorgru/aurora"
 	"github.com/yalp/jsonpath"
 )
 
@@ -64,7 +65,8 @@ func AuthenticationAPI(account string) error {
 			"password": "` + password + `",
 			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+number) + `",
 			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+number) + `",
-			"scope": "` + os.Getenv("SCOPE") + `"
+			"scope": "` + os.Getenv("SCOPE") + `",
+			"Bukalapak-Identity": "` + os.Getenv("IDENTITY") + `"
 		}`)
 
 	client := &http.Client{}
@@ -74,14 +76,14 @@ func AuthenticationAPI(account string) error {
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	if HTTPResponse, err = client.Do(sendRequest); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	ResponseBody, _ := ioutil.ReadAll(HTTPResponse.Body)
 	HTTPJson, _ := jsonpath.Prepare(os.Getenv("JSON_PATH"))
 
 	if err := json.Unmarshal(ResponseBody, &jsonResponse); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	AccessToken, _ = HTTPJson(jsonResponse)
@@ -89,8 +91,8 @@ func AuthenticationAPI(account string) error {
 	return nil
 }
 
-/*RetrieveAPI is function to send request*/
-func RetrieveAPI(verbose string, endpoint string, body string) error {
+/*RequestAPI is function to send request*/
+func RequestAPI(verbose string, endpoint string, body string) error {
 	var stringBody string
 
 	envreader(endpoint)
@@ -123,7 +125,7 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	if HTTPResponse, err = client.Do(sendRequest); err != nil {
-		log.Fatalln(aurora.Bold(aurora.Red(err)))
+		log.Panicln(fmt.Errorf("Reason: %s", err))
 	}
 
 	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
@@ -131,12 +133,12 @@ func RetrieveAPI(verbose string, endpoint string, body string) error {
 	return nil
 }
 
-/*ResponseAPI is function to get response code*/
-func ResponseAPI(response int) error {
+/*ResponseStatusAPI is function to get response code*/
+func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 
 	if expectCode := (response); actualCode != expectCode {
-		log.Fatalln("actual status code :", aurora.Bold(aurora.Red(actualCode)))
+		log.Panicln(fmt.Errorf("Reason: %s", strconv.Itoa(actualCode)))
 	}
 
 	return nil
