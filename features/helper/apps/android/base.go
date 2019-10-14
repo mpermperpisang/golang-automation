@@ -14,11 +14,10 @@ var Driver *appium.WebDriver
 
 /*Device global variable*/
 var Device *appium.Device
-var p *properties.Properties
 
 /*DriverConnect for android*/
 func DriverConnect() error {
-	p = properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-android.properties", properties.UTF8)
+	p := properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-android.properties", properties.UTF8)
 
 	options := appium.Desired(agouti.Capabilities{
 		"platformName":                p.MustGetString("platformName"),
@@ -49,16 +48,16 @@ func DriverConnect() error {
 	return nil
 }
 
-/*OpenAndroidApps start and create new device android*/
-func OpenAndroidApps() error {
+/*OpenApps start and create new device android*/
+func OpenApps() error {
 	var err error
 
 	if err := Driver.Start(); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	if Device, err = Driver.NewDevice(); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	return nil

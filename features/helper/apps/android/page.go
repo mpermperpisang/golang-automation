@@ -9,7 +9,7 @@ import (
 func ClickByXPath(locator string) error {
 	element := Device.AllByXPath(locator).Click()
 	if element != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", element))
+		log.Panicln(fmt.Errorf("REASON: %s", element))
 	}
 
 	return nil
@@ -19,7 +19,7 @@ func ClickByXPath(locator string) error {
 func ClickByText(locator string) error {
 	element := Device.AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
 	if element != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", element))
+		log.Panicln(fmt.Errorf("REASON: %s", element))
 	}
 
 	return nil
@@ -29,7 +29,7 @@ func ClickByText(locator string) error {
 func InputText(locator string, text string) error {
 	element := Device.FindByXPath(locator).SendKeys(text)
 	if element != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", element))
+		log.Panicln(fmt.Errorf("REASON: %s", element))
 	}
 
 	return nil
@@ -39,7 +39,7 @@ func InputText(locator string, text string) error {
 func IsElementPresent(locator string) error {
 	_, err := Device.FirstByXPath(locator).Visible()
 	if err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	return nil

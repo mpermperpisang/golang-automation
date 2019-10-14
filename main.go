@@ -9,7 +9,7 @@ import (
 
 func init() {
 	if env := godotenv.Load(); env != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", env))
+		log.Panicln(fmt.Errorf("REASON: %s", env))
 	}
 }
 

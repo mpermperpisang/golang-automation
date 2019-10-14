@@ -37,13 +37,13 @@ func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString)
 /*ResponseFindKey is function to find key of response API*/
 func ResponseFindKey(key string) error {
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	countKey, _ := jsonpath.Read(jsonResponse, key)
 
 	if err := len(countKey.([]interface{})); err == 0 {
-		log.Panicln(fmt.Errorf("Reason: %s", strconv.Itoa(err)))
+		log.Panicln(fmt.Errorf("REASON: %s", strconv.Itoa(err)))
 	}
 
 	return nil
@@ -54,13 +54,13 @@ func ResponseMatchingValue(key string, expectResult string) error {
 	HTTPJson, _ := jsonpath.Prepare(key)
 
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	actualResult, _ := HTTPJson(jsonResponse)
 
 	if actualResult != expectResult {
-		log.Panicln(fmt.Errorf("Reason: %s", actualResult))
+		log.Panicln(fmt.Errorf("REASON: %s", actualResult))
 	}
 
 	return nil
@@ -73,7 +73,7 @@ func ResponseDataType(key string, expectType string) error {
 	HTTPJson, _ := jsonpath.Prepare(key)
 
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	actualResult, _ := HTTPJson(jsonResponse)
@@ -90,7 +90,7 @@ func ResponseDataType(key string, expectType string) error {
 	}
 
 	if actualType != expectType {
-		log.Panicln(fmt.Errorf("Reason: %s", actualType))
+		log.Panicln(fmt.Errorf("REASON: %s", actualType))
 	}
 
 	return nil

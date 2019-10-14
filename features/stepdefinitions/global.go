@@ -35,18 +35,18 @@ func LoginData(user string, platform string) error {
 	switch platform {
 	case "desktop":
 		web.DriverConnect()
-		desktophelper.GoToDWEBURL(os.Getenv("URL_2"))
+		desktophelper.GoToURL(os.Getenv("URL_2"))
 	case "mobile":
 		web.DriverConnect()
-		mobilehelper.GoToMWEBURL(os.Getenv("URL_2"))
+		mobilehelper.GoToURL(os.Getenv("URL_2"))
 	case "android":
 		android.DriverConnect()
-		android.OpenAndroidApps()
+		android.OpenApps()
 	case "ios":
 		ios.DriverConnect()
-		ios.OpenIOSApps()
+		ios.OpenApps()
 	default:
-		log.Panicln(fmt.Errorf("Reason: Driver not found"))
+		log.Panicln(fmt.Errorf("REASON: Driver not found"))
 	}
 
 	return nil

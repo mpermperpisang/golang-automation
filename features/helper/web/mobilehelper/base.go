@@ -9,8 +9,8 @@ import (
 /*BaseURL is global variable*/
 var BaseURL string
 
-/*GoToMWEBURL is function to access mweb url*/
-func GoToMWEBURL(url string) error {
+/*GoToURL is function to access mweb url*/
+func GoToURL(url string) error {
 	BaseURL = os.Getenv("MWEB_BASE_URL") + url
 	website := web.Driver.Get(BaseURL)
 

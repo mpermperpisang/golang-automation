@@ -18,7 +18,7 @@ var usersName, meetName string
 /*OpenDWEB is function to initiate dweb scenario*/
 func OpenDWEB() error {
 	web.DriverConnect()
-	desktophelper.GoToDWEBURL(os.Getenv("URL"))
+	desktophelper.GoToURL(os.Getenv("URL"))
 
 	return nil
 }
@@ -26,7 +26,7 @@ func OpenDWEB() error {
 /*OpenMWEB is function to initiate mweb scenario*/
 func OpenMWEB() error {
 	web.DriverConnect()
-	mobilehelper.GoToMWEBURL(os.Getenv("URL"))
+	mobilehelper.GoToURL(os.Getenv("URL"))
 
 	return nil
 }
@@ -34,7 +34,7 @@ func OpenMWEB() error {
 /*OpenAndroid is function to initiate android scenario*/
 func OpenAndroid() error {
 	android.DriverConnect()
-	android.OpenAndroidApps()
+	android.OpenApps()
 
 	return nil
 }
@@ -42,7 +42,7 @@ func OpenAndroid() error {
 /*OpenIOS is function to initiate ios scenario*/
 func OpenIOS() error {
 	ios.DriverConnect()
-	ios.OpenIOSApps()
+	ios.OpenApps()
 
 	return nil
 }

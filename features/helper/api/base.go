@@ -20,7 +20,7 @@ import (
 var HTTPResponse *http.Response
 
 /*BaseURL variable*/
-var BaseURL, readENV, endpoint string
+var BaseURL, readENV string
 
 /*ResponseBody variable*/
 var ResponseBody []byte
@@ -52,7 +52,7 @@ func BaseAPI(base string) error {
 func AuthenticationAPI(account string) error {
 	var jsonResponse interface{}
 
-	number := regexp.MustCompile(`\d+`).FindString(BaseURL)
+	number := regexp.MustCompile(helper.RegexInt()).FindString(BaseURL)
 	envLogin := strings.ToUpper(account)
 	username := os.Getenv(envLogin + "_USERNAME")
 	password := os.Getenv(envLogin + "_PASSWORD")
@@ -66,7 +66,7 @@ func AuthenticationAPI(account string) error {
 			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+number) + `",
 			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+number) + `",
 			"scope": "` + os.Getenv("SCOPE") + `",
-			"Bukalapak-Identity": "` + os.Getenv("IDENTITY") + `"
+			"` + os.Getenv("COMPANY_ID") + `": "` + os.Getenv("IDENTITY") + `"
 		}`)
 
 	client := &http.Client{}
@@ -76,14 +76,14 @@ func AuthenticationAPI(account string) error {
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	if HTTPResponse, err = client.Do(sendRequest); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	ResponseBody, _ := ioutil.ReadAll(HTTPResponse.Body)
 	HTTPJson, _ := jsonpath.Prepare(os.Getenv("JSON_PATH"))
 
 	if err := json.Unmarshal(ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	AccessToken, _ = HTTPJson(jsonResponse)
@@ -125,7 +125,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	if HTTPResponse, err = client.Do(sendRequest); err != nil {
-		log.Panicln(fmt.Errorf("Reason: %s", err))
+		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
 	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
@@ -138,7 +138,7 @@ func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 
 	if expectCode := (response); actualCode != expectCode {
-		log.Panicln(fmt.Errorf("Reason: %s", strconv.Itoa(actualCode)))
+		log.Panicln(fmt.Errorf("REASON: %s", strconv.Itoa(actualCode)))
 	}
 
 	return nil
