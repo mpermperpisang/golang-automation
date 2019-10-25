@@ -20,6 +20,8 @@ docker-clean:
 	@docker container rm $$(docker ps -aq) -f
 	@echo "Docker successfully removed"
 
+docker-connect: docker-hub docker-browser
+
 docker-hub:
 	docker run -d -p 4545:4444 --name selenium-hub selenium/hub
 	@echo "Docker selenium-hub is running"
