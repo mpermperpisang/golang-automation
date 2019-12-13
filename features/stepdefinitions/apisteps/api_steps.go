@@ -6,12 +6,20 @@ import (
 	"log"
 	"strconv"
 
+	"github.com/golang-automation/features/helper/message"
+
 	"github.com/DATA-DOG/godog/gherkin"
+	"github.com/golang-automation/features/helper"
 	"github.com/golang-automation/features/helper/api"
 	"github.com/yalp/jsonpath"
 )
 
-var jsonResponse interface{}
+/*JSONValue struct for set json value*/
+type JSONValue struct {
+	variable interface{}
+}
+
+var jsonResponse, actualResult interface{}
 
 /*AuthenticationAPI is function to login auth*/
 func AuthenticationAPI(account string) error {
@@ -34,43 +42,44 @@ func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString)
 	return nil
 }
 
-/*ResponseFindKey is function to find key of response API*/
-func ResponseFindKey(key string) error {
+/*ResponseFindPath is function to find path of response API*/
+func ResponseFindPath(path string) error {
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
-	countKey, _ := jsonpath.Read(jsonResponse, key)
+	countpath, _ := jsonpath.Read(jsonResponse, path)
 
-	if err := len(countKey.([]interface{})); err == 0 {
+	if err := len(countpath.([]interface{})); err == 0 {
 		log.Panicln(fmt.Errorf("REASON: %s", strconv.Itoa(err)))
 	}
 
 	return nil
 }
 
-/*ResponseMatchingValue is function to find and matching key value of response API*/
-func ResponseMatchingValue(key string, expectResult string) error {
-	HTTPJson, _ := jsonpath.Prepare(key)
+func getJSONValue(path string) {
+	HTTPJson, _ := jsonpath.Prepare(path)
 
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
-	actualResult, _ := HTTPJson(jsonResponse)
+	actualResult, _ = HTTPJson(jsonResponse)
+}
 
-	if actualResult != expectResult {
-		log.Panicln(fmt.Errorf("REASON: %s", actualResult))
-	}
+/*ResponseMatchingValue is function to find and matching path value of response API*/
+func ResponseMatchingValue(path string, expectResult string) error {
+	getJSONValue(path)
+	helper.AssertEqual(expectResult, actualResult, message.NotMatchValue(actualResult))
 
 	return nil
 }
 
-/*ResponseDataType is function to find and matching key value with data type*/
-func ResponseDataType(key string, expectType string) error {
+/*ResponseDataType is function to find and matching path value with data type*/
+func ResponseDataType(path string, expectType string) error {
 	var actualType string
 
-	HTTPJson, _ := jsonpath.Prepare(key)
+	HTTPJson, _ := jsonpath.Prepare(path)
 
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
@@ -78,20 +87,15 @@ func ResponseDataType(key string, expectType string) error {
 
 	actualResult, _ := HTTPJson(jsonResponse)
 
-	switch actualResult.(type) {
-	case int:
-		actualType = "integer"
-	case float64:
-		actualType = "float64"
-	case string:
-		actualType = "string"
-	default:
-		actualType = actualResult.(string)
-	}
+	helper.AssertEqual(expectType, actualType, message.NotMatchDataType(actualResult.(string)))
 
-	if actualType != expectType {
-		log.Panicln(fmt.Errorf("REASON: %s", actualType))
-	}
+	return nil
+}
+
+/*CollectsJSON function to keep jsonpath value*/
+func CollectsJSON(path string, value interface{}) error {
+	getJSONValue(path)
+	// under development
 
 	return nil
 }

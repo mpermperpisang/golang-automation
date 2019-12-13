@@ -1,13 +1,14 @@
 package stepdefinitions
 
 import (
-	"log"
 	"os"
 
 	"github.com/golang-automation/features/demo"
+	"github.com/golang-automation/features/helper"
 	"github.com/golang-automation/features/helper/api"
 	"github.com/golang-automation/features/helper/apps/android"
 	"github.com/golang-automation/features/helper/apps/ios"
+	"github.com/golang-automation/features/helper/message"
 	"github.com/golang-automation/features/helper/web"
 	"github.com/golang-automation/features/helper/web/desktophelper"
 	"github.com/golang-automation/features/helper/web/mobilehelper"
@@ -77,11 +78,7 @@ func MeetUserName() error {
 
 /*SayHelloName is function to validate unit*/
 func SayHelloName(greet string) error {
-	actualResult := meetName
-
-	if expectResult := (greet); actualResult != expectResult {
-		log.Fatalf("hello(\"Banana\") failed, expected %v, got %v", "Hello Dude!", meetName)
-	}
+	helper.AssertEqual(greet, meetName, message.UnitError())
 
 	return nil
 }

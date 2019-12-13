@@ -16,7 +16,7 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `$ make`
 
 **Running**<br/>
-`godog --tags=@initiate`
+`godog --tags=@example`
 
 **Linter**<br/>
 `golint`

@@ -8,6 +8,7 @@ import (
 
 	"github.com/golang-automation/features/helper/apps/android"
 	"github.com/golang-automation/features/helper/apps/ios"
+	"github.com/golang-automation/features/helper/message"
 	"github.com/golang-automation/features/helper/web"
 	"github.com/golang-automation/features/helper/web/desktophelper"
 	"github.com/golang-automation/features/helper/web/mobilehelper"
@@ -19,8 +20,7 @@ var Username string
 /*Password variabel*/
 var Password string
 
-/*LoginData is function to set login data*/
-func LoginData(user string, platform string) error {
+func varLogin(user string) error {
 	userENV := strings.HasPrefix(user, "ENV:")
 	readENV := strings.TrimPrefix(user, "ENV:")
 
@@ -31,6 +31,13 @@ func LoginData(user string, platform string) error {
 		Username = os.Getenv(user + "_USERNAME")
 		Password = os.Getenv(user + "_PASSWORD")
 	}
+
+	return nil
+}
+
+/*LoginData is function to set login data*/
+func LoginData(user string, platform string) error {
+	varLogin(user)
 
 	switch platform {
 	case "desktop":
@@ -46,7 +53,7 @@ func LoginData(user string, platform string) error {
 		ios.DriverConnect()
 		ios.OpenApps()
 	default:
-		log.Panicln(fmt.Errorf("REASON: Driver not found"))
+		log.Panicln(fmt.Errorf(message.NotFoundDriver()))
 	}
 
 	return nil

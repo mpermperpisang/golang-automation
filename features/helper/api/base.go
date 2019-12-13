@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"os"
 	"regexp"
-	"strconv"
 	"strings"
 
 	"github.com/golang-automation/features/helper"
+	"github.com/golang-automation/features/helper/message"
 	"github.com/yalp/jsonpath"
 )
 
@@ -20,7 +20,8 @@ import (
 var HTTPResponse *http.Response
 
 /*BaseURL variable*/
-var BaseURL, readENV string
+var BaseURL, readENV, oauthToken string
+var username, password, number string
 
 /*ResponseBody variable*/
 var ResponseBody []byte
@@ -48,29 +49,51 @@ func BaseAPI(base string) error {
 	return nil
 }
 
+func baseURL() error {
+	oauthToken = BaseURL + os.Getenv("AUTH_ENDPOINT")
+
+	return nil
+}
+
+func varLogin(account string) error {
+	envLogin := strings.ToUpper(account)
+	username = os.Getenv(envLogin + "_USERNAME")
+	password = os.Getenv(envLogin + "_PASSWORD")
+
+	return nil
+}
+
+func stagingNumber() error {
+	number = regexp.MustCompile(helper.RegexInt()).FindString(BaseURL)
+
+	if number == "" {
+		number = regexp.MustCompile(helper.RegexBaseURL()).FindString(BaseURL)
+	}
+
+	return nil
+}
+
 /*AuthenticationAPI is function to get access token*/
 func AuthenticationAPI(account string) error {
 	var jsonResponse interface{}
 
-	number := regexp.MustCompile(helper.RegexInt()).FindString(BaseURL)
-	envLogin := strings.ToUpper(account)
-	username := os.Getenv(envLogin + "_USERNAME")
-	password := os.Getenv(envLogin + "_PASSWORD")
-	readURL := BaseURL + os.Getenv("AUTH_ENDPOINT")
+	baseURL()
+	varLogin(account)
+	stagingNumber()
 
 	body := []byte(
 		`{
 			"grant_type": "` + os.Getenv("GRANT_TYPE") + `",
 			"username": "` + username + `",
 			"password": "` + password + `",
-			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+number) + `",
-			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+number) + `",
+			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+strings.ToUpper(number)) + `",
+			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+strings.ToUpper(number)) + `",
 			"scope": "` + os.Getenv("SCOPE") + `",
 			"` + os.Getenv("COMPANY_ID") + `": "` + os.Getenv("IDENTITY") + `"
 		}`)
 
 	client := &http.Client{}
-	sendRequest, _ := http.NewRequest("POST", readURL, bytes.NewBuffer(body))
+	sendRequest, _ := http.NewRequest("POST", oauthToken, bytes.NewBuffer(body))
 
 	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
@@ -137,9 +160,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 
-	if expectCode := (response); actualCode != expectCode {
-		log.Panicln(fmt.Errorf("REASON: %s", strconv.Itoa(actualCode)))
-	}
+	helper.AssertEqual(response, actualCode, message.ResponseCode(actualCode))
 
 	return nil
 }
