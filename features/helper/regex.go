@@ -9,3 +9,8 @@ func RegexReadENV() string {
 func RegexInt() string {
 	return `\d+`
 }
+
+/*RegexBaseURL function regex to read base url*/
+func RegexBaseURL() string {
+	return `preprod?`
+}

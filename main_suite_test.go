@@ -12,7 +12,7 @@ import (
 
 func GodogMainSuites(s *godog.Suite) {
 	// generic suites
-	suites.InitiateAutomation(s)
+	suites.ExampleAutomation(s)
 	suites.AutomationGlobal(s)
 	suites.FarewellGreeting(s)
 	// suites by platform

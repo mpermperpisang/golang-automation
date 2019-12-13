@@ -5,8 +5,8 @@ import (
 	"github.com/golang-automation/features/stepdefinitions"
 )
 
-/*InitiateAutomation is suites for initial run*/
-func InitiateAutomation(s *godog.Suite) {
+/*ExampleAutomation is suites for initial run*/
+func ExampleAutomation(s *godog.Suite) {
 	// web
 	s.Step(`^visit dweb$`, stepdefinitions.OpenDWEB)
 	s.Step(`^visit mweb$`, stepdefinitions.OpenMWEB)

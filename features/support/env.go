@@ -17,6 +17,7 @@ func GodogMainSupport(s *godog.Suite) {
 
 	s.AfterScenario(func(interface{}, error) {
 		if web.Driver != nil {
+			web.Driver.Screenshot()
 			web.Driver.Quit()
 		} else if android.Driver != nil {
 			android.Driver.Stop()
