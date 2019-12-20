@@ -8,9 +8,11 @@ import (
 
 /*Test*/
 func TestHello(t *testing.T) {
+	assert := assert.New(t)
+
 	emptyResult := Hello("")
 	nameResult := Hello("Banana")
 
-	assert.Equal(t, emptyResult, "Hello Dude!", "Namanya bukan Dude")
-	assert.Equal(t, nameResult, "Hello Banana!", "Namanya bukan Banana")
+	assert.Equal(emptyResult, "Hello Dude!", "Namanya bukan Dude")
+	assert.Equal(nameResult, "Hello Banana!", "Namanya bukan Banana")
 }

@@ -5,18 +5,18 @@ import (
 )
 
 /*AssertEqual function for assertion*/
-func AssertEqual(Expect interface{}, Actual interface{}, ErrMsg interface{}) error {
-	if Actual != Expect {
-		log.Panicln(ErrMsg)
+func AssertEqual(exp interface{}, act interface{}, err interface{}) error {
+	if act != exp {
+		log.Panicln(err)
 	}
 
 	return nil
 }
 
 /*AssertNotEqual function for assertion*/
-func AssertNotEqual(Expect interface{}, Actual interface{}, ErrMsg interface{}) error {
-	if Actual == Expect {
-		log.Panicln(ErrMsg)
+func AssertNotEqual(exp interface{}, act interface{}, err interface{}) error {
+	if act == exp {
+		log.Panicln(err)
 	}
 
 	return nil

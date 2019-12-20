@@ -31,7 +31,7 @@ var endpointENV bool
 var AccessToken interface{}
 var err error
 
-func envreader(env string) error {
+func envReader(env string) error {
 	endpointENV = strings.HasPrefix(env, "ENV:")
 	readENV = strings.TrimPrefix(env, "ENV:")
 
@@ -40,7 +40,7 @@ func envreader(env string) error {
 
 /*BaseAPI is function to set base url for API*/
 func BaseAPI(base string) error {
-	envreader(base)
+	envReader(base)
 
 	if endpointENV {
 		BaseURL = os.Getenv(readENV)
@@ -118,7 +118,7 @@ func AuthenticationAPI(account string) error {
 func RequestAPI(verbose string, endpoint string, body string) error {
 	var stringBody string
 
-	envreader(endpoint)
+	envReader(endpoint)
 
 	if endpointENV {
 		endpoint = os.Getenv(readENV)

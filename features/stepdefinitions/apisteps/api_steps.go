@@ -42,11 +42,17 @@ func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString)
 	return nil
 }
 
-/*ResponseFindPath is function to find path of response API*/
-func ResponseFindPath(path string) error {
+func decryptJSONResponse() error {
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
+
+	return nil
+}
+
+/*ResponseFindPath is function to find path of response API*/
+func ResponseFindPath(path string) error {
+	decryptJSONResponse()
 
 	countpath, _ := jsonpath.Read(jsonResponse, path)
 
@@ -58,18 +64,16 @@ func ResponseFindPath(path string) error {
 }
 
 func getJSONValue(path string) {
+	decryptJSONResponse()
+
 	HTTPJson, _ := jsonpath.Prepare(path)
-
-	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
-
 	actualResult, _ = HTTPJson(jsonResponse)
 }
 
 /*ResponseMatchingValue is function to find and matching path value of response API*/
 func ResponseMatchingValue(path string, expectResult string) error {
 	getJSONValue(path)
+
 	helper.AssertEqual(expectResult, actualResult, message.NotMatchValue(actualResult))
 
 	return nil
@@ -79,12 +83,9 @@ func ResponseMatchingValue(path string, expectResult string) error {
 func ResponseDataType(path string, expectType string) error {
 	var actualType string
 
+	decryptJSONResponse()
+
 	HTTPJson, _ := jsonpath.Prepare(path)
-
-	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
-
 	actualResult, _ := HTTPJson(jsonResponse)
 
 	helper.AssertEqual(expectType, actualType, message.NotMatchDataType(actualResult.(string)))
@@ -93,9 +94,15 @@ func ResponseDataType(path string, expectType string) error {
 }
 
 /*CollectsJSON function to keep jsonpath value*/
-func CollectsJSON(path string, value interface{}) error {
+func CollectsJSON(path string, value string) error {
 	getJSONValue(path)
-	// under development
+
+	// still on research
+	realValue := actualResult.(string)
+	realVariable := value
+
+	fmt.Println(realValue)
+	fmt.Println(realVariable)
 
 	return nil
 }

@@ -1,6 +1,8 @@
 package message
 
-import "strconv"
+import (
+	"strconv"
+)
 
 /*ResponseCode pesan untuk response code*/
 func ResponseCode(code int) string {
