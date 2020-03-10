@@ -1,4 +1,4 @@
-package web
+package webhelper
 
 import (
 	"os"

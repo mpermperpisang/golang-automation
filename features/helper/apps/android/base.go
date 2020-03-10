@@ -1,4 +1,4 @@
-package android
+package androidhelper
 
 import (
 	"fmt"

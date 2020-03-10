@@ -1,4 +1,4 @@
-package api
+package apihelper
 
 import (
 	"bytes"
