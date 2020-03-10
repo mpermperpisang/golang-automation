@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"strings"
 
-	h "github.com/golang-automation/features/helper"
+	"github.com/golang-automation/features/helper"
 	"github.com/golang-automation/features/helper/message"
 	"github.com/yalp/jsonpath"
 )
@@ -64,10 +64,10 @@ func varLogin(account string) error {
 }
 
 func stagingNumber() error {
-	number = regexp.MustCompile(h.RegexInt()).FindString(BaseURL)
+	number = regexp.MustCompile(helper.RegexInt()).FindString(BaseURL)
 
 	if number == "" {
-		number = regexp.MustCompile(h.RegexBaseURL()).FindString(BaseURL)
+		number = regexp.MustCompile(helper.RegexBaseURL()).FindString(BaseURL)
 	}
 
 	return nil
@@ -127,7 +127,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	readVerbose := strings.ToUpper(verbose)
 	requestBody := []byte(body)
 	stringBody = string(requestBody)
-	regexENV := regexp.MustCompile(h.RegexReadENV())
+	regexENV := regexp.MustCompile(helper.RegexReadENV())
 	findENV := regexENV.FindAllString(string(requestBody), -1)
 
 	for _, env := range findENV {
@@ -160,7 +160,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 
-	h.AssertEqual(response, actualCode, message.ResponseCode(actualCode))
+	helper.AssertEqual(response, actualCode, message.ResponseCode(actualCode))
 
 	return nil
 }
