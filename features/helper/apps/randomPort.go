@@ -1,4 +1,4 @@
-package apps
+package appshelper
 
 import (
 	"math/rand"
