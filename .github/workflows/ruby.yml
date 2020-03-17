@@ -19,7 +19,7 @@ jobs:
         ruby-version: 2.5.x
     - name: Danger checker
       env:
-        DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+        DANGER_GITHUB_API_TOKEN: f119de8aee82cbb4d191a83fb491c9e87e9c0913
       run: |
         bundle update
         bundle install
