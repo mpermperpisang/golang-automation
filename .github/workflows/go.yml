@@ -20,8 +20,9 @@ jobs:
       id: go
     
     - name: Danger checker
+      with:
+        ruby-version: 2.5.1
       run: |
-        rvm use 2.5.1
         bundle update
         bundle install
         bundle exec danger
