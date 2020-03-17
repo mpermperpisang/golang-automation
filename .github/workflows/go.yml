@@ -18,12 +18,15 @@ jobs:
       with:
         go-version: 1.13
       id: go
+      
+    - name: Set up Ruby 2.5.1
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.5.1
+      id: ruby
     
     - name: Danger checker
       run: |
-        curl -sSL https://get.rvm.io | bash -s stable --ruby
-        rvm install 2.5.1
-        rvm use 2.5.1
         bundle update
         bundle install
         bundle exec danger
