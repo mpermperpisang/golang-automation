@@ -17,11 +17,9 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.5.x
-    - name: Run code validation
-      run: bundle exec danger
+    - name: Danger checker
       env:
         DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-    - name: Danger checker
       run: |
         bundle update
         bundle install
