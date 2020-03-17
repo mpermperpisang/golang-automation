@@ -49,7 +49,7 @@ func BaseAPI(base string) error {
 	return nil
 }
 
-func baseURL() error {
+func oauthURL() error {
 	oauthToken = BaseURL + os.Getenv("AUTH_ENDPOINT")
 
 	return nil
@@ -73,37 +73,43 @@ func stagingNumber() error {
 	return nil
 }
 
-/*AuthenticationAPI is function to get access token*/
-func AuthenticationAPI(account string) error {
-	var jsonResponse interface{}
-
-	baseURL()
-	varLogin(account)
-	stagingNumber()
-
-	body := []byte(
-		`{
-			"grant_type": "` + os.Getenv("GRANT_TYPE") + `",
-			"username": "` + username + `",
-			"password": "` + password + `",
-			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+strings.ToUpper(number)) + `",
-			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+strings.ToUpper(number)) + `",
-			"scope": "` + os.Getenv("SCOPE") + `",
-			"` + os.Getenv("COMPANY_ID") + `": "` + os.Getenv("IDENTITY") + `"
-		}`)
-
+func clientResponse(sendRequest *http.Request) error {
 	client := &http.Client{}
-	sendRequest, _ := http.NewRequest("POST", oauthToken, bytes.NewBuffer(body))
-
-	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))
-	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 
 	if HTTPResponse, err = client.Do(sendRequest); err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
 
-	ResponseBody, _ := ioutil.ReadAll(HTTPResponse.Body)
+	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
+
+	return nil
+}
+
+/*AuthenticationAPI is function to get access token*/
+func AuthenticationAPI(account string) error {
+	var jsonResponse interface{}
+
+	oauthURL()
+	varLogin(account)
+	stagingNumber()
+
+	number := strings.ToUpper(number)
+	body := []byte(
+		`{
+			"grant_type": "` + os.Getenv("GRANT_TYPE") + `",
+			"username": "` + username + `",
+			"password": "` + password + `",
+			"client_id": "` + os.Getenv("API_CLIENT_ID"+"_"+number) + `",
+			"client_secret": "` + os.Getenv("API_CLIENT_SECRET"+"_"+number) + `",
+			"scope": "` + os.Getenv("SCOPE") + `",
+			"` + os.Getenv("COMPANY_ID") + `": "` + os.Getenv("IDENTITY") + `"
+		}`)
+	sendRequest, _ := http.NewRequest("POST", oauthToken, bytes.NewBuffer(body))
 	HTTPJson, _ := jsonpath.Prepare(os.Getenv("JSON_PATH"))
+
+	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))
+	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
+	clientResponse(sendRequest)
 
 	if err := json.Unmarshal(ResponseBody, &jsonResponse); err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
@@ -131,13 +137,12 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	findENV := regexENV.FindAllString(string(requestBody), -1)
 
 	for _, env := range findENV {
-		readENV = strings.TrimPrefix(env, "ENV:")
+		envReader(env)
 		replaceENV := strings.ReplaceAll(stringBody, env, os.Getenv(readENV))
 		stringBody = replaceENV
 	}
 
 	readURL := BaseURL + endpoint
-	client := &http.Client{}
 	sendRequest, _ := http.NewRequest(readVerbose, readURL, bytes.NewBuffer([]byte(stringBody)))
 
 	if AccessToken != nil {
@@ -146,12 +151,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 
 	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
-
-	if HTTPResponse, err = client.Do(sendRequest); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
-
-	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
+	clientResponse(sendRequest)
 
 	return nil
 }

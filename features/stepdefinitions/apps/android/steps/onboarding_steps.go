@@ -1,12 +1,12 @@
-package androidsteps
+package step
 
 import (
 	android "github.com/golang-automation/features/helper/apps/android/action"
 	androidpages "github.com/golang-automation/features/objectabstractions/apps/android"
 )
 
-/*clickBtnMulai function to click Mulai button*/
-func clickBtnMulai() error {
+/*ClickBtnMulai : click Mulai button*/
+func ClickBtnMulai() error {
 	android.ClickByXPath(androidpages.BtnMulai)
 
 	return nil

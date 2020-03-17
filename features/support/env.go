@@ -2,8 +2,11 @@ package support
 
 import (
 	"fmt"
+	"os"
+	"regexp"
 
 	"github.com/DATA-DOG/godog"
+	"github.com/golang-automation/features/helper"
 	android "github.com/golang-automation/features/helper/apps/android"
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	web "github.com/golang-automation/features/helper/web"
@@ -12,7 +15,12 @@ import (
 /*GodogMainSupport does something todo before and after scenario*/
 func GodogMainSupport(s *godog.Suite) {
 	s.BeforeScenario(func(interface{}) {
-		fmt.Println("Starting scenario")
+		argsWithProg := os.Args
+		tag := regexp.MustCompile(helper.RegexTag()).FindString(fmt.Sprint(argsWithProg))
+
+		fmt.Println(argsWithProg)
+		fmt.Println("Starting automation")
+		fmt.Println("Running scenario with tag : " + tag)
 	})
 
 	s.AfterScenario(func(interface{}, error) {
@@ -27,6 +35,6 @@ func GodogMainSupport(s *godog.Suite) {
 			ios.Driver.Stop()
 		}
 
-		fmt.Println("Finishing scenario")
+		fmt.Println("Stopping automation")
 	})
 }

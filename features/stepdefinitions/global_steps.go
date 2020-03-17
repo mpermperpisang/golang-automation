@@ -10,8 +10,8 @@ import (
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	"github.com/golang-automation/features/helper/message"
 	web "github.com/golang-automation/features/helper/web"
-	desktophelper "github.com/golang-automation/features/helper/web/desktop"
-	mobilehelper "github.com/golang-automation/features/helper/web/mobile"
+	desktop "github.com/golang-automation/features/helper/web/desktop"
+	mobile "github.com/golang-automation/features/helper/web/mobile"
 )
 
 /*Username variabel*/
@@ -35,17 +35,17 @@ func varLogin(user string) error {
 	return nil
 }
 
-/*LoginData is function to set login data*/
+/*LoginData : set login data*/
 func LoginData(user string, platform string) error {
 	varLogin(user)
 
 	switch platform {
 	case "desktop":
 		web.DriverConnect()
-		desktophelper.GoToURL(os.Getenv("URL_2"))
+		desktop.GoToURL(os.Getenv("URL_2"))
 	case "mobile":
 		web.DriverConnect()
-		mobilehelper.GoToURL(os.Getenv("URL_2"))
+		mobile.GoToURL(os.Getenv("URL_2"))
 	case "android":
 		android.DriverConnect()
 		android.OpenApps()
