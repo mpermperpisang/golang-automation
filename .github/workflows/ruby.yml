@@ -15,7 +15,7 @@ jobs:
         ruby-version: 2.5.5
     - name: Danger checker
       run: |
-        rvm use 2.5.1
+        rvm use 2.5.5
         bundle update
         bundle install
         bundle exec danger
