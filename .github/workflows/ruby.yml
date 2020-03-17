@@ -13,13 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby 2.5.5
+    - name: Set up Ruby 2.5.x
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.5.5
+        ruby-version: 2.5.x
     - name: Danger checker
       run: |
-        rvm use 2.5.1
+        rvm use 2.5.5
         bundle update
         bundle install
         bundle exec danger
