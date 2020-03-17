@@ -1,0 +1,21 @@
+name: Ruby
+
+on: [pull_request, issues]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 2.5.5
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.5.5
+    - name: Danger checker
+      run: |
+        rvm use 2.5.1
+        bundle update
+        bundle install
+        bundle exec danger
