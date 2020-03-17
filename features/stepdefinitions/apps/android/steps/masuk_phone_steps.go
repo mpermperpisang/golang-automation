@@ -1,4 +1,4 @@
-package androidsteps
+package step
 
 import (
 	"os"
@@ -8,8 +8,8 @@ import (
 	androidpages "github.com/golang-automation/features/objectabstractions/apps/android"
 )
 
-/*formPhone function to input phone then click next to input password*/
-func formPhone() error {
+/*InputPhone : input phone then click next to input password*/
+func InputPhone() error {
 	android.SendKeysByXpath(androidpages.FieldPhone, os.Getenv("USER_PHONE_NUMBER"))
 	time.Sleep(time.Second * 2)
 	android.ClickByText(androidpages.BtnLanjut)

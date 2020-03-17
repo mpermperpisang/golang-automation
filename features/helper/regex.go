@@ -14,3 +14,8 @@ func RegexInt() string {
 func RegexBaseURL() string {
 	return `preprod?`
 }
+
+/*RegexTag function regex to read scenario tag from command line*/
+func RegexTag() string {
+	return `@[a-zA-Z0-9-]*`
+}

@@ -1,4 +1,4 @@
-package apisteps
+package step
 
 import (
 	"encoding/json"
@@ -6,11 +6,9 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/golang-automation/features/helper/message"
-
-	"github.com/DATA-DOG/godog/gherkin"
 	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
+	"github.com/golang-automation/features/helper/message"
 	"github.com/yalp/jsonpath"
 )
 
@@ -20,27 +18,6 @@ type JSONValue struct {
 }
 
 var jsonResponse, actualResult interface{}
-
-/*AuthenticationAPI is function to login auth*/
-func AuthenticationAPI(account string) error {
-	api.AuthenticationAPI(account)
-
-	return nil
-}
-
-/*RequestAPIWithoutBody is function to initiate request API without define body in gherkin*/
-func RequestAPIWithoutBody(verbose string, request string) error {
-	api.RequestAPI(verbose, request, "")
-
-	return nil
-}
-
-/*RequestAPIWithBody is function to initiate request API with body*/
-func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString) error {
-	api.RequestAPI(verbose, request, body.Content)
-
-	return nil
-}
 
 func decryptJSONResponse() error {
 	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {

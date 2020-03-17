@@ -1,4 +1,4 @@
-package androidsteps
+package step
 
 import (
 	"os"
@@ -8,8 +8,8 @@ import (
 	androidpages "github.com/golang-automation/features/objectabstractions/apps/android"
 )
 
-/*formPassword function to input password and click enter to login*/
-func formPassword() error {
+/*InputPassword : input password and click enter to login*/
+func InputPassword() error {
 	android.SendKeysByXpath(androidpages.FieldPassword, os.Getenv("USER_PHONE_PASSWORD"))
 	time.Sleep(time.Second * 2)
 	android.ClickByText(androidpages.BtnMasukPassword)

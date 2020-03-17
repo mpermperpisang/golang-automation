@@ -10,8 +10,8 @@ import (
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	"github.com/golang-automation/features/helper/message"
 	web "github.com/golang-automation/features/helper/web"
-	desktophelper "github.com/golang-automation/features/helper/web/desktop"
-	mobilehelper "github.com/golang-automation/features/helper/web/mobile"
+	desktop "github.com/golang-automation/features/helper/web/desktop"
+	mobile "github.com/golang-automation/features/helper/web/mobile"
 )
 
 var usersName, meetName string
@@ -19,7 +19,7 @@ var usersName, meetName string
 /*OpenDWEB is function to initiate dweb scenario*/
 func OpenDWEB() error {
 	web.DriverConnect()
-	desktophelper.GoToURL(os.Getenv("URL"))
+	desktop.GoToURL(os.Getenv("URL"))
 
 	return nil
 }
@@ -27,7 +27,7 @@ func OpenDWEB() error {
 /*OpenMWEB is function to initiate mweb scenario*/
 func OpenMWEB() error {
 	web.DriverConnect()
-	mobilehelper.GoToURL(os.Getenv("URL"))
+	mobile.GoToURL(os.Getenv("URL"))
 
 	return nil
 }
