@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
+	"github.com/bdotdub/danger-go"
 	"github.com/joho/godotenv"
 )
 
@@ -14,5 +16,11 @@ func init() {
 }
 
 func main() {
-	// can be blank for now
+	_, results, err := danger.Danger()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer results.Flush(os.Stdout)
+
+	results.Message("✌️ Howdy!")
 }
