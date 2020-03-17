@@ -1,6 +1,9 @@
 # Greet Devs!
 welcome_message.greet
 
+# Golang linter for code documentation
+golint.lint
+
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
