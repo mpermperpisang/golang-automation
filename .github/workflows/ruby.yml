@@ -12,13 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
     - name: Set up Ruby 2.5.x
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.5.x
     - name: Danger checker
-      env:
-        DANGER_GITHUB_API_TOKEN: f119de8aee82cbb4d191a83fb491c9e87e9c0913
       run: |
         bundle update
         bundle install
