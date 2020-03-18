@@ -1,6 +1,6 @@
 name: Ruby
 
-on: [pull_request, issues]
+on: [pull_request]
 
 jobs:
   build:
@@ -9,6 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Danger
+      uses: "danger/danger"
     - name: Set up Ruby 2.5.x
       uses: actions/setup-ruby@v1
       with:
