@@ -10,9 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repo_token: "${{ secrets.DANGER_GITHUB_API_TOKEN }}"
-        github_url: "${{ secrets.DANGER_GITHUB_HOST }}"
-        api_url: "${{ secrets.DANGER_GITHUB_API_BASE_URL }}"
+        DANGER_GITHUB_API_TOKEN: "${{ secrets.DANGER_GITHUB_API_TOKEN }}"
+        DANGER_GITHUB_HOST: "${{ secrets.DANGER_GITHUB_HOST }}"
+        DANGER_GITHUB_API_BASE_URL: "${{ secrets.DANGER_GITHUB_API_BASE_URL }}"
     - name: Set up Ruby 2.5.x
       uses: actions/setup-ruby@v1
       with:
