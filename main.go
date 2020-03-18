@@ -23,5 +23,4 @@ func main() {
 	defer results.Flush(os.Stdout)
 
 	results.Message("✌️ Howdy!")
-	// can be blank for now
 }
