@@ -13,17 +13,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-ruby@v1
       with:
-        ruby-version: '2.6'
-    # ↓↓↓ if using bundle cache when danger plugins install ↓↓↓
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile') }} # change your gemfile path
-        restore-keys: |
-          ${{ runner.os }}-gems-
-    - name: Bundle config
-      run: bundle config path vendor/bundle
-    # ↑↑↑ if using bundle cache when danger plugins install ↑↑↑
+        ruby-version: '2.5'
     - uses: MeilCli/danger-action@v3
       with:
         plugins_file: 'Gemfile'
