@@ -3,20 +3,20 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 
 # Make sure one of the reviewer is from O2O
 # Requested Reviewer
-requested_reviewers = github.pr_json["requested_reviewers"]
+# requested_reviewers = github.pr_json["requested_reviewers"]
 # Actual Reviewer
-pr_num = github.pr_json["number"]
-reviews = github.api.pull_request_reviews("mpermperpisang/golang-automation", pr_num)
-actual_reviewers = reviews.map {|u| u["user"]}
+# pr_num = github.pr_json["number"]
+# reviews = github.api.pull_request_reviews("mpermperpisang/golang-automation", pr_num)
+# actual_reviewers = reviews.map {|u| u["user"]}
 # PR Reviewer
-reviewers = requested_reviewers + actual_reviewers
-pr_reviewers = reviewers.map {|u| u["login"]}
+# reviewers = requested_reviewers + actual_reviewers
+# pr_reviewers = reviewers.map {|u| u["login"]}
 # O2O Reviewer
-o2o_reviewer = ["mpermperpisang"]
+# o2o_reviewer = ["mpermperpisang"]
 
-unless o2o_reviewer.any?{|x| pr_reviewers.include?(x)}
-  failure "Please request a review from mpermperpisang"
-end
+# unless o2o_reviewer.any?{|x| pr_reviewers.include?(x)}
+#   failure "Please request a review from mpermperpisang"
+# end
 
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
 warn "PR is classed as Work in Progress" if github.pr_labels.include? "WIP"
@@ -40,6 +40,6 @@ end
 can_merge = github.pr_json["mergeable"]
 warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 
-if git.modified_files.include? "main.go"
-  warn "Please assign @mpermperpisang as reviewer"
-end
+# if git.modified_files.include? "main.go"
+#   warn "Please assign @mpermperpisang as reviewer"
+# end

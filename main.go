@@ -3,9 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
-	"github.com/bdotdub/danger-go"
 	"github.com/joho/godotenv"
 )
 
