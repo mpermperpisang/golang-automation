@@ -6,6 +6,7 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 
 **Setup env**<br/>
 `cp env.sample .env`<br/>
+`cp capabilities-web.properties.sample capabilities-web.properties`<br/>
 `cp capabilities-android.properties.sample capabilities-android.properties`<br/>
 `cp capabilities-ios.properties.sample capabilities-ios.properties`
 
