@@ -1,4 +1,4 @@
 action "Danger" {
    uses = "danger/danger"
-   secrets = ["GITHUB_TOKEN"]
+   secrets = ["DANGER_GITHUB_API_TOKEN"]
 }
