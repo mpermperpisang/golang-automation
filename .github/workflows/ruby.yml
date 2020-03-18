@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: "danger/danger"
+    - uses: .github/workflows/ruby.yml
       with:
         DANGER_GITHUB_API_TOKEN: "${{ secrets.DANGER_GITHUB_API_TOKEN }}"
         DANGER_GITHUB_HOST: "${{ secrets.DANGER_GITHUB_HOST }}"
