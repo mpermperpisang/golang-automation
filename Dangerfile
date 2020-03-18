@@ -3,7 +3,7 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 
 # Make sure one of the reviewer is from O2O
 # Requested Reviewer
-#requested_reviewers = github.pr_json["requested_reviewers"]
+# requested_reviewers = github.pr_json["requested_reviewers"]
 # Actual Reviewer
 # pr_num = github.pr_json["number"]
 # reviews = github.api.pull_request_reviews("mpermperpisang/golang-automation", pr_num)
