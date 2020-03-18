@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: "danger/danger"
+    - uses: ./.github/workflows/danger.yml
       with:
         repo-token: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
     - name: Set up Ruby 2.5.x
