@@ -17,10 +17,10 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `$ make`
 
 **Running**<br/>
-`godog --tags=@example`
-`godog --tags=~@example`
-`godog --tags="@example && @example-dweb"`
-`godog --tags="@example && ~@example-dweb"`
+`godog --tags=@example`<br/>
+`godog --tags=~@example`<br/>
+`godog --tags="@example && @example-dweb"`<br/>
+`godog --tags="@example && ~@example-dweb"`<br/>
 `godog --tags=@example,@example-dweb`
 
 **Linter**<br/>
