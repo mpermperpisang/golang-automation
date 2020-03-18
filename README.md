@@ -18,6 +18,7 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 
 **Running**<br/>
 `godog --tags=@example`
+`godog --tags="@example && @example-dweb"`
 
 **Linter**<br/>
 `golint`
