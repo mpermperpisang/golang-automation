@@ -1,7 +1,7 @@
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
-# Make sure one of the reviewer is from O2O
+# Make sure one of the reviewer is from official reviewer
 # Requested Reviewer
 # requested_reviewers = github.pr_json["requested_reviewers"]
 # Actual Reviewer
@@ -11,12 +11,25 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 # PR Reviewer
 # reviewers = requested_reviewers + actual_reviewers
 # pr_reviewers = reviewers.map {|u| u["login"]}
-# O2O Reviewer
-# o2o_reviewer = ["mpermperpisang"]
+# Official Reviewer
+# official_reviewer = ["mpermperpisang"]
 
-# unless o2o_reviewer.any?{|x| pr_reviewers.include?(x)}
+# unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
 #   failure "Please request a review from mpermperpisang"
 # end
+
+# Provide automation running screenshot
+formats = [".png", ".jpg", ".gif", ".jpeg"]
+
+unless formats.any?{|x| github.pr_body.include?(x)}
+  if git.modified_files.include? "features/*"
+    failure "Modifying file must provide automation result screenshot!"
+  end
+
+  if git.added_files.include? "features/*"
+    failure "Adding file must provide automation result screenshot!"
+  end
+end
 
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
 warn "PR is classed as Work in Progress" if github.pr_labels.include? "WIP"

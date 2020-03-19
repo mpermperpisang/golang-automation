@@ -18,4 +18,4 @@ Feature: Variant API
     }
     """
     Then response status should be "401"
-    # And response should have "$.errors[0].message" matching "User login tidak valid"
+    And response should have "$.errors[0].message" matching "User login tidak valid"
