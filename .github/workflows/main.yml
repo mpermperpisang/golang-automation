@@ -1,3 +1,4 @@
+name: Github CI
 on:
   pull_request:
     branches:
