@@ -1,45 +1,20 @@
-name: CI Workflow
-
 on: [pull_request]
-
+name: Main Workflow
 jobs:
   build:
-    name: Build
+    name: Build, Test and Analyze
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.13
+      - name: Setup Go
         uses: actions/setup-go@v1
         with:
-          go-version: 1.13
-        id: go
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2
-
-  sonarCloudTrigger:
-    needs: build
-    name: SonarCloud Trigger
-    runs-on: ubuntu-latest
-    steps:
+          go-version: '1.13'
       - name: Clone Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
+      - name: Build and Test
+        run: make test
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
-
-  dangerTrigger:
-    needs: build
-    name: Danger Checker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Ruby 2.5
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.5.x
-        id: ruby
-      - name: Execution
-        run: |
-          bundle update
-          bundle install
-          bundle exec danger
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
