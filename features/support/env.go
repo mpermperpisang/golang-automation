@@ -18,7 +18,6 @@ func GodogMainSupport(s *godog.Suite) {
 		argsWithProg := os.Args
 		tag := regexp.MustCompile(helper.RegexTag()).FindString(fmt.Sprint(argsWithProg))
 
-		fmt.Println(argsWithProg)
 		fmt.Println("Starting automation")
 		fmt.Println("Running scenario with tag : " + tag)
 	})
