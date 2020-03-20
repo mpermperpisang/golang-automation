@@ -14,11 +14,6 @@ jobs:
         id: go
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
-      - name: Set up Ruby 2.5
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.5.x
-        id: ruby
 
   sonarCloudTrigger:
     needs: build
@@ -26,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
@@ -38,6 +33,11 @@ jobs:
     name: Danger Checker
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Ruby 2.5
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.x
+        id: ruby
       - name: Execution
         run: |
           bundle update
