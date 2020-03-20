@@ -25,8 +25,8 @@ jobs:
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-          DANGER_SONAR_API_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
 
   dangerTrigger:
     needs: sonarCloudTrigger
@@ -41,8 +41,8 @@ jobs:
           ruby-version: 2.5.x
       - name: Execution
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-          DANGER_SONAR_API_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
         run: |
           bundle update
           bundle install
