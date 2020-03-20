@@ -1,5 +1,5 @@
 name: CI Workflow
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
@@ -13,19 +13,6 @@ jobs:
         with:
           go-version: 1.13
         id: go
-
-  sonarCloudTrigger:
-    needs: build
-    name: SonarCloud Trigger
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone Repository
-        uses: actions/checkout@v2
-      - name: Analyze with SonarCloud
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
 
   checkerTrigger:
     needs: build
