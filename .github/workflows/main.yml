@@ -1,6 +1,6 @@
 name: CI Workflow
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Set up Ruby 2.5
         uses: actions/setup-ruby@v1
         with:
