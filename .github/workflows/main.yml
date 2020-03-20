@@ -1,6 +1,6 @@
 name: CI Workflow
 
-on: [pull_request]
+on: [push]
 
 jobs:
   build:
@@ -21,20 +21,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
           SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
 
-  dangerTrigger:
-    needs: sonarCloudTrigger
+  checkerTrigger:
+    needs: build
     name: Danger Checker
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
       - name: Set up Ruby 2.5
         uses: actions/setup-ruby@v1
         with:
