@@ -1,7 +1,5 @@
 name: CI Workflow
 
-on: [push, pull_request]
-
 jobs:
   build:
     name: Build
@@ -18,6 +16,7 @@ jobs:
   sonarCloudTrigger:
     needs: build
     name: SonarCloud Trigger
+    on: push
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
@@ -31,6 +30,7 @@ jobs:
   checkerTrigger:
     needs: build
     name: Danger Checker
+    on: pull_request
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
