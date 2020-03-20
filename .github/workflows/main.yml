@@ -1,32 +1,40 @@
-name: Github CI
-
-on: [pull_request]
+name: CI Workflow
+on:
+  push:
+  pull_request:
+    types: [assigned, unassigned, opened, edited, closed, reopened, synchronize, review_requested, review_request_removed]
+  pull_request_review_comment:
+    types: [deleted]
 
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
 
-    - name: Set up Go 1.13
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.13
-      id: go
-
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
-
-    - name: Set up Ruby 2.5
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.5.x
-
-    - name: Danger Checker
-      env:
-        DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-      run: |
-        bundle update
-        bundle install
-        bundle exec danger
+  checkerTrigger:
+    needs: build
+    name: Danger Checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      - name: Set up Ruby 2.5
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.x
+      - name: Execution
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
+        run: |
+          bundle update
+          bundle install
+          bundle exec danger

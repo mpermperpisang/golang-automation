@@ -2,7 +2,7 @@
 *.idea
 *.iml
 *.json
-*.properties
+capabilities*.properties
 *.github
 *.vscode
 golang*.html
