@@ -38,7 +38,8 @@ jobs:
     name: Danger Checker
     runs-on: ubuntu-latest
     steps:
-      - run: |
-      bundle update
-      bundle install
-      bundle exec danger
+      - name: Execution
+        run: |
+          bundle update
+          bundle install
+          bundle exec danger
