@@ -43,13 +43,6 @@ if github.pr_body.length < 5
     failure "Please provide a summary in the Pull Request description"
 end
 
-# Provide automation running screenshot
-format = [".png", ".jpg", ".gif", ".jpeg"]
-
-unless format.any?{|x| github.pr_body.include?(x)}
-  failure "Please provide automation running screenshot to prove there is no syntax error"
-end
-
 can_merge = github.pr_json["mergeable"]
 warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 
