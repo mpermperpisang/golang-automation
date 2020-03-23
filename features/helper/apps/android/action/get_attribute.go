@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/golang-automation/features/helper"
-	android "github.com/golang-automation/features/helper/apps/android"
+	android "github.com/golang-automation/features/helper/apps/android/driver"
 )
 
 /*GetAttributeByXpath element visible by Xpath selector*/

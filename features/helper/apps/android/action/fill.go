@@ -2,7 +2,7 @@ package androidaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	android "github.com/golang-automation/features/helper/apps/android"
+	android "github.com/golang-automation/features/helper/apps/android/driver"
 )
 
 /*FillElementByXpath element visible by Xpath selector*/

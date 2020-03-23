@@ -7,7 +7,9 @@ import (
 	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
 	android "github.com/golang-automation/features/helper/apps/android"
+	androidDevice "github.com/golang-automation/features/helper/apps/android/driver"
 	ios "github.com/golang-automation/features/helper/apps/ios"
+	iosDevice "github.com/golang-automation/features/helper/apps/ios/driver"
 	"github.com/golang-automation/features/helper/message"
 	web "github.com/golang-automation/features/helper/web"
 	desktop "github.com/golang-automation/features/helper/web/desktop"
@@ -35,7 +37,8 @@ func OpenMWEB() error {
 /*OpenAndroid is function to initiate android scenario*/
 func OpenAndroid() error {
 	android.DriverConnect()
-	android.OpenApps()
+	androidDevice.StartDriver()
+	androidDevice.NewDevice()
 
 	return nil
 }
@@ -43,7 +46,8 @@ func OpenAndroid() error {
 /*OpenIOS is function to initiate ios scenario*/
 func OpenIOS() error {
 	ios.DriverConnect()
-	ios.OpenApps()
+	iosDevice.StartDriver()
+	iosDevice.NewDevice()
 
 	return nil
 }

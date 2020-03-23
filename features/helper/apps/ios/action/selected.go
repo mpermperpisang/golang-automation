@@ -2,7 +2,7 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	ios "github.com/golang-automation/features/helper/apps/ios"
+	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*IsElementSelectedByXpath element visible by Xpath selector*/
