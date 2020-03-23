@@ -2,12 +2,11 @@ package androidaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	android "github.com/golang-automation/features/helper/apps/android"
 )
 
 /*FillElementByXpath element visible by Xpath selector*/
 func FillElementByXpath(locator string, text string) error {
-	element := android.Device.FindByXPath(locator).Fill(text)
+	element := Device.FindByXPath(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -15,7 +14,7 @@ func FillElementByXpath(locator string, text string) error {
 
 /*FillElementByButton element visible by button*/
 func FillElementByButton(locator string, text string) error {
-	element := android.Device.FindByButton(locator).Fill(text)
+	element := Device.FindByButton(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -23,7 +22,7 @@ func FillElementByButton(locator string, text string) error {
 
 /*FillElementByClass element visible by class*/
 func FillElementByClass(locator string, text string) error {
-	element := android.Device.FindByClass(locator).Fill(text)
+	element := Device.FindByClass(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -31,7 +30,7 @@ func FillElementByClass(locator string, text string) error {
 
 /*FillElementByID element visible by ID*/
 func FillElementByID(locator string, text string) error {
-	element := android.Device.FindByID(locator).Fill(text)
+	element := Device.FindByID(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -39,7 +38,7 @@ func FillElementByID(locator string, text string) error {
 
 /*FillElementByLabel element visible by label*/
 func FillElementByLabel(locator string, text string) error {
-	element := android.Device.FindByLabel(locator).Fill(text)
+	element := Device.FindByLabel(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -47,7 +46,7 @@ func FillElementByLabel(locator string, text string) error {
 
 /*FillElementByLink element visible by link*/
 func FillElementByLink(locator string, text string) error {
-	element := android.Device.FindByLink(locator).Fill(text)
+	element := Device.FindByLink(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -55,7 +54,7 @@ func FillElementByLink(locator string, text string) error {
 
 /*FillElementByName element visible by class name*/
 func FillElementByName(locator string, text string) error {
-	element := android.Device.FindByName(locator).Fill(text)
+	element := Device.FindByName(locator).Fill(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -63,7 +62,7 @@ func FillElementByName(locator string, text string) error {
 
 /*FillElementByText element visible by Xpath selector*/
 func FillElementByText(locator string, text string) error {
-	element := android.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Fill(text)
+	element := Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Fill(text)
 	helper.LogPanicln(element)
 
 	return nil

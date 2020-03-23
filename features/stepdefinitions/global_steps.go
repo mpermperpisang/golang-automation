@@ -7,7 +7,9 @@ import (
 	"strings"
 
 	android "github.com/golang-automation/features/helper/apps/android"
+	androidDriver "github.com/golang-automation/features/helper/apps/android/action"
 	ios "github.com/golang-automation/features/helper/apps/ios"
+	iosDriver "github.com/golang-automation/features/helper/apps/ios/action"
 	"github.com/golang-automation/features/helper/message"
 	web "github.com/golang-automation/features/helper/web"
 	desktop "github.com/golang-automation/features/helper/web/desktop"
@@ -48,10 +50,12 @@ func LoginData(user string, platform string) error {
 		mobile.GoToURL(os.Getenv("URL_2"))
 	case "android":
 		android.DriverConnect()
-		android.OpenApps()
+		androidDriver.StartDriver()
+		androidDriver.NewDevice()
 	case "ios":
 		ios.DriverConnect()
-		ios.OpenApps()
+		iosDriver.StartDriver()
+		iosDriver.NewDevice()
 	default:
 		log.Panicln(fmt.Errorf(message.NotFoundDriver()))
 	}

@@ -1,13 +1,39 @@
 package androidaction
 
 import (
+	"fmt"
+	"log"
+
 	"github.com/golang-automation/features/helper"
 	android "github.com/golang-automation/features/helper/apps/android"
+	"github.com/sclevine/agouti/appium"
 )
+
+/*Device global variable*/
+var Device *appium.Device
+var err error
+
+/*StartDriver : start android driver*/
+func StartDriver() error {
+	if err := android.Driver.Start(); err != nil {
+		log.Panicln(fmt.Errorf("REASON: %s", err))
+	}
+
+	return nil
+}
+
+/*NewDevice : create new android device*/
+func NewDevice() error {
+	if Device, err = android.Driver.NewDevice(); err != nil {
+		log.Panicln(fmt.Errorf("REASON: %s", err))
+	}
+
+	return nil
+}
 
 /*PressBack : back to previous page*/
 func PressBack() error {
-	element := android.Device.Back()
+	element := Device.Back()
 	helper.LogPanicln(element)
 
 	return nil
@@ -15,7 +41,7 @@ func PressBack() error {
 
 /*ClearCookies : clear application cookie*/
 func ClearCookies() error {
-	element := android.Device.ClearCookies()
+	element := Device.ClearCookies()
 	helper.LogPanicln(element)
 
 	return nil
@@ -23,7 +49,7 @@ func ClearCookies() error {
 
 /*CancelPopup : cancel popup window*/
 func CancelPopup() error {
-	element := android.Device.CancelPopup()
+	element := Device.CancelPopup()
 	helper.LogPanicln(element)
 
 	return nil
@@ -31,7 +57,7 @@ func CancelPopup() error {
 
 /*CloseApp : close the android application*/
 func CloseApp() error {
-	element := android.Device.CloseApp()
+	element := Device.CloseApp()
 	helper.LogPanicln(element)
 
 	return nil
@@ -39,7 +65,7 @@ func CloseApp() error {
 
 /*ConfirmPopup : confirm popup window*/
 func ConfirmPopup() error {
-	element := android.Device.ConfirmPopup()
+	element := Device.ConfirmPopup()
 	helper.LogPanicln(element)
 
 	return nil
@@ -47,7 +73,7 @@ func ConfirmPopup() error {
 
 /*DoubleClick : click twice*/
 func DoubleClick() error {
-	element := android.Device.DoubleClick()
+	element := Device.DoubleClick()
 	helper.LogPanicln(element)
 
 	return nil
@@ -55,7 +81,7 @@ func DoubleClick() error {
 
 /*InstallApp : install the android application*/
 func InstallApp(path string) error {
-	element := android.Device.InstallApp(path)
+	element := Device.InstallApp(path)
 	helper.LogPanicln(element)
 
 	return nil
@@ -63,7 +89,7 @@ func InstallApp(path string) error {
 
 /*LaunchApp : launch the android application*/
 func LaunchApp() error {
-	element := android.Device.LaunchApp()
+	element := Device.LaunchApp()
 	helper.LogPanicln(element)
 
 	return nil
@@ -71,7 +97,7 @@ func LaunchApp() error {
 
 /*URLNavigate : navigate app to some url*/
 func URLNavigate(url string) error {
-	element := android.Device.Navigate(url)
+	element := Device.Navigate(url)
 	helper.LogPanicln(element)
 
 	return nil
@@ -79,7 +105,7 @@ func URLNavigate(url string) error {
 
 /*RefreshApp : refresh the android application*/
 func RefreshApp() error {
-	element := android.Device.Refresh()
+	element := Device.Refresh()
 	helper.LogPanicln(element)
 
 	return nil
@@ -87,7 +113,7 @@ func RefreshApp() error {
 
 /*ResetApp : reset the android application*/
 func ResetApp() error {
-	element := android.Device.Reset()
+	element := Device.Reset()
 	helper.LogPanicln(element)
 
 	return nil

@@ -1,9 +1,6 @@
 package ioshelper
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/magiconair/properties"
 	"github.com/sclevine/agouti"
 	"github.com/sclevine/agouti/appium"
@@ -11,9 +8,6 @@ import (
 
 /*Driver global variable*/
 var Driver *appium.WebDriver
-
-/*Device global variable*/
-var Device *appium.Device
 
 /*DriverConnect for ios*/
 func DriverConnect() error {
@@ -37,21 +31,6 @@ func DriverConnect() error {
 	})
 
 	Driver = appium.New(options)
-
-	return nil
-}
-
-/*OpenApps start and create new device ios*/
-func OpenApps() error {
-	var err error
-
-	if err := Driver.Start(); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
-
-	if Device, err = Driver.NewDevice(); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
 
 	return nil
 }

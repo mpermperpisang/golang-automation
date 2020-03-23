@@ -17,13 +17,5 @@ func wet() error {
 		log.Fatalln("Nilai tidak sama")
 	}
 
-	if 1 == 1 {
-		log.Fatalln("Nilainya sama")
-	}
-
-	if "Pisang" != "Pisang" {
-		log.Fatalln("Namanya sama")
-	}
-
 	return nil
 }
