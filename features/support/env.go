@@ -15,8 +15,8 @@ import (
 )
 
 /*GodogMainSupport does something todo before and after scenario*/
-// TODO
 func GodogMainSupport(s *godog.Suite) {
+	// TODO: Handle before and after scenario
 	s.BeforeScenario(func(interface{}) {
 		argsWithProg := os.Args
 		tag := regexp.MustCompile(helper.RegexTag()).FindString(fmt.Sprint(argsWithProg))
