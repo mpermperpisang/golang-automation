@@ -2,11 +2,12 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
+	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*IsElementVisibleByXpath element visible by Xpath selector*/
 func IsElementVisibleByXpath(locator string) error {
-	_, err := Device.FindByXPath(locator).Visible()
+	_, err := ios.Device.FindByXPath(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -14,7 +15,7 @@ func IsElementVisibleByXpath(locator string) error {
 
 /*IsElementVisibleByButton element visible by button*/
 func IsElementVisibleByButton(locator string) error {
-	_, err := Device.FindByButton(locator).Visible()
+	_, err := ios.Device.FindByButton(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -22,7 +23,7 @@ func IsElementVisibleByButton(locator string) error {
 
 /*IsElementVisibleByClass element visible by class*/
 func IsElementVisibleByClass(locator string) error {
-	_, err := Device.FindByClass(locator).Visible()
+	_, err := ios.Device.FindByClass(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -30,7 +31,7 @@ func IsElementVisibleByClass(locator string) error {
 
 /*IsElementVisibleByID element visible by ID*/
 func IsElementVisibleByID(locator string) error {
-	_, err := Device.FindByID(locator).Visible()
+	_, err := ios.Device.FindByID(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -38,7 +39,7 @@ func IsElementVisibleByID(locator string) error {
 
 /*IsElementVisibleByLabel element visible by label*/
 func IsElementVisibleByLabel(locator string) error {
-	_, err := Device.FindByLabel(locator).Visible()
+	_, err := ios.Device.FindByLabel(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -46,7 +47,7 @@ func IsElementVisibleByLabel(locator string) error {
 
 /*IsElementVisibleByLink element visible by link*/
 func IsElementVisibleByLink(locator string) error {
-	_, err := Device.FindByLink(locator).Visible()
+	_, err := ios.Device.FindByLink(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -54,7 +55,7 @@ func IsElementVisibleByLink(locator string) error {
 
 /*IsElementVisibleByName element visible by class name*/
 func IsElementVisibleByName(locator string) error {
-	_, err := Device.FindByName(locator).Visible()
+	_, err := ios.Device.FindByName(locator).Visible()
 	helper.LogPanicln(err)
 
 	return nil
@@ -62,7 +63,7 @@ func IsElementVisibleByName(locator string) error {
 
 /*IsElementVisibleByText element visible by Xpath selector*/
 func IsElementVisibleByText(locator string) error {
-	_, err := Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Visible()
+	_, err := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Visible()
 	helper.LogPanicln(err)
 
 	return nil

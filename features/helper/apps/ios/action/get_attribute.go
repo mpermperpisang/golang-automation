@@ -5,11 +5,12 @@ import (
 	"log"
 
 	"github.com/golang-automation/features/helper"
+	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*GetAttributeByXpath element visible by Xpath selector*/
 func GetAttributeByXpath(locator string, attr string) error {
-	_, err := Device.FindByXPath(locator).Attribute(attr)
+	_, err := ios.Device.FindByXPath(locator).Attribute(attr)
 	if err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}
@@ -19,7 +20,7 @@ func GetAttributeByXpath(locator string, attr string) error {
 
 /*GetAttributeByButton element visible by button*/
 func GetAttributeByButton(locator string, attr string) error {
-	_, err := Device.FindByButton(locator).Attribute(attr)
+	_, err := ios.Device.FindByButton(locator).Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil
@@ -27,7 +28,7 @@ func GetAttributeByButton(locator string, attr string) error {
 
 /*GetAttributeByClass element visible by class*/
 func GetAttributeByClass(locator string, attr string) error {
-	_, err := Device.FindByClass(locator).Attribute(attr)
+	_, err := ios.Device.FindByClass(locator).Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil
@@ -35,7 +36,7 @@ func GetAttributeByClass(locator string, attr string) error {
 
 /*GetAttributeByID element visible by ID*/
 func GetAttributeByID(locator string, attr string) error {
-	_, err := Device.FindByID(locator).Attribute(attr)
+	_, err := ios.Device.FindByID(locator).Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil
@@ -43,7 +44,7 @@ func GetAttributeByID(locator string, attr string) error {
 
 /*GetAttributeByLabel element visible by label*/
 func GetAttributeByLabel(locator string, attr string) error {
-	_, err := Device.FindByLabel(locator).Attribute(attr)
+	_, err := ios.Device.FindByLabel(locator).Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil
@@ -51,7 +52,7 @@ func GetAttributeByLabel(locator string, attr string) error {
 
 /*GetAttributeByLink element visible by link*/
 func GetAttributeByLink(locator string, attr string) error {
-	_, err := Device.FindByLink(locator).Attribute(attr)
+	_, err := ios.Device.FindByLink(locator).Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil
@@ -59,7 +60,7 @@ func GetAttributeByLink(locator string, attr string) error {
 
 /*GetAttributeByName element visible by class name*/
 func GetAttributeByName(locator string, attr string) error {
-	_, err := Device.FindByName(locator).Attribute(attr)
+	_, err := ios.Device.FindByName(locator).Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil
@@ -67,7 +68,7 @@ func GetAttributeByName(locator string, attr string) error {
 
 /*GetAttributeByText element visible by Xpath selector*/
 func GetAttributeByText(locator string, attr string) error {
-	_, err := Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Attribute(attr)
+	_, err := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Attribute(attr)
 	helper.LogPanicln(err)
 
 	return nil

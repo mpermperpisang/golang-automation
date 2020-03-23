@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	android "github.com/golang-automation/features/helper/apps/android"
-	androidDriver "github.com/golang-automation/features/helper/apps/android/action"
+	androidDriver "github.com/golang-automation/features/helper/apps/android/driver"
 	ios "github.com/golang-automation/features/helper/apps/ios"
-	iosDriver "github.com/golang-automation/features/helper/apps/ios/action"
+	iosDriver "github.com/golang-automation/features/helper/apps/ios/driver"
 	"github.com/golang-automation/features/helper/message"
 	web "github.com/golang-automation/features/helper/web"
 	desktop "github.com/golang-automation/features/helper/web/desktop"

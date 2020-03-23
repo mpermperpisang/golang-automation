@@ -2,11 +2,12 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
+	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*SendKeysByXpath input element by Xpath selector*/
 func SendKeysByXpath(locator string, text string) error {
-	element := Device.FindByXPath(locator).SendKeys(text)
+	element := ios.Device.FindByXPath(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -14,7 +15,7 @@ func SendKeysByXpath(locator string, text string) error {
 
 /*SendKeysByButton input element by button*/
 func SendKeysByButton(locator string, text string) error {
-	element := Device.FindByButton(locator).SendKeys(text)
+	element := ios.Device.FindByButton(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -22,7 +23,7 @@ func SendKeysByButton(locator string, text string) error {
 
 /*SendKeysByClass input element by class*/
 func SendKeysByClass(locator string, text string) error {
-	element := Device.FindByClass(locator).SendKeys(text)
+	element := ios.Device.FindByClass(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -30,7 +31,7 @@ func SendKeysByClass(locator string, text string) error {
 
 /*SendKeysByID input element by ID*/
 func SendKeysByID(locator string, text string) error {
-	element := Device.FindByID(locator).SendKeys(text)
+	element := ios.Device.FindByID(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -38,7 +39,7 @@ func SendKeysByID(locator string, text string) error {
 
 /*SendKeysByLabel input element by label*/
 func SendKeysByLabel(locator string, text string) error {
-	element := Device.FindByLabel(locator).SendKeys(text)
+	element := ios.Device.FindByLabel(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -46,7 +47,7 @@ func SendKeysByLabel(locator string, text string) error {
 
 /*SendKeysByLink input element by link*/
 func SendKeysByLink(locator string, text string) error {
-	element := Device.FindByLink(locator).SendKeys(text)
+	element := ios.Device.FindByLink(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -54,7 +55,7 @@ func SendKeysByLink(locator string, text string) error {
 
 /*SendKeysByName input element by class name*/
 func SendKeysByName(locator string, text string) error {
-	element := Device.FindByName(locator).SendKeys(text)
+	element := ios.Device.FindByName(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil
@@ -62,7 +63,7 @@ func SendKeysByName(locator string, text string) error {
 
 /*SendKeysByText input element by text in xpath*/
 func SendKeysByText(locator string, text string) error {
-	element := Device.FindByXPath("//*[contains(@text, '" + locator + "')]").SendKeys(text)
+	element := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").SendKeys(text)
 	helper.LogPanicln(element)
 
 	return nil

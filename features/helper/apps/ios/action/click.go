@@ -2,11 +2,12 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
+	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*ClickByXPath click element by Xpath selector*/
 func ClickByXPath(locator string) error {
-	element := Device.AllByXPath(locator).Click()
+	element := ios.Device.AllByXPath(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -14,7 +15,7 @@ func ClickByXPath(locator string) error {
 
 /*ClickByText click element by text in xpath*/
 func ClickByText(locator string) error {
-	element := Device.AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
+	element := ios.Device.AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -22,7 +23,7 @@ func ClickByText(locator string) error {
 
 /*ClickByButton click element by button*/
 func ClickByButton(locator string) error {
-	element := Device.AllByButton(locator).Click()
+	element := ios.Device.AllByButton(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -30,7 +31,7 @@ func ClickByButton(locator string) error {
 
 /*ClickByClass click element by class*/
 func ClickByClass(locator string) error {
-	element := Device.AllByClass(locator).Click()
+	element := ios.Device.AllByClass(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -38,7 +39,7 @@ func ClickByClass(locator string) error {
 
 /*ClickByID click element by class ID*/
 func ClickByID(locator string) error {
-	element := Device.AllByID(locator).Click()
+	element := ios.Device.AllByID(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -46,7 +47,7 @@ func ClickByID(locator string) error {
 
 /*ClickByLabel click element by label*/
 func ClickByLabel(locator string) error {
-	element := Device.AllByLabel(locator).Click()
+	element := ios.Device.AllByLabel(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -54,7 +55,7 @@ func ClickByLabel(locator string) error {
 
 /*ClickByLink click element by link*/
 func ClickByLink(locator string) error {
-	element := Device.AllByLink(locator).Click()
+	element := ios.Device.AllByLink(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil
@@ -62,7 +63,7 @@ func ClickByLink(locator string) error {
 
 /*ClickByName click element by class name*/
 func ClickByName(locator string) error {
-	element := Device.AllByName(locator).Click()
+	element := ios.Device.AllByName(locator).Click()
 	helper.LogPanicln(element)
 
 	return nil

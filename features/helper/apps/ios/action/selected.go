@@ -2,11 +2,12 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
+	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*IsElementSelectedByXpath element visible by Xpath selector*/
 func IsElementSelectedByXpath(locator string) error {
-	_, err := Device.FindByXPath(locator).Selected()
+	_, err := ios.Device.FindByXPath(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -14,7 +15,7 @@ func IsElementSelectedByXpath(locator string) error {
 
 /*IsElementSelectedByButton element visible by button*/
 func IsElementSelectedByButton(locator string) error {
-	_, err := Device.FindByButton(locator).Selected()
+	_, err := ios.Device.FindByButton(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -22,7 +23,7 @@ func IsElementSelectedByButton(locator string) error {
 
 /*IsElementSelectedByClass element visible by class*/
 func IsElementSelectedByClass(locator string) error {
-	_, err := Device.FindByClass(locator).Selected()
+	_, err := ios.Device.FindByClass(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -30,7 +31,7 @@ func IsElementSelectedByClass(locator string) error {
 
 /*IsElementSelectedByID element visible by ID*/
 func IsElementSelectedByID(locator string) error {
-	_, err := Device.FindByID(locator).Selected()
+	_, err := ios.Device.FindByID(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -38,7 +39,7 @@ func IsElementSelectedByID(locator string) error {
 
 /*IsElementSelectedByLabel element visible by label*/
 func IsElementSelectedByLabel(locator string) error {
-	_, err := Device.FindByLabel(locator).Selected()
+	_, err := ios.Device.FindByLabel(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -46,7 +47,7 @@ func IsElementSelectedByLabel(locator string) error {
 
 /*IsElementSelectedByLink element visible by link*/
 func IsElementSelectedByLink(locator string) error {
-	_, err := Device.FindByLink(locator).Selected()
+	_, err := ios.Device.FindByLink(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -54,7 +55,7 @@ func IsElementSelectedByLink(locator string) error {
 
 /*IsElementSelectedByName element visible by class name*/
 func IsElementSelectedByName(locator string) error {
-	_, err := Device.FindByName(locator).Selected()
+	_, err := ios.Device.FindByName(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
@@ -62,7 +63,7 @@ func IsElementSelectedByName(locator string) error {
 
 /*IsElementSelectedByText element visible by Xpath selector*/
 func IsElementSelectedByText(locator string) error {
-	_, err := Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Selected()
+	_, err := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Selected()
 	helper.LogPanicln(err)
 
 	return nil

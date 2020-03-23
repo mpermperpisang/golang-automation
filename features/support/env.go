@@ -8,15 +8,15 @@ import (
 	"github.com/DATA-DOG/godog"
 	"github.com/golang-automation/features/helper"
 	android "github.com/golang-automation/features/helper/apps/android"
-	androidDriver "github.com/golang-automation/features/helper/apps/android/action"
+	androidDriver "github.com/golang-automation/features/helper/apps/android/driver"
 	ios "github.com/golang-automation/features/helper/apps/ios"
-	iosDriver "github.com/golang-automation/features/helper/apps/ios/action"
+	iosDriver "github.com/golang-automation/features/helper/apps/ios/driver"
 	web "github.com/golang-automation/features/helper/web"
 )
 
 /*GodogMainSupport does something todo before and after scenario*/
+// TODO
 func GodogMainSupport(s *godog.Suite) {
-	// TODO
 	s.BeforeScenario(func(interface{}) {
 		argsWithProg := os.Args
 		tag := regexp.MustCompile(helper.RegexTag()).FindString(fmt.Sprint(argsWithProg))
