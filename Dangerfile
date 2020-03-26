@@ -24,7 +24,7 @@ list_approval = []
 
 if reviews.map {|u|
   if u["state"] == 'APPROVED'
-    list_approval.push(u["login"])
+    list_approval.push(u["user"]["login"])
   end
 }
 end
