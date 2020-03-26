@@ -28,6 +28,8 @@ reviews.each do |u|
   end
 end
 
+message "#{list_approval}"
+
 unless official_reviewer.any?{|x| list_approval.include?(x)}
   failure "Please get an approval from official reviewer"
 end
