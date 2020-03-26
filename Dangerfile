@@ -22,11 +22,11 @@ end
 
 list_approval = []
 
-reviews.each do |u|
+reviews.map {|u|
   if u["state"] == 'APPROVED'
     list_approval.push(u["login"])
   end
-end
+}
 
 message "#{list_approval}"
 
