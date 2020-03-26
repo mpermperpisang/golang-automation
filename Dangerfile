@@ -11,6 +11,8 @@ actual_reviewers = reviews.map {|u| u["user"]}
 # PR Reviewer
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
+# PR approval
+pr_state = reviews.map {|u| u["state"]}
 # official Reviewer
 official_reviewer = ["mmpisang"]
 
@@ -20,8 +22,10 @@ end
 
 if reviews.map {|u| 
     if u["state"] == 'APPROVED'
-      unless u["login"].any?{|x| official_reviewer.include?(x)}
-        message "You've got approval from official reviewer. Please merge the PR"
+      if official_reviewer.include?(u["login"])
+        message "You've got an approval from official reviewer. Please merge the PR"
+      else
+        failure "Please get an approval from official reviewer"
       end
     end
   }
