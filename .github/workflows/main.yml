@@ -3,9 +3,9 @@ on:
   pull_request:
     types: [assigned, unassigned, edited, synchronize, reopened, review_requested, review_request_removed]
   pull_request_review:
-    types: [dismissed]
+    types: [submitted, dismissed]
   pull_request_review_comment:
-    types: [deleted]
+    types: [created, deleted]
 
 jobs:
   build:
