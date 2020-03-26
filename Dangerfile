@@ -11,8 +11,6 @@ actual_reviewers = reviews.map {|u| u["user"]}
 # PR Reviewer
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
-# PR approval
-pr_state = reviews.map {|u| u["state"]}
 # official Reviewer
 official_reviewer = ["mmpisang"]
 
