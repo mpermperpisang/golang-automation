@@ -21,6 +21,7 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
 end
 
 if reviews.map {|u| 
+    message "#{u["state"]}"
     if u["state"] == 'APPROVED'
       message "#{u["login"]}"
       message "#{official_reviewer}"
