@@ -59,6 +59,6 @@ end
 can_merge = github.pr_json["mergeable"]
 warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 
-# if git.modified_files.include? "main.go"
-#   warn "Please assign @mpermperpisang as reviewer"
-# end
+if git.modified_files.include? "main.go"
+  warn "Please assign @mmpisang as reviewer"
+end
