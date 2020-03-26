@@ -19,7 +19,9 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
 end
 
 # Make sure one of the approval is from official reviewer
-list_approval = []
+list_approval = reviews.map {|u| u["user"]["login"]}
+
+message "#{list_approval}"
 
 if reviews.map {|u|
   if u["state"] == 'APPROVED'
