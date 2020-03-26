@@ -20,12 +20,11 @@ end
 
 list_approval = []
 
-if reviews.map {|u|
+reviews.map {|u|
   if u["state"] == 'APPROVED'
     list_approval.push(u["user"]["login"])
   end
 }
-end
 
 unless official_reviewer.any?{|x| list_approval.include?(x)}
   failure "Please get an approval from official reviewer"
