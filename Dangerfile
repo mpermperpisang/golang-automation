@@ -29,8 +29,6 @@ if reviews.map {|u|
 }
 end
 
-message "#{list_approval}"
-
 unless official_reviewer.any?{|x| list_approval.include?(x)}
   failure "Please get an approval from official reviewer"
 end
