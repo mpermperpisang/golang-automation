@@ -20,16 +20,16 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
   failure "Please request a review from mmpisang"
 end
 
-if reviews.map {|u| 
-    message "#{u["state"]}"
-    if u["state"] == 'APPROVED'
-      message "#{u["login"]}"
-      message "#{official_reviewer}"
-      unless pr_reviewers.include?(x)
-        failure "Please get an approval from official reviewer"
-      end
-    end
-  }
+list_approval = []
+
+reviews.each do |admin|
+  if u["state"] == 'APPROVED'
+    list_approval.push(u["login"])
+  end
+end
+
+unless official_reviewer.any?{|x| list_approval.include?(x)}
+  failure "Please get an approval from official reviewer"
 end
 
 # Provide automation running screenshot
