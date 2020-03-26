@@ -18,14 +18,14 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
   failure "Please request a review from mmpisang"
 end
 
+# Make sure one of the approval is from official reviewer
 list_approval = []
 
-if reviews.map {|u|
+reviews.map {|u|
   if u["state"] == 'APPROVED'
     list_approval.push(u["user"]["login"])
   end
 }
-end
 
 unless official_reviewer.any?{|x| list_approval.include?(x)}
   failure "Please get an approval from mmpisang"
