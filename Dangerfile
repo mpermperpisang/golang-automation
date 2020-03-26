@@ -11,9 +11,6 @@ actual_reviewers = reviews.map {|u| u["user"]}
 # PR Reviewer
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
-# PR Approval
-pr_state = reviews.map {|u| u["state"]}
-message "PR state #{pr_state}"
 # official Reviewer
 official_reviewer = ["mmpisang"]
 
@@ -24,7 +21,7 @@ end
 if reviews.map {|u| 
     if u["state"] == 'APPROVED'
       unless pr_reviewers.include?(u["login"])
-        failure "Please get an approval review from skarindra or nurdians or kurniawanfjr or FRoyani or suryathio92 then restart the checker"
+        failure "Please get an approval review from mmpisang or mpermper321 then restart the checker"
       end
     end
   }
