@@ -22,7 +22,7 @@ end
 
 list_approval = []
 
-reviews.each do |admin|
+reviews.each do |u|
   if u["state"] == 'APPROVED'
     list_approval.push(u["login"])
   end
