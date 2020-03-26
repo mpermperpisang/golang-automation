@@ -17,7 +17,7 @@ message "PR state #{pr_state}"
 # official Reviewer
 official_reviewer = ["mmpisang"]
 
-unless o2o_reviewer.any?{|x| pr_reviewers.include?(x)}
+unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
   failure "Please request a review from mmpisang"
 end
 
