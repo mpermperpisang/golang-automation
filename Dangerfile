@@ -22,6 +22,8 @@ end
 
 if reviews.map {|u| 
     if u["state"] == 'APPROVED'
+      message "#{u["login"]}"
+      message "#{official_reviewer}"
       if official_reviewer.include?(u["login"])
         message "You've got an approval from official reviewer. Please merge the PR"
       else
