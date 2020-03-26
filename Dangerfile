@@ -19,19 +19,16 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
 end
 
 # Make sure one of the approval is from official reviewer
-list_approval = reviews.map {|u| u["user"]["login"]}
+list_approval = []
 
-message "#{list_approval}"
-
-if reviews.map {|u|
-    if u["state"] == 'APPROVED'
-      list_approval.push(u["user"]["login"])
-    end
-  }
-
-  unless official_reviewer.any?{|x| list_approval.include?(x)}
-    failure "Please get an approval from mmpisang"
+reviews.map {|u|
+  if u["state"] == 'APPROVED'
+    list_approval.push(u["user"]["login"])
   end
+}
+
+unless official_reviewer.any?{|x| list_approval.include?(x)}
+  failure "Please get an approval from mmpisang"
 end
 
 # Provide automation running screenshot
