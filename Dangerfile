@@ -20,8 +20,8 @@ end
 
 if reviews.map {|u| 
     if u["state"] == 'APPROVED'
-      unless official_reviewer.include?(u["login"])
-        failure "Please get an approval review from mmpisang then restart the checker"
+      unless u["login"].any?{|x| official_reviewer.include?(x)}
+        message "You've got approval from official reviewer. Please merge the PR"
       end
     end
   }
