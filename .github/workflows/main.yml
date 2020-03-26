@@ -34,7 +34,6 @@ jobs:
       - name: Execution
         env:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
         run: |
           bundle update
           bundle install
