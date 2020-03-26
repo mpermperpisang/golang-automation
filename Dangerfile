@@ -3,20 +3,32 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 
 # Make sure one of the reviewer is from official reviewer
 # Requested Reviewer
-# requested_reviewers = github.pr_json["requested_reviewers"]
+requested_reviewers = github.pr_json["requested_reviewers"]
 # Actual Reviewer
-# pr_num = github.pr_json["number"]
-# reviews = github.api.pull_request_reviews("mpermperpisang/golang-automation", pr_num)
-# actual_reviewers = reviews.map {|u| u["user"]}
+pr_num = github.pr_json["number"]
+reviews = github.api.pull_request_reviews("mpermperpisang/golang-automation", pr_num)
+actual_reviewers = reviews.map {|u| u["user"]}
 # PR Reviewer
-# reviewers = requested_reviewers + actual_reviewers
-# pr_reviewers = reviewers.map {|u| u["login"]}
+reviewers = requested_reviewers + actual_reviewers
+pr_reviewers = reviewers.map {|u| u["login"]}
+# PR Approval
+pr_state = reviews.map {|u| u["state"]}
+message "PR state #{pr_state}"
 # official Reviewer
-# official_reviewer = ["mpermperpisang"]
+official_reviewer = ["mmpisang"]
 
-# unless o2o_reviewer.any?{|x| pr_reviewers.include?(x)}
-#   failure "Please request a review from mpermperpisang"
-# end
+unless o2o_reviewer.any?{|x| pr_reviewers.include?(x)}
+  failure "Please request a review from mmpisang"
+end
+
+if reviews.map {|u| 
+    if u["state"] == 'APPROVED'
+      unless pr_reviewers.include?(u["login"])
+        failure "Please get an approval review from skarindra or nurdians or kurniawanfjr or FRoyani or suryathio92 then restart the checker"
+      end
+    end
+  }
+end
 
 # Provide automation running screenshot
 formats = [".png", ".jpg", ".gif", ".jpeg"]
