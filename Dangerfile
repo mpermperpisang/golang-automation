@@ -22,11 +22,12 @@ end
 
 list_approval = []
 
-reviews.map {|u|
+if reviews.map {|u|
   if u["state"] == 'APPROVED'
     list_approval.push(u["login"])
   end
 }
+end
 
 message "#{list_approval}"
 
