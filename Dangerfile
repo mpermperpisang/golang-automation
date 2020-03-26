@@ -27,7 +27,7 @@ reviews.map {|u|
 }
 
 unless official_reviewer.any?{|x| list_approval.include?(x)}
-  failure "Please get an approval from official reviewer"
+  failure "Please get an approval from mmpisang"
 end
 
 # Provide automation running screenshot
