@@ -1,3 +1,7 @@
+# Welcome messages
+welcome_message.greet
+welcome_message.greet_test
+
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
@@ -6,6 +10,9 @@ mention.run
 
 # Ensures nice and tidy commit messages
 commit_lint.check warn: :all
+
+# Suggest code changes through inline comments in pull requests
+suggester.suggest
 
 # Make sure one of the reviewer is from official reviewer
 # Requested reviewer
@@ -23,6 +30,9 @@ official_reviewer = ["mpermperpisang", "mmpisang", "mpermper321"]
 unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
   failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
 end
+
+# Random reviewer request
+review_requests.request(['mpermperpisang','mmpisang', 'mpermper321'].sample(1))
 
 # Make sure one of the approval is from official reviewer
 list_approval = []
