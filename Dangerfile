@@ -15,10 +15,10 @@ actual_reviewers = reviews.map {|u| u["user"]}
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
 # official Reviewer
-official_reviewer = ["mmpisang"]
+official_reviewer = ["mpermperpisang", "mmpisang", "mpermper321"]
 
 unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
-  failure "Please request a review from mmpisang"
+  failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
 end
 
 # Make sure one of the approval is from official reviewer
