@@ -31,9 +31,6 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
   failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
 end
 
-# Random reviewer request
-review_requests.request(['mpermperpisang','mmpisang', 'mpermper321'].delete(github.pr_author).sample(1))
-
 # Make sure one of the approval is from official reviewer
 list_approval = []
 
@@ -44,7 +41,13 @@ reviews.map {|u|
 }
 
 unless official_reviewer.any?{|x| list_approval.include?(x)}
-  failure "Please get an approval from mmpisang"
+  failure "Please get an approval from mpermperpisang or mmpisang or mpermper321"
+end
+
+# Random reviewer request
+if reviewers.nil?
+  official_reviewer.delete(github.pr_author)
+  review_requests.request(official_reviewer.sample(1))
 end
 
 # Provide automation running screenshot
@@ -76,7 +79,7 @@ can_merge = github.pr_json["mergeable"]
 warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 
 if git.modified_files.include? "main.go"
-  warn "Please assign @mpermperpisang or @mmpisang as reviewer"
+  warn "Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer"
 end
 
 # Looks Good To Me
