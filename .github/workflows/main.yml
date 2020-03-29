@@ -8,8 +8,8 @@ on:
     types: [created, deleted]
 
 jobs:
-  build:
-    name: Build
+  setup:
+    name: Setup
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
@@ -21,7 +21,7 @@ jobs:
         id: go
 
   checkerTrigger:
-    needs: build
+    needs: setup
     name: Danger Checker
     runs-on: ubuntu-latest
     steps:
