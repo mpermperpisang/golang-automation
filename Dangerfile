@@ -4,9 +4,6 @@ welcome_message.greet
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
-# Mention potential reviewer
-mention.run(2, [], [])
-
 # Ensures nice and tidy commit messages
 commit_lint.check warn: :all
 
