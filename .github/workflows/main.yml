@@ -8,8 +8,8 @@ on:
     types: [created, deleted]
 
 jobs:
-  build:
-    name: Build
+  setup:
+    name: Setup
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
@@ -21,7 +21,7 @@ jobs:
         id: go
 
   checkerTrigger:
-    needs: build
+    needs: setup
     name: Danger Checker
     runs-on: ubuntu-latest
     steps:
@@ -38,3 +38,16 @@ jobs:
           bundle update
           bundle install
           bundle exec danger
+
+  sonarTrigger:
+    needs: setup
+    name: Sonar Cloud Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      - name: Execution
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+        GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.DANGER_SONAR_API_TOKEN }}
