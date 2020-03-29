@@ -5,7 +5,7 @@ welcome_message.greet
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
 # Mention potential reviewer
-mention.run
+mention.run(2, [], [])
 
 # Ensures nice and tidy commit messages
 commit_lint.check warn: :all
@@ -26,14 +26,15 @@ pr_reviewers = reviewers.map {|u| u["login"]}
 # Official reviewer
 official_reviewer = ["mpermperpisang", "mmpisang", "mpermper321"]
 
-unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
-  failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
-end
-
-# Random reviewer request
+# Random official reviewer request
 if reviewers.empty?
   official_reviewer.delete(github.pr_author)
   review_requests.request(official_reviewer.sample(1))
+end
+
+# If reviewer not include official reviewer
+unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
+  failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
 end
 
 # Make sure one of the approval is from official reviewer
