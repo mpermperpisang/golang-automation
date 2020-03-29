@@ -24,6 +24,7 @@ func GodogMainSupport(s *godog.Suite) {
 		fmt.Println("Starting automation")
 		fmt.Println("Running scenario with tag : " + tag)
 	})
+	
 
 	s.AfterScenario(func(interface{}, error) {
 		if web.Driver != nil {
