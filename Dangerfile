@@ -1,9 +1,6 @@
 # Welcome messages
 welcome_message.greet
 
-# A Dangerfile for golang developer (golint)
-go.lint
-
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
