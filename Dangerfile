@@ -32,7 +32,7 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
 end
 
 # Random reviewer request
-review_requests.request(['mpermperpisang','mmpisang', 'mpermper321'].sample(1))
+review_requests.request(['mpermperpisang','mmpisang', 'mpermper321'].delete(github.pr_author).sample(1))
 
 # Make sure one of the approval is from official reviewer
 list_approval = []
