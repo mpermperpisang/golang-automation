@@ -4,17 +4,20 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 # Mention potential reviewer
 mention.run
 
+# Ensures nice and tidy commit messages
+commit_lint.check warn: :all
+
 # Make sure one of the reviewer is from official reviewer
-# Requested Reviewer
+# Requested reviewer
 requested_reviewers = github.pr_json["requested_reviewers"]
-# Actual Reviewer
+# Actual reviewer
 pr_num = github.pr_json["number"]
 reviews = github.api.pull_request_reviews("mpermperpisang/golang-automation", pr_num)
 actual_reviewers = reviews.map {|u| u["user"]}
-# PR Reviewer
+# PR reviewer
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
-# official Reviewer
+# Official reviewer
 official_reviewer = ["mpermperpisang", "mmpisang", "mpermper321"]
 
 unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
@@ -54,7 +57,7 @@ warn "PR is classed as Work in Progress" if github.pr_title.include? "[WIP]"
 # Warn when there is a big PR
 warn("Big PR") if git.insertions > 500
 
-# Provide PR Summary
+# Provide PR summary
 if github.pr_body.length < 5
     failure "Please provide a summary in the Pull Request description"
 end
