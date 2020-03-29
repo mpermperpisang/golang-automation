@@ -41,7 +41,7 @@ reviews.map {|u|
 }
 
 unless official_reviewer.any?{|x| list_approval.include?(x)}
-  failure "Please get an approval from mmpisang"
+  failure "Please get an approval from mpermperpisang or mmpisang or mpermper321"
 end
 
 # Random reviewer request
@@ -79,7 +79,7 @@ can_merge = github.pr_json["mergeable"]
 warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 
 if git.modified_files.include? "main.go"
-  warn "Please assign @mpermperpisang or @mmpisang as reviewer"
+  warn "Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer"
 end
 
 # Looks Good To Me
