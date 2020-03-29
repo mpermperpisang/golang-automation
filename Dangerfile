@@ -1,6 +1,9 @@
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
+# Mention potential reviewer
+mention.run
+
 # Make sure one of the reviewer is from official reviewer
 # Requested Reviewer
 requested_reviewers = github.pr_json["requested_reviewers"]
@@ -62,3 +65,6 @@ warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 if git.modified_files.include? "main.go"
   warn "Please assign @mmpisang as reviewer"
 end
+
+# Looks Good To Me
+lgtm.check_lgtm
