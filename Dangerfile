@@ -9,6 +9,9 @@ mention.run(2, [], [])
 
 # Ensures nice and tidy commit messages
 commit_lint.check warn: :all
+commit_lint.check disable: [:subject_cap]
+commit_lint.check disable: [:subject_period]
+commit_lint.check disable: [:empty_line]
 
 # Suggest code changes through inline comments in pull requests
 suggester.suggest
