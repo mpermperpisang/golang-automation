@@ -1,6 +1,5 @@
 # Welcome messages
 welcome_message.greet
-welcome_message.greet_test
 
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
@@ -32,8 +31,7 @@ unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
 end
 
 # Random reviewer request
-message "#{reviewers}"
-if reviewers.nil?
+if reviewers.empty?
   official_reviewer.delete(github.pr_author)
   review_requests.request(official_reviewer.sample(1))
 end
