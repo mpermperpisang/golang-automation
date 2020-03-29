@@ -1,6 +1,9 @@
 # Make sure if PR have assignee
 failure "This PR does not have any assignees yet." unless github.pr_json["assignee"]
 
+# Mention potential reviewer
+mention.run
+
 # Make sure one of the reviewer is from official reviewer
 # Requested Reviewer
 requested_reviewers = github.pr_json["requested_reviewers"]
@@ -12,10 +15,10 @@ actual_reviewers = reviews.map {|u| u["user"]}
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
 # official Reviewer
-official_reviewer = ["mmpisang"]
+official_reviewer = ["mpermperpisang", "mmpisang", "mpermper321"]
 
 unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
-  failure "Please request a review from mmpisang"
+  failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
 end
 
 # Make sure one of the approval is from official reviewer
@@ -62,3 +65,6 @@ warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 if git.modified_files.include? "main.go"
   warn "Please assign @mpermperpisang or @mmpisang as reviewer"
 end
+
+# Looks Good To Me
+lgtm.check_lgtm
