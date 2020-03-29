@@ -8,8 +8,7 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 mention.run(2, [], [])
 
 # Ensures nice and tidy commit messages
-commit_lint.check disable: [:subject_cap, :subject_period]
-commit_lint.check warn: :all
+commit_lint.check warn: :all, disable: [:subject_cap, :subject_period]
 
 # Suggest code changes through inline comments in pull requests
 suggester.suggest
