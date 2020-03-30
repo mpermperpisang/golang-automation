@@ -7,6 +7,12 @@ failure "This PR does not have any assignees yet." unless github.pr_json["assign
 # Ensures nice and tidy commit messages
 commit_lint.check warn: :all, disable: [:subject_cap, :subject_period]
 
+# Suggest code changes through inline comments in pull requests
+suggester.suggest
+
+# Mention potential reviewers on pull requests
+mention.run
+
 # Make sure one of the reviewer is from official reviewer
 # Requested reviewer
 requested_reviewers = github.pr_json["requested_reviewers"]
