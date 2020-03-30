@@ -28,6 +28,8 @@ GEM
       danger-plugin-api (~> 1.0)
     danger-lgtm (1.1.1)
       danger-plugin-api (~> 1.0)
+    danger-mention (0.6.1)
+      danger (>= 2.0.0)
     danger-plugin-api (1.0.0)
       danger (> 2.0)
     danger-review_requests (1.0.1)
@@ -70,6 +72,7 @@ DEPENDENCIES
   danger
   danger-commit_lint
   danger-lgtm
+  danger-mention
   danger-review_requests
   danger-suggester
   danger-welcome_message
