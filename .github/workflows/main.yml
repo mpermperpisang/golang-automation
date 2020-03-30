@@ -36,5 +36,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
         run: |
           bundle update
+          gem install bundler
           bundle install
           bundle exec danger
