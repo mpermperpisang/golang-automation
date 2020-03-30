@@ -10,6 +10,16 @@ commit_lint.check warn: :all, disable: [:subject_cap, :subject_period]
 # Suggest code changes through inline comments in pull requests
 suggester.suggest
 
+# A Dangerfile for golang developer
+golint.lint
+
+# Suggest code changes through inline comments in pull requests
+rubocop.lint(
+  force_exclusion: true,
+  inline_comment: true,
+)
+system('bundle exec rubocop --auto-correct')
+
 # Make sure one of the reviewer is from official reviewer
 # Requested reviewer
 requested_reviewers = github.pr_json["requested_reviewers"]
