@@ -50,6 +50,7 @@ GEM
     git (1.6.0)
       rchardet (~> 1.8)
     git_diff (0.4.2)
+    golint (0.0.3)
     jaro_winkler (1.5.4)
     kramdown (2.1.0)
     kramdown-parser-gfm (1.1.0)
@@ -96,6 +97,7 @@ DEPENDENCIES
   danger-rubocop
   danger-suggester
   danger-welcome_message
+  golint
 
 BUNDLED WITH
    2.1.4
