@@ -24,17 +24,12 @@ actual_reviewers = reviews.map {|u| u["user"]}
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map {|u| u["login"]}
 # Official reviewer
-official_reviewer = ["mpermperpisang", "mmpisang", "mpermper321"]
-
-# Random official reviewer request
-if reviewers.empty?
-  official_reviewer.delete(github.pr_author)
-  review_requests.request(official_reviewer.sample(1))
-end
+official_reviewer = ["mmpisang", "mpermper321"]
 
 # If reviewer not include official reviewer
 unless official_reviewer.any?{|x| pr_reviewers.include?(x)}
-  failure "Please request a review from mpermperpisang or mmpisang or mpermper321"
+  official_reviewer.delete(github.pr_author)
+  review_requests.request(official_reviewer.sample(1))
 end
 
 # Make sure one of the approval is from official reviewer
