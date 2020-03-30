@@ -14,6 +14,9 @@ rubocop.lint(
 )
 system('bundle exec rubocop --auto-correct')
 
+# A Dangerfile for golang developer
+golint.lint
+
 # Suggest code changes through inline comments in pull requests
 suggester.suggest
 
