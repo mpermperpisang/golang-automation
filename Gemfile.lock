@@ -24,18 +24,26 @@ GEM
       no_proxy_fix
       octokit (~> 4.7)
       terminal-table (~> 1)
+    danger-commit_lint (0.0.7)
+      danger-plugin-api (~> 1.0)
     danger-lgtm (1.1.1)
       danger-plugin-api (~> 1.0)
-    danger-mention (0.6.1)
-      danger (>= 2.0.0)
     danger-plugin-api (1.0.0)
       danger (> 2.0)
+    danger-review_requests (1.0.1)
+      danger
+    danger-suggester (0.1.0)
+      danger
+      git_diff
+    danger-welcome_message (0.0.1)
+      danger-plugin-api (~> 1.0)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday-http-cache (2.0.0)
       faraday (~> 0.8)
     git (1.6.0)
       rchardet (~> 1.8)
+    git_diff (0.4.2)
     kramdown (2.1.0)
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
@@ -60,8 +68,11 @@ PLATFORMS
 
 DEPENDENCIES
   danger
+  danger-commit_lint
   danger-lgtm
-  danger-mention
+  danger-review_requests
+  danger-suggester
+  danger-welcome_message
 
 BUNDLED WITH
    2.1.4
