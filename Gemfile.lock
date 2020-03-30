@@ -10,7 +10,6 @@ GEM
       nap
       open4 (~> 1.3)
     colored2 (3.1.2)
-    concur (2.1.1)
     cork (0.3.0)
       colored2 (~> 3.1)
     danger (6.3.1)
@@ -27,8 +26,6 @@ GEM
       octokit (~> 4.7)
       terminal-table (~> 1)
     danger-commit_lint (0.0.7)
-      danger-plugin-api (~> 1.0)
-    danger-go (0.0.5)
       danger-plugin-api (~> 1.0)
     danger-lgtm (1.1.1)
       danger-plugin-api (~> 1.0)
@@ -51,9 +48,6 @@ GEM
     git (1.6.0)
       rchardet (~> 1.8)
     git_diff (0.4.2)
-    go (1.1.0)
-      concur
-    golint (0.0.3)
     jaro_winkler (1.5.4)
     kramdown (2.1.0)
     kramdown-parser-gfm (1.1.0)
@@ -94,14 +88,11 @@ PLATFORMS
 DEPENDENCIES
   danger
   danger-commit_lint
-  danger-go
   danger-lgtm
   danger-review_requests
   danger-rubocop
   danger-suggester
   danger-welcome_message
-  go
-  golint
 
 BUNDLED WITH
    2.1.4
