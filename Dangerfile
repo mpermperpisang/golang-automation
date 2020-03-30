@@ -10,9 +10,6 @@ commit_lint.check warn: :all, disable: [:subject_cap, :subject_period]
 # Suggest code changes through inline comments in pull requests
 suggester.suggest
 
-# Mention potential reviewers on pull requests
-mention.run
-
 # Make sure one of the reviewer is from official reviewer
 # Requested reviewer
 requested_reviewers = github.pr_json["requested_reviewers"]
