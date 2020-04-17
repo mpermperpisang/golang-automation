@@ -8,9 +8,7 @@ import (
 /*GetAttributeByXpath element visible by Xpath selector*/
 func GetAttributeByXpath(locator string, attr string) error {
 	_, err := android.Device.FindByXPath(locator).Attribute(attr)
-	if err != nil {
-		helper.LogPanicln(err)
-	}
+	helper.LogPanicln(err)
 
 	return nil
 }
