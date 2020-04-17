@@ -1,16 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
+	"github.com/golang-automation/features/helper"
 	"github.com/joho/godotenv"
 )
 
 func init() {
-	if env := godotenv.Load(); env != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", env))
-	}
+	env := godotenv.Load()
+	helper.LogPanicln(env)
 }
 
 func main() {

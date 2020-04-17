@@ -6,7 +6,7 @@ import (
 )
 
 /*LogPanicln general error message using log.Panicln*/
-func LogPanicln(err error) error {
+func LogPanicln(err interface{}) error {
 	if err != nil {
 		log.Panicln(fmt.Errorf("REASON: %s", err))
 	}

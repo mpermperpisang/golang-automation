@@ -13,7 +13,7 @@ package:
 	@echo "Package installed"
 
 kill-port:
-	@kill -HUP $$(lsof -t -i:4545)
+	@kill -9 $$(lsof -t -i:4545)
 	@echo "Port 4545 is killed"
 
 docker-clean:

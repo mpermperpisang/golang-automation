@@ -1,9 +1,6 @@
 package iosaction
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/golang-automation/features/helper"
 	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
@@ -12,7 +9,7 @@ import (
 func GetAttributeByXpath(locator string, attr string) error {
 	_, err := ios.Device.FindByXPath(locator).Attribute(attr)
 	if err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
+		helper.LogPanicln(err)
 	}
 
 	return nil

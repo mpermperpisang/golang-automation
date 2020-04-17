@@ -3,8 +3,6 @@ package step
 import (
 	"encoding/json"
 	"fmt"
-	"log"
-	"strconv"
 
 	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
@@ -20,9 +18,8 @@ type JSONValue struct {
 var jsonResponse, actualResult interface{}
 
 func decryptJSONResponse() error {
-	if err := json.Unmarshal(api.ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	err := json.Unmarshal(api.ResponseBody, &jsonResponse)
+	helper.LogPanicln(err)
 
 	return nil
 }
@@ -33,9 +30,8 @@ func ResponseFindPath(path string) error {
 
 	countpath, _ := jsonpath.Read(jsonResponse, path)
 
-	if err := len(countpath.([]interface{})); err == 0 {
-		log.Panicln(fmt.Errorf("REASON: %s", strconv.Itoa(err)))
-	}
+	err := len(countpath.([]interface{}))
+	helper.LogPanicln(err)
 
 	return nil
 }

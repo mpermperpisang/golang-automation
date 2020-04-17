@@ -3,9 +3,7 @@ package apihelper
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"regexp"
@@ -38,7 +36,7 @@ func envReader(env string) error {
 	return nil
 }
 
-/*BaseAPI is function to set base url for API*/
+/*BaseAPI : set base url for API*/
 func BaseAPI(base string) error {
 	envReader(base)
 
@@ -76,16 +74,15 @@ func stagingNumber() error {
 func clientResponse(sendRequest *http.Request) error {
 	client := &http.Client{}
 
-	if HTTPResponse, err = client.Do(sendRequest); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	HTTPResponse, err = client.Do(sendRequest)
+	helper.LogPanicln(err)
 
 	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
 
 	return nil
 }
 
-/*AuthenticationAPI is function to get access token*/
+/*AuthenticationAPI : get access token*/
 func AuthenticationAPI(account string) error {
 	var jsonResponse interface{}
 
@@ -111,9 +108,8 @@ func AuthenticationAPI(account string) error {
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 	clientResponse(sendRequest)
 
-	if err := json.Unmarshal(ResponseBody, &jsonResponse); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	err := json.Unmarshal(ResponseBody, &jsonResponse)
+	helper.LogPanicln(err)
 
 	AccessToken, _ = HTTPJson(jsonResponse)
 

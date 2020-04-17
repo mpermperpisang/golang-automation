@@ -1,31 +1,28 @@
 package androiddriver
 
 import (
-	"fmt"
-	"log"
-
+	"github.com/golang-automation/features/helper"
 	android "github.com/golang-automation/features/helper/apps/android"
 	"github.com/sclevine/agouti/appium"
 )
 
 /*Device global variable*/
 var Device *appium.Device
-var err error
 
 /*StartDriver : start android driver*/
 func StartDriver() error {
-	if err := android.Driver.Start(); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	err := android.Driver.Start()
+	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*NewDevice : create new android device*/
 func NewDevice() error {
-	if Device, err = android.Driver.NewDevice(); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	var err error
+
+	Device, err = android.Driver.NewDevice()
+	helper.LogPanicln(err)
 
 	return nil
 }

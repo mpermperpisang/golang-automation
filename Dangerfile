@@ -74,6 +74,16 @@ if github.pr_body.length < 5
     failure "Please provide a summary in the Pull Request description"
 end
 
+# Warning to not fill in Todos description
+if github.pr_body.include?("What things you do through this pull request")
+  warn "Please provide a 'Todos' in the Pull Request description"
+end
+
+# Warning to not fill in Screenshot Link description
+if github.pr_body.include?("Format file in png, jpg, gif, or jpeg")
+  warn "Please provide a 'Screenshot' in the Pull Request description"
+end
+
 can_merge = github.pr_json["mergeable"]
 warn("This PR cannot be merged yet.", sticky: false) unless can_merge
 

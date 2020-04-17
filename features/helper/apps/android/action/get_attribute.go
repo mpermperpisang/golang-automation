@@ -1,9 +1,6 @@
 package androidaction
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/golang-automation/features/helper"
 	android "github.com/golang-automation/features/helper/apps/android/driver"
 )
@@ -12,7 +9,7 @@ import (
 func GetAttributeByXpath(locator string, attr string) error {
 	_, err := android.Device.FindByXPath(locator).Attribute(attr)
 	if err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
+		helper.LogPanicln(err)
 	}
 
 	return nil

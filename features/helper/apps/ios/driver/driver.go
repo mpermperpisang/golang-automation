@@ -1,31 +1,28 @@
 package iosdriver
 
 import (
-	"fmt"
-	"log"
-
+	"github.com/golang-automation/features/helper"
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	"github.com/sclevine/agouti/appium"
 )
 
 /*Device global variable*/
 var Device *appium.Device
-var err error
 
 /*StartDriver : start android driver*/
 func StartDriver() error {
-	if err := ios.Driver.Start(); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	err := ios.Driver.Start()
+	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*NewDevice : create new android device*/
 func NewDevice() error {
-	if Device, err = ios.Driver.NewDevice(); err != nil {
-		log.Panicln(fmt.Errorf("REASON: %s", err))
-	}
+	var err error
+
+	Device, err = ios.Driver.NewDevice()
+	helper.LogPanicln(err)
 
 	return nil
 }

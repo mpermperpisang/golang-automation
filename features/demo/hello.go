@@ -2,7 +2,7 @@ package demo
 
 import "fmt"
 
-/*Hello function to try unit test*/
+/*Hello : say hello to user*/
 func Hello(user string) string {
 	if len(user) == 0 {
 		return "Hello Dude!"

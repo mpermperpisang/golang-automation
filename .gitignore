@@ -6,3 +6,6 @@ capabilities*.properties
 *.github
 *.vscode
 golang*.html
+*.app
+*.apk
+*.ipa

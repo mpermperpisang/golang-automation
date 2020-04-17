@@ -7,10 +7,9 @@ import (
 
 	"github.com/DATA-DOG/godog"
 	"github.com/golang-automation/features/helper"
+	appshelper "github.com/golang-automation/features/helper/apps"
 	android "github.com/golang-automation/features/helper/apps/android"
-	androidDriver "github.com/golang-automation/features/helper/apps/android/driver"
 	ios "github.com/golang-automation/features/helper/apps/ios"
-	iosDriver "github.com/golang-automation/features/helper/apps/ios/driver"
 	web "github.com/golang-automation/features/helper/web"
 )
 
@@ -26,17 +25,16 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 
 	s.AfterScenario(func(interface{}, error) {
+		fmt.Println("Stopping automation")
+
 		if web.Driver != nil {
-			web.Driver.Screenshot()
 			web.Driver.Quit()
 		} else if android.Driver != nil {
-			androidDriver.Device.Screenshot("error_android.jpg")
 			android.Driver.Stop()
+			appshelper.AppiumStop()
 		} else if ios.Driver != nil {
-			iosDriver.Device.Screenshot("error_ios.jpg")
 			ios.Driver.Stop()
+			appshelper.AppiumStop()
 		}
-
-		fmt.Println("Stopping automation")
 	})
 }
