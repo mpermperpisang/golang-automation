@@ -5,7 +5,6 @@
 *.iml
 *.json
 capabilities*.properties
-*.github
 *.vscode
 golang*.html
 *.app
