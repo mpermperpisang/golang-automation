@@ -1,3 +1,5 @@
+*.key
+*.crt
 *.env
 *.idea
 *.iml
