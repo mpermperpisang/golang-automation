@@ -9,7 +9,6 @@ import (
 /*Test*/
 func TestHello(t *testing.T) {
 	assert := assert.New(t)
-
 	emptyResult := Hello("")
 	nameResult := Hello("Banana")
 

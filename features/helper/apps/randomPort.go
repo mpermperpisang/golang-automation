@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-/*RandomPort fungsi untuk mengacak appium port*/
+/*RandomPort : mengacak appium port*/
 func RandomPort() int {
 	rand.Seed(time.Now().UnixNano())
 

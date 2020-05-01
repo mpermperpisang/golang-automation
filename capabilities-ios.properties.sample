@@ -13,3 +13,4 @@ xcodeConfigfile=/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-
 useNewWDA=true
 showXcodeLog=true
 browserName=
+Debug=true
