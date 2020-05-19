@@ -41,6 +41,7 @@ var yamlFile []byte
 func OpenDWEB() error {
 	web.DriverConnect()
 	desktop.GoToURL(os.Getenv("URL"))
+	helper.WaitForLoadingPage(25)
 
 	return nil
 }
