@@ -20,4 +20,14 @@ func ExampleAutomation(s *godog.Suite) {
 	s.Step(`^user has a name "([^\"]*)"$`, stepdefinitions.GivenUserName)
 	s.Step(`^Testivus meet user$`, stepdefinitions.MeetUserName)
 	s.Step(`^Testivus say "([^\"]*)"$`, stepdefinitions.SayHelloName)
+	// data
+	s.Step(`^some data$`, stepdefinitions.GivenData)
+	s.Step(`^set data$`, stepdefinitions.SetData)
+	s.Step(`^get data$`, stepdefinitions.GetData)
+	// yaml
+	s.Step(`^yaml file$`, stepdefinitions.GivenFile)
+	s.Step(`^read file$`, stepdefinitions.ReadFile)
+	s.Step(`^print contents$`, stepdefinitions.PrintContents)
+	// mapping
+	s.Step(`^function mapping$`, stepdefinitions.GetFunction)
 }

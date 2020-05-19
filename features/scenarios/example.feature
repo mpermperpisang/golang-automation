@@ -29,3 +29,19 @@ Feature: Example Automation
     Given user has a name "Banana"
     When Testivus meet user
     Then Testivus say "Hello Banana!"
+
+  @example-data
+  Scenario: Set and Get Data
+    Given some data
+    When set data
+    Then get data
+
+  @example-yaml
+  Scenario: Read Yaml
+    Given yaml file
+    When read file
+    Then print contents
+
+  @example-mapping
+  Scenario: Call Function
+    Given function mapping

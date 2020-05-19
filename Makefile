@@ -1,4 +1,3 @@
-# I don't really understand Makefile and docker. Have a lot of things to learn
 all: docker-clean docker-hub docker-browser
 
 package:
