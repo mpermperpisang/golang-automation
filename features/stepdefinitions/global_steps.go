@@ -25,9 +25,14 @@ var AndroidPage androidDevice.AndroidPage
 /*IOSPage : ios apps page*/
 var IOSPage iosDevice.IOSPage
 
+/*Dweb : desktop web driver*/
+var Dweb web.WebDriver
+
+/*Mweb : mobile web driver*/
+var Mweb web.WebDriver
+
 var desktopPage desktop.DwebPage
 var mobilePage mobile.MwebPage
-var Dweb, Mweb web.WebDriver
 var androidApps androidhelper.AndroidDriver
 var iOSApps ioshelper.IOSDriver
 var username string

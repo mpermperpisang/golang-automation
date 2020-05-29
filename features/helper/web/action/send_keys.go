@@ -12,7 +12,7 @@ func (s *Page) SendKeysByCSS(locator string, text string) selenium.WebElement {
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByID input element by class ID*/
@@ -22,7 +22,7 @@ func (s *Page) SendKeysByID(locator string, text string) selenium.WebElement {
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByXpath input element by Xpath selector*/
@@ -32,7 +32,7 @@ func (s *Page) SendKeysByXpath(locator string, text string) selenium.WebElement 
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByLinkText input element by link text*/
@@ -42,7 +42,7 @@ func (s *Page) SendKeysByLinkText(locator string, text string) selenium.WebEleme
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByPartialLink input element by partial link text*/
@@ -52,7 +52,7 @@ func (s *Page) SendKeysByPartialLink(locator string, text string) selenium.WebEl
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByName input element by name of class*/
@@ -62,7 +62,7 @@ func (s *Page) SendKeysByName(locator string, text string) selenium.WebElement {
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByTag input element by name tag*/
@@ -72,7 +72,7 @@ func (s *Page) SendKeysByTag(locator string, text string) selenium.WebElement {
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByClass input element by class name*/
@@ -82,7 +82,7 @@ func (s *Page) SendKeysByClass(locator string, text string) selenium.WebElement 
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }
 
 /*SendKeysByText input element by text in xpath*/
@@ -92,5 +92,5 @@ func (s *Page) SendKeysByText(locator string, text string) selenium.WebElement {
 
 	element.SendKeys(text)
 
-	return nil
+	return element
 }

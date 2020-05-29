@@ -12,7 +12,7 @@ func (s *Page) IsElementSelectedByCSS(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByID element enable by class ID*/
@@ -22,7 +22,7 @@ func (s *Page) IsElementSelectedByID(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByXpath element enable by Xpath selector*/
@@ -32,7 +32,7 @@ func (s *Page) IsElementSelectedByXpath(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByLinkText element enable by link text*/
@@ -42,7 +42,7 @@ func (s *Page) IsElementSelectedByLinkText(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByPartialLink element enable by partial link text*/
@@ -52,7 +52,7 @@ func (s *Page) IsElementSelectedByPartialLink(locator string) selenium.WebElemen
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByName element enable by name of class*/
@@ -62,7 +62,7 @@ func (s *Page) IsElementSelectedByName(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByTag element enable by name tag*/
@@ -72,7 +72,7 @@ func (s *Page) IsElementSelectedByTag(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByClass element enable by class name*/
@@ -82,7 +82,7 @@ func (s *Page) IsElementSelectedByClass(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }
 
 /*IsElementSelectedByText element enable by text in xpath*/
@@ -92,5 +92,5 @@ func (s *Page) IsElementSelectedByText(locator string) selenium.WebElement {
 
 	element.IsSelected()
 
-	return nil
+	return element
 }

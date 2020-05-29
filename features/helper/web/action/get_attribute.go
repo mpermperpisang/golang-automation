@@ -12,7 +12,7 @@ func (s *Page) GetAttributeByCSS(locator string, attr string) selenium.WebElemen
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByID element enable by class ID*/
@@ -22,7 +22,7 @@ func (s *Page) GetAttributeByID(locator string, attr string) selenium.WebElement
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByXpath element enable by Xpath selector*/
@@ -32,7 +32,7 @@ func (s *Page) GetAttributeByXpath(locator string, attr string) selenium.WebElem
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByLinkText element enable by link text*/
@@ -42,7 +42,7 @@ func (s *Page) GetAttributeByLinkText(locator string, attr string) selenium.WebE
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByPartialLink element enable by partial link text*/
@@ -52,7 +52,7 @@ func (s *Page) GetAttributeByPartialLink(locator string, attr string) selenium.W
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByName element enable by name of class*/
@@ -62,7 +62,7 @@ func (s *Page) GetAttributeByName(locator string, attr string) selenium.WebEleme
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByTag element enable by name tag*/
@@ -72,7 +72,7 @@ func (s *Page) GetAttributeByTag(locator string, attr string) selenium.WebElemen
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByClass element enable by class name*/
@@ -82,7 +82,7 @@ func (s *Page) GetAttributeByClass(locator string, attr string) selenium.WebElem
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }
 
 /*GetAttributeByText element enable by text in xpath*/
@@ -92,5 +92,5 @@ func (s *Page) GetAttributeByText(locator string, attr string) selenium.WebEleme
 
 	element.GetAttribute(attr)
 
-	return nil
+	return element
 }

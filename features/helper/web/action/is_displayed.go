@@ -12,7 +12,7 @@ func (s *Page) IsElementDisplayedByCSS(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByID element display by class ID*/
@@ -22,7 +22,7 @@ func (s *Page) IsElementDisplayedByID(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByXpath element display by Xpath selector*/
@@ -32,7 +32,7 @@ func (s *Page) IsElementDisplayedByXpath(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByLinkText element display by link text*/
@@ -42,7 +42,7 @@ func (s *Page) IsElementDisplayedByLinkText(locator string) selenium.WebElement 
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByPartialLink element display by partial link text*/
@@ -52,7 +52,7 @@ func (s *Page) IsElementDisplayedByPartialLink(locator string) selenium.WebEleme
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByName element display by name of class*/
@@ -62,7 +62,7 @@ func (s *Page) IsElementDisplayedByName(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByTag element display by name tag*/
@@ -72,7 +72,7 @@ func (s *Page) IsElementDisplayedByTag(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByClass element display by class name*/
@@ -82,7 +82,7 @@ func (s *Page) IsElementDisplayedByClass(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }
 
 /*IsElementDisplayedByText element display by text in xpath*/
@@ -92,5 +92,5 @@ func (s *Page) IsElementDisplayedByText(locator string) selenium.WebElement {
 
 	element.IsDisplayed()
 
-	return nil
+	return element
 }

@@ -31,7 +31,6 @@ var usersName, meetName string
 var number int
 var config Example
 var yamlFile []byte
-var homepage interface{}
 
 /*OpenDWEB : to initiate dweb scenario*/
 func OpenDWEB() error {
