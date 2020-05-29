@@ -1,8 +1,6 @@
 package helper
 
 import (
-	"fmt"
-
 	webhelper "github.com/golang-automation/features/helper/web"
 )
 
@@ -17,7 +15,6 @@ func WaitForLoadingPage(timeout int) error {
 		LogPanicln(err)
 
 		if document == "complete" || max == timeout {
-			fmt.Printf("Page needs %d miliseconds to %v state\n", max, document)
 			break
 		}
 	}

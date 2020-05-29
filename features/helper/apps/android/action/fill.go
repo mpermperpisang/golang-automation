@@ -2,69 +2,68 @@ package androidaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	android "github.com/golang-automation/features/helper/apps/android/driver"
 )
 
 /*FillElementByXpath element visible by Xpath selector*/
-func FillElementByXpath(locator string, text string) error {
-	element := android.Device.FindByXPath(locator).Fill(text)
+func (s *Page) FillElementByXpath(locator string, text string) error {
+	element := s.Action.Device.FindByXPath(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByButton element visible by button*/
-func FillElementByButton(locator string, text string) error {
-	element := android.Device.FindByButton(locator).Fill(text)
+func (s *Page) FillElementByButton(locator string, text string) error {
+	element := s.Action.Device.FindByButton(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByClass element visible by class*/
-func FillElementByClass(locator string, text string) error {
-	element := android.Device.FindByClass(locator).Fill(text)
+func (s *Page) FillElementByClass(locator string, text string) error {
+	element := s.Action.Device.FindByClass(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByID element visible by ID*/
-func FillElementByID(locator string, text string) error {
-	element := android.Device.FindByID(locator).Fill(text)
+func (s *Page) FillElementByID(locator string, text string) error {
+	element := s.Action.Device.FindByID(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByLabel element visible by label*/
-func FillElementByLabel(locator string, text string) error {
-	element := android.Device.FindByLabel(locator).Fill(text)
+func (s *Page) FillElementByLabel(locator string, text string) error {
+	element := s.Action.Device.FindByLabel(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByLink element visible by link*/
-func FillElementByLink(locator string, text string) error {
-	element := android.Device.FindByLink(locator).Fill(text)
+func (s *Page) FillElementByLink(locator string, text string) error {
+	element := s.Action.Device.FindByLink(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByName element visible by class name*/
-func FillElementByName(locator string, text string) error {
-	element := android.Device.FindByName(locator).Fill(text)
+func (s *Page) FillElementByName(locator string, text string) error {
+	element := s.Action.Device.FindByName(locator).Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*FillElementByText element visible by Xpath selector*/
-func FillElementByText(locator string, text string) error {
-	element := android.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Fill(text)
+func (s *Page) FillElementByText(locator string, text string) error {
+	element := s.Action.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Fill(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }

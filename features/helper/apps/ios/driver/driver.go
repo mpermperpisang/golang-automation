@@ -6,23 +6,29 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
+/*IOSPage : base page app*/
+type IOSPage struct {
+	Page   ios.IOSDriver
+	Device *appium.Device
+}
+
 /*Device global variable*/
 var Device *appium.Device
 
 /*StartDriver : start android driver*/
-func StartDriver() error {
-	err := ios.Driver.Start()
+func (s *IOSPage) StartDriver() error {
+	err := s.Page.Driver.Start()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*NewDevice : create new android device*/
-func NewDevice() error {
+func (s *IOSPage) NewDevice() *appium.Device {
 	var err error
 
-	Device, err = ios.Driver.NewDevice()
+	Device, err = s.Page.Driver.NewDevice()
 	helper.LogPanicln(err)
 
-	return nil
+	return Device
 }

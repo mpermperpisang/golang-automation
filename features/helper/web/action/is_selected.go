@@ -2,87 +2,95 @@ package webaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	web "github.com/golang-automation/features/helper/web"
 	"github.com/tebeka/selenium"
 )
 
 /*IsElementSelectedByCSS element enable by CSS selector*/
-func IsElementSelectedByCSS(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByCSSSelector, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByCSS(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByID element enable by class ID*/
-func IsElementSelectedByID(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByID, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByID(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByXpath element enable by Xpath selector*/
-func IsElementSelectedByXpath(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByXpath(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByLinkText element enable by link text*/
-func IsElementSelectedByLinkText(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByLinkText, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByLinkText(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByPartialLink element enable by partial link text*/
-func IsElementSelectedByPartialLink(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByPartialLinkText, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByPartialLink(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByName element enable by name of class*/
-func IsElementSelectedByName(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByName, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByName(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByTag element enable by name tag*/
-func IsElementSelectedByTag(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByTagName, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByTag(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByClass element enable by class name*/
-func IsElementSelectedByClass(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByClassName, locator)
-	element.IsSelected()
+func (s *Page) IsElementSelectedByClass(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }
 
 /*IsElementSelectedByText element enable by text in xpath*/
-func IsElementSelectedByText(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
-	element.IsSelected()
+func (s *Page) IsElementSelectedByText(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	helper.LogPanicln(err)
+
+	element.IsSelected()
 
 	return nil
 }

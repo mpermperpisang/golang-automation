@@ -2,87 +2,95 @@ package webaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	web "github.com/golang-automation/features/helper/web"
 	"github.com/tebeka/selenium"
 )
 
 /*ClickByCSS click element by CSS selector*/
-func ClickByCSS(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByCSSSelector, locator)
-	element.Click()
+func (s *Page) ClickByCSS(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByID click element by class ID*/
-func ClickByID(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByID, locator)
-	element.Click()
+func (s *Page) ClickByID(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByXpath click element by Xpath selector*/
-func ClickByXpath(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, locator)
-	element.Click()
+func (s *Page) ClickByXpath(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByLinkText click element by link text*/
-func ClickByLinkText(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByLinkText, locator)
-	element.Click()
+func (s *Page) ClickByLinkText(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByPartialLink click element by partial link text*/
-func ClickByPartialLink(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByPartialLinkText, locator)
-	element.Click()
+func (s *Page) ClickByPartialLink(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByName click element by class name*/
-func ClickByName(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByName, locator)
-	element.Click()
+func (s *Page) ClickByName(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByTag click element by name tag*/
-func ClickByTag(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByTagName, locator)
-	element.Click()
+func (s *Page) ClickByTag(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByClass click element by class name*/
-func ClickByClass(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByClassName, locator)
-	element.Click()
+func (s *Page) ClickByClass(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }
 
 /*ClickByText click element by text in xpath*/
-func ClickByText(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
-	element.Click()
+func (s *Page) ClickByText(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	helper.LogPanicln(err)
+
+	element.Click()
 
 	return nil
 }

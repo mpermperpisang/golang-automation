@@ -3,16 +3,21 @@ package mobilehelper
 import (
 	"os"
 
-	web "github.com/golang-automation/features/helper/web"
+	webhelper "github.com/golang-automation/features/helper/web"
 )
+
+/*MwebPage : base page url*/
+type MwebPage struct {
+	Page webhelper.WebDriver
+}
 
 /*BaseURL is global variable*/
 var BaseURL string
 
 /*GoToURL is function to access mweb url*/
-func GoToURL(url string) error {
+func (s *MwebPage) GoToURL(url string) error {
 	BaseURL = os.Getenv("MWEB_BASE_URL") + url
-	website := web.Driver.Get(BaseURL)
+	website := s.Page.Driver.Get(BaseURL)
 
 	return website
 }

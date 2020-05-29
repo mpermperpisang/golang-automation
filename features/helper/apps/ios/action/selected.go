@@ -2,68 +2,67 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*IsElementSelectedByXpath element visible by Xpath selector*/
-func IsElementSelectedByXpath(locator string) error {
-	_, err := ios.Device.FindByXPath(locator).Selected()
+func (s *Page) IsElementSelectedByXpath(locator string) error {
+	_, err := s.Action.Device.FindByXPath(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByButton element visible by button*/
-func IsElementSelectedByButton(locator string) error {
-	_, err := ios.Device.FindByButton(locator).Selected()
+func (s *Page) IsElementSelectedByButton(locator string) error {
+	_, err := s.Action.Device.FindByButton(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByClass element visible by class*/
-func IsElementSelectedByClass(locator string) error {
-	_, err := ios.Device.FindByClass(locator).Selected()
+func (s *Page) IsElementSelectedByClass(locator string) error {
+	_, err := s.Action.Device.FindByClass(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByID element visible by ID*/
-func IsElementSelectedByID(locator string) error {
-	_, err := ios.Device.FindByID(locator).Selected()
+func (s *Page) IsElementSelectedByID(locator string) error {
+	_, err := s.Action.Device.FindByID(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByLabel element visible by label*/
-func IsElementSelectedByLabel(locator string) error {
-	_, err := ios.Device.FindByLabel(locator).Selected()
+func (s *Page) IsElementSelectedByLabel(locator string) error {
+	_, err := s.Action.Device.FindByLabel(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByLink element visible by link*/
-func IsElementSelectedByLink(locator string) error {
-	_, err := ios.Device.FindByLink(locator).Selected()
+func (s *Page) IsElementSelectedByLink(locator string) error {
+	_, err := s.Action.Device.FindByLink(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByName element visible by class name*/
-func IsElementSelectedByName(locator string) error {
-	_, err := ios.Device.FindByName(locator).Selected()
+func (s *Page) IsElementSelectedByName(locator string) error {
+	_, err := s.Action.Device.FindByName(locator).Selected()
 	helper.LogPanicln(err)
 
 	return nil
 }
 
 /*IsElementSelectedByText element visible by Xpath selector*/
-func IsElementSelectedByText(locator string) error {
-	_, err := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Selected()
+func (s *Page) IsElementSelectedByText(locator string) error {
+	_, err := s.Action.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Selected()
 	helper.LogPanicln(err)
 
 	return nil

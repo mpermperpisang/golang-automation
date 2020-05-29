@@ -30,4 +30,7 @@ func ExampleAutomation(s *godog.Suite) {
 	s.Step(`^print contents$`, stepdefinitions.PrintContents)
 	// mapping
 	s.Step(`^function mapping$`, stepdefinitions.GetFunction)
+	// page object struct
+	s.Step(`^access login url$`, stepdefinitions.OpenLoginURL)
+	s.Step(`^validate login page$`, stepdefinitions.ValidateLoginPage)
 }

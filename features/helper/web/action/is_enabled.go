@@ -2,87 +2,95 @@ package webaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	web "github.com/golang-automation/features/helper/web"
 	"github.com/tebeka/selenium"
 )
 
 /*IsElementEnabledByCSS element enable by CSS selector*/
-func IsElementEnabledByCSS(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByCSSSelector, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByCSS(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByID element enable by class ID*/
-func IsElementEnabledByID(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByID, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByID(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByXpath element enable by Xpath selector*/
-func IsElementEnabledByXpath(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByXpath(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByLinkText element enable by link text*/
-func IsElementEnabledByLinkText(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByLinkText, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByLinkText(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByPartialLink element enable by partial link text*/
-func IsElementEnabledByPartialLink(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByPartialLinkText, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByPartialLink(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByName element enable by name of class*/
-func IsElementEnabledByName(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByName, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByName(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByTag element enable by name tag*/
-func IsElementEnabledByTag(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByTagName, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByTag(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByClass element enable by class name*/
-func IsElementEnabledByClass(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByClassName, locator)
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByClass(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
 
 /*IsElementEnabledByText element enable by text in xpath*/
-func IsElementEnabledByText(locator string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
-	element.IsEnabled()
+func (s *Page) IsElementEnabledByText(locator string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	helper.LogPanicln(err)
+
+	element.IsEnabled()
 
 	return nil
 }
