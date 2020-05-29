@@ -6,6 +6,11 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
+/*AndroidDriver : android driver*/
+type AndroidDriver struct {
+	Driver *appium.WebDriver
+}
+
 /*Driver global variable*/
 var Driver *appium.WebDriver
 var p *properties.Properties
@@ -18,7 +23,7 @@ func AndroidProperties() error {
 }
 
 /*DriverConnect for android*/
-func DriverConnect() error {
+func DriverConnect() *appium.WebDriver {
 	AndroidProperties()
 
 	options := appium.Desired(agouti.Capabilities{
@@ -45,5 +50,5 @@ func DriverConnect() error {
 
 	Driver = appium.New(options)
 
-	return nil
+	return Driver
 }

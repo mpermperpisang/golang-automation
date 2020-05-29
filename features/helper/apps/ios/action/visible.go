@@ -2,69 +2,68 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*IsElementVisibleByXpath element visible by Xpath selector*/
-func IsElementVisibleByXpath(locator string) error {
-	_, err := ios.Device.FindByXPath(locator).Visible()
+func (s *Page) IsElementVisibleByXpath(locator string) bool {
+	element, err := s.Action.Device.FindByXPath(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByButton element visible by button*/
-func IsElementVisibleByButton(locator string) error {
-	_, err := ios.Device.FindByButton(locator).Visible()
+func (s *Page) IsElementVisibleByButton(locator string) bool {
+	element, err := s.Action.Device.FindByButton(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByClass element visible by class*/
-func IsElementVisibleByClass(locator string) error {
-	_, err := ios.Device.FindByClass(locator).Visible()
+func (s *Page) IsElementVisibleByClass(locator string) bool {
+	element, err := s.Action.Device.FindByClass(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByID element visible by ID*/
-func IsElementVisibleByID(locator string) error {
-	_, err := ios.Device.FindByID(locator).Visible()
+func (s *Page) IsElementVisibleByID(locator string) bool {
+	element, err := s.Action.Device.FindByID(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByLabel element visible by label*/
-func IsElementVisibleByLabel(locator string) error {
-	_, err := ios.Device.FindByLabel(locator).Visible()
+func (s *Page) IsElementVisibleByLabel(locator string) bool {
+	element, err := s.Action.Device.FindByLabel(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByLink element visible by link*/
-func IsElementVisibleByLink(locator string) error {
-	_, err := ios.Device.FindByLink(locator).Visible()
+func (s *Page) IsElementVisibleByLink(locator string) bool {
+	element, err := s.Action.Device.FindByLink(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByName element visible by class name*/
-func IsElementVisibleByName(locator string) error {
-	_, err := ios.Device.FindByName(locator).Visible()
+func (s *Page) IsElementVisibleByName(locator string) bool {
+	element, err := s.Action.Device.FindByName(locator).Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }
 
 /*IsElementVisibleByText element visible by Xpath selector*/
-func IsElementVisibleByText(locator string) error {
-	_, err := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Visible()
+func (s *Page) IsElementVisibleByText(locator string) bool {
+	element, err := s.Action.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Visible()
 	helper.LogPanicln(err)
 
-	return nil
+	return element
 }

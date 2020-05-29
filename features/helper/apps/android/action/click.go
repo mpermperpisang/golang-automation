@@ -2,69 +2,68 @@ package androidaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	android "github.com/golang-automation/features/helper/apps/android/driver"
 )
 
 /*ClickByXPath click element by Xpath selector*/
-func ClickByXPath(locator string) error {
-	element := android.Device.AllByXPath(locator).Click()
+func (s *Page) ClickByXPath(locator string) error {
+	element := s.Action.Device.AllByXPath(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByText click element by text in xpath*/
-func ClickByText(locator string) error {
-	element := android.Device.AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
+func (s *Page) ClickByText(locator string) error {
+	element := s.Action.Device.AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByButton click element by button*/
-func ClickByButton(locator string) error {
-	element := android.Device.AllByButton(locator).Click()
+func (s *Page) ClickByButton(locator string) error {
+	element := s.Action.Device.AllByButton(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByClass click element by class*/
-func ClickByClass(locator string) error {
-	element := android.Device.AllByClass(locator).Click()
+func (s *Page) ClickByClass(locator string) error {
+	element := s.Action.Device.AllByClass(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByID click element by class ID*/
-func ClickByID(locator string) error {
-	element := android.Device.AllByID(locator).Click()
+func (s *Page) ClickByID(locator string) error {
+	element := s.Action.Device.AllByID(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByLabel click element by label*/
-func ClickByLabel(locator string) error {
-	element := android.Device.AllByLabel(locator).Click()
+func (s *Page) ClickByLabel(locator string) error {
+	element := s.Action.Device.AllByLabel(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByLink click element by link*/
-func ClickByLink(locator string) error {
-	element := android.Device.AllByLink(locator).Click()
+func (s *Page) ClickByLink(locator string) error {
+	element := s.Action.Device.AllByLink(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClickByName click element by class name*/
-func ClickByName(locator string) error {
-	element := android.Device.AllByName(locator).Click()
+func (s *Page) ClickByName(locator string) error {
+	element := s.Action.Device.AllByName(locator).Click()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }

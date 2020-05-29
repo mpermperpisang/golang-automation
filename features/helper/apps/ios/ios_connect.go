@@ -6,6 +6,11 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
+/*IOSDriver : iOS driver*/
+type IOSDriver struct {
+	Driver *appium.WebDriver
+}
+
 /*Driver global variable*/
 var Driver *appium.WebDriver
 var p *properties.Properties
@@ -18,7 +23,7 @@ func iOSProperties() error {
 }
 
 /*DriverConnect for ios*/
-func DriverConnect() error {
+func DriverConnect() *appium.WebDriver {
 	iOSProperties()
 
 	options := appium.Desired(agouti.Capabilities{
@@ -42,5 +47,5 @@ func DriverConnect() error {
 
 	Driver = appium.New(options)
 
-	return nil
+	return Driver
 }

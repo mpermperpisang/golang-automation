@@ -2,7 +2,7 @@ package desktopsuites
 
 import (
 	"github.com/DATA-DOG/godog"
-	desktopsteps "github.com/golang-automation/features/stepdefinitions/web/desktop"
+	desktopsteps "github.com/golang-automation/features/stepdefinitions/web/desktop/steps"
 )
 
 /*AutomationDesktop is suites for desktop web*/

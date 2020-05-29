@@ -2,93 +2,92 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*PressBack : back to previous page*/
-func PressBack() error {
-	element := ios.Device.Back()
+func (s *Page) PressBack() error {
+	element := s.Action.Device.Back()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ClearCookies : clear application cookie*/
-func ClearCookies() error {
-	element := ios.Device.ClearCookies()
+func (s *Page) ClearCookies() error {
+	element := s.Action.Device.ClearCookies()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*CancelPopup : cancel popup window*/
-func CancelPopup() error {
-	element := ios.Device.CancelPopup()
+func (s *Page) CancelPopup() error {
+	element := s.Action.Device.CancelPopup()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*CloseApp : close the ios application*/
-func CloseApp() error {
-	element := ios.Device.CloseApp()
+func (s *Page) CloseApp() error {
+	element := s.Action.Device.CloseApp()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ConfirmPopup : confirm popup window*/
-func ConfirmPopup() error {
-	element := ios.Device.ConfirmPopup()
+func (s *Page) ConfirmPopup() error {
+	element := s.Action.Device.ConfirmPopup()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*DoubleClick : click twice*/
-func DoubleClick() error {
-	element := ios.Device.DoubleClick()
+func (s *Page) DoubleClick() error {
+	element := s.Action.Device.DoubleClick()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*InstallApp : install the ios application*/
-func InstallApp(path string) error {
-	element := ios.Device.InstallApp(path)
+func (s *Page) InstallApp(path string) error {
+	element := s.Action.Device.InstallApp(path)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*LaunchApp : launch the ios application*/
-func LaunchApp() error {
-	element := ios.Device.LaunchApp()
+func (s *Page) LaunchApp() error {
+	element := s.Action.Device.LaunchApp()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*URLNavigate : navigate app to some url*/
-func URLNavigate(url string) error {
-	element := ios.Device.Navigate(url)
+func (s *Page) URLNavigate(url string) error {
+	element := s.Action.Device.Navigate(url)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*RefreshApp : refresh the ios application*/
-func RefreshApp() error {
-	element := ios.Device.Refresh()
+func (s *Page) RefreshApp() error {
+	element := s.Action.Device.Refresh()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*ResetApp : reset the ios application*/
-func ResetApp() error {
-	element := ios.Device.Reset()
+func (s *Page) ResetApp() error {
+	element := s.Action.Device.Reset()
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }

@@ -3,16 +3,21 @@ package desktophelper
 import (
 	"os"
 
-	web "github.com/golang-automation/features/helper/web"
+	webhelper "github.com/golang-automation/features/helper/web"
 )
 
-/*BaseURL is global variable*/
+/*DwebPage : base page url*/
+type DwebPage struct {
+	Page webhelper.WebDriver
+}
+
+/*BaseURL : global variable*/
 var BaseURL string
 
 /*GoToURL is function to access dweb url*/
-func GoToURL(url string) error {
+func (s *DwebPage) GoToURL(url string) error {
 	BaseURL = os.Getenv("DWEB_BASE_URL") + url
-	website := web.Driver.Get(BaseURL)
+	website := s.Page.Driver.Get(BaseURL)
 
 	return website
 }

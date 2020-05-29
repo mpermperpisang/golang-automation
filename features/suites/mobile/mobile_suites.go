@@ -2,7 +2,7 @@ package mobilesuites
 
 import (
 	"github.com/DATA-DOG/godog"
-	mobilesteps "github.com/golang-automation/features/stepdefinitions/web/mobile"
+	mobilesteps "github.com/golang-automation/features/stepdefinitions/web/mobile/steps"
 )
 
 /*AutomationMobile is suites for mobile web*/

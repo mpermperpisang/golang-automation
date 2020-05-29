@@ -10,15 +10,10 @@ import (
 	"github.com/golang-automation/features/demo"
 	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
-	android "github.com/golang-automation/features/helper/apps/android"
-	androidDevice "github.com/golang-automation/features/helper/apps/android/driver"
-	ios "github.com/golang-automation/features/helper/apps/ios"
-	iosDevice "github.com/golang-automation/features/helper/apps/ios/driver"
 	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/helper/message"
-	web "github.com/golang-automation/features/helper/web"
-	desktop "github.com/golang-automation/features/helper/web/desktop"
-	mobile "github.com/golang-automation/features/helper/web/mobile"
+	webaction "github.com/golang-automation/features/helper/web/action"
+	desktoppages "github.com/golang-automation/features/objectabstractions/web/desktop"
 	"gopkg.in/yaml.v2"
 )
 
@@ -39,8 +34,8 @@ var yamlFile []byte
 
 /*OpenDWEB : to initiate dweb scenario*/
 func OpenDWEB() error {
-	web.DriverConnect()
-	desktop.GoToURL(os.Getenv("URL"))
+	dwebConnect()
+	desktopPage.GoToURL(os.Getenv("URL"))
 	helper.WaitForLoadingPage(25)
 
 	return nil
@@ -48,26 +43,25 @@ func OpenDWEB() error {
 
 /*OpenMWEB : initiate mweb scenario*/
 func OpenMWEB() error {
-	web.DriverConnect()
-	mobile.GoToURL(os.Getenv("URL"))
+	mwebConnect()
+	mobilePage.GoToURL(os.Getenv("URL"))
+	helper.WaitForLoadingPage(25)
 
 	return nil
 }
 
 /*OpenAndroid : initiate android scenario*/
 func OpenAndroid() error {
-	android.DriverConnect()
-	androidDevice.StartDriver()
-	androidDevice.NewDevice()
+	androidConnectDriver()
+	androidOpenDevice()
 
 	return nil
 }
 
 /*OpenIOS : initiate ios scenario*/
 func OpenIOS() error {
-	ios.DriverConnect()
-	iosDevice.StartDriver()
-	iosDevice.NewDevice()
+	iosConnectDriver()
+	iosOpenDevice()
 
 	return nil
 }
@@ -181,4 +175,21 @@ func (Method) Foo() {
 /*Bar : example method*/
 func (Method) Bar() {
 	fmt.Println("Call function : bar")
+}
+
+/*OpenLoginURL : open login url*/
+func OpenLoginURL() error {
+	desktopPage.GoToURL(os.Getenv("URL_2"))
+
+	return nil
+}
+
+/*ValidateLoginPage : validate title*/
+func ValidateLoginPage() error {
+	action := webaction.Page{Action: Dweb}
+	loginPage := desktoppages.LoginPage{Page: action}
+
+	loginPage.ValidateLoginPage()
+
+	return nil
 }

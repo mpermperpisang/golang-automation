@@ -2,7 +2,7 @@ package androidsuites
 
 import (
 	"github.com/DATA-DOG/godog"
-	androidsteps "github.com/golang-automation/features/stepdefinitions/apps/android"
+	androidsteps "github.com/golang-automation/features/stepdefinitions/apps/android/steps"
 )
 
 /*AutomationAndroid is suites for android*/

@@ -2,69 +2,68 @@ package iosaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	ios "github.com/golang-automation/features/helper/apps/ios/driver"
 )
 
 /*SendKeysByXpath input element by Xpath selector*/
-func SendKeysByXpath(locator string, text string) error {
-	element := ios.Device.FindByXPath(locator).SendKeys(text)
+func (s *Page) SendKeysByXpath(locator string, text string) error {
+	element := s.Action.Device.FindByXPath(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByButton input element by button*/
-func SendKeysByButton(locator string, text string) error {
-	element := ios.Device.FindByButton(locator).SendKeys(text)
+func (s *Page) SendKeysByButton(locator string, text string) error {
+	element := s.Action.Device.FindByButton(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByClass input element by class*/
-func SendKeysByClass(locator string, text string) error {
-	element := ios.Device.FindByClass(locator).SendKeys(text)
+func (s *Page) SendKeysByClass(locator string, text string) error {
+	element := s.Action.Device.FindByClass(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByID input element by ID*/
-func SendKeysByID(locator string, text string) error {
-	element := ios.Device.FindByID(locator).SendKeys(text)
+func (s *Page) SendKeysByID(locator string, text string) error {
+	element := s.Action.Device.FindByID(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByLabel input element by label*/
-func SendKeysByLabel(locator string, text string) error {
-	element := ios.Device.FindByLabel(locator).SendKeys(text)
+func (s *Page) SendKeysByLabel(locator string, text string) error {
+	element := s.Action.Device.FindByLabel(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByLink input element by link*/
-func SendKeysByLink(locator string, text string) error {
-	element := ios.Device.FindByLink(locator).SendKeys(text)
+func (s *Page) SendKeysByLink(locator string, text string) error {
+	element := s.Action.Device.FindByLink(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByName input element by class name*/
-func SendKeysByName(locator string, text string) error {
-	element := ios.Device.FindByName(locator).SendKeys(text)
+func (s *Page) SendKeysByName(locator string, text string) error {
+	element := s.Action.Device.FindByName(locator).SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }
 
 /*SendKeysByText input element by text in xpath*/
-func SendKeysByText(locator string, text string) error {
-	element := ios.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").SendKeys(text)
+func (s *Page) SendKeysByText(locator string, text string) error {
+	element := s.Action.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").SendKeys(text)
 	helper.LogPanicln(element)
 
-	return nil
+	return element
 }

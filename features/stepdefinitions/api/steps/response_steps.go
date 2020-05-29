@@ -29,7 +29,6 @@ func ResponseFindPath(path string) error {
 	decryptJSONResponse()
 
 	countpath, _ := jsonpath.Read(jsonResponse, path)
-
 	err := len(countpath.([]interface{}))
 	helper.LogPanicln(err)
 

@@ -2,87 +2,95 @@ package webaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	web "github.com/golang-automation/features/helper/web"
 	"github.com/tebeka/selenium"
 )
 
 /*GetAttributeByCSS element enable by CSS selector*/
-func GetAttributeByCSS(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByCSSSelector, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByCSS(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByID element enable by class ID*/
-func GetAttributeByID(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByID, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByID(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByXpath element enable by Xpath selector*/
-func GetAttributeByXpath(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByXpath(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByLinkText element enable by link text*/
-func GetAttributeByLinkText(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByLinkText, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByLinkText(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByPartialLink element enable by partial link text*/
-func GetAttributeByPartialLink(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByPartialLinkText, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByPartialLink(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByName element enable by name of class*/
-func GetAttributeByName(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByName, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByName(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByTag element enable by name tag*/
-func GetAttributeByTag(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByTagName, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByTag(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByClass element enable by class name*/
-func GetAttributeByClass(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByClassName, locator)
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByClass(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }
 
 /*GetAttributeByText element enable by text in xpath*/
-func GetAttributeByText(locator string, attr string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
-	element.GetAttribute(attr)
+func (s *Page) GetAttributeByText(locator string, attr string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	helper.LogPanicln(err)
 
-	return nil
+	element.GetAttribute(attr)
+
+	return element
 }

@@ -2,87 +2,95 @@ package webaction
 
 import (
 	"github.com/golang-automation/features/helper"
-	web "github.com/golang-automation/features/helper/web"
 	"github.com/tebeka/selenium"
 )
 
 /*SendKeysByCSS input element by CSS selector*/
-func SendKeysByCSS(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByCSSSelector, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByCSS(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByID input element by class ID*/
-func SendKeysByID(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByID, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByID(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByXpath input element by Xpath selector*/
-func SendKeysByXpath(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByXpath(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByLinkText input element by link text*/
-func SendKeysByLinkText(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByLinkText, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByLinkText(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByPartialLink input element by partial link text*/
-func SendKeysByPartialLink(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByPartialLinkText, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByPartialLink(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByName input element by name of class*/
-func SendKeysByName(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByName, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByName(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByTag input element by name tag*/
-func SendKeysByTag(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByTagName, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByTag(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByClass input element by class name*/
-func SendKeysByClass(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByClassName, locator)
-	element.SendKeys(text)
+func (s *Page) SendKeysByClass(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }
 
 /*SendKeysByText input element by text in xpath*/
-func SendKeysByText(locator string, text string) error {
-	element, err := web.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
-	element.SendKeys(text)
+func (s *Page) SendKeysByText(locator string, text string) selenium.WebElement {
+	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	helper.LogPanicln(err)
 
-	return nil
+	element.SendKeys(text)
+
+	return element
 }

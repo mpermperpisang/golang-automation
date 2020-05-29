@@ -45,3 +45,9 @@ Feature: Example Automation
   @example-mapping
   Scenario: Call Function
     Given function mapping
+
+  @example-page-struct
+  Scenario: Page Object Using Struct
+    Given visit dweb
+    When access login url
+    Then validate login page

@@ -73,7 +73,6 @@ func stagingNumber() error {
 
 func clientResponse(sendRequest *http.Request) error {
 	client := &http.Client{}
-
 	HTTPResponse, err = client.Do(sendRequest)
 	helper.LogPanicln(err)
 
@@ -134,6 +133,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 
 	for _, env := range findENV {
 		envReader(env)
+
 		replaceENV := strings.ReplaceAll(stringBody, env, os.Getenv(readENV))
 		stringBody = replaceENV
 	}
