@@ -7,7 +7,7 @@ import (
 
 	"github.com/DATA-DOG/godog"
 	"github.com/golang-automation/features/helper"
-	appshelper "github.com/golang-automation/features/helper/apps"
+	apps "github.com/golang-automation/features/helper/apps"
 	android "github.com/golang-automation/features/helper/apps/android"
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	web "github.com/golang-automation/features/helper/web"
@@ -33,10 +33,10 @@ func GodogMainSupport(s *godog.Suite) {
 			web.Driver.Quit()
 		} else if android.Driver != nil {
 			android.Driver.Stop()
-			appshelper.AppiumStop()
+			apps.AppiumStop()
 		} else if ios.Driver != nil {
 			ios.Driver.Stop()
-			appshelper.AppiumStop()
+			apps.AppiumStop()
 		}
 	})
 }
