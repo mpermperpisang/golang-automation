@@ -8,7 +8,7 @@ func UserLogin() error {
 
 	login.InputUsername().
 		InputPassword().
-		ClickBtnLogin().
+		ClickLogin().
 		ClickSend().
 		InputOTP().
 		ClickNext()

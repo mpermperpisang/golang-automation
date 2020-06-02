@@ -13,7 +13,7 @@ import (
 	web "github.com/golang-automation/features/helper/web"
 )
 
-/*GodogMainSupport does something todo before and after scenario*/
+/*GodogMainSupport : does something before and after scenario*/
 func GodogMainSupport(s *godog.Suite) {
 	// TODO: Handle before and after scenario
 	s.BeforeScenario(func(interface{}) {
@@ -21,6 +21,7 @@ func GodogMainSupport(s *godog.Suite) {
 		tag := regexp.MustCompile(helper.RegexTag()).FindString(fmt.Sprint(argsWithProg))
 
 		fmt.Println("Starting automation")
+
 		if tag != "" {
 			fmt.Println("Running scenario with tag : " + tag)
 		}

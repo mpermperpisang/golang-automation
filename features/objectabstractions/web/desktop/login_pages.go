@@ -42,8 +42,8 @@ func (s *LoginPage) InputPassword() *LoginPage {
 	return &LoginPage{Page: s.Page}
 }
 
-/*ClickBtnLogin : click Login button*/
-func (s *LoginPage) ClickBtnLogin() *OTPPage {
+/*ClickLogin : click Login button*/
+func (s *LoginPage) ClickLogin() *OTPPage {
 	s.Page.ClickByText(btnLogin)
 
 	return &OTPPage{Page: s.Page}

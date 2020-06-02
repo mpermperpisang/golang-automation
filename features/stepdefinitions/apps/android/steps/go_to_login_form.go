@@ -8,8 +8,8 @@ import (
 func GoToLogin() error {
 	goToLoginForm := androidpages.OnboardingPage{Page: action}
 
-	goToLoginForm.ClickBtnMulai().
-		ClickBtnMasuk()
+	goToLoginForm.ClickMulai().
+		ClickMasuk()
 
 	return nil
 }

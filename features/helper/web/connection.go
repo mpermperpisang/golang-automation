@@ -10,10 +10,10 @@ type WebDriver struct {
 	Driver selenium.WebDriver
 }
 
-/*Driver is global variable*/
+/*Driver global variable*/
 var Driver selenium.WebDriver
 
-/*DriverConnect is function for connect to driver*/
+/*DriverConnect : connect to driver*/
 func DriverConnect() selenium.WebDriver {
 	p := properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-web.properties", properties.UTF8)
 	caps := selenium.Capabilities{"browserName": p.MustGetString("browserName")}

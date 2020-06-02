@@ -115,7 +115,7 @@ func AuthenticationAPI(account string) error {
 	return nil
 }
 
-/*RequestAPI is function to send request*/
+/*RequestAPI : send request*/
 func RequestAPI(verbose string, endpoint string, body string) error {
 	var stringBody string
 
@@ -152,7 +152,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	return nil
 }
 
-/*ResponseStatusAPI is function to get response code*/
+/*ResponseStatusAPI : get and validate response code*/
 func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 

@@ -15,7 +15,7 @@ type IOSPage struct {
 /*Device global variable*/
 var Device *appium.Device
 
-/*StartDriver : start android driver*/
+/*StartDriver : start ios driver*/
 func (s *IOSPage) StartDriver() error {
 	err := s.Page.Driver.Start()
 	helper.LogPanicln(err)
@@ -23,7 +23,7 @@ func (s *IOSPage) StartDriver() error {
 	return nil
 }
 
-/*NewDevice : create new android device*/
+/*NewDevice : create new ios device*/
 func (s *IOSPage) NewDevice() *appium.Device {
 	var err error
 

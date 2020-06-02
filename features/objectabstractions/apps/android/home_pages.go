@@ -16,8 +16,8 @@ var (
 	labelUsername = "//*[@resource-id='app:id/tvUsername']"
 )
 
-/*VerifyUserIsLogged : validate logged user*/
-func (s *HomePage) VerifyUserIsLogged() *HomePage {
+/*ValidateLoggedUser : validate logged user*/
+func (s *HomePage) ValidateLoggedUser() *HomePage {
 	s.Page.IsElementVisibleByXpath(labelUsername)
 
 	return &HomePage{Page: s.Page}
@@ -31,8 +31,8 @@ func (s *HomePage) ClickOnboardingHomePage() *HomePage {
 	return &HomePage{Page: s.Page}
 }
 
-/*ClickBtnMasuk : click Masuk button*/
-func (s *HomePage) ClickBtnMasuk() *InputPhonePage {
+/*ClickMasuk : click Masuk button*/
+func (s *HomePage) ClickMasuk() *InputPhonePage {
 	s.Page.ClickByText(btnMasuk)
 
 	return &InputPhonePage{Page: s.Page}

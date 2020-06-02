@@ -4,7 +4,7 @@ import (
 	"github.com/golang-automation/features/helper"
 )
 
-/*FillElementByXpath element visible by Xpath selector*/
+/*FillElementByXpath : fill element by Xpath selector*/
 func (s *Page) FillElementByXpath(locator string, text string) error {
 	element := s.Action.Device.FindByXPath(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -12,7 +12,7 @@ func (s *Page) FillElementByXpath(locator string, text string) error {
 	return element
 }
 
-/*FillElementByButton element visible by button*/
+/*FillElementByButton : fill element by button*/
 func (s *Page) FillElementByButton(locator string, text string) error {
 	element := s.Action.Device.FindByButton(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -20,7 +20,7 @@ func (s *Page) FillElementByButton(locator string, text string) error {
 	return element
 }
 
-/*FillElementByClass element visible by class*/
+/*FillElementByClass : fill element by class*/
 func (s *Page) FillElementByClass(locator string, text string) error {
 	element := s.Action.Device.FindByClass(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -28,7 +28,7 @@ func (s *Page) FillElementByClass(locator string, text string) error {
 	return element
 }
 
-/*FillElementByID element visible by ID*/
+/*FillElementByID : fill element by ID*/
 func (s *Page) FillElementByID(locator string, text string) error {
 	element := s.Action.Device.FindByID(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -36,7 +36,7 @@ func (s *Page) FillElementByID(locator string, text string) error {
 	return element
 }
 
-/*FillElementByLabel element visible by label*/
+/*FillElementByLabel : fill element by label*/
 func (s *Page) FillElementByLabel(locator string, text string) error {
 	element := s.Action.Device.FindByLabel(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -44,7 +44,7 @@ func (s *Page) FillElementByLabel(locator string, text string) error {
 	return element
 }
 
-/*FillElementByLink element visible by link*/
+/*FillElementByLink : fill element by link*/
 func (s *Page) FillElementByLink(locator string, text string) error {
 	element := s.Action.Device.FindByLink(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -52,7 +52,7 @@ func (s *Page) FillElementByLink(locator string, text string) error {
 	return element
 }
 
-/*FillElementByName element visible by class name*/
+/*FillElementByName : fill element by class name*/
 func (s *Page) FillElementByName(locator string, text string) error {
 	element := s.Action.Device.FindByName(locator).Fill(text)
 	helper.LogPanicln(element)
@@ -60,7 +60,7 @@ func (s *Page) FillElementByName(locator string, text string) error {
 	return element
 }
 
-/*FillElementByText element visible by Xpath selector*/
+/*FillElementByText : fill element by Xpath selector*/
 func (s *Page) FillElementByText(locator string, text string) error {
 	element := s.Action.Device.FindByXPath("//*[contains(@text, '" + locator + "')]").Fill(text)
 	helper.LogPanicln(element)

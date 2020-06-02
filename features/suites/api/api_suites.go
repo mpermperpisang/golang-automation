@@ -5,7 +5,7 @@ import (
 	apisteps "github.com/golang-automation/features/stepdefinitions/api"
 )
 
-/*AutomationAPI is suites for API*/
+/*AutomationAPI : suites for API*/
 func AutomationAPI(s *godog.Suite) {
 	s.Step(`^client login as "([^"]*)"$`, apisteps.AuthenticationAPI)
 	s.Step(`^client sends a ([^\"]*) request to "([^\"]*)"$`, apisteps.RequestAPIWithoutBody)

@@ -5,7 +5,7 @@ import (
 	"github.com/golang-automation/features/stepdefinitions"
 )
 
-/*ExampleAutomation is suites for initial run*/
+/*ExampleAutomation : suites for initial run*/
 func ExampleAutomation(s *godog.Suite) {
 	// web
 	s.Step(`^visit dweb$`, stepdefinitions.OpenDWEB)
@@ -30,7 +30,4 @@ func ExampleAutomation(s *godog.Suite) {
 	s.Step(`^print contents$`, stepdefinitions.PrintContents)
 	// mapping
 	s.Step(`^function mapping$`, stepdefinitions.GetFunction)
-	// page object struct
-	s.Step(`^access login url$`, stepdefinitions.OpenLoginURL)
-	s.Step(`^validate login page$`, stepdefinitions.ValidateLoginPage)
 }

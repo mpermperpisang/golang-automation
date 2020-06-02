@@ -10,7 +10,7 @@ import (
 	"github.com/yalp/jsonpath"
 )
 
-/*JSONValue struct for set json value*/
+/*JSONValue : struct for set json value*/
 type JSONValue struct {
 	variable interface{}
 }
@@ -24,7 +24,7 @@ func decryptJSONResponse() error {
 	return nil
 }
 
-/*ResponseFindPath is function to find path of response API*/
+/*ResponseFindPath : find path of response API*/
 func ResponseFindPath(path string) error {
 	decryptJSONResponse()
 
@@ -42,7 +42,7 @@ func getJSONValue(path string) {
 	actualResult, _ = HTTPJson(jsonResponse)
 }
 
-/*ResponseMatchingValue is function to find and matching path value of response API*/
+/*ResponseMatchingValue : find and matching path value of response API*/
 func ResponseMatchingValue(path string, expectResult string) error {
 	getJSONValue(path)
 
@@ -51,7 +51,7 @@ func ResponseMatchingValue(path string, expectResult string) error {
 	return nil
 }
 
-/*ResponseDataType is function to find and matching path value with data type*/
+/*ResponseDataType : find and matching path value with data type*/
 func ResponseDataType(path string, expectType string) error {
 	var actualType string
 
@@ -65,7 +65,7 @@ func ResponseDataType(path string, expectType string) error {
 	return nil
 }
 
-/*CollectsJSON function to keep jsonpath value*/
+/*CollectsJSON : keep jsonpath value*/
 func CollectsJSON(path string, value string) error {
 	getJSONValue(path)
 

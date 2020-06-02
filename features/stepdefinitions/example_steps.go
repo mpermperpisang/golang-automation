@@ -12,8 +12,6 @@ import (
 	api "github.com/golang-automation/features/helper/api"
 	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/helper/message"
-	webaction "github.com/golang-automation/features/helper/web/action"
-	desktoppages "github.com/golang-automation/features/objectabstractions/web/desktop"
 	"gopkg.in/yaml.v2"
 )
 
@@ -175,21 +173,4 @@ func (Method) Foo() {
 /*Bar : example method*/
 func (Method) Bar() {
 	fmt.Println("Call function : bar")
-}
-
-/*OpenLoginURL : open login url*/
-func OpenLoginURL() error {
-	desktopPage.GoToURL(os.Getenv("URL_2"))
-
-	return nil
-}
-
-/*ValidateLoginPage : validate title*/
-func ValidateLoginPage() error {
-	action := webaction.Page{Action: Dweb}
-	loginPage := desktoppages.LoginPage{Page: action}
-
-	loginPage.ValidateLoginPage()
-
-	return nil
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/tebeka/selenium"
 )
 
-/*GetAttributeByCSS element enable by CSS selector*/
+/*GetAttributeByCSS : get element attribute  by CSS selector*/
 func (s *Page) GetAttributeByCSS(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
@@ -15,7 +15,7 @@ func (s *Page) GetAttributeByCSS(locator string, attr string) selenium.WebElemen
 	return element
 }
 
-/*GetAttributeByID element enable by class ID*/
+/*GetAttributeByID : get element attribute  by class ID*/
 func (s *Page) GetAttributeByID(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
@@ -25,7 +25,7 @@ func (s *Page) GetAttributeByID(locator string, attr string) selenium.WebElement
 	return element
 }
 
-/*GetAttributeByXpath element enable by Xpath selector*/
+/*GetAttributeByXpath : get element attribute  by Xpath selector*/
 func (s *Page) GetAttributeByXpath(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
@@ -35,7 +35,7 @@ func (s *Page) GetAttributeByXpath(locator string, attr string) selenium.WebElem
 	return element
 }
 
-/*GetAttributeByLinkText element enable by link text*/
+/*GetAttributeByLinkText : get element attribute  by link text*/
 func (s *Page) GetAttributeByLinkText(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
@@ -45,7 +45,7 @@ func (s *Page) GetAttributeByLinkText(locator string, attr string) selenium.WebE
 	return element
 }
 
-/*GetAttributeByPartialLink element enable by partial link text*/
+/*GetAttributeByPartialLink : get element attribute  by partial link text*/
 func (s *Page) GetAttributeByPartialLink(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
@@ -55,7 +55,7 @@ func (s *Page) GetAttributeByPartialLink(locator string, attr string) selenium.W
 	return element
 }
 
-/*GetAttributeByName element enable by name of class*/
+/*GetAttributeByName : get element attribute  by name of class*/
 func (s *Page) GetAttributeByName(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
@@ -65,7 +65,7 @@ func (s *Page) GetAttributeByName(locator string, attr string) selenium.WebEleme
 	return element
 }
 
-/*GetAttributeByTag element enable by name tag*/
+/*GetAttributeByTag : get element attribute  by name tag*/
 func (s *Page) GetAttributeByTag(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
@@ -75,7 +75,7 @@ func (s *Page) GetAttributeByTag(locator string, attr string) selenium.WebElemen
 	return element
 }
 
-/*GetAttributeByClass element enable by class name*/
+/*GetAttributeByClass : get element attribute  by class name*/
 func (s *Page) GetAttributeByClass(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
@@ -85,7 +85,7 @@ func (s *Page) GetAttributeByClass(locator string, attr string) selenium.WebElem
 	return element
 }
 
-/*GetAttributeByText element enable by text in xpath*/
+/*GetAttributeByText : get element attribute  by text in xpath*/
 func (s *Page) GetAttributeByText(locator string, attr string) selenium.WebElement {
 	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	helper.LogPanicln(err)

@@ -11,10 +11,10 @@ type DwebPage struct {
 	Page webhelper.WebDriver
 }
 
-/*BaseURL : global variable*/
+/*BaseURL global variable*/
 var BaseURL string
 
-/*GoToURL is function to access dweb url*/
+/*GoToURL : access dweb url*/
 func (s *DwebPage) GoToURL(url string) error {
 	BaseURL = os.Getenv("DWEB_BASE_URL") + url
 	website := s.Page.Driver.Get(BaseURL)

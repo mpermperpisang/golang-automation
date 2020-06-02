@@ -13,8 +13,8 @@ var (
 	btnMulai = "//androidx.appcompat.widget.AppCompatTextView[contains(@text, 'Mulai')]"
 )
 
-/*ClickBtnMulai : click Mulai button*/
-func (s *OnboardingPage) ClickBtnMulai() *HomePage {
+/*ClickMulai : click Mulai button*/
+func (s *OnboardingPage) ClickMulai() *HomePage {
 	s.Page.ClickByXPath(btnMulai)
 
 	return &HomePage{Page: s.Page}
