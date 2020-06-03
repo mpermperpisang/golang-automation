@@ -10,3 +10,4 @@ golang*.html
 *.app
 *.apk
 *.ipa
+screenshots/*

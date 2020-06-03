@@ -1,9 +1,11 @@
 package support
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
-	"regexp"
+	"path/filepath"
 
 	"github.com/DATA-DOG/godog"
 	"github.com/golang-automation/features/helper"
@@ -11,23 +13,57 @@ import (
 	android "github.com/golang-automation/features/helper/apps/android"
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	web "github.com/golang-automation/features/helper/web"
+	"github.com/logrusorgru/aurora"
 )
+
+var testCase testCaseDetail
+
+func scenarioDetail(scenario interface{}) error {
+	data, _ := json.Marshal(scenario)
+
+	json.Unmarshal(data, &testCase)
+
+	return nil
+}
 
 /*GodogMainSupport : does something before and after scenario*/
 func GodogMainSupport(s *godog.Suite) {
 	// TODO: Handle before and after scenario
-	s.BeforeScenario(func(interface{}) {
-		argsWithProg := os.Args
-		tag := regexp.MustCompile(helper.RegexTag()).FindString(fmt.Sprint(argsWithProg))
+	s.BeforeScenario(func(scenario interface{}) {
+		scenarioDetail(scenario)
 
-		fmt.Println("Starting automation")
+		name := aurora.Italic(aurora.Bold(aurora.White(testCase.Name)))
+		tags := testCase.Tags[0].Name
 
-		if tag != "" {
-			fmt.Println("Running scenario with tag : " + tag)
+		if tags != "" {
+			fmt.Println("Starting automation")
+			fmt.Printf("Running scenario %s : %s", name, tags)
 		}
 	})
 
-	s.AfterScenario(func(interface{}, error) {
+	s.AfterScenario(func(scenario interface{}, log error) {
+		scenarioDetail(scenario)
+
+		if log != nil {
+			buff, err := web.Driver.Screenshot()
+			helper.LogPanicln(err)
+
+			pwd, err := os.Getwd()
+			helper.LogPanicln(err)
+
+			path := fmt.Sprintf("%s/screenshots", pwd)
+			filename := fmt.Sprintf("FAILED - %s - %s - %s.png", testCase.Name, testCase.Steps[0].Text, log)
+			pathname := filepath.Join(path, filename)
+
+			if _, err := os.Stat(path); os.IsNotExist(err) {
+				os.MkdirAll(path, 0755)
+			}
+
+			ioutil.WriteFile(pathname, buff, 0644)
+		}
+	})
+
+	s.AfterSuite(func() {
 		fmt.Println("Stopping automation")
 
 		if web.Driver != nil {
