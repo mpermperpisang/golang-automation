@@ -91,3 +91,11 @@ func (s *Page) ResetApp() error {
 
 	return element
 }
+
+/*TakeScreenshot : take error screenshot*/
+func (s *Page) TakeScreenshot(filename string) error {
+	element := s.Action.Device.Screenshot(filename)
+	helper.LogPanicln(element)
+
+	return element
+}

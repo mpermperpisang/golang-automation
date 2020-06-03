@@ -2,7 +2,7 @@
 Feature: Example Automation
   Automation with golang and cucumber
 
-  @example-dweb
+  @example-dweb @dweb
   Scenario: Example DWEB
     Given visit dweb
 
