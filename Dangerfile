@@ -118,4 +118,4 @@ end
 
 # Add reviewer based on latest commit
 commiter_list = github.api.commits(repo, path: 'README.md')
-messages(commiter_list)
+message(commiter_list)
