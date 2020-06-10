@@ -89,5 +89,4 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 lgtm.check_lgtm
 
 # Add specific label if LGTM
-client = Octokit::Client.new
-message(client.commits(repo, path: 'README.md'))
+message(github.api.commits(repo, path: 'README.md'))
