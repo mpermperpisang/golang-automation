@@ -84,6 +84,6 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 lgtm.check_lgtm
 
 # Add specific label if LGTM
-github.api.labels(repo, 'to be crawled')
+message(github.api.labels(repo, 'to be crawled'))
 # github.api.add_label(repo, 'to be crawled', 'C05472')
 # github.api.add_labels_to_an_issue(repo, pr_num, ['to be crawled'])
