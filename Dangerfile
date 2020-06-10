@@ -117,5 +117,5 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
 end
 
 # Add reviewer based on latest commit
-commiter_list = github.api.commits(repo, path: 'README.md')
+commiter_list = github.api.commits(repo, path: 'Dangerfile')
 warn(commiter_list)
