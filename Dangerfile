@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # define repo url
 repo = 'mpermperpisang/golang-automation'
 
