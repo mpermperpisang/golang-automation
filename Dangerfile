@@ -20,8 +20,9 @@ suggester.suggest
 # Requested reviewer
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
+repo = 'mpermperpisang/golang-automation'
 pr_num = github.pr_json['number']
-reviews = github.api.pull_request_reviews('mpermperpisang/golang-automation', pr_num)
+reviews = github.api.pull_request_reviews(repo, pr_num)
 actual_reviewers = reviews.map { |u| u['user'] }
 # PR reviewer
 reviewers = requested_reviewers + actual_reviewers
@@ -83,4 +84,4 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 lgtm.check_lgtm
 
 # Add specific label if LGTM
-github.api.add_label('mpermperpisang/golang-automation', 'has-ticket-2')
+github.api.add_labels_to_an_issue(repo, pr_num, 'to be crawled')
