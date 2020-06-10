@@ -103,7 +103,7 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
 
 pr_comment_list.map do |u|
-  github.api.delete_comment(repo, u['id']) if /After the PR merged/ =~ u['body']
+  github.api.delete_comment(repo, u['id']) if u['body'].include? 'After the PR merged'
 end
 
 if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
