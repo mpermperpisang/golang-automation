@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # define repo url
 repo = 'mpermperpisang/golang-automation'
 
@@ -90,5 +88,4 @@ lgtm.check_lgtm
 
 # Add specific label if LGTM
 client = Octokit::Client.new
-a = client.commits('mpermperpisang/golang-automation', path: 'README.md')
-message a
+message(client.commits(repo, path: 'README.md'))
