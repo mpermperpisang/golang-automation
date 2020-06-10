@@ -90,5 +90,5 @@ lgtm.check_lgtm
 
 # Add specific label if LGTM
 client = Octokit::Client.new
-a = client.commits('https://github.com/mpermperpisang/golang-automation', path: 'README.md')
+a = client.commits('mpermperpisang/golang-automation', path: 'README.md')
 message a
