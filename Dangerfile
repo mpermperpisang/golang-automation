@@ -96,7 +96,8 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 "```\n"\
 "run_result\n"\
 "link: <link>\n"\
-"[!attach your screenshot]\n"\
+"[!attach your screenshot]\n\n"\
+"feel free to give re-score suggestion\n"\
 '````'
 
 # if official_reviewer.any? { |x| list_approval.include?(x) }
