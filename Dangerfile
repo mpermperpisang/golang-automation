@@ -88,6 +88,11 @@ repo_label_list = github.api.labels(repo)
 repo_label_name = repo_label_list.map { |u| u['name'] }
 pr_label_list = github.api.labels_for_issue(repo, pr_num)
 pr_label_name = pr_label_list.map { |u| u['name'] }
+pr_comment_list = github.api.issue_comments(repo, pr_num)
+pr_comment_body = pr_comment_list.map { |u| u['body'] }
 
 github.api.add_label(repo, 'to be crawled', 'C05472') unless repo_label_name.include?('to be crawled')
-github.api.add_labels_to_an_issue(repo, pr_num, ['to be crawled']) unless pr_label_name.include?('to be crawled')
+
+if pr_comment_body.include?'PR Score'
+  github.api.add_labels_to_an_issue(repo, pr_num, ['to be crawled']) unless pr_label_name.include?('to be crawled')
+end
