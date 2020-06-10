@@ -93,9 +93,11 @@ pr_comment_list = github.api.issue_comments(repo, pr_num)
 pr_comment_body = pr_comment_list.map { |u| u['body'] }
 info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 " job and the link to it using comment with this syntax:\n"\
-"```run_result\n"\
-'link: <link>\n'\
-'[!attach your screenshot]````'
+"```\n"\
+"run_result\n"\
+"link: <link>\n"\
+"[!attach your screenshot]\n"\
+'````'
 
 # if official_reviewer.any? { |x| list_approval.include?(x) }
 github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
