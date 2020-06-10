@@ -118,4 +118,4 @@ end
 
 # Add reviewer based on latest commit
 commiter_list = github.api.commits(repo, path: 'Dangerfile')
-warn(commiter_list)
+github.api.add_comment(repo, pr_num, commiter_list)
