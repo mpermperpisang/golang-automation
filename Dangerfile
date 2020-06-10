@@ -85,6 +85,6 @@ lgtm.check_lgtm
 
 # Add specific label if LGTM
 label = github.api.labels(repo)
-message(label)
-# github.api.add_label(repo, 'to be crawled', 'C05472') if label.map { |u| u['message'] } == 'Not Found'
+message(label.map { |u| u['name'] })
+# github.api.add_label(repo, 'to be crawled', 'C05472') if label.map { |u| u['name'] } == 'Not Found'
 # github.api.add_labels_to_an_issue(repo, pr_num, ['to be crawled'])
