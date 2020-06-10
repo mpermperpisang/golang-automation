@@ -96,9 +96,9 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 "```\n"\
 "run_result\n"\
 "link: <link>\n"\
-"[!attach your screenshot]\n\n"\
-"feel free to give re-score suggestion\n"\
-'````'
+"[!attach your screenshot]\n"\
+"````\n\n"\
+'feel free to give re-score suggestion'
 
 # if official_reviewer.any? { |x| list_approval.include?(x) }
 github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
