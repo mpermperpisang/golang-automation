@@ -13,5 +13,4 @@ func AutomationAPI(s *godog.Suite) {
 	s.Step(`^response should have "([^"]*)"$`, apisteps.ResponseFindPath)
 	s.Step(`^response should have "([^"]*)" matching "([^"]*)"$`, apisteps.ResponseMatchingValue)
 	s.Step(`^response "([^"]*)" should be (integer|string|float64)$`, apisteps.ResponseDataType)
-	s.Step(`^client collects "([^"]*)" as "([^"]*)"$`, apisteps.CollectsJSON)
 }

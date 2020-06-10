@@ -8,4 +8,3 @@ Feature: Variant API
     Then response status should be "200"
     And response should have "$..message"
     And response should have "$.message" matching "get called"
-    And client collects "$.message" as "message"
