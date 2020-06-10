@@ -1,11 +1,10 @@
 package data
 
-// ExampleData : data for example
-type ExampleData struct {
+type exampleData struct {
 	id int
 }
 
-var data ExampleData
+var data exampleData
 var id = data.id
 
 /*SetDataID : set data for ID*/

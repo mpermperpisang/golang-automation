@@ -1,12 +1,11 @@
 package data
 
-// LoginData : data for login
-type LoginData struct {
+type loginData struct {
 	username string
 	password string
 }
 
-var login LoginData
+var login loginData
 var username = login.username
 var password = login.password
 

@@ -2,7 +2,6 @@ package step
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
@@ -61,20 +60,6 @@ func ResponseDataType(path string, expectType string) error {
 	actualResult, _ := HTTPJson(jsonResponse)
 
 	helper.AssertEqual(expectType, actualType, message.NotMatchDataType(actualResult.(string)))
-
-	return nil
-}
-
-/*CollectsJSON : keep jsonpath value*/
-func CollectsJSON(path string, value string) error {
-	getJSONValue(path)
-
-	// still on research
-	realValue := actualResult.(string)
-	realVariable := value
-
-	fmt.Println(realValue)
-	fmt.Println(realVariable)
 
 	return nil
 }

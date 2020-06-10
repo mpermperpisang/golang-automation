@@ -1,3 +1,6 @@
+# define repo url
+repo = 'mpermperpisang/golang-automation'
+
 # Welcome messages
 welcome_message.greet
 
@@ -22,7 +25,7 @@ suggester.suggest
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
 pr_num = github.pr_json['number']
-reviews = github.api.pull_request_reviews('mpermperpisang/golang-automation', pr_num)
+reviews = github.api.pull_request_reviews(repo, pr_num)
 actual_reviewers = reviews.map { |u| u['user'] }
 # PR reviewer
 reviewers = requested_reviewers + actual_reviewers

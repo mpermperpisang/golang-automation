@@ -27,13 +27,6 @@ func RequestAPIWithBody(verbose string, request string, body *gherkin.DocString)
 	return nil
 }
 
-/*CollectsJSON : collect json response as variable*/
-func CollectsJSON(path string, value string) error {
-	step.CollectsJSON(path, value)
-
-	return nil
-}
-
 /*ResponseDataType : get data type of response*/
 func ResponseDataType(path string, expect string) error {
 	step.ResponseDataType(path, expect)
