@@ -92,8 +92,8 @@ pr_label_name = pr_label_list.map { |u| u['name'] }
 pr_comment_list = github.api.issue_comments(repo, pr_num)
 pr_comment_body = pr_comment_list.map { |u| u['body'] }
 info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
-" job and the link to it using comment with this syntax:\n"
-format = "```run_result\n"\
+" job and the link to it using comment with this syntax:\n"\
+"```run_result\n"\
 'link: <link>\n'\
 '[!attach your screenshot]````'
 
@@ -102,7 +102,7 @@ github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(labe
 
 if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
   github.api.add_labels_to_an_issue(repo, pr_num, [label]) unless pr_label_name.include?(label)
-  message(info + format)
+  github.api.add_comment(repo, pr_num, info)
 elsif pr_label_name.include?(label)
   github.api.remove_label(repo, pr_num, label)
 end
