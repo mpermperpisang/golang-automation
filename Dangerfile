@@ -83,7 +83,7 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 # Looks Good To Me
 lgtm.check_lgtm
 
-# Add specific label if LGTM
+# Add specific label if approved and scored by official reviewer
 label = 'to be crawled'
 repo_label_list = github.api.labels(repo)
 repo_label_name = repo_label_list.map { |u| u['name'] }
@@ -92,6 +92,7 @@ pr_label_name = pr_label_list.map { |u| u['name'] }
 pr_comment_list = github.api.issue_comments(repo, pr_num)
 pr_comment_body = pr_comment_list.map { |u| u['body'] }
 
+# if official_reviewer.any? { |x| list_approval.include?(x) }
 github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
 
 if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
@@ -99,3 +100,4 @@ if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
 elsif pr_label_name.include?(label)
   github.api.remove_label(repo, pr_num, label)
 end
+# end
