@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'danger'
-gem 'danger-commit_lint'
 gem 'danger-lgtm'
 gem 'danger-review_requests'
 gem 'danger-rubocop'

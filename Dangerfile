@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-# define repo url
-repo = 'mpermperpisang/golang-automation'
-
 # Welcome messages
 welcome_message.greet
 
 # Make sure if PR have assignee
 failure 'This PR does not have any assignees yet.' unless github.pr_json['assignee']
-
-# Ensures nice and tidy commit messages
-commit_lint.check warn: :all, disable: %i[subject_cap subject_period]
 
 # Suggest code changes through inline comments in pull requests
 rubocop.lint(
@@ -27,7 +21,7 @@ suggester.suggest
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
 pr_num = github.pr_json['number']
-reviews = github.api.pull_request_reviews(repo, pr_num)
+reviews = github.api.pull_request_reviews('mpermperpisang/golang-automation', pr_num)
 actual_reviewers = reviews.map { |u| u['user'] }
 # PR reviewer
 reviewers = requested_reviewers + actual_reviewers
@@ -87,3 +81,6 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 
 # Looks Good To Me
 lgtm.check_lgtm
+
+# Add specific label if LGTM
+message(github.api.commits('mpermperpisang/golang-automation', path: 'README.md'))
