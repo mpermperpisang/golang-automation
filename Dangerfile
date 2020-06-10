@@ -115,3 +115,7 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
     github.api.remove_label(repo, pr_num, label)
   end
 end
+
+# Add reviewer based on latest commit
+commiter_list = github.api.commits(repo, path: 'README.md')
+messages(commiter_list)
