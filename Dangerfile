@@ -101,17 +101,17 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 "feel free to give re-score suggestion\n"\
 "cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', ' @')}"
 
-# if official_reviewer.any? { |x| list_approval.include?(x) }
-github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
+if official_reviewer.any? { |x| list_approval.include?(x) }
+  github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
 
-pr_comment_list.map do |u|
-  github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
-end
+  pr_comment_list.map do |u|
+    github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
+  end
 
-if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
-  github.api.add_labels_to_an_issue(repo, pr_num, [label]) unless pr_label_name.include?(label)
-  github.api.add_comment(repo, pr_num, info)
-elsif pr_label_name.include?(label)
-  github.api.remove_label(repo, pr_num, label)
+  if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
+    github.api.add_labels_to_an_issue(repo, pr_num, [label]) unless pr_label_name.include?(label)
+    github.api.add_comment(repo, pr_num, info)
+  elsif pr_label_name.include?(label)
+    github.api.remove_label(repo, pr_num, label)
+  end
 end
-# end
