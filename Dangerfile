@@ -81,3 +81,6 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 
 # Looks Good To Me
 lgtm.check_lgtm
+
+# Add specific label if LGTM
+danger.github.api.add_label('mpermperpisang/golang-automation', 'has-ticket')
