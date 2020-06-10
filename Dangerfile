@@ -94,7 +94,8 @@ pr_comment_body = pr_comment_list.map { |u| u['body'] }
 
 github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
 
-if pr_comment_body.find { |e| /PR Score/ =~ e }
-
+if pr_comment_body.downcase.find { |e| /pr score/ =~ e }
   github.api.add_labels_to_an_issue(repo, pr_num, [label]) unless pr_label_name.include?(label)
+elsif pr_label_name.include?(label)
+  github.api.remove_label(repo, pr_num, [label])
 end
