@@ -56,7 +56,7 @@ message regex.to_s
 
 committer_user.delete(github.pr_author)
 committer_user.delete(@official_sample)
-committer_user.delete(regex.uniq)
+committer_user.delete(regex)
 
 message committer_user.uniq.to_s
 
