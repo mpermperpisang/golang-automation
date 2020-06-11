@@ -46,6 +46,9 @@ unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
 end
 
 # If reviewer not include file contribute reviewer
+message committer_user.to_s
+message pr_reviewers.to_s
+
 unless committer_user.any? { |x| pr_reviewers.include?(x) }
   committer_user.uniq.delete(github.pr_author)
 
