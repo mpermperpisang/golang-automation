@@ -52,13 +52,9 @@ end
 # If reviewer not include file contribute reviewer
 regex = committer_user.uniq.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
 
-message regex.to_s
-
 committer_user.delete(github.pr_author)
 committer_user.delete(@official_sample)
 committer_user.delete(regex)
-
-message committer_user.uniq.to_s
 
 unless committer_user.any? { |x| pr_reviewers.include?(x) }
   sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
