@@ -56,6 +56,7 @@ committer_user.delete(@official_sample)
 unless committer_user.any? { |x| pr_reviewers.include?(x) }
   sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
 
+  message committer_user.uniq.to_s
   review_requests.request(committer_user.uniq.sample(sample))
 end
 
