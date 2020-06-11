@@ -141,7 +141,7 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
     github.api.add_comment(repo, pr_num, info_score)
   else
     github.api.add_labels_to_an_issue(repo, pr_num, [label2]) unless pr_label_name.include?(label2)
-    github.api.remove_label(repo, pr_num, label)
+    github.api.remove_label(repo, pr_num, label1)
     github.api.add_comment(repo, pr_num, info_no_score)
   end
 end
