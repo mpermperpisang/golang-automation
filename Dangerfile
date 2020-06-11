@@ -41,7 +41,9 @@ file_changed_name.map do |u|
   commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
-unless github.pr_labels.include? 'Work in Progress'
+if github.pr_labels.include? 'Work in Progress'
+  message 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
+else
   # If reviewer not include official reviewer
   official_reviewers.delete(github.pr_author)
 
