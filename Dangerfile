@@ -41,8 +41,10 @@ end
 
 # If reviewer not include official reviewer
 unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
+  @official = official_reviewer.sample(1)
+
   official_reviewer.delete(github.pr_author)
-  @official = review_requests.request(official_reviewer.sample(1))
+  review_requests.request(@official)
 end
 
 # If reviewer not include file contribute reviewer
