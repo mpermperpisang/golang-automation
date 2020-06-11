@@ -72,7 +72,7 @@ reviews.map { |u| list_approval.push(u['user']['login']) if u['state'] == 'APPRO
 
 unless official_reviewers.any? { |x| list_approval.include?(x) }
   failure 'Please get an approval from mpermperpisang or mmpisang or mpermper321'
-  message "Please get a score from #{pr_reviewers.to_s.gsub('["', '').gsub('"]', '').gsub('", "', ' or ')}"
+  message "Please get a score from #{pr_reviewers.uniq.to_s.gsub('["', '').gsub('"]', '').gsub('", "', ' or ')}"
 end
 
 # Provide automation running screenshot
