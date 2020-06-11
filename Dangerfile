@@ -41,28 +41,30 @@ file_changed_name.map do |u|
   commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
-# If reviewer not include official reviewer
-official_reviewers.delete(github.pr_author)
+unless github.pr_labels.include? 'Work in Progress'
+  # If reviewer not include official reviewer
+  official_reviewers.delete(github.pr_author)
 
-unless official_reviewers.any? { |x| pr_reviewers.include?(x) }
-  @official_sample = official_reviewers.sample(1)
+  unless official_reviewers.any? { |x| pr_reviewers.include?(x) }
+    @official_sample = official_reviewers.sample(1)
 
-  review_requests.request(@official_sample)
-end
+    review_requests.request(@official_sample)
+  end
 
-# If reviewer not include file contribute reviewer
-regex = commit_file_reviewers.uniq.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
+  # If reviewer not include file contribute reviewer
+  regex = commit_file_reviewers.uniq.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
 
-commit_file_reviewers.delete(github.pr_author)
-commit_file_reviewers.delete(@official_sample)
-commit_file_reviewers.delete(regex)
+  commit_file_reviewers.delete(github.pr_author)
+  commit_file_reviewers.delete(@official_sample)
+  commit_file_reviewers.delete(regex)
 
-unless commit_file_reviewers.any? { |x| pr_reviewers.include?(x) }
-  file_length = file_changed_name.length
-  reviewers_length = commit_file_reviewers.length
-  sample = file_length > reviewers_length ? reviewers_length : file_length
+  unless commit_file_reviewers.any? { |x| pr_reviewers.include?(x) }
+    file_length = file_changed_name.length
+    reviewers_length = commit_file_reviewers.length
+    sample = file_length > reviewers_length ? reviewers_length : file_length
 
-  review_requests.request(commit_file_reviewers.uniq.sample(sample))
+    review_requests.request(commit_file_reviewers.uniq.sample(sample))
+  end
 end
 
 # Make sure one of the approval is from official reviewer
