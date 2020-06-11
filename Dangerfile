@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# init repo name
+# init repo
 repo = 'mpermperpisang/golang-automation'
+pr_num = github.pr_json['number']
 
 # Welcome messages
 welcome_message.greet
@@ -23,7 +24,6 @@ suggester.suggest
 # Requested reviewer
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
-pr_num = github.pr_json['number']
 reviews = github.api.pull_request_reviews(repo, pr_num)
 actual_reviewers = reviews.map { |u| u['user'] }
 # PR reviewer
