@@ -41,15 +41,16 @@ file_changed_name.map do |u|
   commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
+pr_comment_list.map do |u|
+  github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
+  github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
+end
+
 if github.pr_labels.include? 'Work in Progress'
   info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
 
-  github.api.add_comment(repo, pr_num, info_assign_reviewer) unless u['body'] =~ /work in progress/i
+  github.api.add_comment(repo, pr_num, info_assign_reviewer)
 else
-  pr_comment_list.map do |u|
-    github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
-  end
-
   # If reviewer not include official reviewer
   official_reviewers.delete(github.pr_author)
 
@@ -154,10 +155,6 @@ github.api.add_label(repo, label2, 'FFC1CB') unless repo_label_name.include?(lab
 github.api.add_label(repo, label3, 'DFEBE8') unless repo_label_name.include?(label3)
 
 if official_reviewers.any? { |x| list_approval.include?(x) }
-  pr_comment_list.map do |u|
-    github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
-  end
-
   if pr_comment_body.map(&:downcase).find { |e| /(_non|_feature)+(:\s)[0-9+]+/ =~ e }
     github.api.remove_label(repo, pr_num, label2) if pr_label_name.include?(label2)
     github.api.add_labels_to_an_issue(repo, pr_num, [label1]) unless pr_label_name.include?(label1)
