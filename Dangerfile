@@ -50,7 +50,8 @@ unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
 end
 
 # If reviewer not include file contribute reviewer
-regex = committer_user.grep(/ /).to_s.gsub(/"|"|]|\[|\\/, '')
+regex = committer_user.grep(/ /).to_s.gsub(/“|“|]|\[|\\/, '')
+
 committer_user.delete(github.pr_author)
 committer_user.delete(@official_sample)
 committer_user.delete(regex)
