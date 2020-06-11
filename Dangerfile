@@ -58,7 +58,9 @@ commit_file_reviewers.delete(@official_sample)
 commit_file_reviewers.delete(regex)
 
 unless commit_file_reviewers.any? { |x| pr_reviewers.include?(x) }
-  sample = file_changed_name.length > commit_file_reviewers.length ? commit_file_reviewers.length : file_changed_name.length
+  file_length = file_changed_name.length
+  reviewers_length = commit_file_reviewers.length
+  sample = file_length > reviewers_length ? reviewers_length : file_length
 
   review_requests.request(commit_file_reviewers.uniq.sample(sample))
 end
