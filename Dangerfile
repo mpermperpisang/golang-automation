@@ -52,6 +52,8 @@ end
 # If reviewer not include file contribute reviewer
 regex = committer_user.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
 
+message regex.to_s
+
 committer_user.delete(github.pr_author)
 committer_user.delete(@official_sample)
 committer_user.delete(regex)
