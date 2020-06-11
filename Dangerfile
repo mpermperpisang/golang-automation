@@ -36,7 +36,7 @@ file_changed_list = github.api.pull_request_files(repo, pr_num)
 file_changed_name = file_changed_list.map { |u| u['filename'] }
 file_changed_name.map do |u|
   committer_list = github.api.commits(repo, path: u.to_s)
-  committer_user.push(committer_list.map { |c| c['commit']['author']['name'] })
+  committer_user += committer_list.map { |c| c['commit']['author']['name'] }
 end
 
 message committer_user.uniq.to_s
