@@ -31,7 +31,7 @@ pr_reviewers = reviewers.map { |u| u['login'] }
 official_reviewer = %w[mpermperpisang mmpisang mpermper321]
 # Add reviewer based on file contributor
 file_changed_list = github.api.pull_request_files(repo, pr_num)
-message(file_changed_list)
+message file_changed_list.to_s
 committer_list = github.api.commits(repo, path: 'Dangerfile')
 committer_user = committer_list.map { |u| u['commit']['author']['name'] }
 
