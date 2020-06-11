@@ -84,7 +84,8 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 lgtm.check_lgtm
 
 # Add specific label if approved and scored by official reviewer
-label = 'to be crawled'
+label1 = 'to be crawled'
+label2 = 'need score'
 repo_label_list = github.api.labels(repo)
 repo_label_name = repo_label_list.map { |u| u['name'] }
 pr_label_list = github.api.labels_for_issue(repo, pr_num)
@@ -97,25 +98,32 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 "run_result\n"\
 "link: <link>\n"\
 "[!attach your screenshot]\n"\
-"````\n\n"\
-"feel free to give re-score suggestion\n"\
-"cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', ' @')}"
+"````\n\n"
+scoring_info1 = "feel free to give re-score suggestion\n"
+scoring_info2 = "please do not forget to give score\n"
+approval = "cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', ' @')}"
+info_score = info + scoring_info1 + approval
+info_no_score = info + scoring_info2 + approval
 
 if official_reviewer.any? { |x| list_approval.include?(x) }
-  github.api.add_label(repo, label, 'C05472') unless repo_label_name.include?(label)
+  github.api.add_label(repo, label1, 'C05472') unless repo_label_name.include?(label1)
+  github.api.add_label(repo, label2, 'A991C3') unless repo_label_name.include?(label2)
 
   pr_comment_list.map do |u|
     github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
   end
 
   if pr_comment_body.map(&:downcase).find { |e| /pr score/ =~ e }
-    github.api.add_labels_to_an_issue(repo, pr_num, [label]) unless pr_label_name.include?(label)
-    github.api.add_comment(repo, pr_num, info)
-  elsif pr_label_name.include?(label)
+    github.api.add_labels_to_an_issue(repo, pr_num, [label1]) unless pr_label_name.include?(label1)
+    github.api.add_comment(repo, pr_num, info_score)
+  else
+    github.api.add_labels_to_an_issue(repo, pr_num, [label2]) unless pr_label_name.include?(label2)
     github.api.remove_label(repo, pr_num, label)
+    github.api.add_comment(repo, pr_num, info_no_score)
   end
 end
 
 # Add reviewer based on latest commit
 committer_list = github.api.commits(repo, path: 'Dangerfile')
-message committer_list.to_s
+committer_user = committer_list.map { |u| u['name'] }
+message committer_user.to_s
