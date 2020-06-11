@@ -31,10 +31,6 @@ reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map { |u| u['login'] }
 # Official reviewer
 official_reviewer = %w[mpermperpisang mmpisang mpermper321]
-
-official_reviewer.delete(github.pr_author)
-
-official_sample = official_reviewer.sample(1)
 # Add reviewer based on file contributor
 file_changed_list = github.api.pull_request_files(repo, pr_num)
 file_changed_name = file_changed_list.map { |u| u['filename'] }
@@ -44,13 +40,19 @@ file_changed_name.map do |u|
   committer_user += committer_list.map { |c| c['commit']['author']['name'] }
 end
 
-committer_user.uniq.delete(github.pr_author)
-committer_user.uniq.delete(official_sample)
-
 # If reviewer not include official reviewer
-review_requests.request(official_sample) unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
+official_reviewer.delete(github.pr_author)
+
+unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
+  @official_sample = official_reviewer.sample(1)
+
+  review_requests.request(@official_sample)
+end
 
 # If reviewer not include file contribute reviewer
+committer_user.uniq.delete(github.pr_author)
+committer_user.uniq.delete(@official_sample)
+
 unless committer_user.any? { |x| pr_reviewers.include?(x) }
   sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
 
