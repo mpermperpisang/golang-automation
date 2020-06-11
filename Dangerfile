@@ -148,7 +148,7 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
 
   if pr_comment_body.map(&:downcase).find { |e| /(_score)+(:\s)[0-9+]+/ =~ e }
     github.api.add_comment(repo, pr_num, info_format_score)
-  ends
+  end
 
   if pr_comment_body.map(&:downcase).find { |e| /(_non|_feature)+(:\s)[0-9+]+/ =~ e }
     github.api.remove_label(repo, pr_num, label2) if pr_label_name.include?(label2)
