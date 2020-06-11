@@ -126,7 +126,7 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 "[!attach your screenshot]\n"\
 "````\n\n"
 scoring_info1 = "Feel free to give re-score suggestion\n"
-scoring_info2 = "Please do not forget to give score and use this format only.\n"
+scoring_info2 = "Please do not forget to give score and use this syntax only.\n"
 format = "```\n"\
 "PR_score_feature: <sum_of_feature_file_score>\n"\
 "PR_score_non_feature: <sum_of_non_feature_file_score>\n"\
