@@ -42,7 +42,7 @@ end
 # If reviewer not include official reviewer
 unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
   official_reviewer.delete(github.pr_author)
-  review_requests.request(official_reviewer.sample(1))
+  @official = review_requests.request(official_reviewer.sample(1))
 end
 
 # If reviewer not include file contribute reviewer
@@ -50,6 +50,7 @@ unless committer_user.any? { |x| pr_reviewers.include?(x) }
   sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
 
   committer_user.uniq.delete(github.pr_author)
+  committer_user.uniq.delete(@official)
   review_requests.request(committer_user.uniq.sample(sample))
 end
 
