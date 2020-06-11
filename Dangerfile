@@ -143,11 +143,12 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
 
   pr_comment_list.map do |u|
     github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
+    github.api.delete_comment(repo, u['id']) if u['body'] =~ /please use this format only/i
   end
 
   if pr_comment_body.map(&:downcase).find { |e| /(_score)+(:\s)[0-9+]+/ =~ e }
     github.api.add_comment(repo, pr_num, info_format_score)
-  end
+  ends
 
   if pr_comment_body.map(&:downcase).find { |e| /(_non|_feature)+(:\s)[0-9+]+/ =~ e }
     github.api.remove_label(repo, pr_num, label2) if pr_label_name.include?(label2)
