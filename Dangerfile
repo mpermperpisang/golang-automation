@@ -41,8 +41,6 @@ file_changed_name.map do |u|
   commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
-github.api.add_label(repo, 'Work in Progress', 'DFEBE8') unless repo_label_name.include?('Work in Progress')
-
 if github.pr_labels.include? 'Work in Progress'
   info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
 
@@ -127,6 +125,7 @@ lgtm.check_lgtm
 # Add specific label if approved and scored by official reviewer
 label1 = 'to be crawled'
 label2 = 'need score'
+label3 = 'Work in Progress'
 repo_label_list = github.api.labels(repo)
 repo_label_name = repo_label_list.map { |u| u['name'] }
 pr_label_list = github.api.labels_for_issue(repo, pr_num)
@@ -150,10 +149,11 @@ approval = "cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', 
 info_score = info + scoring_info1 + approval
 info_no_score = info + scoring_info2 + format + approval
 
-if official_reviewers.any? { |x| list_approval.include?(x) }
-  github.api.add_label(repo, label1, 'B6FCD5') unless repo_label_name.include?(label1)
-  github.api.add_label(repo, label2, 'FFC1CB') unless repo_label_name.include?(label2)
+github.api.add_label(repo, label1, 'B6FCD5') unless repo_label_name.include?(label1)
+github.api.add_label(repo, label2, 'FFC1CB') unless repo_label_name.include?(label2)
+github.api.add_label(repo, label3, 'DFEBE8') unless repo_label_name.include?(label3)
 
+if official_reviewers.any? { |x| list_approval.include?(x) }
   pr_comment_list.map do |u|
     github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
   end
