@@ -17,6 +17,8 @@ system('bundle exec rubocop --auto-correct')
 suggester.suggest
 
 # Make sure one of the reviewer is from official reviewer
+committer_user = []
+
 # Requested reviewer
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
@@ -34,10 +36,10 @@ file_changed_list = github.api.pull_request_files(repo, pr_num)
 file_changed_name = file_changed_list.map { |u| u['filename'] }
 file_changed_name.map do |u|
   committer_list = github.api.commits(repo, path: u.to_s)
-  @committer_user = committer_list.push(committer_list['commit']['author']['name'])
+  committer_user.push(committer_list['commit']['author']['name'])
 end
 # committer_user = committer_list.map { |u| u['commit']['author']['name'] }
-message @committer_user.uniq.to_s
+message committer_user.uniq.to_s
 
 # If reviewer not include official reviewer
 unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
