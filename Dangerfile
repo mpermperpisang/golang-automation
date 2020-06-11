@@ -46,7 +46,7 @@ github.api.add_label(repo, 'Work in Progress', 'DFEBE8') unless repo_label_name.
 if github.pr_labels.include? 'Work in Progress'
   info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
 
-  github.api.add_comment(repo, pr_num, info_assign_reviewer)
+  github.api.add_comment(repo, pr_num, info_assign_reviewer) unless u['body'] =~ /work in progress/i
 else
   pr_comment_list.map do |u|
     github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
