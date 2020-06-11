@@ -32,7 +32,7 @@ official_reviewer = %w[mpermperpisang mmpisang mpermper321]
 # Add reviewer based on file contributor
 file_changed_list = github.api.pull_request_files(repo, pr_num)
 file_changed_name = file_changed_list.map { |u| u['filename'] }
-committer_list = file_changed_name.map { |u| github.api.commits(repo, path: u.to_s) }
+committer_list = file_changed_name.map { |u| github.api.commits(repo, path: u['filename']) }
 committer_user = committer_list.map { |u| u['commit']['author']['name'] }
 message committer_user.uniq.to_s
 
