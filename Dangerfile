@@ -7,7 +7,7 @@ repo = 'mpermperpisang/golang-automation'
 welcome_message.greet
 
 # Make sure if PR have assignee
-failure 'This PR does not have any assignees yet.' unless github.pr_json['assignee']
+github.api.add_assignees(repo, pr_num, github.pr_author) unless github.pr_json['assignee']
 
 # Suggest code changes through inline comments in pull requests
 rubocop.lint(
