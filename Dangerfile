@@ -39,14 +39,16 @@ file_changed_name.map do |u|
   committer_user += committer_list.map { |c| c['commit']['author']['name'] }
 end
 
-message committer_user.uniq.to_s
-
 # If reviewer not include official reviewer
 unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
   official_reviewer.delete(github.pr_author)
-  committer_user.uniq.delete(github.pr_author)
   review_requests.request(official_reviewer.sample(1))
-  review_requests.request(committer_user.uniq.sample(1))
+end
+
+# If reviewer not include file contribute reviewer
+unless committer_user.any? { |x| pr_reviewers.include?(x) }
+  committer_user.uniq.delete(github.pr_author)
+  review_requests.request(committer_user.uniq.sample(length(file_changed_name)))
 end
 
 # Make sure one of the approval is from official reviewer
