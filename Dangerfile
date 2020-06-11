@@ -41,6 +41,8 @@ file_changed_name.map do |u|
   commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
+github.api.add_label(repo, 'Work in Progress', 'DFEBE8') unless repo_label_name.include?('Work in Progress')
+
 if github.pr_labels.include? 'Work in Progress'
   info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
 
