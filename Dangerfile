@@ -125,5 +125,5 @@ end
 
 # Add reviewer based on latest commit
 committer_list = github.api.commits(repo, path: 'Dangerfile')
-committer_user = committer_list.map { |u| u['name'] }
+committer_user = committer_list.map { |u| u['commit']['author']['name'] }
 message committer_user.to_s
