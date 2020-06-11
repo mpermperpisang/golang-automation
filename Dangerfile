@@ -42,8 +42,12 @@ file_changed_name.map do |u|
 end
 
 if github.pr_labels.include? 'Work in Progress'
-  message 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
+  info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
+
+  github.api.add_comment(repo, pr_num, info_assign_reviewer)
 else
+  github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
+
   # If reviewer not include official reviewer
   official_reviewers.delete(github.pr_author)
 
