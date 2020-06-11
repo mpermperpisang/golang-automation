@@ -29,11 +29,18 @@ reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map { |u| u['login'] }
 # Official reviewer
 official_reviewer = %w[mpermperpisang mmpisang mpermper321]
+# Add reviewer based on file contributor
+file_changed_list = github.api.pull_request_files(repo, pr_num)
+message(file_changed_list)
+committer_list = github.api.commits(repo, path: 'Dangerfile')
+committer_user = committer_list.map { |u| u['commit']['author']['name'] }
 
 # If reviewer not include official reviewer
 unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
   official_reviewer.delete(github.pr_author)
+  committer_user.uniq.delete(github.pr_author)
   review_requests.request(official_reviewer.sample(1))
+  review_requests.request(committer_user.uniq.sample(1))
 end
 
 # Make sure one of the approval is from official reviewer
@@ -122,8 +129,3 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
     github.api.add_comment(repo, pr_num, info_no_score)
   end
 end
-
-# Add reviewer based on latest commit
-committer_list = github.api.commits(repo, path: 'Dangerfile')
-committer_user = committer_list.map { |u| u['commit']['author']['name'] }
-message committer_user.uniq.to_s
