@@ -127,6 +127,7 @@ info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 "````\n\n"
 scoring_info1 = "Feel free to give re-score suggestion\n"
 scoring_info2 = "Please do not forget to give score\n"
+scoring_info3 = "Please use this format only\n"
 format = "```\n"\
 "PR_score_feature: <sum_of_feature_file_score>\n"\
 "PR_score_non_feature: <sum_of_non_feature_file_score>\n"\
@@ -134,6 +135,7 @@ format = "```\n"\
 approval = "cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', ' @')}"
 info_score = info + scoring_info1 + approval
 info_no_score = info + scoring_info2 + format + approval
+info_format_score = scoring_info3 + format + approval
 
 if official_reviewer.any? { |x| list_approval.include?(x) }
   github.api.add_label(repo, label1, 'C05472') unless repo_label_name.include?(label1)
@@ -143,7 +145,11 @@ if official_reviewer.any? { |x| list_approval.include?(x) }
     github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
   end
 
-  if pr_comment_body.map(&:downcase).find { |e| /(pr_score|_non|_feature)+(:\s)[0-9+]+/ =~ e }
+  if pr_comment_body.map(&:downcase).find { |e| /(_score)+(:\s)[0-9+]+/ =~ e }
+    github.api.add_comment(repo, pr_num, info_format_score)
+  end
+
+  if pr_comment_body.map(&:downcase).find { |e| /(_non|_feature)+(:\s)[0-9+]+/ =~ e }
     github.api.remove_label(repo, pr_num, label2) if pr_label_name.include?(label2)
     github.api.add_labels_to_an_issue(repo, pr_num, [label1]) unless pr_label_name.include?(label1)
     github.api.add_comment(repo, pr_num, info_score)
