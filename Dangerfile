@@ -46,7 +46,9 @@ if github.pr_labels.include? 'Work in Progress'
 
   github.api.add_comment(repo, pr_num, info_assign_reviewer)
 else
-  github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
+  pr_comment_list.map do |u|
+    github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
+  end
 
   # If reviewer not include official reviewer
   official_reviewers.delete(github.pr_author)
