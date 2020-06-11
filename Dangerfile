@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# init repo
-repo = 'mpermperpisang/golang-automation'
-pr_num = github.pr_json['number']
-
 # Welcome messages
 welcome_message.greet
+
+# Init repo
+repo = 'mpermperpisang/golang-automation'
+pr_num = github.pr_json['number']
 
 # Make sure if PR have assignee
 github.api.add_assignees(repo, pr_num, github.pr_author) unless github.pr_json['assignee']
