@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# init repo name
+repo = 'mpermperpisang/golang-automation'
+
 # Welcome messages
 welcome_message.greet
 
@@ -17,12 +20,9 @@ system('bundle exec rubocop --auto-correct')
 suggester.suggest
 
 # Make sure one of the reviewer is from official reviewer
-committer_user = []
-
 # Requested reviewer
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
-repo = 'mpermperpisang/golang-automation'
 pr_num = github.pr_json['number']
 reviews = github.api.pull_request_reviews(repo, pr_num)
 actual_reviewers = reviews.map { |u| u['user'] }
@@ -30,36 +30,37 @@ actual_reviewers = reviews.map { |u| u['user'] }
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map { |u| u['login'] }
 # Official reviewer
-official_reviewer = %w[mpermperpisang mmpisang mpermper321]
-# Add reviewer based on file contributor
+official_reviewers = %w[mpermperpisang mmpisang mpermper321]
+# File contributor reviewer
+commit_file_reviewers = []
 file_changed_list = github.api.pull_request_files(repo, pr_num)
 file_changed_name = file_changed_list.map { |u| u['filename'] }
 
 file_changed_name.map do |u|
-  committer_list = github.api.commits(repo, path: u.to_s)
-  committer_user += committer_list.map { |c| c['commit']['author']['name'] }
+  commit_user_list = github.api.commits(repo, path: u.to_s)
+  commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
 # If reviewer not include official reviewer
-official_reviewer.delete(github.pr_author)
+official_reviewers.delete(github.pr_author)
 
-unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
-  @official_sample = official_reviewer.sample(1)
+unless official_reviewers.any? { |x| pr_reviewers.include?(x) }
+  @official_sample = official_reviewers.sample(1)
 
   review_requests.request(@official_sample)
 end
 
 # If reviewer not include file contribute reviewer
-regex = committer_user.uniq.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
+regex = commit_file_reviewers.uniq.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
 
-committer_user.delete(github.pr_author)
-committer_user.delete(@official_sample)
-committer_user.delete(regex)
+commit_file_reviewers.delete(github.pr_author)
+commit_file_reviewers.delete(@official_sample)
+commit_file_reviewers.delete(regex)
 
-unless committer_user.any? { |x| pr_reviewers.include?(x) }
-  sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
+unless commit_file_reviewers.any? { |x| pr_reviewers.include?(x) }
+  sample = file_changed_name.length > commit_file_reviewers.length ? commit_file_reviewers.length : file_changed_name.length
 
-  review_requests.request(committer_user.uniq.sample(sample))
+  review_requests.request(commit_file_reviewers.uniq.sample(sample))
 end
 
 # Make sure one of the approval is from official reviewer
@@ -67,7 +68,7 @@ list_approval = []
 
 reviews.map { |u| list_approval.push(u['user']['login']) if u['state'] == 'APPROVED' }
 
-unless official_reviewer.any? { |x| list_approval.include?(x) }
+unless official_reviewers.any? { |x| list_approval.include?(x) }
   failure 'Please get an approval from mpermperpisang or mmpisang or mpermper321'
 end
 
@@ -135,7 +136,7 @@ approval = "cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', 
 info_score = info + scoring_info1 + approval
 info_no_score = info + scoring_info2 + format + approval
 
-if official_reviewer.any? { |x| list_approval.include?(x) }
+if official_reviewers.any? { |x| list_approval.include?(x) }
   github.api.add_label(repo, label1, 'B6FCD5') unless repo_label_name.include?(label1)
   github.api.add_label(repo, label2, 'FFC1CB') unless repo_label_name.include?(label2)
 
