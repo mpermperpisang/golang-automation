@@ -3,11 +3,11 @@ on:
   pull_request:
     types: [assigned, unassigned, labeled, unlabeled, edited, synchronize, reopened, review_requested, review_request_removed]
   pull_request_review:
-    types: [submitted, edited, dismissed]
+    types: [submitted, dismissed]
   pull_request_review_comment:
-    types: [created, edited, deleted]
+    types: [created, deleted]
   issue_comment:
-    types: [created, edited, deleted]
+    types: [created, deleted]
 
 jobs:
   build:
