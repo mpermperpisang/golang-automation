@@ -41,9 +41,13 @@ file_changed_name.map do |u|
   commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
 end
 
+# Delete same comment
+pr_comment_list = github.api.issue_comments(repo, pr_num)
+pr_comment_body = pr_comment_list.map { |u| u['body'] }
+
 pr_comment_list.map do |u|
-  github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
   github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
+  github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
 end
 
 if github.pr_labels.include? 'Work in Progress'
@@ -131,8 +135,6 @@ repo_label_list = github.api.labels(repo)
 repo_label_name = repo_label_list.map { |u| u['name'] }
 pr_label_list = github.api.labels_for_issue(repo, pr_num)
 pr_label_name = pr_label_list.map { |u| u['name'] }
-pr_comment_list = github.api.issue_comments(repo, pr_num)
-pr_comment_body = pr_comment_list.map { |u| u['body'] }
 info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
 " job and the link to it using comment with this syntax:\n"\
 "```\n"\
