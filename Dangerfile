@@ -136,8 +136,8 @@ info_score = info + scoring_info1 + approval
 info_no_score = info + scoring_info2 + format + approval
 
 if official_reviewer.any? { |x| list_approval.include?(x) }
-  github.api.add_label(repo, label1, 'C05472') unless repo_label_name.include?(label1)
-  github.api.add_label(repo, label2, 'A991C3') unless repo_label_name.include?(label2)
+  github.api.add_label(repo, label1, 'B6FCD5') unless repo_label_name.include?(label1)
+  github.api.add_label(repo, label2, 'FFC1CB') unless repo_label_name.include?(label2)
 
   pr_comment_list.map do |u|
     github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
