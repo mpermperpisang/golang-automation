@@ -49,8 +49,8 @@ end
 unless committer_user.any? { |x| pr_reviewers.include?(x) }
   committer_user.uniq.delete(github.pr_author)
 
-  message file_changed_name.length
-  message committer_user.length
+  message file_changed_name.length.to_s
+  message committer_user.length.to_s
 
   sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
 
