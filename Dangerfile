@@ -50,8 +50,8 @@ unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
 end
 
 # If reviewer not include file contribute reviewer
-committer_user.uniq.delete(github.pr_author)
-committer_user.uniq.delete(@official_sample)
+committer_user.delete(github.pr_author)
+committer_user.delete(@official_sample)
 
 unless committer_user.any? { |x| pr_reviewers.include?(x) }
   sample = file_changed_name.length > committer_user.length ? committer_user.length : file_changed_name.length
