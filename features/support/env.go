@@ -87,14 +87,13 @@ func GodogMainSupport(s *godog.Suite) {
 		scenarioDetail(scenario)
 
 		i := 0
+		name := aurora.Italic(aurora.Bold(aurora.White(testCase.Name)))
 
 		for i < len(testCase.Tags) {
 			tags += " " + testCase.Tags[i].Name
 
 			i++
 		}
-
-		name := aurora.Italic(aurora.Bold(aurora.White(testCase.Name)))
 
 		if tags != "" {
 			fmt.Println("Starting automation")
