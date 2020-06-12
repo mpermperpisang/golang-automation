@@ -50,6 +50,7 @@ pr_comment_list.map do |u|
   github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
 end
 
+# If PR still on progress, do not auto assign reviewer until label removed
 if github.pr_labels.include? 'Work in Progress'
   info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
 
