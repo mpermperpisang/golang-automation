@@ -1,14 +1,14 @@
-# define repo url
-repo = 'mpermperpisang/golang-automation'
+# frozen_string_literal: true
 
 # Welcome messages
 welcome_message.greet
 
-# Make sure if PR have assignee
-failure 'This PR does not have any assignees yet.' unless github.pr_json['assignee']
+# Init repo
+repo = 'mpermperpisang/golang-automation'
+pr_num = github.pr_json['number']
 
-# Ensures nice and tidy commit messages
-commit_lint.check warn: :all, disable: %i[subject_cap subject_period]
+# Make sure if PR have assignee
+github.api.add_assignees(repo, pr_num, github.pr_author) unless github.pr_json['assignee']
 
 # Suggest code changes through inline comments in pull requests
 rubocop.lint(
@@ -24,19 +24,61 @@ suggester.suggest
 # Requested reviewer
 requested_reviewers = github.pr_json['requested_reviewers']
 # Actual reviewer
-pr_num = github.pr_json['number']
 reviews = github.api.pull_request_reviews(repo, pr_num)
 actual_reviewers = reviews.map { |u| u['user'] }
 # PR reviewer
 reviewers = requested_reviewers + actual_reviewers
 pr_reviewers = reviewers.map { |u| u['login'] }
 # Official reviewer
-official_reviewer = %w[mpermperpisang mmpisang mpermper321]
+official_reviewers = %w[mpermperpisang mmpisang mpermper321]
+# File contributor reviewer
+commit_file_reviewers = []
+file_changed_list = github.api.pull_request_files(repo, pr_num)
+file_changed_name = file_changed_list.map { |u| u['filename'] }
 
-# If reviewer not include official reviewer
-unless official_reviewer.any? { |x| pr_reviewers.include?(x) }
-  official_reviewer.delete(github.pr_author)
-  review_requests.request(official_reviewer.sample(1))
+file_changed_name.map do |u|
+  commit_user_list = github.api.commits(repo, path: u.to_s)
+  commit_file_reviewers += commit_user_list.map { |c| c['commit']['author']['name'] }
+end
+
+# Delete same comment
+pr_comment_list = github.api.issue_comments(repo, pr_num)
+pr_comment_body = pr_comment_list.map { |u| u['body'] }
+
+pr_comment_list.map do |u|
+  github.api.delete_comment(repo, u['id']) if u['body'] =~ /work in progress/i
+  github.api.delete_comment(repo, u['id']) if u['body'] =~ /after the pr merged/i
+end
+
+# If PR still on progress, do not auto assign reviewer until label removed
+if github.pr_labels.include? 'Work in Progress'
+  info_assign_reviewer = 'Remove `Work in Progress` label and restart checker to auto assign reviewers'
+
+  github.api.add_comment(repo, pr_num, info_assign_reviewer)
+else
+  # If reviewer not include official reviewer
+  official_reviewers.delete(github.pr_author)
+
+  unless official_reviewers.any? { |x| pr_reviewers.include?(x) }
+    @official_sample = official_reviewers.sample(1)
+
+    review_requests.request(@official_sample)
+  end
+
+  # If reviewer not include file contribute reviewer
+  regex = commit_file_reviewers.uniq.grep(/ /).to_s.gsub(/"|]|\[|\\/, '')
+
+  commit_file_reviewers.delete(github.pr_author)
+  commit_file_reviewers.delete(@official_sample)
+  commit_file_reviewers.delete(regex)
+
+  unless commit_file_reviewers.any? { |x| pr_reviewers.include?(x) }
+    file_length = file_changed_name.length
+    reviewers_length = commit_file_reviewers.length
+    sample = file_length > reviewers_length ? reviewers_length : file_length
+
+    review_requests.request(commit_file_reviewers.uniq.sample(sample))
+  end
 end
 
 # Make sure one of the approval is from official reviewer
@@ -44,7 +86,7 @@ list_approval = []
 
 reviews.map { |u| list_approval.push(u['user']['login']) if u['state'] == 'APPROVED' }
 
-unless official_reviewer.any? { |x| list_approval.include?(x) }
+unless official_reviewers.any? { |x| list_approval.include?(x) }
   failure 'Please get an approval from mpermperpisang or mmpisang or mpermper321'
 end
 
@@ -85,3 +127,44 @@ warn 'Please assign @mpermperpisang or @mmpisang or @mpermper321 as reviewer' if
 
 # Looks Good To Me
 lgtm.check_lgtm
+
+# Add specific label if approved and scored by official reviewer
+label1 = 'to be crawled'
+label2 = 'need score'
+label3 = 'Work in Progress'
+repo_label_list = github.api.labels(repo)
+repo_label_name = repo_label_list.map { |u| u['name'] }
+pr_label_list = github.api.labels_for_issue(repo, pr_num)
+pr_label_name = pr_label_list.map { |u| u['name'] }
+info = 'After the PR merged, attach the run result within the pipeline/jenkins'\
+" job and the link to it using comment with this syntax:\n"\
+"```\n"\
+"run_result\n"\
+"link: <link>\n"\
+"[!attach your screenshot]\n"\
+"````\n\n"
+scoring_info1 = "Feel free to give re-score suggestion\n"
+scoring_info2 = "Please do not forget to give score and use this syntax only.\n"
+format = "```\n"\
+"PR_score_feature: <sum_of_feature_file_score>\n"\
+"PR_score_non_feature: <sum_of_non_feature_file_score>\n"\
+"```\n"
+approval = "cc #{list_approval.to_s.gsub('["', '@').gsub('"]', '').gsub('", "', ' @')}"
+info_score = info + scoring_info1 + approval
+info_no_score = info + scoring_info2 + format + approval
+
+github.api.add_label(repo, label1, 'B6FCD5') unless repo_label_name.include?(label1)
+github.api.add_label(repo, label2, 'FFC1CB') unless repo_label_name.include?(label2)
+github.api.add_label(repo, label3, 'DFEBE8') unless repo_label_name.include?(label3)
+
+if official_reviewers.any? { |x| list_approval.include?(x) }
+  if pr_comment_body.map(&:downcase).find { |e| /(_non|_feature)+(:\s)[0-9+]+/ =~ e }
+    github.api.remove_label(repo, pr_num, label2) if pr_label_name.include?(label2)
+    github.api.add_labels_to_an_issue(repo, pr_num, [label1]) unless pr_label_name.include?(label1)
+    github.api.add_comment(repo, pr_num, info_score)
+  else
+    github.api.remove_label(repo, pr_num, label1) if pr_label_name.include?(label1)
+    github.api.add_labels_to_an_issue(repo, pr_num, [label2]) unless pr_label_name.include?(label2)
+    github.api.add_comment(repo, pr_num, info_no_score)
+  end
+end
