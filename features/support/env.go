@@ -11,8 +11,6 @@ import (
 	"github.com/golang-automation/features/helper"
 	apps "github.com/golang-automation/features/helper/apps"
 	"github.com/golang-automation/features/helper/apps/action"
-	androidaction "github.com/golang-automation/features/helper/apps/action"
-	iosaction "github.com/golang-automation/features/helper/apps/action"
 	android "github.com/golang-automation/features/helper/apps/android"
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	web "github.com/golang-automation/features/helper/web"
@@ -46,10 +44,8 @@ func ssWeb() error {
 func ssAndroid() error {
 	if android.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/android", pwd)
-		buffAndroid := androidaction.Page{Action: action.AppPage{Device: action.Device}}
 
-		dirCheck()
-		buffAndroid.TakeScreenshot(pathname)
+		takeErrorPageImage()
 	}
 
 	return nil
@@ -58,10 +54,8 @@ func ssAndroid() error {
 func ssIOS() error {
 	if ios.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/iOS", pwd)
-		buffIOS := iosaction.Page{Action: action.AppPage{Device: action.Device}}
 
-		dirCheck()
-		buffIOS.TakeScreenshot(pathname)
+		takeErrorPageImage()
 	}
 
 	return nil
@@ -73,6 +67,15 @@ func dirCheck() error {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.MkdirAll(path, 0755)
 	}
+
+	return nil
+}
+
+func takeErrorPageImage() error {
+	buffApps := action.Page{Action: action.AppPage{Device: action.Device}}
+
+	dirCheck()
+	buffApps.TakeScreenshot(pathname)
 
 	return nil
 }
