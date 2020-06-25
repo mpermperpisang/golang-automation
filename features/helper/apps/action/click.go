@@ -1,4 +1,4 @@
-package androidaction
+package action
 
 import (
 	"github.com/golang-automation/features/helper"

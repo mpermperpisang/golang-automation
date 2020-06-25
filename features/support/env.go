@@ -10,12 +10,11 @@ import (
 	"github.com/DATA-DOG/godog"
 	"github.com/golang-automation/features/helper"
 	apps "github.com/golang-automation/features/helper/apps"
+	"github.com/golang-automation/features/helper/apps/action"
+	androidaction "github.com/golang-automation/features/helper/apps/action"
+	iosaction "github.com/golang-automation/features/helper/apps/action"
 	android "github.com/golang-automation/features/helper/apps/android"
-	androidaction "github.com/golang-automation/features/helper/apps/android/action"
-	androiddriver "github.com/golang-automation/features/helper/apps/android/driver"
 	ios "github.com/golang-automation/features/helper/apps/ios"
-	iosaction "github.com/golang-automation/features/helper/apps/ios/action"
-	iosdriver "github.com/golang-automation/features/helper/apps/ios/driver"
 	web "github.com/golang-automation/features/helper/web"
 	"github.com/logrusorgru/aurora"
 )
@@ -47,7 +46,7 @@ func ssWeb() error {
 func ssAndroid() error {
 	if android.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/android", pwd)
-		buffAndroid := androidaction.Page{Action: androiddriver.AndroidPage{Device: androiddriver.Device}}
+		buffAndroid := androidaction.Page{Action: action.AppPage{Device: action.Device}}
 
 		dirCheck()
 		buffAndroid.TakeScreenshot(pathname)
@@ -59,7 +58,7 @@ func ssAndroid() error {
 func ssIOS() error {
 	if ios.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/iOS", pwd)
-		buffIOS := iosaction.Page{Action: iosdriver.IOSPage{Device: iosdriver.Device}}
+		buffIOS := iosaction.Page{Action: action.AppPage{Device: action.Device}}
 
 		dirCheck()
 		buffIOS.TakeScreenshot(pathname)

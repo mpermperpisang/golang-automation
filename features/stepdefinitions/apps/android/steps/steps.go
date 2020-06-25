@@ -1,7 +1,7 @@
 package androidsteps
 
 import (
-	androidaction "github.com/golang-automation/features/helper/apps/android/action"
+	androidaction "github.com/golang-automation/features/helper/apps/action"
 	"github.com/golang-automation/features/stepdefinitions"
 )
 

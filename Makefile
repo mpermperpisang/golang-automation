@@ -9,6 +9,7 @@ package:
 	@go get -u github.com/magiconair/properties
 	@go get github.com/yalp/jsonpath
 	@go get -u golang.org/x/lint/golint
+	@go get -u github.com/goccy/go-yaml
 	@echo "Package installed"
 
 kill-port:
