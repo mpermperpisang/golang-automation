@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	android "github.com/golang-automation/features/helper/apps/android/action"
+	android "github.com/golang-automation/features/helper/apps/action"
 )
 
 /*InputPhonePage : page object input phone number*/

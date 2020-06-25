@@ -124,7 +124,7 @@ func GetData() error {
 func GivenFile() error {
 	var err error
 
-	filename, _ := filepath.Abs("./features/helper/yaml/example.yml")
+	filename, _ := filepath.Abs("./features/helper/yaml/example.yaml")
 	yamlFile, err = ioutil.ReadFile(filename)
 	helper.LogPanicln(err)
 

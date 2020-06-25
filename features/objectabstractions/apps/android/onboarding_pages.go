@@ -1,8 +1,6 @@
 package androidpages
 
-import (
-	android "github.com/golang-automation/features/helper/apps/android/action"
-)
+import android "github.com/golang-automation/features/helper/apps/action"
 
 /*OnboardingPage : page object onboarding*/
 type OnboardingPage struct {

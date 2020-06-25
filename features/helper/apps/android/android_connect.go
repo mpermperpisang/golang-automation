@@ -6,11 +6,6 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
-/*AndroidDriver : android driver*/
-type AndroidDriver struct {
-	Driver *appium.WebDriver
-}
-
 /*Driver global variable*/
 var Driver *appium.WebDriver
 var p *properties.Properties

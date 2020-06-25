@@ -6,12 +6,9 @@ import (
 	"os"
 	"strings"
 
+	"github.com/golang-automation/features/helper/apps/action"
 	android "github.com/golang-automation/features/helper/apps/android"
-	androidhelper "github.com/golang-automation/features/helper/apps/android"
-	androidDevice "github.com/golang-automation/features/helper/apps/android/driver"
 	ios "github.com/golang-automation/features/helper/apps/ios"
-	ioshelper "github.com/golang-automation/features/helper/apps/ios"
-	iosDevice "github.com/golang-automation/features/helper/apps/ios/driver"
 	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/helper/message"
 	web "github.com/golang-automation/features/helper/web"
@@ -20,10 +17,10 @@ import (
 )
 
 /*AndroidPage : android apps page*/
-var AndroidPage androidDevice.AndroidPage
+var AndroidPage action.AppPage
 
 /*IOSPage : ios apps page*/
-var IOSPage iosDevice.IOSPage
+var IOSPage action.AppPage
 
 /*Dweb : desktop web driver*/
 var Dweb web.WebDriver
@@ -33,8 +30,7 @@ var Mweb web.WebDriver
 
 var desktopPage desktop.DwebPage
 var mobilePage mobile.MwebPage
-var androidApps androidhelper.AndroidDriver
-var iOSApps ioshelper.IOSDriver
+var androidApps, iOSApps action.Driver
 var username string
 var password string
 
@@ -74,16 +70,16 @@ func mwebConnect() error {
 
 func androidConnectDriver() error {
 	driver := android.DriverConnect()
-	androidApps = android.AndroidDriver{Driver: driver}
-	AndroidPage = androidDevice.AndroidPage{Page: androidApps}
+	androidApps = action.Driver{Driver: driver}
+	AndroidPage = action.AppPage{Page: androidApps}
 
 	return nil
 }
 
 func iosConnectDriver() error {
 	driver := ios.DriverConnect()
-	iOSApps = ios.IOSDriver{Driver: driver}
-	IOSPage = iosDevice.IOSPage{Page: iOSApps}
+	iOSApps = action.Driver{Driver: driver}
+	IOSPage = action.AppPage{Page: iOSApps}
 
 	return nil
 }
