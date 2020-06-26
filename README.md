@@ -1,7 +1,6 @@
 # golang-automation
 
 **Description**<br/>
-The real development of https://github.com/mpermperpisang/go-cucumber<br/>
 Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-boil-web-automation-with-go-language-98b715800d70
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=mpermperpisang_golang-automation)
