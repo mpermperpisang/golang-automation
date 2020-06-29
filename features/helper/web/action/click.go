@@ -9,7 +9,7 @@ import (
 
 // ClickByCSS : click element by CSS selector
 func (s *Page) ClickByCSS(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -19,7 +19,7 @@ func (s *Page) ClickByCSS(locator string) selenium.WebElement {
 
 // ClickByID : click element by class ID
 func (s *Page) ClickByID(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
+	element, err := s.driver().FindElement(selenium.ByID, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -29,7 +29,7 @@ func (s *Page) ClickByID(locator string) selenium.WebElement {
 
 // ClickByXpath : click element by Xpath selector
 func (s *Page) ClickByXpath(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
+	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -39,7 +39,7 @@ func (s *Page) ClickByXpath(locator string) selenium.WebElement {
 
 // ClickByLinkText : click element by link text
 func (s *Page) ClickByLinkText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -49,7 +49,7 @@ func (s *Page) ClickByLinkText(locator string) selenium.WebElement {
 
 // ClickByPartialLink : click element by partial link text
 func (s *Page) ClickByPartialLink(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -59,7 +59,7 @@ func (s *Page) ClickByPartialLink(locator string) selenium.WebElement {
 
 // ClickByName : click element by class name
 func (s *Page) ClickByName(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
+	element, err := s.driver().FindElement(selenium.ByName, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -69,7 +69,7 @@ func (s *Page) ClickByName(locator string) selenium.WebElement {
 
 // ClickByTag : click element by name tag
 func (s *Page) ClickByTag(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
+	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -79,7 +79,7 @@ func (s *Page) ClickByTag(locator string) selenium.WebElement {
 
 // ClickByClass : click element by class name
 func (s *Page) ClickByClass(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
+	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -89,7 +89,7 @@ func (s *Page) ClickByClass(locator string) selenium.WebElement {
 
 // ClickByText : click element by text in xpath
 func (s *Page) ClickByText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "/// [contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	errors.LogPanicln(err)
 
 	element.Click()
@@ -102,7 +102,7 @@ func (s *Page) Numpad0(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad0Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -112,7 +112,7 @@ func (s *Page) Numpad1(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad1Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -122,7 +122,7 @@ func (s *Page) Numpad2(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad2Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -132,7 +132,7 @@ func (s *Page) Numpad3(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad3Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -142,7 +142,7 @@ func (s *Page) Numpad4(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad4Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -152,7 +152,7 @@ func (s *Page) Numpad5(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad5Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -162,7 +162,7 @@ func (s *Page) Numpad6(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad6Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -172,7 +172,7 @@ func (s *Page) Numpad7(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad7Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -182,7 +182,7 @@ func (s *Page) Numpad8(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad8Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }
@@ -192,7 +192,7 @@ func (s *Page) Numpad9(locator string) int {
 	element, err := strconv.Atoi(selenium.Numpad9Key)
 	errors.LogPanicln(err)
 
-	s.Action.Driver.Click(element)
+	s.driver().Click(element)
 
 	return element
 }

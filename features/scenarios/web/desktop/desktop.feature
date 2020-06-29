@@ -1,4 +1,4 @@
-@desktop
+@dweb
 Feature: Variant Desktop Web
 
   @variant-dweb-1

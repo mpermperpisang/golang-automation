@@ -11,7 +11,7 @@ var (
 	btnMasuk      = "Masuk"
 	btnMengerti   = "Mengerti"
 	btnNantiSaja  = "Nanti Saja"
-	labelUsername = "/// [@resource-id='app:id/tvUsername']"
+	labelUsername = "//*[@resource-id='app:id/tvUsername']"
 )
 
 // ValidateLoggedUser : validate logged user

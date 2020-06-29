@@ -13,7 +13,7 @@ type InputPasswordPage struct {
 }
 
 var (
-	fieldPassword    = "/// [@resource-id='app:id/textFieldAV_textField']"
+	fieldPassword    = "//*[@resource-id='app:id/textFieldAV_textField']"
 	btnMasukPassword = "Masuk"
 )
 

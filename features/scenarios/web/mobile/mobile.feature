@@ -1,4 +1,4 @@
-@mobile
+@mweb
 Feature: Variant Mobile Web
 
   @variant-mweb-1

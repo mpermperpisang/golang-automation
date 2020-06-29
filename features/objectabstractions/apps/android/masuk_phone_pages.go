@@ -13,7 +13,7 @@ type InputPhonePage struct {
 }
 
 var (
-	fieldPhone = "/// [@resource-id='app:id/textFieldAV_textField']"
+	fieldPhone = "//*[@resource-id='app:id/textFieldAV_textField']"
 	btnLanjut  = "Lanjut"
 )
 

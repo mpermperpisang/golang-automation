@@ -7,7 +7,7 @@ import (
 
 // IsElementEnabledByCSS : element enabled by CSS selector
 func (s *Page) IsElementEnabledByCSS(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -17,7 +17,7 @@ func (s *Page) IsElementEnabledByCSS(locator string) selenium.WebElement {
 
 // IsElementEnabledByID : element enabled by class ID
 func (s *Page) IsElementEnabledByID(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
+	element, err := s.driver().FindElement(selenium.ByID, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -27,7 +27,7 @@ func (s *Page) IsElementEnabledByID(locator string) selenium.WebElement {
 
 // IsElementEnabledByXpath : element enabled by Xpath selector
 func (s *Page) IsElementEnabledByXpath(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
+	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -37,7 +37,7 @@ func (s *Page) IsElementEnabledByXpath(locator string) selenium.WebElement {
 
 // IsElementEnabledByLinkText : element enabled by link text
 func (s *Page) IsElementEnabledByLinkText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -47,7 +47,7 @@ func (s *Page) IsElementEnabledByLinkText(locator string) selenium.WebElement {
 
 // IsElementEnabledByPartialLink : element enabled by partial link text
 func (s *Page) IsElementEnabledByPartialLink(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -57,7 +57,7 @@ func (s *Page) IsElementEnabledByPartialLink(locator string) selenium.WebElement
 
 // IsElementEnabledByName : element enabled by name of class
 func (s *Page) IsElementEnabledByName(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
+	element, err := s.driver().FindElement(selenium.ByName, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -67,7 +67,7 @@ func (s *Page) IsElementEnabledByName(locator string) selenium.WebElement {
 
 // IsElementEnabledByTag : element enabled by name tag
 func (s *Page) IsElementEnabledByTag(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
+	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -77,7 +77,7 @@ func (s *Page) IsElementEnabledByTag(locator string) selenium.WebElement {
 
 // IsElementEnabledByClass : element enabled by class name
 func (s *Page) IsElementEnabledByClass(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
+	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	errors.LogPanicln(err)
 
 	element.IsEnabled()
@@ -87,7 +87,7 @@ func (s *Page) IsElementEnabledByClass(locator string) selenium.WebElement {
 
 // IsElementEnabledByText : element enabled by text in xpath
 func (s *Page) IsElementEnabledByText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "/// [contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	errors.LogPanicln(err)
 
 	element.IsEnabled()

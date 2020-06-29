@@ -5,12 +5,7 @@ import (
 	"github.com/tebeka/selenium"
 )
 
-// WebDriver : web driver
-type WebDriver struct {
-	Driver selenium.WebDriver
-}
-
-// Driver global variable
+// Driver global variables
 var Driver selenium.WebDriver
 
 // DriverConnect : connect to driver

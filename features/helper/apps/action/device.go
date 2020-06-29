@@ -1,4 +1,4 @@
-package action
+package appsaction
 
 import (
 	"github.com/golang-automation/features/helper/errors"
@@ -9,18 +9,18 @@ import (
 var Device *appium.Device
 
 // StartDriver : start android driver
-func (s *AppPage) StartDriver() error {
-	err := s.Page.Driver.Start()
+func (s *Page) StartDriver() error {
+	err := s.driver().Start()
 	errors.LogPanicln(err)
 
 	return nil
 }
 
 // NewDevice : create new android device
-func (s *AppPage) NewDevice() *appium.Device {
+func (s *Page) NewDevice() *appium.Device {
 	var err error
 
-	Device, err = s.Page.Driver.NewDevice()
+	Device, err = s.driver().NewDevice()
 	errors.LogPanicln(err)
 
 	return Device

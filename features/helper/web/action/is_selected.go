@@ -7,7 +7,7 @@ import (
 
 // IsElementSelectedByCSS : element selected by CSS selector
 func (s *Page) IsElementSelectedByCSS(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -17,7 +17,7 @@ func (s *Page) IsElementSelectedByCSS(locator string) selenium.WebElement {
 
 // IsElementSelectedByID : element selected by class ID
 func (s *Page) IsElementSelectedByID(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
+	element, err := s.driver().FindElement(selenium.ByID, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -27,7 +27,7 @@ func (s *Page) IsElementSelectedByID(locator string) selenium.WebElement {
 
 // IsElementSelectedByXpath : element selected by Xpath selector
 func (s *Page) IsElementSelectedByXpath(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
+	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -37,7 +37,7 @@ func (s *Page) IsElementSelectedByXpath(locator string) selenium.WebElement {
 
 // IsElementSelectedByLinkText : element selected by link text
 func (s *Page) IsElementSelectedByLinkText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -47,7 +47,7 @@ func (s *Page) IsElementSelectedByLinkText(locator string) selenium.WebElement {
 
 // IsElementSelectedByPartialLink : element selected by partial link text
 func (s *Page) IsElementSelectedByPartialLink(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -57,7 +57,7 @@ func (s *Page) IsElementSelectedByPartialLink(locator string) selenium.WebElemen
 
 // IsElementSelectedByName : element selected by name of class
 func (s *Page) IsElementSelectedByName(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
+	element, err := s.driver().FindElement(selenium.ByName, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -67,7 +67,7 @@ func (s *Page) IsElementSelectedByName(locator string) selenium.WebElement {
 
 // IsElementSelectedByTag : element selected by name tag
 func (s *Page) IsElementSelectedByTag(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
+	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -77,7 +77,7 @@ func (s *Page) IsElementSelectedByTag(locator string) selenium.WebElement {
 
 // IsElementSelectedByClass : element selected by class name
 func (s *Page) IsElementSelectedByClass(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
+	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	errors.LogPanicln(err)
 
 	element.IsSelected()
@@ -87,7 +87,7 @@ func (s *Page) IsElementSelectedByClass(locator string) selenium.WebElement {
 
 // IsElementSelectedByText : element selected by text in xpath
 func (s *Page) IsElementSelectedByText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "/// [contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	errors.LogPanicln(err)
 
 	element.IsSelected()

@@ -7,7 +7,7 @@ import (
 
 // AcceptAlert : accepting alert
 func (s *Page) AcceptAlert() error {
-	element := s.Action.Driver.AcceptAlert()
+	element := s.driver().AcceptAlert()
 	errors.LogPanicln(element)
 
 	return element
@@ -15,7 +15,7 @@ func (s *Page) AcceptAlert() error {
 
 // DismissAlert : dismissing alert
 func (s *Page) DismissAlert() error {
-	element := s.Action.Driver.DismissAlert()
+	element := s.driver().DismissAlert()
 	errors.LogPanicln(element)
 
 	return element
@@ -23,7 +23,7 @@ func (s *Page) DismissAlert() error {
 
 // BackBrowser : back to previous page
 func (s *Page) BackBrowser() error {
-	element := s.Action.Driver.Back()
+	element := s.driver().Back()
 	errors.LogPanicln(element)
 
 	return element
@@ -31,7 +31,7 @@ func (s *Page) BackBrowser() error {
 
 // GetCurrentURL : get current browser url
 func (s *Page) GetCurrentURL() string {
-	element, err := s.Action.Driver.CurrentURL()
+	element, err := s.driver().CurrentURL()
 	errors.LogPanicln(err)
 
 	return element
@@ -39,7 +39,7 @@ func (s *Page) GetCurrentURL() string {
 
 // ButtonDown : button down
 func (s *Page) ButtonDown() error {
-	element := s.Action.Driver.ButtonDown()
+	element := s.driver().ButtonDown()
 	errors.LogPanicln(element)
 
 	return element
@@ -47,7 +47,7 @@ func (s *Page) ButtonDown() error {
 
 // ButtonUp : buttom up
 func (s *Page) ButtonUp() error {
-	element := s.Action.Driver.ButtonUp()
+	element := s.driver().ButtonUp()
 	errors.LogPanicln(element)
 
 	return element
@@ -55,7 +55,7 @@ func (s *Page) ButtonUp() error {
 
 // CloseWindow : close browser window
 func (s *Page) CloseWindow(locator string) error {
-	element := s.Action.Driver.CloseWindow(locator)
+	element := s.driver().CloseWindow(locator)
 	errors.LogPanicln(element)
 
 	return element
@@ -63,7 +63,7 @@ func (s *Page) CloseWindow(locator string) error {
 
 // AddCookie : add cookies in browser
 func (s *Page) AddCookie(cookie *selenium.Cookie) error {
-	element := s.Action.Driver.AddCookie(cookie)
+	element := s.driver().AddCookie(cookie)
 	errors.LogPanicln(element)
 
 	return element
@@ -71,7 +71,7 @@ func (s *Page) AddCookie(cookie *selenium.Cookie) error {
 
 // DeleteCookie : delete cookies in browser
 func (s *Page) DeleteCookie(locator string) error {
-	element := s.Action.Driver.DeleteCookie(locator)
+	element := s.driver().DeleteCookie(locator)
 	errors.LogPanicln(element)
 
 	return element
@@ -79,7 +79,7 @@ func (s *Page) DeleteCookie(locator string) error {
 
 // DeleteAllCookies : delete all cookies in browser
 func (s *Page) DeleteAllCookies(locator string) error {
-	element := s.Action.Driver.DeleteAllCookies()
+	element := s.driver().DeleteAllCookies()
 	errors.LogPanicln(element)
 
 	return element
@@ -87,7 +87,7 @@ func (s *Page) DeleteAllCookies(locator string) error {
 
 // DoubleClick : double click in browser
 func (s *Page) DoubleClick() error {
-	element := s.Action.Driver.DoubleClick()
+	element := s.driver().DoubleClick()
 	errors.LogPanicln(element)
 
 	return element
@@ -95,7 +95,7 @@ func (s *Page) DoubleClick() error {
 
 // Refresh : refresh browser
 func (s *Page) Refresh() error {
-	element := s.Action.Driver.Refresh()
+	element := s.driver().Refresh()
 	errors.LogPanicln(element)
 
 	return element
@@ -103,7 +103,7 @@ func (s *Page) Refresh() error {
 
 // ResizeWindow : set browser size
 func (s *Page) ResizeWindow(locator string, w int, h int) error {
-	element := s.Action.Driver.ResizeWindow(locator, w, h)
+	element := s.driver().ResizeWindow(locator, w, h)
 	errors.LogPanicln(element)
 
 	return element
@@ -111,7 +111,7 @@ func (s *Page) ResizeWindow(locator string, w int, h int) error {
 
 // MaxWindow : set browser to maximum size
 func (s *Page) MaxWindow(locator string) error {
-	element := s.Action.Driver.MaximizeWindow(locator)
+	element := s.driver().MaximizeWindow(locator)
 	errors.LogPanicln(element)
 
 	return element

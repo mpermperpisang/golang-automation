@@ -9,7 +9,7 @@ import (
 
 // FindElementByCSS : find element by CSS selector
 func (s *Page) FindElementByCSS(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -17,7 +17,7 @@ func (s *Page) FindElementByCSS(locator string) selenium.WebElement {
 
 // FindElementByID : find element by class ID
 func (s *Page) FindElementByID(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
+	element, err := s.driver().FindElement(selenium.ByID, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -25,7 +25,7 @@ func (s *Page) FindElementByID(locator string) selenium.WebElement {
 
 // FindElementByXpath : find element by Xpath selector
 func (s *Page) FindElementByXpath(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
+	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -33,7 +33,7 @@ func (s *Page) FindElementByXpath(locator string) selenium.WebElement {
 
 // FindElementByLinkText : find element by link text
 func (s *Page) FindElementByLinkText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -41,7 +41,7 @@ func (s *Page) FindElementByLinkText(locator string) selenium.WebElement {
 
 // FindElementByPartialLink : find element by partial link text
 func (s *Page) FindElementByPartialLink(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -49,7 +49,7 @@ func (s *Page) FindElementByPartialLink(locator string) selenium.WebElement {
 
 // FindElementByName : find element by name of class
 func (s *Page) FindElementByName(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
+	element, err := s.driver().FindElement(selenium.ByName, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -57,7 +57,7 @@ func (s *Page) FindElementByName(locator string) selenium.WebElement {
 
 // FindElementByTag : find element by name tag
 func (s *Page) FindElementByTag(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
+	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -65,7 +65,7 @@ func (s *Page) FindElementByTag(locator string) selenium.WebElement {
 
 // FindElementByClass : find element by class name
 func (s *Page) FindElementByClass(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
+	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	errors.LogPanicln(err)
 
 	return element
@@ -73,7 +73,7 @@ func (s *Page) FindElementByClass(locator string) selenium.WebElement {
 
 // FindElementByText : find element by text in xpath
 func (s *Page) FindElementByText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "/// [contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	errors.LogPanicln(err)
 
 	return element
@@ -82,7 +82,7 @@ func (s *Page) FindElementByText(locator string) selenium.WebElement {
 // FindElementByClickScript : find element by javascript
 func (s *Page) FindElementByClickScript(locator string) []byte {
 	time.Sleep(time.Second * 3)
-	element, err := s.Action.Driver.ExecuteScriptRaw(`$('`+locator+`')[0].click();`, nil)
+	element, err := s.driver().ExecuteScriptRaw(`$('`+locator+`')[0].click();`, nil)
 	errors.LogPanicln(err)
 
 	return element
@@ -90,7 +90,7 @@ func (s *Page) FindElementByClickScript(locator string) []byte {
 
 // MouseHoverToElement does hove to some element
 func (s *Page) MouseHoverToElement(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	element.MoveTo(0, 0)

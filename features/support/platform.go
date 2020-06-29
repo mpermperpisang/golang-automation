@@ -11,26 +11,21 @@ import (
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/gherkin"
 	apps "github.com/golang-automation/features/helper/apps"
-	"github.com/golang-automation/features/helper/apps/action"
+	appsaction "github.com/golang-automation/features/helper/apps/action"
 	android "github.com/golang-automation/features/helper/apps/android"
 	ios "github.com/golang-automation/features/helper/apps/ios"
 	"github.com/golang-automation/features/helper/errors"
 	web "github.com/golang-automation/features/helper/web"
+	webaction "github.com/golang-automation/features/helper/web/action"
 	desktop "github.com/golang-automation/features/helper/web/desktop"
 	mobile "github.com/golang-automation/features/helper/web/mobile"
 )
 
-// Dweb : desktop web driver
-var Dweb web.WebDriver
+// DesktopWeb : desktop web page
+var DesktopWeb webaction.Page
 
-// Mweb : mobile web driver
-var Mweb web.WebDriver
-
-// AndroidPage : android apps page
-var AndroidPage action.AppPage
-
-// IOSPage : ios apps page
-var IOSPage action.AppPage
+// MobileWeb : mobile web page
+var MobileWeb webaction.Page
 
 // DesktopPage : desktop web page
 var DesktopPage desktop.DwebPage
@@ -38,7 +33,12 @@ var DesktopPage desktop.DwebPage
 // MobilePage : mobile web page
 var MobilePage mobile.MwebPage
 
-var androidApps, iOSApps action.Driver
+// AndroidApps : android apps driver
+var AndroidApps appsaction.Page
+
+// IOSApps : ios apps driver
+var IOSApps appsaction.Page
+
 var testCase scenarioDetail
 var feature featureDetail
 var path, pathname, pwd, filename string
@@ -100,7 +100,7 @@ func dirCheck() error {
 }
 
 func takeErrorPageImage() error {
-	buffApps := action.Page{Action: action.AppPage{Device: action.Device}}
+	buffApps := appsaction.Page{Action: appsaction.AppPage{Device: appsaction.Device}}
 
 	dirCheck()
 	buffApps.TakeScreenshot(pathname)
@@ -190,52 +190,54 @@ func platformCheck(tags string) error {
 
 // DwebConnect : connect to dweb driver
 func DwebConnect() error {
-	driver := web.DriverConnect()
-	Dweb = web.WebDriver{Driver: driver}
-	DesktopPage = desktop.DwebPage{Page: Dweb}
+	web.DriverConnect()
+
+	DesktopWeb = webaction.Page{Action: webaction.Driver{Driver: web.Driver}}
+	DesktopPage = desktop.DwebPage{Page: web.Driver}
 
 	return nil
 }
 
 // MwebConnect : connect to dweb driver
 func MwebConnect() error {
-	driver := web.DriverConnect()
-	Mweb = web.WebDriver{Driver: driver}
-	MobilePage = mobile.MwebPage{Page: Mweb}
+	web.DriverConnect()
+
+	MobileWeb = webaction.Page{Action: webaction.Driver{Driver: web.Driver}}
+	MobilePage = mobile.MwebPage{Page: web.Driver}
 
 	return nil
 }
 
 // AndroidConnect : connect to androids driver
 func AndroidConnect() error {
-	driver := android.DriverConnect()
-	androidApps = action.Driver{Driver: driver}
-	AndroidPage = action.AppPage{Page: androidApps}
+	android.DriverConnect()
+
+	AndroidApps = appsaction.Page{Action: appsaction.AppPage{Page: appsaction.Driver{Driver: android.Driver}}}
 
 	return nil
 }
 
 // IOSConnect : connect to iOS driver
 func IOSConnect() error {
-	driver := ios.DriverConnect()
-	iOSApps = action.Driver{Driver: driver}
-	IOSPage = action.AppPage{Page: iOSApps}
+	ios.DriverConnect()
+
+	IOSApps = appsaction.Page{Action: appsaction.AppPage{Page: appsaction.Driver{Driver: ios.Driver}}}
 
 	return nil
 }
 
 // AndroidOpenDevice : open android device
 func AndroidOpenDevice() error {
-	AndroidPage.StartDriver()
-	AndroidPage.NewDevice()
+	AndroidApps.StartDriver()
+	AndroidApps.NewDevice()
 
 	return nil
 }
 
 // IOSOpenDevice : open iOS device
 func IOSOpenDevice() error {
-	IOSPage.StartDriver()
-	IOSPage.NewDevice()
+	IOSApps.StartDriver()
+	IOSApps.NewDevice()
 
 	return nil
 }

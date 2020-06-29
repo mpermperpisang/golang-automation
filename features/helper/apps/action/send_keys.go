@@ -1,10 +1,10 @@
-package action
+package appsaction
 
 import "github.com/golang-automation/features/helper/errors"
 
 // SendKeysByXpath : input text by Xpath selector
 func (s *Page) SendKeysByXpath(locator string, text string) error {
-	element := s.Action.Device.FindByXPath(locator).SendKeys(text)
+	element := s.device().FindByXPath(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -12,7 +12,7 @@ func (s *Page) SendKeysByXpath(locator string, text string) error {
 
 // SendKeysByButton : input text by button
 func (s *Page) SendKeysByButton(locator string, text string) error {
-	element := s.Action.Device.FindByButton(locator).SendKeys(text)
+	element := s.device().FindByButton(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -20,7 +20,7 @@ func (s *Page) SendKeysByButton(locator string, text string) error {
 
 // SendKeysByClass : input text by class
 func (s *Page) SendKeysByClass(locator string, text string) error {
-	element := s.Action.Device.FindByClass(locator).SendKeys(text)
+	element := s.device().FindByClass(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -28,7 +28,7 @@ func (s *Page) SendKeysByClass(locator string, text string) error {
 
 // SendKeysByID : input text by ID
 func (s *Page) SendKeysByID(locator string, text string) error {
-	element := s.Action.Device.FindByID(locator).SendKeys(text)
+	element := s.device().FindByID(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -36,7 +36,7 @@ func (s *Page) SendKeysByID(locator string, text string) error {
 
 // SendKeysByLabel : input text by label
 func (s *Page) SendKeysByLabel(locator string, text string) error {
-	element := s.Action.Device.FindByLabel(locator).SendKeys(text)
+	element := s.device().FindByLabel(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -44,7 +44,7 @@ func (s *Page) SendKeysByLabel(locator string, text string) error {
 
 // SendKeysByLink : input text by link
 func (s *Page) SendKeysByLink(locator string, text string) error {
-	element := s.Action.Device.FindByLink(locator).SendKeys(text)
+	element := s.device().FindByLink(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -52,7 +52,7 @@ func (s *Page) SendKeysByLink(locator string, text string) error {
 
 // SendKeysByName : input text by class name
 func (s *Page) SendKeysByName(locator string, text string) error {
-	element := s.Action.Device.FindByName(locator).SendKeys(text)
+	element := s.device().FindByName(locator).SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element
@@ -60,7 +60,7 @@ func (s *Page) SendKeysByName(locator string, text string) error {
 
 // SendKeysByText : input text by text in xpath
 func (s *Page) SendKeysByText(locator string, text string) error {
-	element := s.Action.Device.FindByXPath("/// [contains(@text, '" + locator + "')]").SendKeys(text)
+	element := s.device().FindByXPath("//*[contains(@text, '" + locator + "')]").SendKeys(text)
 	errors.LogPanicln(element)
 
 	return element

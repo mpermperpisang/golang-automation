@@ -1,10 +1,19 @@
 package webaction
 
 import (
-	webhelper "github.com/golang-automation/features/helper/web"
+	"github.com/tebeka/selenium"
 )
+
+// Driver : Desktop & Mobile driver
+type Driver struct {
+	Driver selenium.WebDriver
+}
 
 // Page : page actions
 type Page struct {
-	Action webhelper.WebDriver
+	Action Driver
+}
+
+func (s *Page) driver() selenium.WebDriver {
+	return s.Action.Driver
 }

@@ -7,7 +7,7 @@ import (
 
 // GetTextByCSS : get element text by CSS selector
 func (s *Page) GetTextByCSS(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -17,7 +17,7 @@ func (s *Page) GetTextByCSS(locator string) selenium.WebElement {
 
 // GetTextByID : get element text by class ID
 func (s *Page) GetTextByID(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
+	element, err := s.driver().FindElement(selenium.ByID, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -27,7 +27,7 @@ func (s *Page) GetTextByID(locator string) selenium.WebElement {
 
 // GetTextByXpath : get element text by Xpath selector
 func (s *Page) GetTextByXpath(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
+	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -37,7 +37,7 @@ func (s *Page) GetTextByXpath(locator string) selenium.WebElement {
 
 // GetTextByLinkText : get element text by link text
 func (s *Page) GetTextByLinkText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -47,7 +47,7 @@ func (s *Page) GetTextByLinkText(locator string) selenium.WebElement {
 
 // GetTextByPartialLink : get element text by partial link text
 func (s *Page) GetTextByPartialLink(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -57,7 +57,7 @@ func (s *Page) GetTextByPartialLink(locator string) selenium.WebElement {
 
 // GetTextByName : get element text by name of class
 func (s *Page) GetTextByName(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
+	element, err := s.driver().FindElement(selenium.ByName, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -67,7 +67,7 @@ func (s *Page) GetTextByName(locator string) selenium.WebElement {
 
 // GetTextByText : get element text by text in xpath
 func (s *Page) GetTextByText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "/// [contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -77,7 +77,7 @@ func (s *Page) GetTextByText(locator string) selenium.WebElement {
 
 // GetTextByTag : get element text by name tag
 func (s *Page) GetTextByTag(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
+	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	errors.LogPanicln(err)
 
 	element.Text()
@@ -87,7 +87,7 @@ func (s *Page) GetTextByTag(locator string) selenium.WebElement {
 
 // GetTextByClass : get element text by class name
 func (s *Page) GetTextByClass(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
+	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	errors.LogPanicln(err)
 
 	element.Text()

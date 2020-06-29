@@ -6,8 +6,6 @@ type loginData struct {
 }
 
 var login loginData
-var username = login.username
-var password = login.password
 
 // SetUsername : set data for username
 func SetUsername(username string) {
@@ -16,7 +14,7 @@ func SetUsername(username string) {
 
 // GetUsername : get data for username
 func GetUsername() string {
-	return username
+	return login.username
 }
 
 // SetPassword : set data for password
@@ -26,5 +24,5 @@ func SetPassword(password string) {
 
 // GetPassword : get data for password
 func GetPassword() string {
-	return password
+	return login.password
 }

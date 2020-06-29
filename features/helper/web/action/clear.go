@@ -7,7 +7,7 @@ import (
 
 // ClearByCSS : clear element by CSS selector
 func (s *Page) ClearByCSS(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByCSSSelector, locator)
+	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -17,7 +17,7 @@ func (s *Page) ClearByCSS(locator string) selenium.WebElement {
 
 // ClearByID : clear element by class ID
 func (s *Page) ClearByID(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByID, locator)
+	element, err := s.driver().FindElement(selenium.ByID, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -27,7 +27,7 @@ func (s *Page) ClearByID(locator string) selenium.WebElement {
 
 // ClearByXpath : clear element by Xpath selector
 func (s *Page) ClearByXpath(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, locator)
+	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -37,7 +37,7 @@ func (s *Page) ClearByXpath(locator string) selenium.WebElement {
 
 // ClearByLinkText : clear element by link text
 func (s *Page) ClearByLinkText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -47,7 +47,7 @@ func (s *Page) ClearByLinkText(locator string) selenium.WebElement {
 
 // ClearByPartialLink : clear element by partial link text
 func (s *Page) ClearByPartialLink(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByPartialLinkText, locator)
+	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -57,7 +57,7 @@ func (s *Page) ClearByPartialLink(locator string) selenium.WebElement {
 
 // ClearByName : clear element by class name
 func (s *Page) ClearByName(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByName, locator)
+	element, err := s.driver().FindElement(selenium.ByName, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -67,7 +67,7 @@ func (s *Page) ClearByName(locator string) selenium.WebElement {
 
 // ClearByTag : clear element by name tag
 func (s *Page) ClearByTag(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByTagName, locator)
+	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -77,7 +77,7 @@ func (s *Page) ClearByTag(locator string) selenium.WebElement {
 
 // ClearByClass : clear element by class name
 func (s *Page) ClearByClass(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByClassName, locator)
+	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	errors.LogPanicln(err)
 
 	element.Clear()
@@ -87,7 +87,7 @@ func (s *Page) ClearByClass(locator string) selenium.WebElement {
 
 // ClearByText : clear element by text in xpath
 func (s *Page) ClearByText(locator string) selenium.WebElement {
-	element, err := s.Action.Driver.FindElement(selenium.ByXPATH, "/// [contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
 	errors.LogPanicln(err)
 
 	element.Clear()
