@@ -6,15 +6,15 @@ Feature: Example Automation
   Scenario: Example DWEB
     Given visit dweb
 
-  @example-mweb
+  @example-mweb @mweb
   Scenario: Example MWEB
     Given visit mweb
 
-  @example-android
+  @example-android @android
   Scenario: Example Android
     Given visit android
 
-  @example-ios
+  @example-ios @ios
   Scenario: Example iOS
     Given visit ios
 

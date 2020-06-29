@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-/*Test*/
+// Test : unit test Hello
 func TestHello(t *testing.T) {
 	assert := assert.New(t)
 	emptyResult := Hello("")

@@ -2,7 +2,7 @@ package stepdefinitions
 
 import "fmt"
 
-/*FarewellOne : say goodbye*/
+// FarewellOne : say goodbye
 func FarewellOne() error {
 	fmt.Println("春の魔法に陽射しは変わって\n" +
 		"人も街も明るめに着替えた\n" +
@@ -12,7 +12,7 @@ func FarewellOne() error {
 	return nil
 }
 
-/*FarewellTwo : say goodbye*/
+// FarewellTwo : say goodbye
 func FarewellTwo() error {
 	fmt.Println("遠い昔の記憶の彼方に\n" +
 		"忘れかけてた2人のfavorite song\n" +
@@ -24,7 +24,7 @@ func FarewellTwo() error {
 	return nil
 }
 
-/*FarewellThree : say goodbye*/
+// FarewellThree : say goodbye
 func FarewellThree() error {
 	fmt.Println("君はメロディー メロディー\n" +
 		"懐かしいハーモニー ハーモニー\n" +
@@ -36,7 +36,7 @@ func FarewellThree() error {
 	return nil
 }
 
-/*FarewellFour : say goodbye*/
+// FarewellFour : say goodbye
 func FarewellFour() error {
 	fmt.Println("君と歩いたセンター街から\n" +
 		"通りに抜ける青春に迷って\n" +
@@ -46,7 +46,7 @@ func FarewellFour() error {
 	return nil
 }
 
-/*FarewellFive : say goodbye*/
+// FarewellFive : say goodbye
 func FarewellFive() error {
 	fmt.Println("何を忘れてしまったのだろう?\n" +
 		"新しいものばかりを探して\n" +
@@ -55,7 +55,7 @@ func FarewellFive() error {
 	return nil
 }
 
-/*FarewellSix : say goodbye*/
+// FarewellSix : say goodbye
 func FarewellSix() error {
 	fmt.Println("偶然はいつも 教えてくれる意味があると…\n" +
 		"思いがけない未来眠ってた恋が目を覚ます")
@@ -63,7 +63,7 @@ func FarewellSix() error {
 	return nil
 }
 
-/*FarewellSeven : say goodbye*/
+// FarewellSeven : say goodbye
 func FarewellSeven() error {
 	fmt.Println("甘いメモリー メモリー\n" +
 		"夢を見たグローリーデイズ グローリーデイズ\n" +
@@ -75,7 +75,7 @@ func FarewellSeven() error {
 	return nil
 }
 
-/*FarewellEight : say goodbye*/
+// FarewellEight : say goodbye
 func FarewellEight() error {
 	fmt.Println("振り返るように君も思い出すだろうか?\n" +
 		"あの頃 いつも流れたヒットソング")
@@ -83,7 +83,7 @@ func FarewellEight() error {
 	return nil
 }
 
-/*FarewellNine : say goodbye*/
+// FarewellNine : say goodbye
 func FarewellNine() error {
 	fmt.Println("君はメロディー メロディー\n" +
 		"懐かしいハーモニー ハーモニー\n" +
@@ -95,7 +95,7 @@ func FarewellNine() error {
 	return nil
 }
 
-/*FarewellTen : say goodbye*/
+// FarewellTen : say goodbye
 func FarewellTen() error {
 	fmt.Println("こんなメロディー メロディー\n" +
 		"きっとどこかで 君だって口ずさむだろう\n" +
@@ -104,7 +104,7 @@ func FarewellTen() error {
 	return nil
 }
 
-/*FarewellEleven : say goodbye*/
+// FarewellEleven : say goodbye
 func FarewellEleven() error {
 	fmt.Println("口ずさむだろういつの日にかあの頃のメロディー")
 

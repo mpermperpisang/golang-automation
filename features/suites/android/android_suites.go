@@ -5,7 +5,7 @@ import (
 	androidsteps "github.com/golang-automation/features/stepdefinitions/apps/android/steps"
 )
 
-/*AutomationAndroid : suites for android*/
+// AutomationAndroid : suites for android
 func AutomationAndroid(s *godog.Suite) {
 	s.Step(`^client go to login page in android$`, androidsteps.GoToLogin)
 	s.Step(`^client input valid data login in android$`, androidsteps.UserLogin)

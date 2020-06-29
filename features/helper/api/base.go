@@ -9,23 +9,25 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/golang-automation/features/helper"
-	"github.com/golang-automation/features/helper/message"
+	"github.com/golang-automation/features/helper/assertions"
+	"github.com/golang-automation/features/helper/errors"
+	"github.com/golang-automation/features/helper/messages"
+	"github.com/golang-automation/features/helper/regexs"
 	"github.com/yalp/jsonpath"
 )
 
-/*HTTPResponse variable*/
+// HTTPResponse variable
 var HTTPResponse *http.Response
 
-/*BaseURL variable*/
+// BaseURL variable
 var BaseURL, readENV, oauthToken string
 var username, password, number string
 
-/*ResponseBody variable*/
+// ResponseBody variable
 var ResponseBody []byte
 var endpointENV bool
 
-/*AccessToken variable*/
+// AccessToken variable
 var AccessToken interface{}
 var err error
 
@@ -36,7 +38,7 @@ func envReader(env string) error {
 	return nil
 }
 
-/*BaseAPI : set base url for API*/
+// BaseAPI : set base url for API
 func BaseAPI(base string) error {
 	envReader(base)
 
@@ -62,10 +64,10 @@ func varLogin(account string) error {
 }
 
 func stagingNumber() error {
-	number = regexp.MustCompile(helper.RegexInt()).FindString(BaseURL)
+	number = regexp.MustCompile(regexs.RegexInt()).FindString(BaseURL)
 
 	if number == "" {
-		number = regexp.MustCompile(helper.RegexBaseURL()).FindString(BaseURL)
+		number = regexp.MustCompile(regexs.RegexBaseURL()).FindString(BaseURL)
 	}
 
 	return nil
@@ -74,14 +76,14 @@ func stagingNumber() error {
 func clientResponse(sendRequest *http.Request) error {
 	client := &http.Client{}
 	HTTPResponse, err = client.Do(sendRequest)
-	helper.LogPanicln(err)
+	errors.LogPanicln(err)
 
 	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
 
 	return nil
 }
 
-/*AuthenticationAPI : get access token*/
+// AuthenticationAPI : get access token
 func AuthenticationAPI(account string) error {
 	var jsonResponse interface{}
 
@@ -108,14 +110,14 @@ func AuthenticationAPI(account string) error {
 	clientResponse(sendRequest)
 
 	err := json.Unmarshal(ResponseBody, &jsonResponse)
-	helper.LogPanicln(err)
+	errors.LogPanicln(err)
 
 	AccessToken, _ = HTTPJson(jsonResponse)
 
 	return nil
 }
 
-/*RequestAPI : send request*/
+// RequestAPI : send request
 func RequestAPI(verbose string, endpoint string, body string) error {
 	var stringBody string
 
@@ -128,7 +130,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	readVerbose := strings.ToUpper(verbose)
 	requestBody := []byte(body)
 	stringBody = string(requestBody)
-	regexENV := regexp.MustCompile(helper.RegexReadENV())
+	regexENV := regexp.MustCompile(regexs.RegexReadENV())
 	findENV := regexENV.FindAllString(string(requestBody), -1)
 
 	for _, env := range findENV {
@@ -152,11 +154,11 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	return nil
 }
 
-/*ResponseStatusAPI : get and validate response code*/
+// ResponseStatusAPI : get and validate response code
 func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 
-	helper.AssertEqual(response, actualCode, message.ResponseCode(actualCode))
+	assertions.AssertEqual(response, actualCode, messages.ResponseCode(actualCode))
 
 	return nil
 }

@@ -7,24 +7,24 @@ import (
 	android "github.com/golang-automation/features/helper/apps/action"
 )
 
-/*InputPhonePage : page object input phone number*/
+// InputPhonePage : page object input phone number
 type InputPhonePage struct {
 	Page android.Page
 }
 
 var (
-	fieldPhone = "//*[@resource-id='app:id/textFieldAV_textField']"
+	fieldPhone = "/// [@resource-id='app:id/textFieldAV_textField']"
 	btnLanjut  = "Lanjut"
 )
 
-/*InputPhone : input phone number*/
+// InputPhone : input phone number
 func (s *InputPhonePage) InputPhone() *InputPhonePage {
 	s.Page.SendKeysByXpath(fieldPhone, os.Getenv("USER_PHONE_NUMBER"))
 
 	return &InputPhonePage{Page: s.Page}
 }
 
-/*ClickLanjut : click next to input password*/
+// ClickLanjut : click next to input password
 func (s *InputPhonePage) ClickLanjut() *InputPasswordPage {
 	time.Sleep(time.Second * 2)
 	s.Page.ClickByText(btnLanjut)

@@ -4,7 +4,7 @@ import (
 	desktoppages "github.com/golang-automation/features/objectabstractions/web/desktop"
 )
 
-/*UserLogin : input login form*/
+// UserLogin : input login form
 func UserLogin() error {
 	login := desktoppages.LoginPage{Page: action}
 

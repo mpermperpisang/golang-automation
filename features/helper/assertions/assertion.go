@@ -1,11 +1,11 @@
-package helper
+package assertions
 
 import (
 	"log"
 	"reflect"
 )
 
-/*AssertEqual : must equal*/
+// AssertEqual : must equal
 func AssertEqual(exp interface{}, act interface{}, err interface{}) error {
 	if act != exp {
 		log.Panicln(err)
@@ -14,7 +14,7 @@ func AssertEqual(exp interface{}, act interface{}, err interface{}) error {
 	return nil
 }
 
-/*AssertNotEqual : must not equal*/
+// AssertNotEqual : must not equal
 func AssertNotEqual(exp interface{}, act interface{}, err interface{}) error {
 	if act == exp {
 		log.Panicln(err)
@@ -23,7 +23,7 @@ func AssertNotEqual(exp interface{}, act interface{}, err interface{}) error {
 	return nil
 }
 
-/*AssertString : must string*/
+// AssertString : must string
 func AssertString(exp interface{}, act interface{}, err interface{}) error {
 	if reflect.TypeOf(act).String() != "string" {
 		log.Panicln(err)
@@ -32,7 +32,7 @@ func AssertString(exp interface{}, act interface{}, err interface{}) error {
 	return nil
 }
 
-/*AssertInt : must integer*/
+// AssertInt : must integer
 func AssertInt(exp interface{}, act interface{}, err interface{}) error {
 	if reflect.TypeOf(act).String() != "int" {
 		log.Panicln(err)
@@ -41,7 +41,7 @@ func AssertInt(exp interface{}, act interface{}, err interface{}) error {
 	return nil
 }
 
-/*AssertFloat64 : must float64*/
+// AssertFloat64 : must float64
 func AssertFloat64(exp interface{}, act interface{}, err interface{}) error {
 	if reflect.TypeOf(act).String() != "float64" {
 		log.Panicln(err)
@@ -50,7 +50,7 @@ func AssertFloat64(exp interface{}, act interface{}, err interface{}) error {
 	return nil
 }
 
-/*AssertBool : must boolean*/
+// AssertBool : must boolean
 func AssertBool(exp interface{}, act interface{}, err interface{}) error {
 	if reflect.TypeOf(act).String() != "bool" {
 		log.Panicln(err)

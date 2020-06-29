@@ -1,6 +1,6 @@
-package message
+package messages
 
-/*UnitError : pesan untuk unit test*/
+// UnitError : pesan untuk unit test
 func UnitError() string {
 	return "Nama tidak sama"
 }

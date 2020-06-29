@@ -5,7 +5,7 @@ import (
 	webaction "github.com/golang-automation/features/helper/web/action"
 )
 
-/*LoginPage : page object login*/
+// LoginPage : page object login
 type LoginPage struct {
 	Page webaction.Page
 }
@@ -16,21 +16,21 @@ var (
 	btnLogin      = ".js-btn-menu-login.js-tfa-required-button"
 )
 
-/*InputUsername : input username*/
+// InputUsername : input username
 func (s *LoginPage) InputUsername() *LoginPage {
 	s.Page.SendKeysByID(fieldUsername, data.GetUsername())
 
 	return &LoginPage{Page: s.Page}
 }
 
-/*InputPassword : input password*/
+// InputPassword : input password
 func (s *LoginPage) InputPassword() *LoginPage {
 	s.Page.SendKeysByID(fieldPassword, data.GetPassword())
 
 	return &LoginPage{Page: s.Page}
 }
 
-/*ClickLogin : click Login button*/
+// ClickLogin : click Login button
 func (s *LoginPage) ClickLogin() *OTPPage {
 	s.Page.ClickByCSS(btnLogin)
 

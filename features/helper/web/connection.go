@@ -5,15 +5,15 @@ import (
 	"github.com/tebeka/selenium"
 )
 
-/*WebDriver : web driver*/
+// WebDriver : web driver
 type WebDriver struct {
 	Driver selenium.WebDriver
 }
 
-/*Driver global variable*/
+// Driver global variable
 var Driver selenium.WebDriver
 
-/*DriverConnect : connect to driver*/
+// DriverConnect : connect to driver
 func DriverConnect() selenium.WebDriver {
 	p := properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-web.properties", properties.UTF8)
 	caps := selenium.Capabilities{"browserName": p.MustGetString("browserName")}

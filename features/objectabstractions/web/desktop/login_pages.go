@@ -5,7 +5,7 @@ import (
 	webaction "github.com/golang-automation/features/helper/web/action"
 )
 
-/*LoginPage : page object login*/
+// LoginPage : page object login
 type LoginPage struct {
 	Page webaction.Page
 }
@@ -19,7 +19,7 @@ var (
 	googleLogin   = "Login dengan Google"
 )
 
-/*ValidateLoginPage : page validation*/
+// ValidateLoginPage : page validation
 func (s *LoginPage) ValidateLoginPage() *HomePage {
 	s.Page.IsElementDisplayedByText(headerPage)
 	s.Page.IsElementDisplayedByText(fbLogin)
@@ -28,21 +28,21 @@ func (s *LoginPage) ValidateLoginPage() *HomePage {
 	return &HomePage{Page: s.Page}
 }
 
-/*InputUsername : fill in username*/
+// InputUsername : fill in username
 func (s *LoginPage) InputUsername() *LoginPage {
 	s.Page.SendKeysByID(fieldUsername, data.GetUsername())
 
 	return &LoginPage{Page: s.Page}
 }
 
-/*InputPassword : fill in password*/
+// InputPassword : fill in password
 func (s *LoginPage) InputPassword() *LoginPage {
 	s.Page.SendKeysByID(fieldPassword, data.GetPassword())
 
 	return &LoginPage{Page: s.Page}
 }
 
-/*ClickLogin : click Login button*/
+// ClickLogin : click Login button
 func (s *LoginPage) ClickLogin() *OTPPage {
 	s.Page.ClickByText(btnLogin)
 

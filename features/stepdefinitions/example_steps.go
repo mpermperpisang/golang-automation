@@ -8,138 +8,134 @@ import (
 	"reflect"
 
 	"github.com/golang-automation/features/demo"
-	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
+	"github.com/golang-automation/features/helper/assertions"
 	"github.com/golang-automation/features/helper/data"
-	"github.com/golang-automation/features/helper/message"
+	"github.com/golang-automation/features/helper/errors"
+	"github.com/golang-automation/features/helper/messages"
+	"github.com/golang-automation/features/helper/page"
+	"github.com/golang-automation/features/support"
 	"gopkg.in/yaml.v2"
 )
 
-/*Example : yaml struct example*/
+// Example : yaml struct example
 type Example struct {
 	Description string
 	Fruits      map[string][]string
 	Methods     map[string]string
 }
 
-/*Method : method struct example*/
-type Method struct{}
-
 var usersName, meetName string
 var number int
 var config Example
 var yamlFile []byte
 
-/*OpenDWEB : to initiate dweb scenario*/
+// OpenDWEB : to initiate dweb scenario
 func OpenDWEB() error {
-	dwebConnect()
-	desktopPage.GoToURL(os.Getenv("URL"))
-	helper.WaitForLoadingPage(25)
+	support.DesktopPage.GoToURL(os.Getenv("URL"))
+	page.WaitForLoadingPage(25)
 
 	return nil
 }
 
-/*OpenMWEB : initiate mweb scenario*/
+// OpenMWEB : initiate mweb scenario
 func OpenMWEB() error {
-	mwebConnect()
-	mobilePage.GoToURL(os.Getenv("URL"))
-	helper.WaitForLoadingPage(25)
+	support.MobilePage.GoToURL(os.Getenv("URL"))
+	page.WaitForLoadingPage(25)
 
 	return nil
 }
 
-/*OpenAndroid : initiate android scenario*/
+// OpenAndroid : initiate android scenario
 func OpenAndroid() error {
-	androidConnectDriver()
-	androidOpenDevice()
+	support.AndroidOpenDevice()
 
 	return nil
 }
 
-/*OpenIOS : initiate ios scenario*/
+// OpenIOS : initiate ios scenario
 func OpenIOS() error {
-	iosConnectDriver()
-	iosOpenDevice()
+	support.IOSOpenDevice()
 
 	return nil
 }
 
-/*BaseAPI : initiate base url for API*/
+// BaseAPI : initiate base url for API
 func BaseAPI(base string) error {
 	api.BaseAPI(base)
 
 	return nil
 }
 
-/*ResponseStatusAPI : validate response code API*/
+// ResponseStatusAPI : validate response code API
 func ResponseStatusAPI(response int) error {
 	api.ResponseStatusAPI(response)
 
 	return nil
 }
 
-/*GivenUserName : assign name to user*/
+// GivenUserName : assign name to user
 func GivenUserName(name string) error {
 	usersName = name
 
 	return nil
 }
 
-/*MeetUserName : call unit*/
+// MeetUserName : call unit
 func MeetUserName() error {
 	meetName = demo.Hello(usersName)
 
 	return nil
 }
 
-/*SayHelloName : validate unit*/
+// SayHelloName : validate unit
 func SayHelloName(greet string) error {
-	helper.AssertEqual(greet, meetName, message.UnitError())
+	assertions.AssertEqual(greet, meetName, messages.UnitError())
 
 	return nil
 }
 
-/*GivenData : given some data for example*/
+// GivenData : given some data for example
 func GivenData() error {
 	number = 5
 
 	return nil
 }
 
-/*SetData : set some data for example*/
+// SetData : set some data for example
 func SetData() error {
 	data.SetDataID(number)
 
 	return nil
 }
 
-/*GetData : get some data for example*/
+// GetData : get some data for example
 func GetData() error {
 	fmt.Println(data.GetDataID())
 
 	return nil
 }
 
-/*GivenFile : given yaml file*/
+// GivenFile : given yaml file
 func GivenFile() error {
 	var err error
 
 	filename, _ := filepath.Abs("./features/helper/yaml/example.yaml")
 	yamlFile, err = ioutil.ReadFile(filename)
-	helper.LogPanicln(err)
+	errors.LogPanicln(err)
 
 	return nil
 }
 
-/*ReadFile : read yaml file*/
+// ReadFile : read yaml file
 func ReadFile() error {
 	err := yaml.Unmarshal(yamlFile, &config)
-	helper.LogPanicln(err)
+	errors.LogPanicln(err)
 
 	return nil
 }
 
-/*PrintContents : print yaml content*/
+// PrintContents : print yaml content
 func PrintContents() error {
 	_, exists := config.Fruits["apple"]
 	color := config.Fruits["apple"][0]
@@ -151,13 +147,13 @@ func PrintContents() error {
 	return nil
 }
 
-/*GetFunction : call function mapping*/
+// GetFunction : call function mapping
 func GetFunction() error {
 	GivenFile()
 	ReadFile()
 
 	exists := config.Methods["f"]
-	f := reflect.ValueOf(Method{}).MethodByName(exists).Interface().(func())
+	f := reflect.ValueOf(Example{}).MethodByName(exists).Interface().(func())
 
 	// call dynamic function
 	f()
@@ -165,12 +161,12 @@ func GetFunction() error {
 	return nil
 }
 
-/*Foo : example method*/
-func (Method) Foo() {
+// Foo : example method
+func (Example) Foo() {
 	fmt.Println("Call function : foo")
 }
 
-/*Bar : example method*/
-func (Method) Bar() {
+// Bar : example method
+func (Example) Bar() {
 	fmt.Println("Call function : bar")
 }

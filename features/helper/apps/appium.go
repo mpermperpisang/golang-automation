@@ -7,7 +7,7 @@ import (
 	"github.com/golang-API/helper"
 )
 
-/*Appium : set appium server*/
+// Appium : set appium server
 func Appium() error {
 	pwd, err := os.Getwd()
 	helper.LogPanicln(err)

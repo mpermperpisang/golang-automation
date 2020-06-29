@@ -4,7 +4,7 @@ import (
 	androidpages "github.com/golang-automation/features/objectabstractions/apps/android"
 )
 
-/*UserLogin : fill in and process login form*/
+// UserLogin : fill in and process login form
 func UserLogin() error {
 	loginProcess := androidpages.InputPhonePage{Page: action}
 

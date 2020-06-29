@@ -5,7 +5,7 @@ import (
 	"github.com/golang-automation/features/stepdefinitions"
 )
 
-/*FarewellGreeting : suites for API*/
+// FarewellGreeting : suites for API
 func FarewellGreeting(s *godog.Suite) {
 	s.Step(`^waktu terus berjalan$`, stepdefinitions.FarewellOne)
 	s.Step(`^tanpa sadar diriku sampai di ujung waktu$`, stepdefinitions.FarewellTwo)

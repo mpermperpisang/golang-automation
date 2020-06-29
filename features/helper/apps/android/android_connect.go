@@ -6,18 +6,18 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
-/*Driver global variable*/
+// Driver global variable
 var Driver *appium.WebDriver
 var p *properties.Properties
 
-/*AndroidProperties : read android properties content file*/
+// AndroidProperties : read android properties content file
 func AndroidProperties() error {
 	p = properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-android.properties", properties.UTF8)
 
 	return nil
 }
 
-/*DriverConnect for android*/
+// DriverConnect for android
 func DriverConnect() *appium.WebDriver {
 	AndroidProperties()
 
