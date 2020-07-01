@@ -59,11 +59,8 @@ func structDetail(scenario interface{}, typeSupport string) error {
 func ssWeb() error {
 	if web.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/web", pwd)
-		buffWeb, err := web.Driver.Screenshot()
-		errors.LogPanicln(err)
 
-		dirCheck()
-		ioutil.WriteFile(pathname, buffWeb, 0644)
+		takeErrorWebPageImage()
 	}
 
 	return nil
@@ -73,7 +70,7 @@ func ssAndroid() error {
 	if android.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/android", pwd)
 
-		takeErrorPageImage()
+		takeErrorAppsPageImage()
 	}
 
 	return nil
@@ -83,7 +80,7 @@ func ssIOS() error {
 	if ios.Driver != nil {
 		path = fmt.Sprintf("%s/screenshots/iOS", pwd)
 
-		takeErrorPageImage()
+		takeErrorAppsPageImage()
 	}
 
 	return nil
@@ -99,7 +96,17 @@ func dirCheck() error {
 	return nil
 }
 
-func takeErrorPageImage() error {
+func takeErrorWebPageImage() error {
+	buffWeb := webaction.Page{Action: web.Driver}
+
+	dirCheck()
+	buffWeb.TakeScreenshot()
+	ioutil.WriteFile(pathname, []byte(fmt.Sprintf("%v", buffWeb)), 0644)
+
+	return nil
+}
+
+func takeErrorAppsPageImage() error {
 	buffApps := appsaction.Page{Action: appsaction.AppPage{Device: appsaction.Device}}
 
 	dirCheck()
@@ -192,7 +199,7 @@ func platformCheck(tags string) error {
 func DwebConnect() error {
 	web.DriverConnect()
 
-	DesktopWeb = webaction.Page{Action: webaction.Driver{Driver: web.Driver}}
+	DesktopWeb = webaction.Page{Action: web.Driver}
 	DesktopPage = desktop.DwebPage{Page: web.Driver}
 
 	return nil
@@ -202,7 +209,7 @@ func DwebConnect() error {
 func MwebConnect() error {
 	web.DriverConnect()
 
-	MobileWeb = webaction.Page{Action: webaction.Driver{Driver: web.Driver}}
+	MobileWeb = webaction.Page{Action: web.Driver}
 	MobilePage = mobile.MwebPage{Page: web.Driver}
 
 	return nil

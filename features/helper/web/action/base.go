@@ -116,3 +116,11 @@ func (s *Page) MaxWindow(locator string) error {
 
 	return element
 }
+
+// TakeScreenshot : take error screenshot
+func (s *Page) TakeScreenshot() []byte {
+	element, err := s.driver().Screenshot()
+	errors.LogPanicln(err)
+
+	return element
+}

@@ -4,16 +4,11 @@ import (
 	"github.com/tebeka/selenium"
 )
 
-// Driver : Desktop & Mobile driver
-type Driver struct {
-	Driver selenium.WebDriver
-}
-
 // Page : page actions
 type Page struct {
-	Action Driver
+	Action selenium.WebDriver
 }
 
 func (s *Page) driver() selenium.WebDriver {
-	return s.Action.Driver
+	return s.Action
 }
