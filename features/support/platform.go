@@ -42,7 +42,7 @@ var IOSApps appsaction.Page
 var testCase scenarioDetail
 var feature featureDetail
 var path, pathname, pwd, filename string
-var tags string
+var featureTags, scenarioTags, tags string
 
 func structDetail(scenario interface{}, typeSupport string) error {
 	data, _ := json.Marshal(scenario)
@@ -124,7 +124,7 @@ func GodogMainSupport(s *godog.Suite) {
 		i := 0
 
 		for i < len(feature.Tags) {
-			tags += " " + feature.Tags[i].Name
+			featureTags += " " + feature.Tags[i].Name
 
 			i++
 		}
@@ -136,17 +136,12 @@ func GodogMainSupport(s *godog.Suite) {
 		i := 0
 
 		for i < len(testCase.Tags) {
-			tags += " " + testCase.Tags[i].Name
+			scenarioTags += " " + testCase.Tags[i].Name
 
 			i++
 		}
 
-		if tags != "" {
-			fmt.Println("Starting automation")
-			fmt.Printf("Running scenario with tag :%s", tags)
-		}
-
-		platformCheck(tags)
+		platformCheck(featureTags + scenarioTags)
 	})
 
 	s.AfterScenario(func(scenario interface{}, log error) {
@@ -154,11 +149,13 @@ func GodogMainSupport(s *godog.Suite) {
 
 		structDetail(scenario, "tc")
 
+		scenarioTags = ""
+
 		if log != nil {
 			pwd, err = os.Getwd()
 			errors.LogPanicln(err)
 
-			filename = fmt.Sprintf("FAILED - %s - %s - %s.png", testCase.Name, testCase.Steps[0].Text, log)
+			filename = fmt.Sprintf("Screenshot - FAILED - %s - %s - %s.png", testCase.Name, testCase.Steps[0].Text, log)
 
 			ssWeb()
 			ssAndroid()
@@ -167,8 +164,6 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 
 	s.AfterSuite(func() {
-		fmt.Println("Stopping automation")
-
 		if web.Driver != nil {
 			web.Driver.Quit()
 		} else if android.Driver != nil {

@@ -1,0 +1,30 @@
+# TODO
+# still on development
+unit: features/scenarios/unit
+         -r features/support
+         -r features/helper
+         -r features/step_definitions/unit
+api: features/scenarios/api
+         -r features/support
+         -r features/helper
+         -r features/step_definitions/api
+desktop: features/scenarios/web/desktop
+         -r features/support
+         -r features/helper
+         -r features/step_definitions/web/desktop
+         -r features/objectabstractions/web/desktop
+mobile: features/scenarios/web/mobile
+         -r features/support
+         -r features/helper
+         -r features/step_definitions/web/mobile
+         -r features/objectabstractions/web/mobile
+android: features/scenarios/apps/android
+         -r features/support
+         -r features/helper
+         -r features/step_definitions/apps/android
+         -r features/objectabstractions/apps/android
+ios: features/scenarios/apps/ios
+         -r features/support
+         -r features/helper
+         -r features/step_definitions/apps/ios
+         -r features/objectabstractions/apps/ios

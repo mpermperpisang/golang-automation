@@ -18,11 +18,17 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `$ make`
 
 **Running**<br/>
-`godog --tags=@example`<br/>
-`godog --tags=~@example`<br/>
-`godog --tags="@example && @example-dweb"`<br/>
-`godog --tags="@example && ~@example-dweb"`<br/>
-`godog --tags=@example,@example-dweb`
+`./godog -t "@example"`<br/>
+`./godog -t "~@example"`<br/>
+`./godog -t "@example && @example-dweb"`<br/>
+`./godog -t "@example && ~@example-dweb"`<br/>
+`./godog -t "@example,@example-dweb"`<br/>
+
+**Running & Open Generate Report**<br/>
+`./godog -r -t "@example"`
+
+**Generate Report**<br/>
+`node index.js`
 
 **Linter**<br/>
 `golint`

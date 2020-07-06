@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+while getopts "t:rp:" option; do
+  case "${option}" in
+    t) TAG=${OPTARG} ;;
+    r) REPORT=true ;;
+    p) PROFILE=${OPTARG} ;;
+  esac
+done
+
+if [[ $TAG != "" ]]; then
+  echo "Starting automation"
+  echo "Running scenario with tag : ${TAG}"
+  godog --tags=$TAG --format=cucumber > test/report/cucumber_report.json
+  echo "Stopping automation"
+else
+  echo "Please define a running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>'"
+  exit 1
+fi
+
+if [[ $REPORT == true ]]; then
+  echo "Opening generate report"
+  node index.js
+fi
+
+if [[ $PROFILE != "" ]]; then
+  # TODO
+  # still on development
+  echo $PROFILE
+fi
