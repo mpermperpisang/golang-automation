@@ -11,10 +11,11 @@ done
 if [[ $TAG != "" ]]; then
   echo "Starting automation"
   echo "Running scenario with tag : ${TAG}"
-  godog --tags=$TAG --format=cucumber > test/report/cucumber_report.json
+  godog --tags="${TAG}" --format=cucumber > test/report/cucumber_report.json --random
   echo "Stopping automation"
+  ./xray -i -j cucumber_report.json
 else
-  echo "Please define a running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>'"
+  echo "Please define the running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>'"
   exit 1
 fi
 

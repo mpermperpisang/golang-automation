@@ -1,0 +1,54 @@
+#!/usr/bin/env sh
+
+while getopts ":ix:ej:" option; do
+  case "${option}" in
+    i) IMPORT=true ;;
+    e) EXPORT=true ;;
+    x) FEATURE_TAG=${OPTARG} ;;
+    j) CUCUMBER_REPORT=${OPTARG} ;;
+  esac
+done
+
+function get_id_secret() {
+  token=$(curl -s -H "Content-Type: application/json" -X POST --data @"auth.json" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
+}
+
+function export_cucumber_scenario() {
+  curl -s -o $FEATURE_TAG.zip -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$FEATURE_TAG"
+  mkdir -p test/xray
+  unzip -o $FEATURE_TAG.zip -d features/scenarios/xray
+  mv $FEATURE_TAG.zip test/xray
+}
+
+function import_test_result() {
+  curl -s -H "Content-Type: application/json" -X POST -H "Authorization: Bearer $token"  --data @"test/report/$CUCUMBER_REPORT" https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber > /dev/null
+}
+
+function check_cucumber_report() {
+  if [[ $CUCUMBER_REPORT == "" ]]; then
+    echo "Please define the cucumber_report.json!"
+    exit 1
+  fi
+}
+
+function check_feature_tag() {
+  if [[ $FEATURE_TAG == "" ]]; then
+    echo "Please define the feature tag!"
+    exit 1
+  fi
+}
+
+if [[ $IMPORT == true ]]; then
+  check_cucumber_report
+  get_id_secret
+  import_test_result
+  echo "Execution result has import to xray successfully"
+elif [[ $EXPORT == true ]]; then
+  check_feature_tag
+  get_id_secret
+  export_cucumber_scenario
+  echo "Cucumber tests with key $FEATURE_TAG has been exported!"
+else
+  echo "Please define the xray flag! ./godog -e -x {TEST_EXECUTION_ID} or ./godog -i -j {CUCUMBER_REPORT_JSON}"
+  exit 1
+fi

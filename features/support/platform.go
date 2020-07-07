@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -43,6 +44,7 @@ var testCase scenarioDetail
 var feature featureDetail
 var path, pathname, pwd, filename string
 var featureTags, scenarioTags, tags string
+var text, platform string
 
 func structDetail(scenario interface{}, typeSupport string) error {
 	data, _ := json.Marshal(scenario)
@@ -173,17 +175,47 @@ func GodogMainSupport(s *godog.Suite) {
 			ios.Driver.Stop()
 			apps.Appium()
 		}
+
+		sendNotifTo("slack")
 	})
+}
+
+func textFormat() string {
+	text = "Automation%20Test%20Result%0D" +
+		"%0DStatus%20:%20" +
+		"%0DFeature%20tag%20:%20" + strings.Trim(featureTags, " ") +
+		"%0DPlatform%20:%20" + strings.Replace(platform, " ", "%20", -1) +
+		"%0DSuccess%20percentage%20:%20" +
+		"%0DReport%20:%20" + pwd + "/test/report/cucumber_report.html"
+
+	return text
+}
+
+func sendNotifTo(apps string) error {
+	resp, err := http.Post("http://localhost:8282/send-"+apps+"?text="+textFormat(), "", nil)
+	errors.LogPanicln(err)
+
+	defer resp.Body.Close()
+
+	return nil
 }
 
 func platformCheck(tags string) error {
 	if strings.Contains(tags, "@dweb") {
+		platform = "Desktop Web"
+
 		DwebConnect()
 	} else if strings.Contains(tags, "@mweb") {
+		platform = "Mobile Web"
+
 		MwebConnect()
 	} else if strings.Contains(tags, "@android") {
+		platform = "Android"
+
 		AndroidConnect()
 	} else if strings.Contains(tags, "@ios") {
+		platform = "iOS"
+
 		IOSConnect()
 	}
 
