@@ -1,4 +1,4 @@
-all: docker-clean docker-hub docker-browser
+all: package kill-port docker
 
 package:
 	@go get github.com/DATA-DOG/godog/cmd/godog
@@ -11,11 +11,14 @@ package:
 	@go get -u golang.org/x/lint/golint
 	@go get -u github.com/goccy/go-yaml
 	@go get github.com/brianvoe/gofakeit
+	@npm install cucumber-html-reporter
 	@echo "Package installed"
 
 kill-port:
 	@kill -9 $$(lsof -t -i:4545)
 	@echo "Port 4545 is killed"
+
+docker: docker-clean docker-connect
 
 docker-clean:
 	@docker container rm $$(docker ps -aq) -f
