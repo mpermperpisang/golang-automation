@@ -21,7 +21,8 @@ function export_cucumber_scenario() {
 }
 
 function import_test_result() {
-  curl -s -H "Content-Type: application/json" -X POST -H "Authorization: Bearer $token"  --data @"test/report/$CUCUMBER_REPORT" https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber > /dev/null
+  curl_response=$(curl -s -H "Content-Type: application/json" -X POST -H "Authorization: Bearer $token"  --data @"test/report/$CUCUMBER_REPORT" https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber > /dev/null)
+  echo "$curl_response"
 }
 
 function check_cucumber_report() {
@@ -47,7 +48,7 @@ elif [[ $EXPORT == true ]]; then
   check_feature_tag
   get_id_secret
   export_cucumber_scenario
-  echo "Cucumber tests with key $FEATURE_TAG has been exported!"
+  echo "Cucumber tests with test execution ID $FEATURE_TAG has been exported!"
 else
   echo "Please define the xray flag! ./godog -e -x {TEST_EXECUTION_ID} or ./godog -i -j {CUCUMBER_REPORT_JSON}"
   exit 1
