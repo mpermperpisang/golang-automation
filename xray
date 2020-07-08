@@ -14,7 +14,9 @@ function get_id_secret() {
 }
 
 function export_cucumber_scenario() {
-  curl -s -o $FEATURE_TAG.zip -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$FEATURE_TAG"
+  curl_response=$(curl -s -o $FEATURE_TAG.zip -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$FEATURE_TAG")
+
+  echo "$curl_response"
   mkdir -p test/xray
   unzip -o $FEATURE_TAG.zip -d features/scenarios/xray
   mv $FEATURE_TAG.zip test/xray
@@ -22,6 +24,7 @@ function export_cucumber_scenario() {
 
 function import_test_result() {
   curl_response=$(curl -s -H "Content-Type: application/json" -X POST -H "Authorization: Bearer $token"  --data @"test/report/$CUCUMBER_REPORT" https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber > /dev/null)
+
   echo "$curl_response"
 }
 
