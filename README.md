@@ -30,6 +30,9 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 **Running & Open Generate Report**<br/>
 `$ ./godog -r -t "@example"`
 
+**Running & Export Xray**<br/>
+`$ ./godog -r -x TEST_EXECUTION_ID -t "@example"`
+
 **Generate Report**<br/>
 `$ node index.js`
 
