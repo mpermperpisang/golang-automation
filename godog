@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-while getopts "t:rp:" option; do
+while getopts "t:x:rp:" option; do
   case "${option}" in
     x) EXECUTION_TAG=${OPTARG} ;;
     t) SCENARIO_TAG=${OPTARG} ;;
@@ -9,10 +9,16 @@ while getopts "t:rp:" option; do
   esac
 done
 
+function check_testexecution_id() {
+  if [[ $EXECUTION_TAG != "" ]]; then
+    ./xray -e -x ${EXECUTION_TAG}
+  fi
+}
+
 if [[ $SCENARIO_TAG != "" ]]; then
   echo "Starting automation"
   echo "Running scenario with tag : ${SCENARIO_TAG}"
-  ./xray -e -x ${EXECUTION_TAG}
+  check_testexecution_id
   godog --tags="${SCENARIO_TAG}" --format=cucumber > test/report/cucumber_report.json --random
   echo "Stopping automation"
   ./xray -i -j cucumber_report.json
