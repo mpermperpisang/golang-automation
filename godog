@@ -2,16 +2,18 @@
 
 while getopts "t:rp:" option; do
   case "${option}" in
-    t) TAG=${OPTARG} ;;
+    x) EXECUTION_TAG=${OPTARG} ;;
+    t) SCENARIO_TAG=${OPTARG} ;;
     r) REPORT=true ;;
     p) PROFILE=${OPTARG} ;;
   esac
 done
 
-if [[ $TAG != "" ]]; then
+if [[ $SCENARIO_TAG != "" ]]; then
   echo "Starting automation"
-  echo "Running scenario with tag : ${TAG}"
-  godog --tags="${TAG}" --format=cucumber > test/report/cucumber_report.json --random
+  echo "Running scenario with tag : ${SCENARIO_TAG}"
+  ./xray -e -x ${EXECUTION_TAG}
+  godog --tags="${SCENARIO_TAG}" --format=cucumber > test/report/cucumber_report.json --random
   echo "Stopping automation"
   ./xray -i -j cucumber_report.json
 else

@@ -47,7 +47,7 @@ if [[ $IMPORT == true ]]; then
   check_cucumber_report
   get_id_secret
   import_test_result
-  git reset --hard HEAD
+  git checkout features/scenarios
   echo "Execution result has import to xray successfully"
 elif [[ $EXPORT == true ]]; then
   check_feature_tag
