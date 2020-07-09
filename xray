@@ -17,6 +17,7 @@ function export_cucumber_scenario() {
   curl_response=$(curl -s -o $FEATURE_TAG.zip -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$FEATURE_TAG")
 
   echo "$curl_response"
+  mkdir features/scenarios
   mkdir -p test/xray
   unzip -o $FEATURE_TAG.zip -d features/scenarios/xray
   mv $FEATURE_TAG.zip test/xray
@@ -46,10 +47,13 @@ if [[ $IMPORT == true ]]; then
   check_cucumber_report
   get_id_secret
   import_test_result
+  git reset --hard HEAD
   echo "Execution result has import to xray successfully"
 elif [[ $EXPORT == true ]]; then
   check_feature_tag
   get_id_secret
+  rm -rf features/scenarios
+  rm -rf test/xray
   export_cucumber_scenario
   echo "Cucumber tests with test execution ID $FEATURE_TAG has been exported!"
 else
