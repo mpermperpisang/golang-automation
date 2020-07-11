@@ -12,6 +12,8 @@ done
 function check_testexecution_id() {
   if [[ $EXECUTION_TAG != "" ]]; then
     ./xray -e -x ${EXECUTION_TAG}
+  else
+    rm -rf features/scenarios
   fi
 }
 
