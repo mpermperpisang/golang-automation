@@ -173,7 +173,7 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 
 	s.AfterSuite(func() {
-		resp, err := http.Post("http://localhost:8383/godog-support?featureTags="+strings.Trim(FeatureTags, " ")+"&platformName="+strings.Replace(Platform, " ", "%20", -1)+"&pwdPath="+PWD, "", nil)
+		resp, err := http.Post("http://localhost:8383/godog-support?featureTags="+getFeatureTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
 		errors.LogPanicln(err)
 
 		defer resp.Body.Close()
@@ -188,6 +188,18 @@ func GodogMainSupport(s *godog.Suite) {
 			apps.Appium()
 		}
 	})
+}
+
+func getFeatureTags() string {
+	replacer := strings.NewReplacer(" ", "%20")
+
+	return replacer.Replace(fmt.Sprintf("%v", strings.Trim(FeatureTags, " ")))
+}
+
+func getPlatformName() string {
+	replacer := strings.NewReplacer(" ", "%20")
+
+	return replacer.Replace(fmt.Sprintf("%v", Platform))
 }
 
 func platformCheck(tags string) error {

@@ -85,7 +85,7 @@ func getGodogInfo() {
 func getFeatureResponse() string {
 	respFeature, err := jsonpath.Read(jsonResponse, "$..feature_tags")
 	errors.LogPanicln(err)
-	replacer := strings.NewReplacer("[", "", "]", "", " ", "+%26+")
+	replacer := strings.NewReplacer("[", "", "]", "", " ", "+")
 	output := replacer.Replace(fmt.Sprintf("%v", respFeature))
 
 	return output
