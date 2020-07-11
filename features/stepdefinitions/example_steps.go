@@ -14,10 +14,7 @@ import (
 	"github.com/golang-automation/features/helper/errors"
 	"github.com/golang-automation/features/helper/messages"
 	"github.com/golang-automation/features/helper/page"
-	webhelper "github.com/golang-automation/features/helper/web"
-	webaction "github.com/golang-automation/features/helper/web/action"
 	"github.com/golang-automation/features/support"
-	"gitlab.com/bot-service/helper"
 	"gopkg.in/yaml.v2"
 )
 
@@ -37,9 +34,6 @@ var yamlFile []byte
 func OpenDWEB() error {
 	support.DesktopPage.GoToURL(os.Getenv("URL"))
 	page.WaitForLoadingPage(25)
-	a := webaction.Page{Action: webhelper.Driver}
-	currURL := a.GetCurrentURL()
-	helper.AssertEqual(currURL, os.Getenv("DWEB_BASE_URL"), messages.NotEqualURL())
 
 	return nil
 }
