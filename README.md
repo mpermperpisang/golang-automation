@@ -28,12 +28,12 @@ This command will not import automation run result to Xray
 `$ ./godog -t "@example && ~@example-dweb"`<br/>
 `$ ./godog -t "@example,@example-dweb"`<br/>
 
-**Running & Open Generate Report**<br/>
+**Running & Open Generate HTML Report**<br/>
 `$ ./godog -r -t "@example"`
 
 **Running & Export Xray**<br/>
 This command will do import automation run result to Xray
-`$ ./godog -r -x TEST_EXECUTION_ID -t "@example"`
+`$ ./godog -x TEST_EXECUTION_ID -t "@example"`
 
 **Generate Report**<br/>
 `$ node index.js`
