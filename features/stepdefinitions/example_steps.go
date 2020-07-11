@@ -39,7 +39,7 @@ func OpenDWEB() error {
 	page.WaitForLoadingPage(25)
 	a := webaction.Page{Action: webhelper.Driver}
 	currURL := a.GetCurrentURL()
-	helper.AssertEqual(currURL, "https://www.bukalapak.com", messages.NotEqualURL())
+	helper.AssertEqual(currURL, os.Getenv("DWEB_BASE_URL"), messages.NotEqualURL())
 
 	return nil
 }

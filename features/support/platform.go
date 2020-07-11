@@ -127,7 +127,6 @@ func takeErrorAppsPageImage() error {
 
 // GodogMainSupport : does something before and after scenario
 func GodogMainSupport(s *godog.Suite) {
-	// TODO: Handle before and after scenario
 	s.BeforeFeature(func(scenario *gherkin.Feature) {
 		structDetail(scenario, "feature")
 

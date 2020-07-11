@@ -36,7 +36,12 @@ func statusScenario() error {
 	errors.LogPanicln(err)
 
 	json.Unmarshal(jsonFile, &reports)
+	saveStatus()
 
+	return nil
+}
+
+func saveStatus() error {
 	for i := 0; i < len(reports); i++ {
 		if len(reports[i].Elements) != 0 {
 			for s := 0; s < len(reports[i].Elements); s++ {
@@ -154,14 +159,14 @@ func directoryResponseCheck() string {
 }
 
 func positiveSuccessRateCheck() string {
-	successPercentage := int((float64(successPercentageCheck()) / float64(len(arrayStatus))) * 100)
-	isNegative := math.Signbit(float64(successPercentage))
+	successPercentage := (float64(successPercentageCheck()) / float64(len(arrayStatus))) * 100
+	numberIsNegative := math.Signbit(successPercentage)
 
-	if isNegative {
+	if numberIsNegative {
 		return outputReplace(messages.NotValid("percentage"))
 	}
 
-	return strconv.Itoa(successPercentage) + "%25"
+	return strconv.Itoa(int(successPercentage)) + "%25"
 }
 
 func sendNotifTo(apps string) error {
