@@ -40,11 +40,19 @@ var AndroidApps appsaction.Page
 // IOSApps : ios apps driver
 var IOSApps appsaction.Page
 
+// FeatureTags : feature-feature tag
+var FeatureTags string
+
+// Platform : platform name
+var Platform string
+
+// PWD : get current directory path
+var PWD string
+
 var testCase scenarioDetail
 var feature featureDetail
-var path, pathname, pwd, filename string
-var featureTags, scenarioTags, tags string
-var text, platform string
+var path, pathname, filename string
+var scenarioTags, tags string
 
 func structDetail(scenario interface{}, typeSupport string) error {
 	data, _ := json.Marshal(scenario)
@@ -60,7 +68,7 @@ func structDetail(scenario interface{}, typeSupport string) error {
 
 func ssWeb() error {
 	if web.Driver != nil {
-		path = fmt.Sprintf("%s/screenshots/web", pwd)
+		path = fmt.Sprintf("%s/screenshots/web", PWD)
 
 		takeErrorWebPageImage()
 	}
@@ -70,7 +78,7 @@ func ssWeb() error {
 
 func ssAndroid() error {
 	if android.Driver != nil {
-		path = fmt.Sprintf("%s/screenshots/android", pwd)
+		path = fmt.Sprintf("%s/screenshots/android", PWD)
 
 		takeErrorAppsPageImage()
 	}
@@ -80,7 +88,7 @@ func ssAndroid() error {
 
 func ssIOS() error {
 	if ios.Driver != nil {
-		path = fmt.Sprintf("%s/screenshots/iOS", pwd)
+		path = fmt.Sprintf("%s/screenshots/iOS", PWD)
 
 		takeErrorAppsPageImage()
 	}
@@ -126,7 +134,7 @@ func GodogMainSupport(s *godog.Suite) {
 		i := 0
 
 		for i < len(feature.Tags) {
-			featureTags += " " + feature.Tags[i].Name
+			FeatureTags += " " + feature.Tags[i].Name
 
 			i++
 		}
@@ -143,7 +151,7 @@ func GodogMainSupport(s *godog.Suite) {
 			i++
 		}
 
-		platformCheck(featureTags + scenarioTags)
+		platformCheck(FeatureTags + scenarioTags)
 	})
 
 	s.AfterScenario(func(scenario interface{}, log error) {
@@ -152,11 +160,10 @@ func GodogMainSupport(s *godog.Suite) {
 		structDetail(scenario, "tc")
 
 		scenarioTags = ""
+		PWD, err = os.Getwd()
+		errors.LogPanicln(err)
 
 		if log != nil {
-			pwd, err = os.Getwd()
-			errors.LogPanicln(err)
-
 			filename = fmt.Sprintf("Screenshot - FAILED - %s - %s - %s.png", testCase.Name, testCase.Steps[0].Text, log)
 
 			ssWeb()
@@ -166,6 +173,11 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 
 	s.AfterSuite(func() {
+		resp, err := http.Post("http://localhost:8383/godog-support?featureTags="+strings.Trim(FeatureTags, " ")+"&platformName="+strings.Replace(Platform, " ", "%20", -1)+"&pwdPath="+PWD, "", nil)
+		errors.LogPanicln(err)
+
+		defer resp.Body.Close()
+
 		if web.Driver != nil {
 			web.Driver.Quit()
 		} else if android.Driver != nil {
@@ -175,46 +187,24 @@ func GodogMainSupport(s *godog.Suite) {
 			ios.Driver.Stop()
 			apps.Appium()
 		}
-
-		sendNotifTo("slack")
 	})
-}
-
-func textFormat() string {
-	text = "Automation%20Test%20Result%0D" +
-		"%0DStatus%20:%20" +
-		"%0DFeature%20tag%20:%20" + strings.Trim(featureTags, " ") +
-		"%0DPlatform%20:%20" + strings.Replace(platform, " ", "%20", -1) +
-		"%0DSuccess%20percentage%20:%20" +
-		"%0DReport%20:%20" + pwd + "/test/report/cucumber_report.html"
-
-	return text
-}
-
-func sendNotifTo(apps string) error {
-	resp, err := http.Post("http://localhost:8282/send-"+apps+"?text="+textFormat(), "", nil)
-	errors.LogPanicln(err)
-
-	defer resp.Body.Close()
-
-	return nil
 }
 
 func platformCheck(tags string) error {
 	if strings.Contains(tags, "@dweb") {
-		platform = "Desktop Web"
+		Platform += "Desktop-Web "
 
 		DwebConnect()
 	} else if strings.Contains(tags, "@mweb") {
-		platform = "Mobile Web"
+		Platform += "Mobile-Web "
 
 		MwebConnect()
 	} else if strings.Contains(tags, "@android") {
-		platform = "Android"
+		Platform += "Android "
 
 		AndroidConnect()
 	} else if strings.Contains(tags, "@ios") {
-		platform = "iOS"
+		Platform += "iOS "
 
 		IOSConnect()
 	}

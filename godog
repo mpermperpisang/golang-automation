@@ -21,6 +21,8 @@ if [[ $SCENARIO_TAG != "" ]]; then
   check_testexecution_id
   godog --tags="${SCENARIO_TAG}" --format=cucumber > test/report/cucumber_report.json --random
   echo "Stopping automation"
+  chmod 744 features/support/main/script.go
+  ./features/support/main/script.go
   ./xray -i -j cucumber_report.json
 else
   echo "Please define the running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>'"

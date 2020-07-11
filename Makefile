@@ -11,6 +11,7 @@ package:
 	@go get -u golang.org/x/lint/golint
 	@go get -u github.com/goccy/go-yaml
 	@go get github.com/brianvoe/gofakeit
+	@go get -u github.com/tidwall/gjson
 	@npm install cucumber-html-reporter
 	@echo "Package installed"
 
