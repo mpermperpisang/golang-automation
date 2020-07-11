@@ -36,8 +36,12 @@ func statusScenario() error {
 
 	json.Unmarshal(jsonFile, &reports)
 
-	for i := 0; i < len(reports[0].Elements); i++ {
-		arrayStatus = append(arrayStatus, reports[0].Elements[i].Steps[0].Result.Status)
+	for i := 0; i < len(reports); i++ {
+		if len(reports[i].Elements) != 0 {
+			for s := 0; s < len(reports[i].Elements); s++ {
+				arrayStatus = append(arrayStatus, reports[i].Elements[s].Steps[0].Result.Status)
+			}
+		}
 	}
 
 	statusRunCheck(arrayStatus)
@@ -47,9 +51,9 @@ func statusScenario() error {
 
 func statusRunCheck(arrayStatus []string) string {
 	if helper.Contains(arrayStatus, "failed") {
-		statusRun = "FAILED"
+		statusRun = "FAILED%20:red_circle:"
 	} else {
-		statusRun = "SUCCESS"
+		statusRun = "SUCCESS%20:green_heart:"
 	}
 
 	return statusRun
@@ -58,7 +62,7 @@ func statusRunCheck(arrayStatus []string) string {
 func successPercentageCheck() int {
 	var countPassed int
 
-	for i := 0; i < len(reports[0].Elements); i++ {
+	for i := 0; i < len(arrayStatus); i++ {
 		if arrayStatus[i] == "passed" {
 			countPassed++
 		}
@@ -105,7 +109,7 @@ func getDirectoryResponse() string {
 func textFormat() string {
 	getGodogInfo()
 
-	successPercentage = int((float64(successPercentageCheck()) / float64(len(reports[0].Elements))) * 100)
+	successPercentage = int((float64(successPercentageCheck()) / float64(len(arrayStatus))) * 100)
 	text = "%2AAutomation%20Run%20Result%2A%0D" +
 		"%0DStatus%20:%20" + statusRun +
 		"%0DTest%20Execution%20tag%20:%20" + getFeatureResponse() +

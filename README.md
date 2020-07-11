@@ -21,6 +21,7 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `$ make docker`
 
 **Running**<br/>
+This command will not import automation run result to Xray
 `$ ./godog -t "@example"`<br/>
 `$ ./godog -t "~@example"`<br/>
 `$ ./godog -t "@example && @example-dweb"`<br/>
@@ -31,6 +32,7 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `$ ./godog -r -t "@example"`
 
 **Running & Export Xray**<br/>
+This command will do import automation run result to Xray
 `$ ./godog -r -x TEST_EXECUTION_ID -t "@example"`
 
 **Generate Report**<br/>

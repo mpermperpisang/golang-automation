@@ -110,5 +110,5 @@ type CucumberReport []struct {
 				Duration     int64  `json:"duration"`
 			} `json:"result"`
 		} `json:"steps"`
-	} `json:"elements"`
+	} `json:"elements,omitempty"`
 }
