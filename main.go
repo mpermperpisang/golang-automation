@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/golang-automation/features/helper/errors"
+	"github.com/golang-automation/features/helper"
 	"github.com/joho/godotenv"
 )
 
 func init() {
 	env := godotenv.Load()
-	errors.LogPanicln(env)
+	helper.LogPanicln(env)
 }
 
 func main() {

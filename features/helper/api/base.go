@@ -9,10 +9,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/golang-automation/features/helper/assertions"
-	"github.com/golang-automation/features/helper/errors"
+	"github.com/golang-automation/features/helper"
 	"github.com/golang-automation/features/helper/messages"
-	"github.com/golang-automation/features/helper/regexs"
 	"github.com/yalp/jsonpath"
 )
 
@@ -64,10 +62,10 @@ func varLogin(account string) error {
 }
 
 func stagingNumber() error {
-	number = regexp.MustCompile(regexs.RegexInt()).FindString(BaseURL)
+	number = regexp.MustCompile(helper.RegexInt()).FindString(BaseURL)
 
 	if number == "" {
-		number = regexp.MustCompile(regexs.RegexBaseURL()).FindString(BaseURL)
+		number = regexp.MustCompile(helper.RegexBaseURL()).FindString(BaseURL)
 	}
 
 	return nil
@@ -76,8 +74,7 @@ func stagingNumber() error {
 func clientResponse(sendRequest *http.Request) error {
 	client := &http.Client{}
 	HTTPResponse, err = client.Do(sendRequest)
-	errors.LogPanicln(err)
-
+	helper.LogPanicln(err)
 	ResponseBody, _ = ioutil.ReadAll(HTTPResponse.Body)
 
 	return nil
@@ -109,8 +106,7 @@ func AuthenticationAPI(account string) error {
 	sendRequest.Header.Set("User-Agent", os.Getenv("USER_AGENT"))
 	clientResponse(sendRequest)
 
-	err := json.Unmarshal(ResponseBody, &jsonResponse)
-	errors.LogPanicln(err)
+	json.Unmarshal(ResponseBody, &jsonResponse)
 
 	AccessToken, _ = HTTPJson(jsonResponse)
 
@@ -130,7 +126,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 	readVerbose := strings.ToUpper(verbose)
 	requestBody := []byte(body)
 	stringBody = string(requestBody)
-	regexENV := regexp.MustCompile(regexs.RegexReadENV())
+	regexENV := regexp.MustCompile(helper.RegexReadENV())
 	findENV := regexENV.FindAllString(string(requestBody), -1)
 
 	for _, env := range findENV {
@@ -158,7 +154,7 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
 
-	assertions.AssertEqual(response, actualCode, messages.ResponseCode(actualCode))
+	helper.AssertEqual(response, actualCode, messages.ResponseCode(actualCode))
 
 	return nil
 }

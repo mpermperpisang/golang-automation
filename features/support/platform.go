@@ -11,11 +11,11 @@ import (
 
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/gherkin"
+	"github.com/golang-automation/features/helper"
 	apps "github.com/golang-automation/features/helper/apps"
 	appsaction "github.com/golang-automation/features/helper/apps/action"
 	android "github.com/golang-automation/features/helper/apps/android"
 	ios "github.com/golang-automation/features/helper/apps/ios"
-	"github.com/golang-automation/features/helper/errors"
 	web "github.com/golang-automation/features/helper/web"
 	webaction "github.com/golang-automation/features/helper/web/action"
 	desktop "github.com/golang-automation/features/helper/web/desktop"
@@ -160,7 +160,7 @@ func GodogMainSupport(s *godog.Suite) {
 
 		scenarioTags = ""
 		PWD, err = os.Getwd()
-		errors.LogPanicln(err)
+		helper.LogPanicln(err)
 
 		if log != nil {
 			filename = fmt.Sprintf("Screenshot - FAILED - %s - %s - %s.png", testCase.Name, testCase.Steps[0].Text, log)
@@ -173,7 +173,7 @@ func GodogMainSupport(s *godog.Suite) {
 
 	s.AfterSuite(func() {
 		resp, err := http.Post("http://localhost:8383/godog-support?featureTags="+getFeatureTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
-		errors.LogPanicln(err)
+		helper.LogPanicln(err)
 
 		defer resp.Body.Close()
 

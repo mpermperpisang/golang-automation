@@ -1,11 +1,11 @@
 package appsaction
 
-import "github.com/golang-automation/features/helper/errors"
+import "github.com/golang-automation/features/helper"
 
 // GetAttributeByXpath : get element attribute by Xpath selector
 func (s *Page) GetAttributeByXpath(locator string, attr string) string {
 	element, err := s.device().FindByXPath(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -13,7 +13,7 @@ func (s *Page) GetAttributeByXpath(locator string, attr string) string {
 // GetAttributeByButton : get element attribute by button
 func (s *Page) GetAttributeByButton(locator string, attr string) string {
 	element, err := s.device().FindByButton(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -21,7 +21,7 @@ func (s *Page) GetAttributeByButton(locator string, attr string) string {
 // GetAttributeByClass : get element attribute by class
 func (s *Page) GetAttributeByClass(locator string, attr string) string {
 	element, err := s.device().FindByClass(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -29,7 +29,7 @@ func (s *Page) GetAttributeByClass(locator string, attr string) string {
 // GetAttributeByID : get element attribute by ID
 func (s *Page) GetAttributeByID(locator string, attr string) string {
 	element, err := s.device().FindByID(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -37,7 +37,7 @@ func (s *Page) GetAttributeByID(locator string, attr string) string {
 // GetAttributeByLabel : get element attribute by label
 func (s *Page) GetAttributeByLabel(locator string, attr string) string {
 	element, err := s.device().FindByLabel(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -45,7 +45,7 @@ func (s *Page) GetAttributeByLabel(locator string, attr string) string {
 // GetAttributeByLink : get element attribute by link
 func (s *Page) GetAttributeByLink(locator string, attr string) string {
 	element, err := s.device().FindByLink(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -53,7 +53,7 @@ func (s *Page) GetAttributeByLink(locator string, attr string) string {
 // GetAttributeByName : get element attribute by class name
 func (s *Page) GetAttributeByName(locator string, attr string) string {
 	element, err := s.device().FindByName(locator).Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }
@@ -61,7 +61,7 @@ func (s *Page) GetAttributeByName(locator string, attr string) string {
 // GetAttributeByText : get element attribute by Xpath selector
 func (s *Page) GetAttributeByText(locator string, attr string) string {
 	element, err := s.device().FindByXPath("//*[contains(@text, '" + locator + "')]").Attribute(attr)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return element
 }

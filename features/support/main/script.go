@@ -13,7 +13,6 @@ import (
 	"strings"
 
 	"github.com/golang-automation/features/helper"
-	"github.com/golang-automation/features/helper/errors"
 	"github.com/golang-automation/features/helper/messages"
 	"github.com/golang-automation/features/support"
 	"github.com/yalp/jsonpath"
@@ -33,7 +32,7 @@ func main() {
 func statusScenario() error {
 	filename, _ := filepath.Abs("./test/report/cucumber_report.json")
 	jsonFile, err := ioutil.ReadFile(filename)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	json.Unmarshal(jsonFile, &reports)
 	saveStatus()
@@ -81,7 +80,7 @@ func successPercentageCheck() int {
 
 func getGodogInfo() {
 	response, err := http.Get("http://localhost:8383/godog-support")
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 	ResponseBody, _ := ioutil.ReadAll(response.Body)
 
 	json.Unmarshal(ResponseBody, &jsonResponse)
@@ -89,7 +88,7 @@ func getGodogInfo() {
 
 func getFeatureResponse() string {
 	respFeature, err := jsonpath.Read(jsonResponse, "$..feature_tags")
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", " ", "+")
 	output := replacer.Replace(fmt.Sprintf("%v", respFeature))
 
@@ -98,7 +97,7 @@ func getFeatureResponse() string {
 
 func getPlatformResponse() string {
 	respPlatform, err := jsonpath.Read(jsonResponse, "$..platform_name")
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", "-", "+", " ", "%2C+")
 	output := replacer.Replace(fmt.Sprintf("%v", respPlatform))
 
@@ -107,7 +106,7 @@ func getPlatformResponse() string {
 
 func getDirectoryResponse() string {
 	respDirectory, err := jsonpath.Read(jsonResponse, "$..directory")
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", "-", "+", " ", "+%26+")
 	output := replacer.Replace(fmt.Sprintf("%v", respDirectory))
 
@@ -115,8 +114,6 @@ func getDirectoryResponse() string {
 }
 
 func textFormat() string {
-	getGodogInfo()
-
 	text = "%2AAutomation%20Run%20Result%2A%0D" +
 		"%0DStatus%20:%20" + statusRun +
 		"%0DTest%20Execution%20tag%20:%20" + featureResponseCheck() +
@@ -170,8 +167,10 @@ func positiveSuccessRateCheck() string {
 }
 
 func sendNotifTo(apps string) error {
+	getGodogInfo()
+
 	resp, err := http.Post("http://localhost:8282/send-"+apps+"?text="+textFormat(), "", nil)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	defer resp.Body.Close()
 

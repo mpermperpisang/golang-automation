@@ -25,12 +25,12 @@ if [[ $SCENARIO_TAG != "" ]]; then
   ./features/support/main/script.go
   ./xray -i -j cucumber_report.json
 else
-  echo "Please define the running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>'"
+  echo "Please define the running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>' or ./godog -x <execution_id> -t '<tag_scenario>'"
   exit 1
 fi
 
 if [[ $REPORT == true ]]; then
-  echo "Opening generate report"
+  echo "Opening generate HTML report"
   node index.js
 fi
 

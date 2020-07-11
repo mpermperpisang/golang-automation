@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"github.com/golang-automation/features/demo"
+	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
-	"github.com/golang-automation/features/helper/assertions"
 	"github.com/golang-automation/features/helper/data"
-	"github.com/golang-automation/features/helper/errors"
 	"github.com/golang-automation/features/helper/messages"
-	"github.com/golang-automation/features/helper/page"
 	"github.com/golang-automation/features/support"
 	"gopkg.in/yaml.v2"
 )
@@ -33,7 +31,7 @@ var yamlFile []byte
 // OpenDWEB : to initiate dweb scenario
 func OpenDWEB() error {
 	support.DesktopPage.GoToURL(os.Getenv("URL"))
-	page.WaitForLoadingPage(25)
+	helper.WaitForLoadingPage(25)
 
 	return nil
 }
@@ -41,7 +39,7 @@ func OpenDWEB() error {
 // OpenMWEB : initiate mweb scenario
 func OpenMWEB() error {
 	support.MobilePage.GoToURL(os.Getenv("URL"))
-	page.WaitForLoadingPage(25)
+	helper.WaitForLoadingPage(25)
 
 	return nil
 }
@@ -90,7 +88,7 @@ func MeetUserName() error {
 
 // SayHelloName : validate unit
 func SayHelloName(greet string) error {
-	assertions.AssertEqual(greet, meetName, messages.UnitError())
+	helper.AssertEqual(greet, meetName, messages.UnitError())
 
 	return nil
 }
@@ -122,7 +120,7 @@ func GivenFile() error {
 
 	filename, _ := filepath.Abs("./features/helper/yaml/example.yaml")
 	yamlFile, err = ioutil.ReadFile(filename)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return nil
 }
@@ -130,7 +128,7 @@ func GivenFile() error {
 // ReadFile : read yaml file
 func ReadFile() error {
 	err := yaml.Unmarshal(yamlFile, &config)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return nil
 }

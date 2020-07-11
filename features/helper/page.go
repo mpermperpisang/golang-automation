@@ -1,7 +1,7 @@
-package page
+package helper
 
 import (
-	"github.com/golang-automation/features/helper/errors"
+	"github.com/golang-API/helper"
 	webhelper "github.com/golang-automation/features/helper/web"
 )
 
@@ -13,7 +13,7 @@ func WaitForLoadingPage(timeout int) error {
 		max++
 
 		document, err := webhelper.Driver.ExecuteScript(`return window.document.readyState`, nil)
-		errors.LogPanicln(err)
+		helper.LogPanicln(err)
 
 		if document == "complete" || max == timeout {
 			break

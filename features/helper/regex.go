@@ -1,4 +1,4 @@
-package regexs
+package helper
 
 // RegexReadENV : read env variable
 func RegexReadENV() string {

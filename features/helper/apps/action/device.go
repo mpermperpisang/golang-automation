@@ -1,7 +1,7 @@
 package appsaction
 
 import (
-	"github.com/golang-automation/features/helper/errors"
+	"github.com/golang-automation/features/helper"
 	"github.com/sclevine/agouti/appium"
 )
 
@@ -11,7 +11,7 @@ var Device *appium.Device
 // StartDriver : start android driver
 func (s *Page) StartDriver() error {
 	err := s.driver().Start()
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return nil
 }
@@ -21,7 +21,7 @@ func (s *Page) NewDevice() *appium.Device {
 	var err error
 
 	Device, err = s.driver().NewDevice()
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return Device
 }

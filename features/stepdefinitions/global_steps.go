@@ -13,10 +13,9 @@ type globalSteps struct {
 	Page appsaction.Page
 }
 
-var username string
-var password string
-
 func varLogin(user string) error {
+	var username, password string
+
 	userENV := strings.HasPrefix(user, "ENV:")
 	readENV := strings.TrimPrefix(user, "ENV:")
 

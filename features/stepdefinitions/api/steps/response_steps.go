@@ -3,9 +3,8 @@ package step
 import (
 	"encoding/json"
 
+	"github.com/golang-automation/features/helper"
 	api "github.com/golang-automation/features/helper/api"
-	"github.com/golang-automation/features/helper/assertions"
-	"github.com/golang-automation/features/helper/errors"
 	"github.com/golang-automation/features/helper/messages"
 	"github.com/yalp/jsonpath"
 )
@@ -19,7 +18,7 @@ var jsonResponse, actualResult interface{}
 
 func decryptJSONResponse() error {
 	err := json.Unmarshal(api.ResponseBody, &jsonResponse)
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return nil
 }
@@ -30,7 +29,7 @@ func ResponseFindPath(path string) error {
 
 	countpath, _ := jsonpath.Read(jsonResponse, path)
 	err := len(countpath.([]interface{}))
-	errors.LogPanicln(err)
+	helper.LogPanicln(err)
 
 	return nil
 }
@@ -46,7 +45,7 @@ func getJSONValue(path string) {
 func ResponseMatchingValue(path string, expectResult string) error {
 	getJSONValue(path)
 
-	assertions.AssertEqual(expectResult, actualResult, messages.NotMatchValue(actualResult))
+	helper.AssertEqual(expectResult, actualResult, messages.NotMatchValue(actualResult))
 
 	return nil
 }
@@ -60,7 +59,7 @@ func ResponseDataType(path string, expectType string) error {
 	HTTPJson, _ := jsonpath.Prepare(path)
 	actualResult, _ := HTTPJson(jsonResponse)
 
-	assertions.AssertEqual(expectType, actualType, messages.NotMatchDataType(actualResult.(string)))
+	helper.AssertEqual(expectType, actualType, messages.NotMatchDataType(actualResult.(string)))
 
 	return nil
 }
