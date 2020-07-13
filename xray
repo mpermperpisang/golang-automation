@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-while getopts ":ix:ej:" option; do
+while getopts ":if:ej:" option; do
   case "${option}" in
     i) IMPORT=true ;;
     e) EXPORT=true ;;
-    x) FEATURE_TAG=${OPTARG} ;;
+    f) EXECUTION_TAG=${OPTARG} ;;
     j) CUCUMBER_REPORT=${OPTARG} ;;
   esac
 done
@@ -14,13 +14,13 @@ function get_id_secret() {
 }
 
 function export_cucumber_scenario() {
-  curl_response=$(curl -s -o $FEATURE_TAG.zip -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$FEATURE_TAG")
+  curl_response=$(curl -s -o $EXECUTION_TAG.zip -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$EXECUTION_TAG")
 
   echo "$curl_response"
   mkdir features/scenarios
   mkdir -p test/xray
-  unzip -o $FEATURE_TAG.zip -d features/scenarios/xray
-  mv $FEATURE_TAG.zip test/xray
+  unzip -o $EXECUTION_TAG.zip -d features/scenarios/xray
+  mv $EXECUTION_TAG.zip test/xray
 }
 
 function import_test_result() {
@@ -36,8 +36,8 @@ function check_cucumber_report() {
   fi
 }
 
-function check_feature_tag() {
-  if [[ $FEATURE_TAG == "" ]]; then
+function check_EXECUTION_TAG() {
+  if [[ $EXECUTION_TAG == "" ]]; then
     echo "Please define the feature tag!"
     exit 1
   fi
@@ -50,12 +50,12 @@ if [[ $IMPORT == true ]]; then
   git checkout features/scenarios
   echo "Execution result has import to xray successfully"
 elif [[ $EXPORT == true ]]; then
-  check_feature_tag
+  check_EXECUTION_TAG
   get_id_secret
   rm -rf features/scenarios
   rm -rf test/xray
   export_cucumber_scenario
-  echo "Cucumber tests with test execution ID $FEATURE_TAG has been exported!"
+  echo "Cucumber tests with test execution ID $EXECUTION_TAG has been exported!"
 else
   echo "Please define the xray flag! ./godog -e -x {TEST_EXECUTION_ID} or ./godog -i -j {CUCUMBER_REPORT_JSON}"
   exit 1
