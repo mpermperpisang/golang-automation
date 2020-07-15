@@ -81,14 +81,16 @@ func GivenUserName(name string) error {
 
 // MeetUserName : call unit
 func MeetUserName() error {
-	meetName = demo.Hello(usersName)
+	meetName = demo.HelloUser(usersName)
 
 	return nil
 }
 
 // SayHelloName : validate unit
 func SayHelloName(greet string) error {
-	helper.AssertEqual(greet, meetName, messages.UnitError())
+	test := helper.UseAssertion{}
+
+	test.AssertEqual(greet, meetName, messages.UnitError())
 
 	return nil
 }

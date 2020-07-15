@@ -153,8 +153,9 @@ func RequestAPI(verbose string, endpoint string, body string) error {
 // ResponseStatusAPI : get and validate response code
 func ResponseStatusAPI(response int) error {
 	actualCode := HTTPResponse.StatusCode
+	test := helper.UseAssertion{}
 
-	helper.AssertEqual(response, actualCode, messages.ResponseCode(actualCode))
+	test.AssertEqual(response, actualCode, messages.ResponseCode(actualCode))
 
 	return nil
 }

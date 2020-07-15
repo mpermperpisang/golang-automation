@@ -45,7 +45,9 @@ func getJSONValue(path string) {
 func ResponseMatchingValue(path string, expectResult string) error {
 	getJSONValue(path)
 
-	helper.AssertEqual(expectResult, actualResult, messages.NotMatchValue(actualResult))
+	test := helper.UseAssertion{}
+
+	test.AssertEqual(expectResult, actualResult, messages.NotMatchValue(actualResult))
 
 	return nil
 }
@@ -58,8 +60,9 @@ func ResponseDataType(path string, expectType string) error {
 
 	HTTPJson, _ := jsonpath.Prepare(path)
 	actualResult, _ := HTTPJson(jsonResponse)
+	test := helper.UseAssertion{}
 
-	helper.AssertEqual(expectType, actualType, messages.NotMatchDataType(actualResult.(string)))
+	test.AssertEqual(expectType, actualType, messages.NotMatchDataType(actualResult.(string)))
 
 	return nil
 }
