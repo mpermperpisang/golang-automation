@@ -13,18 +13,20 @@ type UseAssertion struct {
 	assert testing.T
 }
 
-// AssertEqual : must equal
-func (t *UseAssertion) AssertEqual(expect interface{}, actual interface{}, err interface{}) bool {
+func (t *UseAssertion) assertNew() *assert.Assertions {
 	assert := assert.New(&t.assert)
 
-	return assert.Equal(expect, actual, err)
+	return assert
+}
+
+// AssertEqual : must equal
+func (t *UseAssertion) AssertEqual(expect interface{}, actual interface{}, err interface{}) bool {
+	return t.assertNew().Equal(expect, actual, err)
 }
 
 // AssertNotEqual : must not equal
 func (t *UseAssertion) AssertNotEqual(expect interface{}, actual interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.NotEqual(expect, actual, err)
+	return t.assertNew().NotEqual(expect, actual, err)
 }
 
 // AssertString : must string
@@ -65,84 +67,60 @@ func AssertBool(expect interface{}, actual interface{}, err interface{}) error {
 
 // AssertEmpty : must empty
 func (t *UseAssertion) AssertEmpty(expect interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Empty(expect, err)
+	return t.assertNew().Empty(expect, err)
 }
 
 // AssertContains : must contains something
 func (t *UseAssertion) AssertContains(expect interface{}, contain interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Contains(expect, contain, err)
+	return t.assertNew().Contains(expect, contain, err)
 }
 
 // AssertNotContains : must not contains something
 func (t *UseAssertion) AssertNotContains(expect interface{}, contain interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.NotContains(expect, contain, err)
+	return t.assertNew().NotContains(expect, contain, err)
 }
 
 // AssertZero : must zero
 func (t *UseAssertion) AssertZero(expect interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Zero(expect, err)
+	return t.assertNew().Zero(expect, err)
 }
 
 // AssertNotZero : must not zero
 func (t *UseAssertion) AssertNotZero(expect interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.NotZero(expect, err)
+	return t.assertNew().NotZero(expect, err)
 }
 
 // AssertTrue : must true
 func (t *UseAssertion) AssertTrue(expect bool, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.True(expect, err)
+	return t.assertNew().True(expect, err)
 }
 
 // AssertFalse : must false
 func (t *UseAssertion) AssertFalse(expect bool, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.False(expect, err)
+	return t.assertNew().False(expect, err)
 }
 
 // AssertSame : must same
 func (t *UseAssertion) AssertSame(expect interface{}, actual interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Same(expect, actual, err)
+	return t.assertNew().Same(expect, actual, err)
 }
 
 // AssertNil : must nil
 func (t *UseAssertion) AssertNil(expect interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Nil(expect, err)
+	return t.assertNew().Nil(expect, err)
 }
 
 // AssertNotNil : must not nil
 func (t *UseAssertion) AssertNotNil(expect interface{}, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.NotNil(expect, err)
+	return t.assertNew().NotNil(expect, err)
 }
 
 // AssertError : must error
 func (t *UseAssertion) AssertError(log error, err interface{}) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Error(log, err)
+	return t.assertNew().Error(log, err)
 }
 
 // AssertFail : must fail
 func (t *UseAssertion) AssertFail(expect string) bool {
-	assert := assert.New(&t.assert)
-
-	return assert.Fail(expect)
+	return t.assertNew().Fail(expect)
 }
