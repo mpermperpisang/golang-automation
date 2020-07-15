@@ -4,14 +4,25 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
 )
 
-// Test : unit test Hello
-func TestHello(t *testing.T) {
-	assert := assert.New(t)
-	emptyResult := Hello("")
-	nameResult := Hello("Banana")
+type useMock struct {
+	mock.Mock
+}
 
-	assert.Equal(emptyResult, "Hello Dude!", "Namanya bukan Dude")
-	assert.Equal(nameResult, "Hello Banana!", "Namanya bukan Banana")
+func (mock *useMock) helloName(user string) int {
+	args := mock.Called(user)
+
+	return args.Int(0)
+}
+
+func TestMockHello(t *testing.T) {
+	mock := new(useMock)
+
+	mock.On("helloName", "Mper").Return(1)
+
+	m := myStruct{mock}
+
+	assert.Equal(t, m.Hello("Mper"), "Hello Mper!")
 }
