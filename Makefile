@@ -12,6 +12,9 @@ package:
 	@go get -u github.com/goccy/go-yaml
 	@go get github.com/brianvoe/gofakeit
 	@go get -u github.com/tidwall/gjson
+	@go get github.com/golang/mock/gomock
+	@go get github.com/golang/mock/mockgen
+	@go get github.com/stretchr/testify
 	@npm install cucumber-html-reporter
 	@echo "Package installed"
 
