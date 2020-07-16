@@ -14,9 +14,7 @@ type UseAssertion struct {
 }
 
 func (t *UseAssertion) assertNew() *assert.Assertions {
-	assert := assert.New(&t.assert)
-
-	return assert
+	return assert.New(&t.assert)
 }
 
 // AssertEqual : must equal
@@ -123,4 +121,14 @@ func (t *UseAssertion) AssertError(log error, err interface{}) bool {
 // AssertFail : must fail
 func (t *UseAssertion) AssertFail(expect string) bool {
 	return t.assertNew().Fail(expect)
+}
+
+// AssertGreater : must greater than
+func (t *UseAssertion) AssertGreater(expect interface{}, actual interface{}, err interface{}) bool {
+	return t.assertNew().Greater(expect, actual, err)
+}
+
+// AssertLess : must less than
+func (t *UseAssertion) AssertLess(expect interface{}, actual interface{}, err interface{}) bool {
+	return t.assertNew().Less(expect, actual, err)
 }

@@ -9,7 +9,7 @@ while getopts ":if:ej:" option; do
   esac
 done
 
-function get_id_secret() {
+function get_auth() {
   token=$(curl -s -H "Content-Type: application/json" -X POST --data @"auth.json" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
 }
 
@@ -36,7 +36,7 @@ function check_cucumber_report() {
   fi
 }
 
-function check_EXECUTION_TAG() {
+function check_execution_tag() {
   if [[ $EXECUTION_TAG == "" ]]; then
     echo "Please define the feature tag!"
     exit 1
@@ -45,13 +45,13 @@ function check_EXECUTION_TAG() {
 
 if [[ $IMPORT == true ]]; then
   check_cucumber_report
-  get_id_secret
+  get_auth
   import_test_result
   git checkout features/scenarios
   echo "Execution result has import to xray successfully"
 elif [[ $EXPORT == true ]]; then
-  check_EXECUTION_TAG
-  get_id_secret
+  check_execution_tag
+  get_auth
   rm -rf features/scenarios
   rm -rf test/xray
   export_cucumber_scenario

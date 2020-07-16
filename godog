@@ -30,7 +30,7 @@ else
 fi
 
 if [[ $REPORT == true ]]; then
-  echo "Opening generate HTML report"
+  echo "Opening generated HTML report"
   node index.js
 fi
 

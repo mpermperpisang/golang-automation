@@ -189,16 +189,16 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 }
 
-func getFeatureTags() string {
-	replacer := strings.NewReplacer(" ", "%20")
+func replacer() *strings.Replacer {
+	return strings.NewReplacer(" ", "%20")
+}
 
-	return replacer.Replace(fmt.Sprintf("%v", strings.Trim(FeatureTags, " ")))
+func getFeatureTags() string {
+	return replacer().Replace(fmt.Sprintf("%v", strings.Trim(FeatureTags, " ")))
 }
 
 func getPlatformName() string {
-	replacer := strings.NewReplacer(" ", "%20")
-
-	return replacer.Replace(fmt.Sprintf("%v", Platform))
+	return replacer().Replace(fmt.Sprintf("%v", Platform))
 }
 
 func platformCheck(tags string) error {

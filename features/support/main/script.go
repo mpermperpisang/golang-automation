@@ -90,27 +90,24 @@ func getFeatureResponse() string {
 	respFeature, err := jsonpath.Read(jsonResponse, "$..feature_tags")
 	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", " ", "+")
-	output := replacer.Replace(fmt.Sprintf("%v", respFeature))
 
-	return output
+	return replacer.Replace(fmt.Sprintf("%v", respFeature))
 }
 
 func getPlatformResponse() string {
 	respPlatform, err := jsonpath.Read(jsonResponse, "$..platform_name")
 	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", "-", "+", " ", "%2C+")
-	output := replacer.Replace(fmt.Sprintf("%v", respPlatform))
 
-	return output
+	return replacer.Replace(fmt.Sprintf("%v", respPlatform))
 }
 
 func getDirectoryResponse() string {
 	respDirectory, err := jsonpath.Read(jsonResponse, "$..directory")
 	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", "-", "+", " ", "+%26+")
-	output := replacer.Replace(fmt.Sprintf("%v", respDirectory))
 
-	return output
+	return replacer.Replace(fmt.Sprintf("%v", respDirectory))
 }
 
 func textFormat() string {
@@ -126,9 +123,8 @@ func textFormat() string {
 
 func outputReplace(text string) string {
 	replacer := strings.NewReplacer(" ", "%20")
-	output := replacer.Replace(fmt.Sprintf("%v", text))
 
-	return output
+	return replacer.Replace(fmt.Sprintf("%v", text))
 }
 
 func featureResponseCheck() string {

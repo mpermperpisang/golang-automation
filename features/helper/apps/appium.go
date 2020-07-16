@@ -11,7 +11,6 @@ import (
 func Appium() error {
 	pwd, err := os.Getwd()
 	helper.LogPanicln(err)
-
 	killADB := exec.Command("/bin/sh", pwd+"/script/appium.sh").Run()
 	helper.LogPanicln(killADB)
 
