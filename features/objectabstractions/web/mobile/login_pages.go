@@ -18,14 +18,14 @@ var (
 
 // InputUsername : input username
 func (s *LoginPage) InputUsername() *LoginPage {
-	s.Page.SendKeysByID(fieldUsername, data.GetUsername())
+	s.Page.SendKeysByID(fieldUsername, data.Username())
 
 	return &LoginPage{Page: s.Page}
 }
 
 // InputPassword : input password
 func (s *LoginPage) InputPassword() *LoginPage {
-	s.Page.SendKeysByID(fieldPassword, data.GetPassword())
+	s.Page.SendKeysByID(fieldPassword, data.Password())
 
 	return &LoginPage{Page: s.Page}
 }

@@ -30,14 +30,14 @@ func (s *LoginPage) ValidateLoginPage() *HomePage {
 
 // InputUsername : fill in username
 func (s *LoginPage) InputUsername() *LoginPage {
-	s.Page.SendKeysByID(fieldUsername, data.GetUsername())
+	s.Page.SendKeysByID(fieldUsername, data.Username())
 
 	return &LoginPage{Page: s.Page}
 }
 
 // InputPassword : fill in password
 func (s *LoginPage) InputPassword() *LoginPage {
-	s.Page.SendKeysByID(fieldPassword, data.GetPassword())
+	s.Page.SendKeysByID(fieldPassword, data.Password())
 
 	return &LoginPage{Page: s.Page}
 }

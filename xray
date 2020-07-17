@@ -48,7 +48,7 @@ if [[ $IMPORT == true ]]; then
   get_auth
   import_test_result
   git checkout features/scenarios
-  echo "Execution result has import to xray successfully"
+  echo "Execution result has imported to xray successfully"
 elif [[ $EXPORT == true ]]; then
   check_execution_tag
   get_auth

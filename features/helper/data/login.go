@@ -12,8 +12,8 @@ func SetUsername(username string) {
 	login.username = username
 }
 
-// GetUsername : get data for username
-func GetUsername() string {
+// Username : get data for username
+func Username() string {
 	return login.username
 }
 
@@ -22,7 +22,7 @@ func SetPassword(password string) {
 	login.password = password
 }
 
-// GetPassword : get data for password
-func GetPassword() string {
+// Password : get data for password
+func Password() string {
 	return login.password
 }

@@ -104,14 +104,14 @@ func GivenData() error {
 
 // SetData : set some data for example
 func SetData() error {
-	data.SetDataID(number)
+	data.SetID(number)
 
 	return nil
 }
 
 // GetData : get some data for example
 func GetData() error {
-	fmt.Println(data.GetDataID())
+	fmt.Println(data.ID())
 
 	return nil
 }

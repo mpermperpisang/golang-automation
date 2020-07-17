@@ -6,12 +6,12 @@ type exampleData struct {
 
 var data exampleData
 
-// SetDataID : set data for ID
-func SetDataID(id int) {
+// SetID : set data for ID
+func SetID(id int) {
 	data.id = id
 }
 
-// GetDataID : get data for ID
-func GetDataID() int {
+// ID : get data for ID
+func ID() int {
 	return data.id
 }
