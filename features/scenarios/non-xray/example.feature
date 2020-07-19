@@ -1,4 +1,4 @@
-@example
+@example @exclude
 Feature: Example Automation
   Automation with golang and cucumber
 

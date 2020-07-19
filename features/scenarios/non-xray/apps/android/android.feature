@@ -1,4 +1,4 @@
-@android
+@android @exclude
 Feature: Variant Android
 
   @variant-android-1

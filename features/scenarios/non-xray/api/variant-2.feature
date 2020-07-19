@@ -1,4 +1,4 @@
-@api
+@api @exclude
 Feature: Variant API
 
   @variant-api-2

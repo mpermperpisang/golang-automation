@@ -1,4 +1,4 @@
-@ios
+@ios @exclude
 Feature: Variant iOS
 
   @variant-ios-1 @exclude

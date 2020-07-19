@@ -1,4 +1,4 @@
-@MPER-8
+@MPER-8 @exclude
 Feature: [Only for testing] Test Execution
 
 	@TEST_MPER-7 @mweb

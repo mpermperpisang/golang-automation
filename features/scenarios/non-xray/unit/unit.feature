@@ -1,4 +1,4 @@
-@unit
+@unit @exclude
 Feature: Variant Unit
 
   @variant-unit-1

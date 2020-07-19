@@ -1,4 +1,4 @@
-@MS-2
+@MS-2 @exclude
 Feature: [Only for testing] Test Execution
 
 	@TEST_MS-4 @TESTSET_MS-3 @mweb
