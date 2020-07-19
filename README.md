@@ -11,14 +11,22 @@ Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-b
 `$ cp capabilities-android.properties.sample capabilities-android.properties`<br/>
 `$ cp capabilities-ios.properties.sample capabilities-ios.properties`
 
-**Install Package**<br/>
-`$ make package`
+**Build Package**<br/>
+Only for once<br/>
+`$ make build-package`
+
+**Run Package**<br/>
+`$ make run-package`
 
 **Kill Port 4545**<br/>
 `$ make kill-port`
 
 **Setup and running Docker selenium-hub and browser**<br/>
-`$ make docker`
+`$ make docker-clean`
+`$ make selenium-hub`
+`$ make selenium-browser`
+or
+`$ make`
 
 **Running**<br/>
 This command will not import automation run result to Xray<br/>

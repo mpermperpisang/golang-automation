@@ -1,40 +1,26 @@
-all: package kill-port docker
+all: docker-clean selenium-hub selenium-browser
 
-package:
-	@go get github.com/DATA-DOG/godog/cmd/godog
-	@go get -t -d github.com/tebeka/selenium
-	@go get github.com/sclevine/agouti
-	@go get github.com/joho/godotenv
-	@go get -u github.com/logrusorgru/aurora
-	@go get -u github.com/magiconair/properties
-	@go get github.com/yalp/jsonpath
-	@go get -u golang.org/x/lint/golint
-	@go get -u github.com/goccy/go-yaml
-	@go get github.com/brianvoe/gofakeit
-	@go get -u github.com/tidwall/gjson
-	@go get github.com/golang/mock/gomock
-	@go get github.com/golang/mock/mockgen
-	@go get github.com/stretchr/testify
-	@npm install cucumber-html-reporter
-	@echo "Package installed"
+build-package:
+	docker build -t golang-automation-docker .
+	@echo "Build golang-automation-docker successfully"
+
+run-package:
+	docker run golang-automation-docker
+	@echo "Run golang-automation-docker successfully"
 
 kill-port:
 	@kill -9 $$(lsof -t -i:4545)
 	@echo "Port 4545 is killed"
 
-docker: docker-clean docker-connect
-
 docker-clean:
 	@docker container rm $$(docker ps -aq) -f
 	@echo "Docker successfully removed"
 
-docker-connect: docker-hub docker-browser
-
-docker-hub:
+selenium-hub:
 	docker run -d -p 4545:4444 --name selenium-hub selenium/hub
 	@echo "Docker selenium-hub is running"
 
-docker-browser:
+selenium-browser:
 	docker run -d --link selenium-hub:hub selenium/node-chrome
 	docker run -d --link selenium-hub:hub selenium/node-firefox
 	@echo "Docker browser is running"
