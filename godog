@@ -15,23 +15,43 @@ function check_testexecution_id() {
   fi
 }
 
-if [[ $SCENARIO_TAG != "" ]]; then
+function start_automation_with_tag() {
   echo "Starting automation"
   echo "Running scenario with tag : ${SCENARIO_TAG}"
-  check_testexecution_id
-  godog --tags="${SCENARIO_TAG}" --format=cucumber > test/report/cucumber_report.json --random
+}
+
+function start_automation_without_tag() {
+  echo "Starting automation"
+  echo "Running all of the scenario"
+}
+
+function stop_automation() {
   echo "Stopping automation"
   chmod 744 features/support/main/script.go
   ./features/support/main/script.go
   ./xray -i -j cucumber_report.json
-else
-  echo "Please define the running tag! ./godog -t '<tag_scenario>' or ./godog -r -t '<tag_scenario>' or ./godog -x <execution_id> -t '<tag_scenario>'"
-  exit 1
-fi
+}
 
-if [[ $REPORT == true ]]; then
-  echo "Opening generated HTML report"
-  node index.js
+function open_html_report() {
+  if [[ $REPORT == true ]]; then
+    echo "Opening generated HTML report"
+    node index.js
+  fi
+}
+
+if [[ $SCENARIO_TAG != "" ]]; then
+  start_automation_with_tag
+  check_testexecution_id
+  godog --tags="${SCENARIO_TAG}" --format=cucumber > test/report/cucumber_report.json --random
+  open_html_report
+else
+  $REPORT=true
+
+  start_automation_without_tag
+  check_testexecution_id
+  godog --tags=~@exclude --format=cucumber > test/report/cucumber_report.json --random
+  stop_automation
+  open_html_report
 fi
 
 if [[ $PROFILE != "" ]]; then
