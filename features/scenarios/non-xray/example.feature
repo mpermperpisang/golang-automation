@@ -1,4 +1,4 @@
-@example @exclude
+@example
 Feature: Example Automation
   Automation with golang and cucumber
 
@@ -10,38 +10,38 @@ Feature: Example Automation
   Scenario: Example MWEB
     Given visit mweb
 
-  @example-android @android
+  @example-android @android @exclude
   Scenario: Example Android
     Given visit android
 
-  @example-ios @ios
+  @example-ios @ios @exclude
   Scenario: Example iOS
     Given visit ios
 
-  @example-api
+  @example-api @exclude
   Scenario: Example API
     Given client has "ENV:API_BASE_URL_4" as base api
     When client sends a GET request to "ENV:ENDPOINT"
     Then response status should be "200"
 
-  @example-unit
+  @example-unit @exclude
   Scenario: Example Unit
     Given user has a name "Banana"
     When Testivus meet user
     Then Testivus say "Hello Banana!"
 
-  @example-data
+  @example-data @exclude
   Scenario: Set and Get Data
     Given some data
     When set data
     Then get data
 
-  @example-yaml
+  @example-yaml @exclude
   Scenario: Read Yaml
     Given yaml file
     When read file
     Then print contents
 
-  @example-mapping
+  @example-mapping @exclude
   Scenario: Call Function
     Given function mapping

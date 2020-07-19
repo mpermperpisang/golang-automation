@@ -1,4 +1,4 @@
-@jkt48 @kimi-wa-melody
+@jkt48 @kimi-wa-melody @exclude
 Feature: Preparation
 
   Scenario: JKT48 - Dirimu Melody
