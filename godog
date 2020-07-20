@@ -22,7 +22,7 @@ function start_automation_with_tag() {
 
 function start_automation_without_tag() {
   echo "Starting automation"
-  echo "Running all of the scenario"
+  echo "Running all of the scenario without @exclude tag"
 }
 
 function stop_automation() {
