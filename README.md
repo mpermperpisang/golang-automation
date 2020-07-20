@@ -22,10 +22,10 @@ Only for once<br/>
 `$ make kill-port`
 
 **Setup and running Docker selenium-hub and browser**<br/>
-`$ make docker-clean`
-`$ make selenium-hub`
-`$ make selenium-browser`
-or
+`$ make docker-clean`<br/>
+`$ make selenium-hub`<br/>
+`$ make selenium-browser`<br/>
+or<br/>
 `$ make`
 
 **Running**<br/>
