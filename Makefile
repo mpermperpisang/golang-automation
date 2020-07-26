@@ -1,4 +1,4 @@
-all: docker-clean selenium-hub selenium-browser
+all: run-package selenium-hub selenium-browser
 
 build-package:
 	docker build -t golang-automation-docker .
