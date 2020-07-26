@@ -1,67 +1,41 @@
 package appsaction
 
-import "github.com/golang-automation/features/helper"
-
 // ClickByXPath : click element by Xpath selector
 func (s *Page) ClickByXPath(locator string) error {
-	element := s.device().AllByXPath(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByXPath(locator).Click()
 }
 
 // ClickByText : click element by text in xpath
 func (s *Page) ClickByText(locator string) error {
-	element := s.device().AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByXPath("//*[contains(@text, '" + locator + "')]").Click()
 }
 
 // ClickByButton : click element by button
 func (s *Page) ClickByButton(locator string) error {
-	element := s.device().AllByButton(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByButton(locator).Click()
 }
 
 // ClickByClass : click element by class
 func (s *Page) ClickByClass(locator string) error {
-	element := s.device().AllByClass(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByClass(locator).Click()
 }
 
 // ClickByID : click element by class ID
 func (s *Page) ClickByID(locator string) error {
-	element := s.device().AllByID(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByID(locator).Click()
 }
 
 // ClickByLabel : click element by label
 func (s *Page) ClickByLabel(locator string) error {
-	element := s.device().AllByLabel(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByLabel(locator).Click()
 }
 
 // ClickByLink : click element by link
 func (s *Page) ClickByLink(locator string) error {
-	element := s.device().AllByLink(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByLink(locator).Click()
 }
 
 // ClickByName : click element by class name
 func (s *Page) ClickByName(locator string) error {
-	element := s.device().AllByName(locator).Click()
-	helper.LogPanicln(element)
-
-	return element
+	return s.device().AllByName(locator).Click()
 }

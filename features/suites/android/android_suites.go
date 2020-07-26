@@ -1,7 +1,7 @@
 package androidsuites
 
 import (
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	androidsteps "github.com/golang-automation/features/stepdefinitions/apps/android/steps"
 )
 

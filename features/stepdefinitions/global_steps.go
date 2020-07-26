@@ -52,7 +52,5 @@ func LoginData(user string, platform string) error {
 func openDeeplink(URL string) error {
 	s := globalSteps{}
 
-	s.Page.URLNavigate(os.Getenv("URL_2"))
-
-	return nil
+	return s.Page.URLNavigate(os.Getenv("URL_2"))
 }

@@ -1,7 +1,7 @@
 package suites
 
 import (
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	"github.com/golang-automation/features/stepdefinitions"
 )
 

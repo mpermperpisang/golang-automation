@@ -1,7 +1,7 @@
 package apisuites
 
 import (
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	apisteps "github.com/golang-automation/features/stepdefinitions/api"
 )
 

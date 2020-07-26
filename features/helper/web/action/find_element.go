@@ -1,8 +1,6 @@
 package webaction
 
 import (
-	"time"
-
 	"github.com/golang-automation/features/helper"
 	"github.com/tebeka/selenium"
 )
@@ -81,7 +79,6 @@ func (s *Page) FindElementByText(locator string) selenium.WebElement {
 
 // FindElementByClickScript : find element by javascript
 func (s *Page) FindElementByClickScript(locator string) []byte {
-	time.Sleep(time.Second * 3)
 	element, err := s.driver().ExecuteScriptRaw(`$('`+locator+`')[0].click();`, nil)
 	helper.LogPanicln(err)
 
@@ -89,11 +86,9 @@ func (s *Page) FindElementByClickScript(locator string) []byte {
 }
 
 // MouseHoverToElement does hove to some element
-func (s *Page) MouseHoverToElement(locator string) selenium.WebElement {
+func (s *Page) MouseHoverToElement(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
 
-	element.MoveTo(0, 0)
-
-	return element
+	return element.MoveTo(0, 0)
 }

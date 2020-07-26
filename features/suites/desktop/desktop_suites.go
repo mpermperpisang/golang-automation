@@ -1,7 +1,7 @@
 package desktopsuites
 
 import (
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	desktopsteps "github.com/golang-automation/features/stepdefinitions/web/desktop/steps"
 )
 

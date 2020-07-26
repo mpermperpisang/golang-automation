@@ -27,9 +27,9 @@ function start_automation_without_tag() {
 
 function stop_automation() {
   echo "Stopping automation"
+  ./xray -i -j cucumber_report.json
   chmod 744 features/support/main/script.go
   ./features/support/main/script.go
-  ./xray -i -j cucumber_report.json
 }
 
 function open_html_report() {
@@ -43,6 +43,7 @@ if [[ $SCENARIO_TAG != "" ]]; then
   start_automation_with_tag
   check_testexecution_id
   godog --tags="${SCENARIO_TAG}" --format=cucumber > test/report/cucumber_report.json --random
+  stop_automation
   open_html_report
 else
   $REPORT=true
@@ -55,7 +56,6 @@ else
 fi
 
 if [[ $PROFILE != "" ]]; then
-  # TODO
-  # still on development
+  # TODO : still on development
   echo $PROFILE
 fi

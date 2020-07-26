@@ -25,7 +25,7 @@ var reports support.CucumberReport
 
 func main() {
 	statusScenario()
-	successPercentageCheck()
+	saveStatus()
 	sendNotifTo("slack")
 }
 
@@ -34,10 +34,7 @@ func statusScenario() error {
 	jsonFile, err := ioutil.ReadFile(filename)
 	helper.LogPanicln(err)
 
-	json.Unmarshal(jsonFile, &reports)
-	saveStatus()
-
-	return nil
+	return json.Unmarshal(jsonFile, &reports)
 }
 
 func saveStatus() error {
@@ -48,8 +45,6 @@ func saveStatus() error {
 			}
 		}
 	}
-
-	statusRunCheck(arrayStatus)
 
 	return nil
 }
@@ -78,15 +73,16 @@ func successPercentageCheck() int {
 	return countPassed
 }
 
-func getGodogInfo() {
+func getGodogInfo() error {
 	response, err := http.Get("http://localhost:8383/godog-support")
 	helper.LogPanicln(err)
-	ResponseBody, _ := ioutil.ReadAll(response.Body)
+	ResponseBody, err := ioutil.ReadAll(response.Body)
+	helper.LogPanicln(err)
 
-	json.Unmarshal(ResponseBody, &jsonResponse)
+	return json.Unmarshal(ResponseBody, &jsonResponse)
 }
 
-func getFeatureResponse() string {
+func getExecutionIDResponse() string {
 	respFeature, err := jsonpath.Read(jsonResponse, "$..feature_tags")
 	helper.LogPanicln(err)
 	replacer := strings.NewReplacer("[", "", "]", "", " ", "+")
@@ -112,11 +108,12 @@ func getDirectoryResponse() string {
 
 func textFormat() string {
 	text = "%2AAutomation%20Run%20Result%2A%0D" +
-		"%0DStatus%20:%20" + statusRun +
-		"%0DTest%20Execution%20tag%20:%20" + featureResponseCheck() +
+		"%0DStatus%20:%20" + statusRunCheck(arrayStatus) +
+		"%0DExecution%20tag%20:%20" + featureResponseCheck() +
 		"%0DPlatform%20:%20" + platformResponseCheck() +
 		"%0DSuccess%20rate%20:%20" + positiveSuccessRateCheck() +
-		"%0DHTML%20Report%20:%20" + directoryResponseCheck()
+		"%0DHTML%20Report%20:%20" + directoryResponseCheck() +
+		"%0DXray%20Report%20:%20" + xrayReport(featureResponseCheck())
 
 	return text
 }
@@ -128,11 +125,11 @@ func outputReplace(text string) string {
 }
 
 func featureResponseCheck() string {
-	if getFeatureResponse() == "" {
+	if getExecutionIDResponse() == "" {
 		return outputReplace(messages.NotDetected())
 	}
 
-	return getFeatureResponse()
+	return getExecutionIDResponse()
 }
 
 func platformResponseCheck() string {
@@ -160,6 +157,12 @@ func positiveSuccessRateCheck() string {
 	}
 
 	return strconv.Itoa(int(successPercentage)) + "%25"
+}
+
+func xrayReport(executionID string) string {
+	replacer := strings.NewReplacer("@", "")
+
+	return "https://mpermperpisang.atlassian.net/browse/" + replacer.Replace(fmt.Sprintf("%v", executionID))
 }
 
 func sendNotifTo(apps string) error {

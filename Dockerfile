@@ -1,7 +1,5 @@
 FROM golang:latest
-
 WORKDIR /go/src/github.com/golang-automation
-
 RUN GO111MODULE=on go get github.com/cucumber/godog/cmd/godog@v0.10.0 && \
     go get -t -d github.com/tebeka/selenium && \
     go get github.com/sclevine/agouti && \
@@ -18,17 +16,12 @@ RUN GO111MODULE=on go get github.com/cucumber/godog/cmd/godog@v0.10.0 && \
     go get github.com/stretchr/testify
 
 FROM node:latest
-
 WORKDIR /go/src/github.com/golang-automation
-
 RUN npm install cucumber-html-reporter
 
 FROM ruby:2.5.5
-
 WORKDIR /go/src/github.com/golang-automation
-
 COPY Gemfile /
-
 RUN gem update --system && \
     gem install bundler && \
     bundle install

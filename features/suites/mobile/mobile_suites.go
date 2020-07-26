@@ -1,7 +1,7 @@
 package mobilesuites
 
 import (
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	mobilesteps "github.com/golang-automation/features/stepdefinitions/web/mobile/steps"
 )
 

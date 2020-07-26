@@ -23,7 +23,7 @@ type Example struct {
 	Methods     map[string]string
 }
 
-var usersName, meetName string
+var usersName string
 var number int
 var config Example
 var yamlFile []byte
@@ -46,30 +46,22 @@ func OpenMWEB() error {
 
 // OpenAndroid : initiate android scenario
 func OpenAndroid() error {
-	support.AndroidOpenDevice()
-
-	return nil
+	return support.AndroidOpenDevice()
 }
 
 // OpenIOS : initiate ios scenario
 func OpenIOS() error {
-	support.IOSOpenDevice()
-
-	return nil
+	return support.IOSOpenDevice()
 }
 
 // BaseAPI : initiate base url for API
 func BaseAPI(base string) error {
-	api.BaseAPI(base)
-
-	return nil
+	return api.BaseAPI(base)
 }
 
 // ResponseStatusAPI : validate response code API
 func ResponseStatusAPI(response int) error {
-	api.ResponseStatusAPI(response)
-
-	return nil
+	return api.ResponseStatusAPI(response)
 }
 
 // GivenUserName : assign name to user
@@ -81,7 +73,7 @@ func GivenUserName(name string) error {
 
 // MeetUserName : call unit
 func MeetUserName() error {
-	meetName = demo.HelloUser(usersName)
+	demo.HelloUser(usersName)
 
 	return nil
 }
@@ -90,7 +82,7 @@ func MeetUserName() error {
 func SayHelloName(greet string) error {
 	test := helper.UseAssertion{}
 
-	test.AssertEqual(greet, meetName, messages.UnitError())
+	test.AssertEqual(greet, MeetUserName(), messages.UnitError())
 
 	return nil
 }

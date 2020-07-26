@@ -9,8 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/DATA-DOG/godog"
-	"github.com/DATA-DOG/godog/gherkin"
+	"github.com/cucumber/godog"
 	"github.com/golang-automation/features/helper"
 	apps "github.com/golang-automation/features/helper/apps"
 	appsaction "github.com/golang-automation/features/helper/apps/action"
@@ -40,30 +39,19 @@ var AndroidApps appsaction.Page
 // IOSApps : ios apps driver
 var IOSApps appsaction.Page
 
-// FeatureTags : feature-feature tag
-var FeatureTags string
-
 // Platform : platform name
 var Platform string
 
 // PWD : get current directory path
 var PWD string
-
 var testCase scenarioDetail
-var feature featureDetail
 var path, pathname, filename string
-var scenarioTags, tags string
+var scenarioTags, featureTags, tags string
 
-func structDetail(scenario interface{}, typeSupport string) error {
+func structDetail(scenario interface{}) error {
 	data, _ := json.Marshal(scenario)
 
-	if typeSupport == "tc" {
-		json.Unmarshal(data, &testCase)
-	} else {
-		json.Unmarshal(data, &feature)
-	}
-
-	return nil
+	return json.Unmarshal(data, &testCase)
 }
 
 func ssWeb() error {
@@ -127,20 +115,8 @@ func takeErrorAppsPageImage() error {
 
 // GodogMainSupport : does something before and after scenario
 func GodogMainSupport(s *godog.Suite) {
-	s.BeforeFeature(func(scenario *gherkin.Feature) {
-		structDetail(scenario, "feature")
-
-		i := 0
-
-		for i < len(feature.Tags) {
-			FeatureTags += " " + feature.Tags[i].Name
-
-			i++
-		}
-	})
-
-	s.BeforeScenario(func(scenario interface{}) {
-		structDetail(scenario, "tc")
+	s.BeforeScenario(func(scenario *godog.Scenario) {
+		structDetail(scenario)
 
 		i := 0
 
@@ -150,13 +126,13 @@ func GodogMainSupport(s *godog.Suite) {
 			i++
 		}
 
-		platformCheck(FeatureTags + scenarioTags)
+		platformCheck(scenarioTags)
 	})
 
-	s.AfterScenario(func(scenario interface{}, log error) {
+	s.AfterScenario(func(scenario *godog.Scenario, log error) {
 		var err error
 
-		structDetail(scenario, "tc")
+		structDetail(scenario)
 
 		scenarioTags = ""
 		PWD, err = os.Getwd()
@@ -172,7 +148,7 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 
 	s.AfterSuite(func() {
-		resp, err := http.Post("http://localhost:8383/godog-support?featureTags="+getFeatureTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
+		resp, err := http.Post("http://localhost:8383/godog-support?executionTags="+getExecutionTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
 		helper.LogPanicln(err)
 
 		defer resp.Body.Close()
@@ -193,8 +169,8 @@ func replacer() *strings.Replacer {
 	return strings.NewReplacer(" ", "%20")
 }
 
-func getFeatureTags() string {
-	return replacer().Replace(fmt.Sprintf("%v", strings.Trim(FeatureTags, " ")))
+func getExecutionTags() string {
+	return replacer().Replace(fmt.Sprintf("%v", strings.Trim(testCase.Tags[0].Name, " ")))
 }
 
 func getPlatformName() string {

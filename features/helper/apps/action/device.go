@@ -10,10 +10,7 @@ var Device *appium.Device
 
 // StartDriver : start android driver
 func (s *Page) StartDriver() error {
-	err := s.driver().Start()
-	helper.LogPanicln(err)
-
-	return nil
+	return s.driver().Start()
 }
 
 // NewDevice : create new android device

@@ -1,5 +1,4 @@
-# TODO
-# still on development
+# TODO : still on development
 unit: features/scenarios/unit
          -r features/support
          -r features/helper

@@ -7,26 +7,17 @@ import (
 
 // AcceptAlert : accepting alert
 func (s *Page) AcceptAlert() error {
-	element := s.driver().AcceptAlert()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().AcceptAlert()
 }
 
 // DismissAlert : dismissing alert
 func (s *Page) DismissAlert() error {
-	element := s.driver().DismissAlert()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().DismissAlert()
 }
 
 // BackBrowser : back to previous page
 func (s *Page) BackBrowser() error {
-	element := s.driver().Back()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().Back()
 }
 
 // GetCurrentURL : get current browser url
@@ -39,82 +30,52 @@ func (s *Page) GetCurrentURL() string {
 
 // ButtonDown : button down
 func (s *Page) ButtonDown() error {
-	element := s.driver().ButtonDown()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().ButtonDown()
 }
 
 // ButtonUp : buttom up
 func (s *Page) ButtonUp() error {
-	element := s.driver().ButtonUp()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().ButtonUp()
 }
 
 // CloseWindow : close browser window
 func (s *Page) CloseWindow(locator string) error {
-	element := s.driver().CloseWindow(locator)
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().CloseWindow(locator)
 }
 
 // AddCookie : add cookies in browser
 func (s *Page) AddCookie(cookie *selenium.Cookie) error {
-	element := s.driver().AddCookie(cookie)
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().AddCookie(cookie)
 }
 
 // DeleteCookie : delete cookies in browser
 func (s *Page) DeleteCookie(locator string) error {
-	element := s.driver().DeleteCookie(locator)
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().DeleteCookie(locator)
 }
 
 // DeleteAllCookies : delete all cookies in browser
 func (s *Page) DeleteAllCookies(locator string) error {
-	element := s.driver().DeleteAllCookies()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().DeleteAllCookies()
 }
 
 // DoubleClick : double click in browser
 func (s *Page) DoubleClick() error {
-	element := s.driver().DoubleClick()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().DoubleClick()
 }
 
 // Refresh : refresh browser
 func (s *Page) Refresh() error {
-	element := s.driver().Refresh()
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().Refresh()
 }
 
 // ResizeWindow : set browser size
 func (s *Page) ResizeWindow(locator string, w int, h int) error {
-	element := s.driver().ResizeWindow(locator, w, h)
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().ResizeWindow(locator, w, h)
 }
 
 // MaxWindow : set browser to maximum size
 func (s *Page) MaxWindow(locator string) error {
-	element := s.driver().MaximizeWindow(locator)
-	helper.LogPanicln(element)
-
-	return element
+	return s.driver().MaximizeWindow(locator)
 }
 
 // TakeScreenshot : take error screenshot

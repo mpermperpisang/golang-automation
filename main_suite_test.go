@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/DATA-DOG/godog"
+	"github.com/cucumber/godog"
 	"github.com/golang-automation/features/suites"
 	android "github.com/golang-automation/features/suites/android"
 	api "github.com/golang-automation/features/suites/api"

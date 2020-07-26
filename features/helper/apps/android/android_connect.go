@@ -6,7 +6,7 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
-// Driver global variable
+// Driver : global variable
 var Driver *appium.WebDriver
 var p *properties.Properties
 
@@ -17,7 +17,7 @@ func AndroidProperties() error {
 	return nil
 }
 
-// DriverConnect for android
+// DriverConnect : appium capabilities for android
 func DriverConnect() *appium.WebDriver {
 	AndroidProperties()
 
