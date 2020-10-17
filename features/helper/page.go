@@ -14,7 +14,7 @@ func WaitForLoadingPage(timeout int) error {
 		document, err := webhelper.Driver.ExecuteScript(`return window.document.readyState`, nil)
 		LogPanicln(err)
 
-		if document == "complete" || max == timeout {
+		if document == "complete" && max <= timeout {
 			break
 		}
 	}

@@ -76,10 +76,10 @@ func successPercentageCheck() int {
 func getGodogInfo() error {
 	response, err := http.Get("http://localhost:8383/godog-support")
 	helper.LogPanicln(err)
-	ResponseBody, err := ioutil.ReadAll(response.Body)
+	responseBody, err := ioutil.ReadAll(response.Body)
 	helper.LogPanicln(err)
 
-	return json.Unmarshal(ResponseBody, &jsonResponse)
+	return json.Unmarshal(responseBody, &jsonResponse)
 }
 
 func getExecutionIDResponse() string {

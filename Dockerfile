@@ -13,7 +13,9 @@ RUN GO111MODULE=on go get github.com/cucumber/godog/cmd/godog@v0.10.0 && \
     go get -u github.com/tidwall/gjson && \
     go get github.com/golang/mock/gomock && \
     go get github.com/golang/mock/mockgen && \
-    go get github.com/stretchr/testify
+    go get github.com/stretchr/testify && \
+    go get github.com/xeipuuv/gojsonschema && \
+    go get github.com/mileusna/conditional
 
 FROM node:latest
 WORKDIR /go/src/github.com/golang-automation
