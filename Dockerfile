@@ -9,17 +9,21 @@ RUN GO111MODULE=on go get github.com/cucumber/godog/cmd/godog@v0.10.0 && \
     go get github.com/yalp/jsonpath && \
     go get -u golang.org/x/lint/golint && \
     go get -u github.com/goccy/go-yaml && \
-    go get github.com/brianvoe/gofakeit && \
+    go get github.com/brianvoe/gofakeit/v5 && \
     go get -u github.com/tidwall/gjson && \
     go get github.com/golang/mock/gomock && \
     go get github.com/golang/mock/mockgen && \
     go get github.com/stretchr/testify && \
     go get github.com/xeipuuv/gojsonschema && \
-    go get github.com/mileusna/conditional
+    go get github.com/mileusna/conditional && \
+    go get github.com/petergtz/pegomock && \
+    go get -u github.com/bxcodec/faker/v3 && \
+    go get github.com/rbretecher/go-postman-collection
 
 FROM node:latest
 WORKDIR /go/src/github.com/golang-automation
-RUN npm install cucumber-html-reporter
+RUN npm install cucumber-html-reporter && \
+    npm install -g quicktype
 
 FROM ruby:2.5.5
 WORKDIR /go/src/github.com/golang-automation

@@ -10,11 +10,11 @@ import (
 
 // UseAssertion : use assert
 type UseAssertion struct {
-	assert testing.T
+	testing testing.T
 }
 
 func (t *UseAssertion) assertNew() *assert.Assertions {
-	return assert.New(&t.assert)
+	return assert.New(&t.testing)
 }
 
 // AssertEqual : must equal
