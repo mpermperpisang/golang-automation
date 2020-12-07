@@ -3,21 +3,14 @@ package helper
 import (
 	"os"
 
-	"github.com/golang-automation/features/helper"
 	postman "github.com/rbretecher/go-postman-collection"
 )
 
-func postmanCollection(jsonFile string) {
+// PostmanCollection : func for using postman collection
+func PostmanCollection(jsonFile string) (*postman.Collection, error) {
 	file, err := os.Open(jsonFile)
-	helper.LogPanicln(err)
+	LogPanicln(err)
 
 	defer file.Close()
-	parseCollection(file)
-}
-
-func parseCollection(file *os.File) *postman.Collection {
-	collection, err := postman.ParseCollection(file)
-	helper.LogPanicln(err)
-
-	return collection
+	return postman.ParseCollection(file)
 }

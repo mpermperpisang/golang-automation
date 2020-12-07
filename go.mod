@@ -10,7 +10,7 @@ require (
 	github.com/magiconair/properties v1.8.4
 	github.com/nxadm/tail v1.4.5 // indirect
 	github.com/onsi/ginkgo v1.14.2 // indirect
-	github.com/rbretecher/go-postman-collection v0.3.0 // indirect
+	github.com/rbretecher/go-postman-collection v0.3.0
 	github.com/sclevine/agouti v3.0.0+incompatible
 	github.com/stretchr/testify v1.6.1
 	github.com/tebeka/selenium v0.9.9
