@@ -39,6 +39,9 @@ var AndroidApps appsaction.Page
 // IOSApps : ios apps driver
 var IOSApps appsaction.Page
 
+// AppsDevice : ios apps device
+var AppsDevice appsaction.Page
+
 // Platform : platform name
 var Platform string
 
@@ -190,10 +193,14 @@ func platformCheck(tags string) error {
 		Platform += "Android "
 
 		AndroidConnect()
+		AndroidOpenDevice()
+		appsDevice()
 	} else if strings.Contains(tags, "@ios") {
 		Platform += "iOS "
 
 		IOSConnect()
+		IOSOpenDevice()
+		appsDevice()
 	}
 
 	return nil
@@ -223,16 +230,28 @@ func MwebConnect() error {
 func AndroidConnect() error {
 	android.DriverConnect()
 
-	AndroidApps = appsaction.Page{Action: appsaction.AppPage{Page: appsaction.Driver{Driver: android.Driver}}}
-
+	AndroidApps = appsaction.Page{
+		Action: appsaction.AppPage{
+			Page: appsaction.Driver{
+				Driver: android.Driver,
+			},
+		},
+	}
 	return nil
 }
 
 // IOSConnect : connect to iOS driver
 func IOSConnect() error {
 	ios.DriverConnect()
+	IOSOpenDevice()
 
-	IOSApps = appsaction.Page{Action: appsaction.AppPage{Page: appsaction.Driver{Driver: ios.Driver}}}
+	IOSApps = appsaction.Page{
+		Action: appsaction.AppPage{
+			Page: appsaction.Driver{
+				Driver: ios.Driver,
+			},
+		},
+	}
 
 	return nil
 }
@@ -249,6 +268,16 @@ func AndroidOpenDevice() error {
 func IOSOpenDevice() error {
 	IOSApps.StartDriver()
 	IOSApps.NewDevice()
+
+	return nil
+}
+
+func appsDevice() error {
+	AppsDevice = appsaction.Page{
+		Action: appsaction.AppPage{
+			Device: appsaction.Device,
+		},
+	}
 
 	return nil
 }

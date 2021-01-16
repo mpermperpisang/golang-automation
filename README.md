@@ -33,7 +33,7 @@ This command will not import automation run result to Xray<br/>
 `$ ./godog -t "@example"`<br/>
 `$ ./godog -t "~@example"`<br/>
 `$ ./godog -t "@example && @example-dweb"`<br/>
-`$ ./godog -t "@example && ~@example-dweb"`<br/>
+`$ ./godog -t "@example && ~@exclude"`<br/>
 `$ ./godog -t "@example,@example-dweb"`<br/>
 
 **Running & Export Xray**<br/>

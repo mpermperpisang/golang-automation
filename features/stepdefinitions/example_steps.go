@@ -46,7 +46,14 @@ func OpenMWEB() error {
 
 // OpenAndroid : initiate android scenario
 func OpenAndroid() error {
-	return support.AndroidOpenDevice()
+	OpenAndroidDeeplink(os.Getenv("LOGIN_URL"))
+
+	return nil
+}
+
+// OpenAndroidDeeplink : open deeplink for android
+func OpenAndroidDeeplink(URL string) error {
+	return support.AppsDevice.URLNavigate(URL)
 }
 
 // OpenIOS : initiate ios scenario

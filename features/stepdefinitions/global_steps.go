@@ -4,14 +4,9 @@ import (
 	"os"
 	"strings"
 
-	appsaction "github.com/golang-automation/features/helper/apps/action"
 	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/support"
 )
-
-type globalSteps struct {
-	Page appsaction.Page
-}
 
 func varLogin(user string) error {
 	var username, password string
@@ -43,14 +38,8 @@ func LoginData(user string, platform string) error {
 	case "mobile":
 		support.MobilePage.GoToURL(os.Getenv("URL_2"))
 	default:
-		openDeeplink(os.Getenv("URL_2"))
+		return support.AppsDevice.URLNavigate(os.Getenv("URL_2"))
 	}
 
 	return nil
-}
-
-func openDeeplink(URL string) error {
-	s := globalSteps{}
-
-	return s.Page.URLNavigate(os.Getenv("URL_2"))
 }
