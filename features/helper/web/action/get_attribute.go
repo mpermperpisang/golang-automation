@@ -71,7 +71,7 @@ func (s *Page) GetAttributeByClass(locator string, attr string) (string, error) 
 
 // GetAttributeByText : get element attribute  by text in xpath
 func (s *Page) GetAttributeByText(locator string, attr string) (string, error) {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.GetAttribute(attr)

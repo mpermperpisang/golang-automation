@@ -71,7 +71,7 @@ func (s *Page) SendKeysByClass(locator string, text string) error {
 
 // SendKeysByText : input text by text in xpath
 func (s *Page) SendKeysByText(locator string, text string) error {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.SendKeys(text)

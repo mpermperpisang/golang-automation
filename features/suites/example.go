@@ -3,31 +3,34 @@ package suites
 import (
 	"github.com/cucumber/godog"
 	"github.com/golang-automation/features/stepdefinitions"
+	androidsteps "github.com/golang-automation/features/stepdefinitions/apps/android/steps"
 )
 
 // ExampleAutomation : suites for initial run
 func ExampleAutomation(s *godog.Suite) {
 	// web
-	s.Step(`^visit dweb$`, stepdefinitions.OpenDWEB)
-	s.Step(`^visit mweb$`, stepdefinitions.OpenMWEB)
+	s.Step(`visit dweb`, stepdefinitions.OpenDWEB)
+	s.Step(`visit mweb`, stepdefinitions.OpenMWEB)
 	// apps
-	s.Step(`^visit android$`, stepdefinitions.OpenAndroid)
-	s.Step(`^visit ios$`, stepdefinitions.OpenIOS)
+	s.Step(`visit android`, stepdefinitions.OpenAndroid)
+	s.Step(`visit android deeplink`, stepdefinitions.OpenAndroidDeeplink)
+	s.Step(`visit ios`, stepdefinitions.OpenIOS)
+	s.Step(`user is in home page`, androidsteps.ValidateUserIsInHomePage)
 	// api
 	s.Step(`^client has "([^\"]*)" as base api$`, stepdefinitions.BaseAPI)
 	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseStatusAPI)
 	// unit
 	s.Step(`^user has a name "([^\"]*)"$`, stepdefinitions.GivenUserName)
-	s.Step(`^Testivus meet user$`, stepdefinitions.MeetUserName)
+	s.Step(`Testivus meet user`, stepdefinitions.MeetUserName)
 	s.Step(`^Testivus say "([^\"]*)"$`, stepdefinitions.SayHelloName)
 	// data
-	s.Step(`^some data$`, stepdefinitions.GivenData)
-	s.Step(`^set data$`, stepdefinitions.SetData)
-	s.Step(`^get data$`, stepdefinitions.GetData)
+	s.Step(`some data`, stepdefinitions.GivenData)
+	s.Step(`set data`, stepdefinitions.SetData)
+	s.Step(`get data`, stepdefinitions.GetData)
 	// yaml
-	s.Step(`^yaml file$`, stepdefinitions.GivenFile)
-	s.Step(`^read file$`, stepdefinitions.ReadFile)
-	s.Step(`^print contents$`, stepdefinitions.PrintContents)
+	s.Step(`yaml file`, stepdefinitions.GivenFile)
+	s.Step(`read file`, stepdefinitions.ReadFile)
+	s.Step(`print contents`, stepdefinitions.PrintContents)
 	// mapping
-	s.Step(`^function mapping$`, stepdefinitions.GetFunction)
+	s.Step(`function mapping`, stepdefinitions.GetFunction)
 }

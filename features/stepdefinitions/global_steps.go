@@ -38,7 +38,7 @@ func LoginData(user string, platform string) error {
 	case "mobile":
 		support.MobilePage.GoToURL(os.Getenv("URL_2"))
 	default:
-		return support.AppsDevice.URLNavigate(os.Getenv("URL_2"))
+		return support.DeviceAction.URLNavigate(os.Getenv("URL_2"))
 	}
 
 	return nil

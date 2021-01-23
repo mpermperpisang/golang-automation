@@ -1,6 +1,9 @@
 package androidpages
 
-import android "github.com/golang-automation/features/helper/apps/action"
+import (
+	android "github.com/golang-automation/features/helper/apps/action"
+	"github.com/golang-automation/features/helper/page"
+)
 
 // OnboardingPage : page object onboarding
 type OnboardingPage struct {
@@ -8,12 +11,19 @@ type OnboardingPage struct {
 }
 
 var (
-	btnMulai = "//androidx.appcompat.widget.AppCompatTextView[contains(@text, 'Mulai')]"
+	btnMulai = "oldButtonAV"
 )
+
+// WaitingMulaiButton : waiting for Mulai button to display
+func (s *OnboardingPage) WaitingMulaiButton() *OnboardingPage {
+	page.ValidateElementWithTimeout(s.Page.IsElementEnabledByID(btnMulai), 5)
+
+	return &OnboardingPage{Page: s.Page}
+}
 
 // ClickMulai : click Mulai button
 func (s *OnboardingPage) ClickMulai() *HomePage {
-	s.Page.ClickByXPath(btnMulai)
+	s.Page.ClickByID(btnMulai)
 
 	return &HomePage{Page: s.Page}
 }

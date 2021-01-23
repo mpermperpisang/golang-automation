@@ -71,7 +71,7 @@ func (s *Page) ClearByClass(locator string) error {
 
 // ClearByText : clear element by text in xpath
 func (s *Page) ClearByText(locator string) error {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.Clear()

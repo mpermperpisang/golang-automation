@@ -14,7 +14,6 @@ func GodogMainSuites(s *godog.Suite) {
 	// general suites
 	suites.ExampleAutomation(s)
 	suites.AutomationGlobal(s)
-	suites.FarewellGreeting(s)
 	// suites by platform
 	api.AutomationAPI(s)
 	desktop.AutomationDesktop(s)

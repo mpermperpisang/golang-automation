@@ -1,6 +1,9 @@
 package androidpages
 
-import android "github.com/golang-automation/features/helper/apps/action"
+import (
+	android "github.com/golang-automation/features/helper/apps/action"
+	"github.com/golang-automation/features/helper/page"
+)
 
 // HomePage : page object home
 type HomePage struct {
@@ -34,4 +37,11 @@ func (s *HomePage) ClickMasuk() *InputPhonePage {
 	s.Page.ClickByText(btnMasuk)
 
 	return &InputPhonePage{Page: s.Page}
+}
+
+// ValidateHomePage : validate user is in home page
+func (s *HomePage) ValidateHomePage() *HomePage {
+	page.ValidateElementWithTimeout(s.Page.IsElementVisibleByText(btnMasuk), 5)
+
+	return &HomePage{Page: s.Page}
 }

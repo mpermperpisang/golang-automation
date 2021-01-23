@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -39,8 +38,8 @@ var AndroidApps appsaction.Page
 // IOSApps : ios apps driver
 var IOSApps appsaction.Page
 
-// AppsDevice : ios apps device
-var AppsDevice appsaction.Page
+// DeviceAction : android & ios action method to device
+var DeviceAction appsaction.Page
 
 // Platform : platform name
 var Platform string
@@ -108,7 +107,7 @@ func takeErrorWebPageImage() error {
 }
 
 func takeErrorAppsPageImage() error {
-	buffApps := appsaction.Page{Action: appsaction.AppPage{Device: appsaction.Device}}
+	buffApps := appsaction.Page{Action: appsaction.AppPage{Page: appsaction.AppsDevice{Device: appsaction.Device}}}
 
 	dirCheck()
 	buffApps.TakeScreenshot(pathname)
@@ -151,10 +150,10 @@ func GodogMainSupport(s *godog.Suite) {
 	})
 
 	s.AfterSuite(func() {
-		resp, err := http.Post("http://localhost:8383/godog-support?executionTags="+getExecutionTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
-		helper.LogPanicln(err)
+		// resp, err := http.Post("http://localhost:8383/godog-support?executionTags="+getExecutionTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
+		// helper.LogPanicln(err)
 
-		defer resp.Body.Close()
+		// defer resp.Body.Close()
 
 		if web.Driver != nil {
 			web.Driver.Quit()
@@ -184,23 +183,27 @@ func platformCheck(tags string) error {
 	if strings.Contains(tags, "@dweb") {
 		Platform += "Desktop-Web "
 
+		web.DriverConnect()
 		DwebConnect()
 	} else if strings.Contains(tags, "@mweb") {
 		Platform += "Mobile-Web "
 
+		web.DriverConnect()
 		MwebConnect()
 	} else if strings.Contains(tags, "@android") {
 		Platform += "Android "
 
+		android.DriverConnect()
 		AndroidConnect()
-		AndroidOpenDevice()
-		appsDevice()
+		AndroidDevice()
+		AppsDevice()
 	} else if strings.Contains(tags, "@ios") {
 		Platform += "iOS "
 
+		ios.DriverConnect()
 		IOSConnect()
-		IOSOpenDevice()
-		appsDevice()
+		IOSDevice()
+		AppsDevice()
 	}
 
 	return nil
@@ -208,8 +211,6 @@ func platformCheck(tags string) error {
 
 // DwebConnect : connect to dweb driver
 func DwebConnect() error {
-	web.DriverConnect()
-
 	DesktopWeb = webaction.Page{Action: web.Driver}
 	DesktopPage = desktop.DwebPage{Page: web.Driver}
 
@@ -218,64 +219,57 @@ func DwebConnect() error {
 
 // MwebConnect : connect to dweb driver
 func MwebConnect() error {
-	web.DriverConnect()
-
 	MobileWeb = webaction.Page{Action: web.Driver}
 	MobilePage = mobile.MwebPage{Page: web.Driver}
 
 	return nil
 }
 
-// AndroidConnect : connect to androids driver
+// AndroidConnect : connect to android driver
 func AndroidConnect() error {
-	android.DriverConnect()
-
 	AndroidApps = appsaction.Page{
 		Action: appsaction.AppPage{
-			Page: appsaction.Driver{
-				Driver: android.Driver,
-			},
+			Driver: android.Driver,
 		},
 	}
+
 	return nil
 }
 
 // IOSConnect : connect to iOS driver
 func IOSConnect() error {
-	ios.DriverConnect()
-	IOSOpenDevice()
-
 	IOSApps = appsaction.Page{
 		Action: appsaction.AppPage{
-			Page: appsaction.Driver{
-				Driver: ios.Driver,
-			},
+			Driver: ios.Driver,
 		},
 	}
 
 	return nil
 }
 
-// AndroidOpenDevice : open android device
-func AndroidOpenDevice() error {
+// AndroidDevice : create new android device
+func AndroidDevice() error {
 	AndroidApps.StartDriver()
 	AndroidApps.NewDevice()
 
 	return nil
 }
 
-// IOSOpenDevice : open iOS device
-func IOSOpenDevice() error {
+// IOSDevice : create new iOS device
+func IOSDevice() error {
 	IOSApps.StartDriver()
 	IOSApps.NewDevice()
 
 	return nil
 }
 
-func appsDevice() error {
-	AppsDevice = appsaction.Page{
+// AppsDevice : connect to method to do different action in device
+func AppsDevice() error {
+	DeviceAction = appsaction.Page{
 		Action: appsaction.AppPage{
-			Device: appsaction.Device,
+			Page: appsaction.AppsDevice{
+				Device: appsaction.Device,
+			},
 		},
 	}
 

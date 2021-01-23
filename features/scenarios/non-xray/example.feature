@@ -10,9 +10,17 @@ Feature: Example Automation
   Scenario: Example MWEB
     Given visit mweb
 
-  @example-android @android @exclude
+  @example-android @android
   Scenario: Example Android
     Given visit android
+
+  @example-android-2 @android
+  Scenario: Example Android
+    Given visit android deeplink
+
+  @example-android-3 @android
+  Scenario: Example Android
+    Given user is in home page
 
   @example-ios @ios @exclude
   Scenario: Example iOS

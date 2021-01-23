@@ -71,7 +71,7 @@ func (s *Page) IsElementDisplayedByClass(locator string) (bool, error) {
 
 // IsElementDisplayedByText : element displayed by text in xpath
 func (s *Page) IsElementDisplayedByText(locator string) (bool, error) {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.IsDisplayed()

@@ -12,6 +12,7 @@ import (
 	api "github.com/golang-automation/features/helper/api"
 	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/helper/messages"
+	"github.com/golang-automation/features/helper/page"
 	"github.com/golang-automation/features/support"
 	"gopkg.in/yaml.v2"
 )
@@ -31,7 +32,7 @@ var yamlFile []byte
 // OpenDWEB : to initiate dweb scenario
 func OpenDWEB() error {
 	support.DesktopPage.GoToURL(os.Getenv("URL"))
-	helper.WaitForLoadingPage(25)
+	page.WaitForLoadingPage(25)
 
 	return nil
 }
@@ -39,26 +40,24 @@ func OpenDWEB() error {
 // OpenMWEB : initiate mweb scenario
 func OpenMWEB() error {
 	support.MobilePage.GoToURL(os.Getenv("URL"))
-	helper.WaitForLoadingPage(25)
+	page.WaitForLoadingPage(25)
 
 	return nil
 }
 
 // OpenAndroid : initiate android scenario
 func OpenAndroid() error {
-	OpenAndroidDeeplink(os.Getenv("LOGIN_URL"))
-
-	return nil
+	return support.AndroidDevice()
 }
 
 // OpenAndroidDeeplink : open deeplink for android
 func OpenAndroidDeeplink(URL string) error {
-	return support.AppsDevice.URLNavigate(URL)
+	return support.DeviceAction.URLNavigate(URL)
 }
 
 // OpenIOS : initiate ios scenario
 func OpenIOS() error {
-	return support.IOSOpenDevice()
+	return support.IOSDevice()
 }
 
 // BaseAPI : initiate base url for API

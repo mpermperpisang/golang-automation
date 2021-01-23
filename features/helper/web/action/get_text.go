@@ -55,7 +55,7 @@ func (s *Page) GetTextByName(locator string) (string, error) {
 
 // GetTextByText : get element text by text in xpath
 func (s *Page) GetTextByText(locator string) (string, error) {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.Text()

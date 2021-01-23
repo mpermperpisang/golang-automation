@@ -71,7 +71,7 @@ func (s *Page) IsElementSelectedByClass(locator string) (bool, error) {
 
 // IsElementSelectedByText : element selected by text in xpath
 func (s *Page) IsElementSelectedByText(locator string) (bool, error) {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.IsSelected()

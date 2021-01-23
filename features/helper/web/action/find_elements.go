@@ -23,7 +23,7 @@ func (s *Page) FindElementsByXpath(locator string) []selenium.WebElement {
 
 // FindElementsByText : find element by multiple text using Xpath
 func (s *Page) FindElementsByText(locator string) []selenium.WebElement {
-	element, err := s.driver().FindElements(selenium.ByXPATH, "//*[contains(text(), "+locator+")]")
+	element, err := s.driver().FindElements(selenium.ByXPATH, "//*[contains(@text, "+locator+")]")
 	helper.LogPanicln(err)
 
 	return element

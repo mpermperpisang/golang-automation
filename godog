@@ -27,9 +27,9 @@ function start_automation_without_tag() {
 
 function stop_automation() {
   echo "Stopping automation"
-  ./xray -i -j cucumber_report.json
-  chmod 744 features/support/main/script.go
-  ./features/support/main/script.go
+  # ./xray -i -j cucumber_report.json
+  # chmod 744 features/support/main/script.go
+  # ./features/support/main/script.go
 }
 
 function open_html_report() {

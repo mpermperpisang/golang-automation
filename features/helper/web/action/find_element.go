@@ -71,7 +71,7 @@ func (s *Page) FindElementByClass(locator string) selenium.WebElement {
 
 // FindElementByText : find element by text in xpath
 func (s *Page) FindElementByText(locator string) selenium.WebElement {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element

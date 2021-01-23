@@ -71,7 +71,7 @@ func (s *Page) IsElementEnabledByClass(locator string) (bool, error) {
 
 // IsElementEnabledByText : element enabled by text in xpath
 func (s *Page) IsElementEnabledByText(locator string) (bool, error) {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.IsEnabled()

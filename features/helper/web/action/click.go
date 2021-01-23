@@ -73,7 +73,7 @@ func (s *Page) ClickByClass(locator string) error {
 
 // ClickByText : click element by text in xpath
 func (s *Page) ClickByText(locator string) error {
-	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(text(), '"+locator+"')]")
+	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 
 	return element.Click()
