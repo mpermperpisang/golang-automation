@@ -6,7 +6,7 @@ import (
 )
 
 // AutomationDesktop : suites for desktop web
-func AutomationDesktop(s *godog.Suite) {
+func AutomationDesktop(s *godog.ScenarioContext) {
 	s.Step(`^client input valid data login$`, desktopsteps.UserLogin)
 	s.Step(`^client must be in logged home page$`, desktopsteps.LoggedUser)
 }

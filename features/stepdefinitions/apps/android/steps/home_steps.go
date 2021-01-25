@@ -5,12 +5,12 @@ import (
 	"github.com/golang-automation/features/support"
 )
 
-// ValidateUserIsInHomePage : TO DO
-func ValidateUserIsInHomePage() error {
+// UserIsInHomePage : TO DO
+func UserIsInHomePage() error {
 	android := androidpages.OnboardingPage{Page: support.DeviceAction}
 
 	android.WaitingMulaiButton().
-		ClickMulai().
+		ClickMulaiButton().
 		ValidateHomePage()
 
 	return nil

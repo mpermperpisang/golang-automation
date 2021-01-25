@@ -1,6 +1,6 @@
 FROM golang:latest
 WORKDIR /go/src/github.com/golang-automation
-RUN GO111MODULE=on go get github.com/cucumber/godog/cmd/godog@v0.10.0 && \
+RUN GO111MODULE=on go get github.com/cucumber/godog/cmd/godog@v0.11.0 && \
     go get -t -d github.com/tebeka/selenium && \
     go get github.com/sclevine/agouti && \
     go get github.com/joho/godotenv && \

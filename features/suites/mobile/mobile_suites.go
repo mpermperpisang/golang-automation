@@ -6,7 +6,7 @@ import (
 )
 
 // AutomationMobile : suites for mobile web
-func AutomationMobile(s *godog.Suite) {
+func AutomationMobile(s *godog.ScenarioContext) {
 	s.Step(`^client input valid data login in mobile$`, mobilesteps.UserLogin)
 	s.Step(`^client must be in logged mobile page$`, mobilesteps.LoggedUser)
 }

@@ -16,7 +16,7 @@ Feature: Example Automation
 
   @example-android-2 @android
   Scenario: Example Android
-    Given visit android deeplink
+    Given visit "LOGIN_URL" deeplink
 
   @example-android-3 @android
   Scenario: Example Android

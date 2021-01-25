@@ -21,8 +21,8 @@ func (s *OnboardingPage) WaitingMulaiButton() *OnboardingPage {
 	return &OnboardingPage{Page: s.Page}
 }
 
-// ClickMulai : click Mulai button
-func (s *OnboardingPage) ClickMulai() *HomePage {
+// ClickMulaiButton : click Mulai button
+func (s *OnboardingPage) ClickMulaiButton() *HomePage {
 	s.Page.ClickByID(btnMulai)
 
 	return &HomePage{Page: s.Page}

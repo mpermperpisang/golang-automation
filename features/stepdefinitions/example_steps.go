@@ -52,7 +52,7 @@ func OpenAndroid() error {
 
 // OpenAndroidDeeplink : open deeplink for android
 func OpenAndroidDeeplink(URL string) error {
-	return support.DeviceAction.URLNavigate(URL)
+	return support.DeviceAction.URLNavigate(os.Getenv(URL))
 }
 
 // OpenIOS : initiate ios scenario

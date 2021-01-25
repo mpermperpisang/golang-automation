@@ -7,15 +7,15 @@ import (
 )
 
 // ExampleAutomation : suites for initial run
-func ExampleAutomation(s *godog.Suite) {
+func ExampleAutomation(s *godog.ScenarioContext) {
 	// web
 	s.Step(`visit dweb`, stepdefinitions.OpenDWEB)
 	s.Step(`visit mweb`, stepdefinitions.OpenMWEB)
 	// apps
 	s.Step(`visit android`, stepdefinitions.OpenAndroid)
-	s.Step(`visit android deeplink`, stepdefinitions.OpenAndroidDeeplink)
+	s.Step(`visit "([^\"]*)" deeplink`, stepdefinitions.OpenAndroidDeeplink)
 	s.Step(`visit ios`, stepdefinitions.OpenIOS)
-	s.Step(`user is in home page`, androidsteps.ValidateUserIsInHomePage)
+	s.Step(`user is in home page`, androidsteps.UserIsInHomePage)
 	// api
 	s.Step(`^client has "([^\"]*)" as base api$`, stepdefinitions.BaseAPI)
 	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseStatusAPI)

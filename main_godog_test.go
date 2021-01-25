@@ -10,7 +10,13 @@ import (
 	"github.com/golang-automation/features/support"
 )
 
-func GodogMainSuites(s *godog.Suite) {
+func GodogMainSuites(s *godog.TestSuiteContext) {
+	support.InitializeTestSuite(s)
+}
+
+func GodogMainScenarios(s *godog.ScenarioContext) {
+	support.InitializeScenario(s)
+
 	// general suites
 	suites.ExampleAutomation(s)
 	suites.AutomationGlobal(s)
@@ -19,6 +25,4 @@ func GodogMainSuites(s *godog.Suite) {
 	desktop.AutomationDesktop(s)
 	mobile.AutomationMobile(s)
 	android.AutomationAndroid(s)
-
-	support.GodogMainSupport(s)
 }

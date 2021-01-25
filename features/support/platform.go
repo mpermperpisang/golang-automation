@@ -115,8 +115,28 @@ func takeErrorAppsPageImage() error {
 	return nil
 }
 
-// GodogMainSupport : does something before and after scenario
-func GodogMainSupport(s *godog.Suite) {
+// InitializeTestSuite : does something before and after suite
+func InitializeTestSuite(s *godog.TestSuiteContext) {
+	s.AfterSuite(func() {
+		// resp, err := http.Post("http://localhost:8383/godog-support?executionTags="+getExecutionTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
+		// helper.LogPanicln(err)
+
+		// defer resp.Body.Close()
+
+		if web.Driver != nil {
+			web.Driver.Quit()
+		} else if android.Driver != nil {
+			android.Driver.Stop()
+			apps.Appium()
+		} else if ios.Driver != nil {
+			ios.Driver.Stop()
+			apps.Appium()
+		}
+	})
+}
+
+// InitializeScenario : does something before and after scenario
+func InitializeScenario(s *godog.ScenarioContext) {
 	s.BeforeScenario(func(scenario *godog.Scenario) {
 		structDetail(scenario)
 
@@ -146,23 +166,6 @@ func GodogMainSupport(s *godog.Suite) {
 			ssWeb()
 			ssAndroid()
 			ssIOS()
-		}
-	})
-
-	s.AfterSuite(func() {
-		// resp, err := http.Post("http://localhost:8383/godog-support?executionTags="+getExecutionTags()+"&platformName="+getPlatformName()+"&pwdPath="+PWD, "", nil)
-		// helper.LogPanicln(err)
-
-		// defer resp.Body.Close()
-
-		if web.Driver != nil {
-			web.Driver.Quit()
-		} else if android.Driver != nil {
-			android.Driver.Stop()
-			apps.Appium()
-		} else if ios.Driver != nil {
-			ios.Driver.Stop()
-			apps.Appium()
 		}
 	})
 }
