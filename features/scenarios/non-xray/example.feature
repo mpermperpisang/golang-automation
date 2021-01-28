@@ -20,7 +20,7 @@ Feature: Example Automation
 
   @example-android-3 @android
   Scenario: Example Android
-    Given user is in home page
+    Given mitra is in home page
 
   @example-ios @ios @exclude
   Scenario: Example iOS

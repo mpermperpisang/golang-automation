@@ -15,7 +15,7 @@ func ExampleAutomation(s *godog.ScenarioContext) {
 	s.Step(`visit android`, stepdefinitions.OpenAndroid)
 	s.Step(`visit "([^\"]*)" deeplink`, stepdefinitions.OpenAndroidDeeplink)
 	s.Step(`visit ios`, stepdefinitions.OpenIOS)
-	s.Step(`user is in home page`, androidsteps.UserIsInHomePage)
+	s.Step(`mitra is in home page`, androidsteps.UserIsInHomePage)
 	// api
 	s.Step(`^client has "([^\"]*)" as base api$`, stepdefinitions.BaseAPI)
 	s.Step(`^response status should be "([^\"]*)"$`, stepdefinitions.ResponseStatusAPI)
