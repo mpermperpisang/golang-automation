@@ -19,10 +19,8 @@ func (mock *useMock) helloName(user string) int {
 
 func TestMockHello(t *testing.T) {
 	mock := new(useMock)
-
-	mock.On("helloName", "Mper").Return(1)
-
 	m := myStruct{mock}
 
+	mock.On("helloName", "Mper").Return(1)
 	assert.Equal(t, m.Hello("Mper"), "Hello Mper!")
 }

@@ -4,9 +4,9 @@ import (
 	"github.com/sclevine/agouti/appium"
 )
 
-// AppsDevice : Android & iOS device
-type AppsDevice struct {
-	Device *appium.Device
+// Page : page actions
+type Page struct {
+	Action AppPage
 }
 
 // AppPage : Android & iOS Page
@@ -15,15 +15,15 @@ type AppPage struct {
 	Driver *appium.WebDriver
 }
 
-// Page : page actions
-type Page struct {
-	Action AppPage
-}
-
-func (s *Page) device() *appium.Device {
-	return s.Action.Page.Device
+// AppsDevice : Android & iOS device
+type AppsDevice struct {
+	Device *appium.Device
 }
 
 func (s *Page) driver() *appium.WebDriver {
 	return s.Action.Driver
+}
+
+func (s *Page) device() *appium.Device {
+	return s.Action.Page.Device
 }

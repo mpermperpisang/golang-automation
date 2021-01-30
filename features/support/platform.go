@@ -18,6 +18,7 @@ import (
 	webaction "github.com/golang-automation/features/helper/web/action"
 	desktop "github.com/golang-automation/features/helper/web/desktop"
 	mobile "github.com/golang-automation/features/helper/web/mobile"
+	"github.com/golang-automation/features/support/structs"
 )
 
 // DesktopWeb : desktop web page
@@ -46,7 +47,7 @@ var Platform string
 
 // PWD : get current directory path
 var PWD string
-var testCase scenarioDetail
+var testCase structs.ScenarioDetail
 var path, pathname, filename string
 var scenarioTags, featureTags, tags string
 

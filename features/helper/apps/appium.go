@@ -12,5 +12,5 @@ func Appium() error {
 	pwd, err := os.Getwd()
 	helper.LogPanicln(err)
 
-	return exec.Command("/bin/sh", pwd+"/script/appium.sh").Run()
+	return exec.Command("/bin/sh", pwd+"/features/support/scripts/appium.sh").Run()
 }
