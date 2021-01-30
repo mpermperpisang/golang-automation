@@ -14,14 +14,14 @@ import (
 
 	"github.com/golang-automation/features/helper"
 	"github.com/golang-automation/features/helper/messages"
-	"github.com/golang-automation/features/support"
+	"github.com/golang-automation/features/support/structs"
 	"github.com/yalp/jsonpath"
 )
 
 var text, statusRun string
 var arrayStatus []string
 var jsonResponse interface{}
-var reports support.CucumberReport
+var reports structs.CucumberReport
 
 func main() {
 	statusScenario()

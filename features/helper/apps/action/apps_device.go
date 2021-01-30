@@ -8,7 +8,7 @@ import (
 // Device global variable
 var Device *appium.Device
 
-// StartDriver : start android driver
+// StartDriver : start android driveråß
 func (s *Page) StartDriver() error {
 	return s.driver().Start()
 }

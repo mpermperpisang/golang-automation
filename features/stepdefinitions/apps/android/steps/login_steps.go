@@ -31,7 +31,8 @@ func UserLogin() error {
 func LoggedUser() error {
 	home := androidpages.HomePage{Page: support.AndroidApps}
 
-	home.ClickOnboardingHomePage().
+	home.ClickMengerti().
+		ClickNantiSaja().
 		ValidateLoggedUser()
 
 	return nil

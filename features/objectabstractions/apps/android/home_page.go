@@ -24,9 +24,15 @@ func (s *HomePage) ValidateLoggedUser() *HomePage {
 	return &HomePage{Page: s.Page}
 }
 
-// ClickOnboardingHomePage : click Mengerti and Nanti Saja button
-func (s *HomePage) ClickOnboardingHomePage() *HomePage {
+// ClickMengerti : click Mengerti button
+func (s *HomePage) ClickMengerti() *HomePage {
 	s.Page.ClickByText(btnMengerti)
+
+	return &HomePage{Page: s.Page}
+}
+
+// ClickNantiSaja : click Nanti Saja button
+func (s *HomePage) ClickNantiSaja() *HomePage {
 	s.Page.ClickByText(btnNantiSaja)
 
 	return &HomePage{Page: s.Page}
