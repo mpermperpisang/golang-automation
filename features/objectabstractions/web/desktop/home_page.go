@@ -16,7 +16,7 @@ var (
 )
 
 // ValidateLoggedUser : validate user has login successfully
-func (s *HomePage) ValidateLoggedUser() error {
+func (s HomePage) ValidateLoggedUser() error {
 	time.Sleep(time.Second * 10)
 	s.Page.IsElementDisplayedByCSS(iconProfile)
 

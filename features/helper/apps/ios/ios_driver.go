@@ -8,18 +8,15 @@ import (
 
 // Driver : global variable
 var Driver *appium.WebDriver
-var p *properties.Properties
 
 // iOSProperties : read ios properties content file
-func iOSProperties() error {
-	p = properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-ios.properties", properties.UTF8)
-
-	return nil
+func iOSProperties() *properties.Properties {
+	return properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-ios.properties", properties.UTF8)
 }
 
 // DriverConnect : appium capabilities for ios
 func DriverConnect() *appium.WebDriver {
-	iOSProperties()
+	p := iOSProperties()
 
 	options := appium.Desired(agouti.Capabilities{
 		"platformName":      p.MustGetString("platformName"),

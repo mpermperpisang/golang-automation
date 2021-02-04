@@ -18,14 +18,14 @@ var (
 )
 
 // InputPhone : input phone number
-func (s *InputPhonePage) InputPhone() *InputPhonePage {
+func (s InputPhonePage) InputPhone() *InputPhonePage {
 	s.Page.SendKeysByXpath(fieldPhone, os.Getenv("USER_PHONE_NUMBER"))
 
 	return &InputPhonePage{Page: s.Page}
 }
 
 // ClickLanjut : click next to input password
-func (s *InputPhonePage) ClickLanjut() *InputPasswordPage {
+func (s InputPhonePage) ClickLanjut() *InputPasswordPage {
 	time.Sleep(time.Second * 2)
 	s.Page.ClickByText(btnLanjut)
 

@@ -9,6 +9,6 @@ type Page struct {
 	Action selenium.WebDriver
 }
 
-func (s *Page) driver() selenium.WebDriver {
+func (s Page) driver() selenium.WebDriver {
 	return s.Action
 }

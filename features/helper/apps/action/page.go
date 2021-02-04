@@ -20,10 +20,10 @@ type AppsDevice struct {
 	Device *appium.Device
 }
 
-func (s *Page) driver() *appium.WebDriver {
+func (s Page) driver() *appium.WebDriver {
 	return s.Action.Driver
 }
 
-func (s *Page) device() *appium.Device {
+func (s Page) device() *appium.Device {
 	return s.Action.Page.Device
 }

@@ -6,7 +6,7 @@ import (
 )
 
 // ClearByCSS : clear element by CSS selector
-func (s *Page) ClearByCSS(locator string) error {
+func (s Page) ClearByCSS(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
 
@@ -14,7 +14,7 @@ func (s *Page) ClearByCSS(locator string) error {
 }
 
 // ClearByID : clear element by class ID
-func (s *Page) ClearByID(locator string) error {
+func (s Page) ClearByID(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
 
@@ -22,7 +22,7 @@ func (s *Page) ClearByID(locator string) error {
 }
 
 // ClearByXpath : clear element by Xpath selector
-func (s *Page) ClearByXpath(locator string) error {
+func (s Page) ClearByXpath(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
 
@@ -30,7 +30,7 @@ func (s *Page) ClearByXpath(locator string) error {
 }
 
 // ClearByLinkText : clear element by link text
-func (s *Page) ClearByLinkText(locator string) error {
+func (s Page) ClearByLinkText(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
 
@@ -38,7 +38,7 @@ func (s *Page) ClearByLinkText(locator string) error {
 }
 
 // ClearByPartialLink : clear element by partial link text
-func (s *Page) ClearByPartialLink(locator string) error {
+func (s Page) ClearByPartialLink(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
 
@@ -46,7 +46,7 @@ func (s *Page) ClearByPartialLink(locator string) error {
 }
 
 // ClearByName : clear element by class name
-func (s *Page) ClearByName(locator string) error {
+func (s Page) ClearByName(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
 
@@ -54,7 +54,7 @@ func (s *Page) ClearByName(locator string) error {
 }
 
 // ClearByTag : clear element by name tag
-func (s *Page) ClearByTag(locator string) error {
+func (s Page) ClearByTag(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
 
@@ -62,7 +62,7 @@ func (s *Page) ClearByTag(locator string) error {
 }
 
 // ClearByClass : clear element by class name
-func (s *Page) ClearByClass(locator string) error {
+func (s Page) ClearByClass(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
 
@@ -70,7 +70,7 @@ func (s *Page) ClearByClass(locator string) error {
 }
 
 // ClearByText : clear element by text in xpath
-func (s *Page) ClearByText(locator string) error {
+func (s Page) ClearByText(locator string) error {
 	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 

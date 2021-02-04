@@ -6,7 +6,7 @@ import (
 )
 
 // SendKeysByCSS : input text by CSS selector
-func (s *Page) SendKeysByCSS(locator string, text string) error {
+func (s Page) SendKeysByCSS(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByCSSSelector, locator)
 	helper.LogPanicln(err)
 
@@ -14,7 +14,7 @@ func (s *Page) SendKeysByCSS(locator string, text string) error {
 }
 
 // SendKeysByID : input text by class ID
-func (s *Page) SendKeysByID(locator string, text string) error {
+func (s Page) SendKeysByID(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByID, locator)
 	helper.LogPanicln(err)
 
@@ -22,7 +22,7 @@ func (s *Page) SendKeysByID(locator string, text string) error {
 }
 
 // SendKeysByXpath : input text by Xpath selector
-func (s *Page) SendKeysByXpath(locator string, text string) error {
+func (s Page) SendKeysByXpath(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByXPATH, locator)
 	helper.LogPanicln(err)
 
@@ -30,7 +30,7 @@ func (s *Page) SendKeysByXpath(locator string, text string) error {
 }
 
 // SendKeysByLinkText : input text by link text
-func (s *Page) SendKeysByLinkText(locator string, text string) error {
+func (s Page) SendKeysByLinkText(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByLinkText, locator)
 	helper.LogPanicln(err)
 
@@ -38,7 +38,7 @@ func (s *Page) SendKeysByLinkText(locator string, text string) error {
 }
 
 // SendKeysByPartialLink : input text by partial link text
-func (s *Page) SendKeysByPartialLink(locator string, text string) error {
+func (s Page) SendKeysByPartialLink(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByPartialLinkText, locator)
 	helper.LogPanicln(err)
 
@@ -46,7 +46,7 @@ func (s *Page) SendKeysByPartialLink(locator string, text string) error {
 }
 
 // SendKeysByName : input text by name of class
-func (s *Page) SendKeysByName(locator string, text string) error {
+func (s Page) SendKeysByName(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByName, locator)
 	helper.LogPanicln(err)
 
@@ -54,7 +54,7 @@ func (s *Page) SendKeysByName(locator string, text string) error {
 }
 
 // SendKeysByTag : input text by name tag
-func (s *Page) SendKeysByTag(locator string, text string) error {
+func (s Page) SendKeysByTag(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByTagName, locator)
 	helper.LogPanicln(err)
 
@@ -62,7 +62,7 @@ func (s *Page) SendKeysByTag(locator string, text string) error {
 }
 
 // SendKeysByClass : input text by class name
-func (s *Page) SendKeysByClass(locator string, text string) error {
+func (s Page) SendKeysByClass(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByClassName, locator)
 	helper.LogPanicln(err)
 
@@ -70,7 +70,7 @@ func (s *Page) SendKeysByClass(locator string, text string) error {
 }
 
 // SendKeysByText : input text by text in xpath
-func (s *Page) SendKeysByText(locator string, text string) error {
+func (s Page) SendKeysByText(locator string, text string) error {
 	element, err := s.driver().FindElement(selenium.ByXPATH, "//*[contains(@text, '"+locator+"')]")
 	helper.LogPanicln(err)
 

@@ -21,14 +21,14 @@ var (
 )
 
 // ClickSend : click send otp button
-func (s *OTPPage) ClickSend() *OTPPage {
+func (s OTPPage) ClickSend() *OTPPage {
 	s.Page.FindElementByClickScript(btnSend)
 
 	return &OTPPage{Page: s.Page}
 }
 
 // InputOTP : input one time password code
-func (s *OTPPage) InputOTP() *OTPPage {
+func (s OTPPage) InputOTP() *OTPPage {
 	time.Sleep(time.Second * 1)
 	s.Page.SendKeysByID(fieldOTP, os.Getenv("OTP"))
 
@@ -36,14 +36,14 @@ func (s *OTPPage) InputOTP() *OTPPage {
 }
 
 // ClickConfirm : click confirmation button
-func (s *OTPPage) ClickConfirm() *OTPPage {
+func (s OTPPage) ClickConfirm() *OTPPage {
 	s.Page.FindElementByClickScript(btnConfirm)
 
 	return &OTPPage{Page: s.Page}
 }
 
 // ClickOK : click oke button
-func (s *OTPPage) ClickOK() *HomePage {
+func (s OTPPage) ClickOK() *HomePage {
 	s.Page.FindElementByClickScript(btnOke)
 
 	return &HomePage{Page: s.Page}

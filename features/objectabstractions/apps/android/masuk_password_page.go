@@ -18,14 +18,14 @@ var (
 )
 
 // InputPassword : input password code
-func (s *InputPasswordPage) InputPassword() *InputPasswordPage {
+func (s InputPasswordPage) InputPassword() *InputPasswordPage {
 	s.Page.SendKeysByXpath(fieldPassword, os.Getenv("USER_PHONE_PASSWORD"))
 
 	return &InputPasswordPage{Page: s.Page}
 }
 
 // ClickMasuk : click enter to login
-func (s *InputPasswordPage) ClickMasuk() *HomePage {
+func (s InputPasswordPage) ClickMasuk() *HomePage {
 	time.Sleep(time.Second * 2)
 	s.Page.ClickByText(btnMasukPassword)
 

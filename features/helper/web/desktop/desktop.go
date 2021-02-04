@@ -15,7 +15,7 @@ type DwebPage struct {
 var BaseURL string
 
 // GoToURL : access dweb url
-func (s *DwebPage) GoToURL(url string) error {
+func (s DwebPage) GoToURL(url string) error {
 	BaseURL = os.Getenv("DWEB_BASE_URL") + url
 	website := s.Page.Get(BaseURL)
 

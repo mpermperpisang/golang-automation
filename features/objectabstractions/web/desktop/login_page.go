@@ -20,7 +20,7 @@ var (
 )
 
 // ValidateLoginPage : page validation
-func (s *LoginPage) ValidateLoginPage() *HomePage {
+func (s LoginPage) ValidateLoginPage() *HomePage {
 	s.Page.IsElementDisplayedByText(headerPage)
 	s.Page.IsElementDisplayedByText(fbLogin)
 	s.Page.IsElementDisplayedByText(googleLogin)
@@ -29,21 +29,21 @@ func (s *LoginPage) ValidateLoginPage() *HomePage {
 }
 
 // InputUsername : fill in username
-func (s *LoginPage) InputUsername() *LoginPage {
+func (s LoginPage) InputUsername() *LoginPage {
 	s.Page.SendKeysByID(fieldUsername, data.Username())
 
 	return &LoginPage{Page: s.Page}
 }
 
 // InputPassword : fill in password
-func (s *LoginPage) InputPassword() *LoginPage {
+func (s LoginPage) InputPassword() *LoginPage {
 	s.Page.SendKeysByID(fieldPassword, data.Password())
 
 	return &LoginPage{Page: s.Page}
 }
 
 // ClickLogin : click Login button
-func (s *LoginPage) ClickLogin() *OTPPage {
+func (s LoginPage) ClickLogin() *OTPPage {
 	s.Page.ClickByText(btnLogin)
 
 	return &OTPPage{Page: s.Page}

@@ -12,5 +12,6 @@ func PostmanCollection(jsonFile string) (*postman.Collection, error) {
 	LogPanicln(err)
 
 	defer file.Close()
+
 	return postman.ParseCollection(file)
 }

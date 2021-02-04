@@ -18,7 +18,7 @@ import (
 var HTTPResponse *http.Response
 
 // BaseURL variable
-var BaseURL, readENV, oauthToken string
+var BaseURL, readENV string
 var username, password, number string
 
 // ResponseBody variable
@@ -47,10 +47,8 @@ func BaseAPI(base string) error {
 	return nil
 }
 
-func oauthURL() error {
-	oauthToken = BaseURL + os.Getenv("AUTH_ENDPOINT")
-
-	return nil
+func oauthURL() string {
+	return BaseURL + os.Getenv("AUTH_ENDPOINT")
 }
 
 func varLogin(account string) error {
@@ -84,7 +82,6 @@ func clientResponse(sendRequest *http.Request) error {
 func AuthenticationAPI(account string) error {
 	var jsonResponse interface{}
 
-	oauthURL()
 	varLogin(account)
 	stagingNumber()
 
@@ -99,7 +96,7 @@ func AuthenticationAPI(account string) error {
 			"scope": "` + os.Getenv("SCOPE") + `",
 			"` + os.Getenv("COMPANY_ID") + `": "` + os.Getenv("IDENTITY") + `"
 		}`)
-	sendRequest, _ := http.NewRequest("POST", oauthToken, bytes.NewBuffer(body))
+	sendRequest, _ := http.NewRequest("POST", oauthURL(), bytes.NewBuffer(body))
 	HTTPJson, _ := jsonpath.Prepare(os.Getenv("JSON_PATH"))
 
 	sendRequest.Header.Set("Content-Type", os.Getenv("CONTENT_TYPE"))

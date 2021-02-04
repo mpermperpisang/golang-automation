@@ -18,35 +18,35 @@ var (
 )
 
 // ValidateLoggedUser : validate logged user
-func (s *HomePage) ValidateLoggedUser() *HomePage {
+func (s HomePage) ValidateLoggedUser() *HomePage {
 	s.Page.IsElementVisibleByXpath(labelUsername)
 
 	return &HomePage{Page: s.Page}
 }
 
 // ClickMengerti : click Mengerti button
-func (s *HomePage) ClickMengerti() *HomePage {
+func (s HomePage) ClickMengerti() *HomePage {
 	s.Page.ClickByText(btnMengerti)
 
 	return &HomePage{Page: s.Page}
 }
 
 // ClickNantiSaja : click Nanti Saja button
-func (s *HomePage) ClickNantiSaja() *HomePage {
+func (s HomePage) ClickNantiSaja() *HomePage {
 	s.Page.ClickByText(btnNantiSaja)
 
 	return &HomePage{Page: s.Page}
 }
 
 // ClickMasuk : click Masuk button
-func (s *HomePage) ClickMasuk() *InputPhonePage {
+func (s HomePage) ClickMasuk() *InputPhonePage {
 	s.Page.ClickByText(btnMasuk)
 
 	return &InputPhonePage{Page: s.Page}
 }
 
 // ValidateHomePage : validate user is in home page
-func (s *HomePage) ValidateHomePage() *HomePage {
+func (s HomePage) ValidateHomePage() *HomePage {
 	page.ValidateElementWithTimeout(s.Page.IsElementVisibleByText(btnMasuk), 5)
 
 	return &HomePage{Page: s.Page}
