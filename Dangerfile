@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Welcome messages
+# Welcome message
 welcome_message.greet
 
 # Init repo
