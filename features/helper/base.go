@@ -1,0 +1,58 @@
+package helper
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"time"
+
+	"github.com/golang-automation/features/helper/formats"
+	"github.com/golang-automation/features/helper/messages"
+)
+
+var FileName string
+
+func WaitElementWithTimeout(timeout time.Duration) {
+	time.Sleep(timeout * time.Second)
+}
+
+func GetPWD() string {
+	pwd, err := os.Getwd()
+	LogPanicln(err)
+
+	return pwd
+}
+
+func HasENVPrefix(env string) bool {
+	return strings.HasPrefix(env, "ENV:")
+}
+
+func TrimENVPrefix(env string) string {
+	return strings.TrimPrefix(env, "ENV:")
+}
+
+func DirectoryCheck(path string) {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.MkdirAll(path, 0755)
+	}
+}
+
+func PathName(path, filename string) string {
+	return filepath.Join(path, filename)
+}
+
+func SetFilename(fileformat, prefix, name string) {
+	var format string
+
+	switch fileformat {
+	case "ss":
+		format = formats.Screenshots()
+	case "log":
+		format = formats.Logs()
+	default:
+		LogPanicln(messages.NotExistFileFormat(fileformat))
+	}
+
+	FileName = fmt.Sprintf(format, prefix, name)
+}
