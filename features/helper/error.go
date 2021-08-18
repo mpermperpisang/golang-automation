@@ -36,3 +36,19 @@ func LogPanicln(err interface{}) error {
 
 	return nil
 }
+
+func LogPrint(err interface{}) error {
+	if err != nil {
+		log.Print(fmt.Errorf("REASON: %s", err))
+	}
+
+	return nil
+}
+
+func Println(err interface{}) error {
+	if err != nil {
+		log.Println(fmt.Errorf("REASON: %s", err))
+	}
+
+	return nil
+}

@@ -1,22 +1,20 @@
 package stepdefinitions
 
 import (
-	komid "github.com/golang-automation/features/objectabstractions/apps/android/komid"
+	komit "github.com/golang-automation/features/objectabstractions/apps/android/komit"
 	"github.com/golang-automation/features/supports/structs"
 )
 
-func GetOnboarding() error {
-	onboarding := komid.OnboardingPage{Page: structs.AppsDeviceConnect()}
+var page = komit.OnboardingPage{Page: structs.AppsDeviceConnect()}
 
-	onboarding.ValidateOnboardingIsDisplayed(1)
+func GetOnboarding() error {
+	page.ValidateOnboardingIsDisplayed(1)
 
 	return nil
 }
 
 func ClickLanjutButton() error {
-	onboarding := komid.OnboardingPage{Page: structs.AppsDeviceConnect()}
-
-	onboarding.ClickLanjutButton().
+	page.ClickLanjutButton().
 		ValidateOnboardingIsDisplayed(2).
 		ClickLanjutButton().
 		ValidateOnboardingIsDisplayed(3).
@@ -27,9 +25,7 @@ func ClickLanjutButton() error {
 }
 
 func ValidateBerlanggananPage() error {
-	subscribe := komid.OnboardingPage{Page: structs.AppsDeviceConnect()}
-
-	subscribe.ClickOkeMulaiButton().
+	page.ClickOkeMulaiButton().
 		ValidateBerlanggananPage()
 
 	return nil

@@ -10,10 +10,6 @@ func Logs() string {
 	return "%s - %s.log"
 }
 
-func SSPath(platform string) string {
-	return fmt.Sprintf("/test/screenshots/%s/", platform)
-}
-
-func LogPath(platform string) string {
-	return fmt.Sprintf("/test/logs/%s/", platform)
+func TestPath(path, platform string) string {
+	return fmt.Sprintf("/test/%s/%s/", path, platform)
 }

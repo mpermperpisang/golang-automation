@@ -7,25 +7,25 @@ import (
 )
 
 func VisitLink(url string) error {
-	home := structs.WebDriverConnect()
+	page := structs.WebDriverConnect()
 
-	home.GoToURL(formats.CompleteLink(url))
+	page.GoToURL(formats.CompleteLink(url))
 
 	return nil
 }
 
 func ClickButton(button string) error {
-	home := desktoppages.HomePage{Page: structs.WebDriverConnect()}
+	page := desktoppages.HomePage{Page: structs.WebDriverConnect()}
 
-	home.ClickButton(button)
+	page.ClickButton(button)
 
 	return nil
 }
 
 func ValidateLoginWarning() error {
-	home := desktoppages.HomePage{Page: structs.WebDriverConnect()}
+	page := desktoppages.HomePage{Page: structs.WebDriverConnect()}
 
-	home.ValidateWarning()
+	page.ValidateWarning()
 
 	return nil
 }

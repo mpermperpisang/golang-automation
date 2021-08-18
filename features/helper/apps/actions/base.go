@@ -1,5 +1,10 @@
 package actions
 
+var (
+	element bool
+	err     error
+)
+
 func (s Page) PressBack() error {
 	return s.device().Back()
 }

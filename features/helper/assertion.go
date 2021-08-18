@@ -17,50 +17,56 @@ func (t *UseAssertion) assertNew() *assert.Assertions {
 	return assert.New(&t.testing)
 }
 
-func (t *UseAssertion) AssertEqual(expected, actual, err interface{}) error {
+func (t *UseAssertion) AssertEqual(expected, actual, err interface{}) bool {
 	assert := t.assertNew().Equal(fmt.Sprintf("%v", expected), fmt.Sprintf("%v", actual), err)
 
 	if !assert {
 		LogPanicln(apimessages.ResponseError(expected, actual))
 	}
 
-	return nil
+	return true
 }
 
 func (t *UseAssertion) AssertNotEqual(expected, actual, err interface{}) bool {
-	return t.assertNew().NotEqual(fmt.Sprintf("%v", expected), fmt.Sprintf("%v", actual), err)
+	assert := t.assertNew().NotEqual(fmt.Sprintf("%v", expected), fmt.Sprintf("%v", actual), err)
+
+	if !assert {
+		LogPanicln(apimessages.ResponseError(expected, actual))
+	}
+
+	return true
 }
 
-func AssertString(expected, actual, err interface{}) error {
+func AssertString(expected, actual, err interface{}) bool {
 	if reflect.TypeOf(actual).String() != "string" {
 		LogPanicln(err)
 	}
 
-	return nil
+	return true
 }
 
-func AssertInt(expected, actual, err interface{}) error {
+func AssertInt(actual, err interface{}) bool {
 	if reflect.TypeOf(actual).String() != "int" {
 		LogPanicln(err)
 	}
 
-	return nil
+	return true
 }
 
-func AssertFloat64(expected, actual, err interface{}) error {
+func AssertFloat64(expected, actual, err interface{}) bool {
 	if reflect.TypeOf(actual).String() != "float64" {
 		LogPanicln(err)
 	}
 
-	return nil
+	return true
 }
 
-func AssertBool(expected, actual, err interface{}) error {
+func AssertBool(expected, actual, err interface{}) bool {
 	if reflect.TypeOf(actual).String() != "bool" {
 		LogPanicln(err)
 	}
 
-	return nil
+	return true
 }
 
 func (t *UseAssertion) AssertEmpty(expected, err interface{}) bool {

@@ -7,9 +7,10 @@ import (
 
 	"github.com/cucumber/godog"
 	"github.com/golang-automation/features/helper"
+	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/helper/formats"
-	androidbase "github.com/golang-automation/features/supports/base/apps/android"
-	iosbase "github.com/golang-automation/features/supports/base/apps/ios"
+	"github.com/golang-automation/features/helper/messages"
+	appsbase "github.com/golang-automation/features/supports/base/apps"
 	webbase "github.com/golang-automation/features/supports/base/web"
 	supports "github.com/golang-automation/features/supports/drivers"
 	"github.com/golang-automation/features/supports/logs"
@@ -20,15 +21,18 @@ import (
 var (
 	testCase               structs.ScenarioDetail
 	scenarioTags, platform string
-	Filename, prefix       string
 )
 
 func InitializeTestSuite(s *godog.TestSuiteContext) {
 	s.BeforeSuite(func() {
-		os.RemoveAll(helper.GetPWD() + formats.LogPath("web"))
-		os.RemoveAll(helper.GetPWD() + formats.LogPath("apps"))
-		os.RemoveAll(helper.GetPWD() + formats.SSPath("web"))
-		os.RemoveAll(helper.GetPWD() + formats.SSPath("apps"))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("logs", data.WEB))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("logs", data.APPS))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("screenshots", data.WEB))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("screenshots", data.APPS))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("report", data.WEB))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("report", data.APPS))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("xray", data.WEB))
+		os.RemoveAll(helper.GetPWD() + formats.TestPath("xray", data.APPS))
 	})
 
 	s.AfterSuite(func() {
@@ -73,26 +77,26 @@ func scenarioDetail(scenario interface{}) error {
 }
 
 func platformCheck(tags string) error {
-	if strings.Contains(tags, "@dweb") {
-		platform += "Desktop-Web "
-		prefix = "DESKTOP"
+	if strings.Contains(tags, "@"+data.API) {
+		platform = data.API
+	} else if strings.Contains(tags, "@"+data.DWEB) {
+		platform = data.DWEB
 
-		webStart("dweb")
-	} else if strings.Contains(tags, "@mweb") {
-		platform += "Mobile-Web "
-		prefix = "MOBILE"
+		webStart(platform)
+	} else if strings.Contains(tags, "@"+data.MWEB) {
+		platform = data.MWEB
 
-		webStart("mweb")
-	} else if strings.Contains(tags, "@android") {
-		platform += "Android "
-		prefix = "ANDROID"
+		webStart(platform)
+	} else if strings.Contains(tags, "@"+data.ANDROID) {
+		platform = data.ANDROID
 
-		androidStart()
-	} else if strings.Contains(tags, "@ios") {
-		platform += "iOS "
-		prefix = "IOS"
+		appsStart(platform)
+	} else if strings.Contains(tags, "@"+data.IOS) {
+		platform = data.IOS
 
-		iosStart()
+		appsStart(platform)
+	} else {
+		helper.LogPanicln(messages.PlatformList())
 	}
 
 	return nil
@@ -103,26 +107,29 @@ func webStart(platform string) {
 	webbase.OpenWebURL(platform, "/")
 }
 
-func androidStart() {
-	supports.AndroidCapabilities()
-	androidbase.OpenAndroidApps()
-}
+func appsStart(platform string) {
+	switch platform {
+	case data.ANDROID:
+		supports.AndroidCapabilities()
+	case data.IOS:
+		supports.IOSCapabilities()
+	default:
+		helper.LogPanicln(messages.PlatformList())
+	}
 
-func iosStart() {
-	supports.IOSCapabilities()
-	iosbase.OpenIOSApps()
+	appsbase.OpenApps(platform)
 }
 
 func createSS() {
-	helper.SetFilename("ss", prefix, testCase.Name)
-	screenshots.SSWeb(prefix)
+	helper.SetFilename("ss", platform, testCase.Name)
+	screenshots.SSWeb(platform)
 	screenshots.SSAndroid()
 	screenshots.SSIOS()
 }
 
 func createLog(log error) {
-	helper.SetFilename("log", prefix, testCase.Name)
-	logs.LogWeb(prefix, log)
+	helper.SetFilename("log", platform, testCase.Name)
+	logs.LogWeb(platform, log)
 	logs.LogAndroid(log)
 	logs.LogIOS(log)
 }

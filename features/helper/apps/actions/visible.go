@@ -1,6 +1,8 @@
 package actions
 
-import "github.com/golang-automation/features/helper"
+import (
+	"github.com/golang-automation/features/helper"
+)
 
 func (s Page) IsElementVisibleByXpath(locator string) bool {
 	element, err := s.device().FindByXPath(locator).Visible()
@@ -51,15 +53,29 @@ func (s Page) IsElementVisibleByName(locator string) bool {
 	return element
 }
 
-func (s Page) IsElementVisibleByText(locator string) bool {
-	element, err := s.device().FindByXPath("//*[@text='" + locator + "']").Visible()
+func (s Page) IsElementVisibleByText(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByXPath("//*[@text='" + locator + "']").Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByContainsText(locator string) bool {
-	element, err := s.device().FindByXPath("//*[contains(@text, '" + locator + "')]").Visible()
+func (s Page) IsElementVisibleByContainsText(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByXPath("//*[contains(@text, '" + locator + "')]").Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element

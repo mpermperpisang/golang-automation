@@ -7,15 +7,19 @@ import (
 )
 
 func ClickMenu(num *godog.Table) error {
-	onboarding := pages.APIDemos{Page: structs.AppsDeviceConnect()}
+	page := pages.APIDemos{Page: structs.AppsDeviceConnect()}
 
 	for index := 1; index < len(num.Rows); index++ {
-		onboarding.ClickMenu(num.Rows[index].Cells[0].Value)
+		page.ClickMenu(num.Rows[index].Cells[0].Value)
 	}
 
 	return nil
 }
 
 func ValidateActionBarTabs() error {
+	page := pages.APIDemos{Page: structs.AppsDeviceConnect()}
+
+	page.ValidateButton()
+
 	return nil
 }

@@ -9,7 +9,3 @@ func NotExistButton(button string) string {
 func NotExistLink(link string) string {
 	return fmt.Sprintf("Not exist link : %s", link)
 }
-
-func NotExistPlatform(platform string) string {
-	return fmt.Sprintf("Not exist platform : %s", platform)
-}

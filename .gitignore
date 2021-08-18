@@ -11,6 +11,6 @@ cucumber*.html
 *.zip
 screenshots/*
 logs/*
-komid/
+komit/
 report/*
 xray/*

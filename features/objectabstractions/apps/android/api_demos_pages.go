@@ -40,7 +40,7 @@ func (s APIDemos) ClickMenu(menu string) *APIDemos {
 }
 
 func (s APIDemos) ValidateButton() *APIDemos {
-	s.Page.IsElementVisibleByText(addNewTabButton)
+	s.Page.IsElementVisibleByText(addNewTabButton, 3)
 	s.Page.IsElementVisibleByText(removeLastButton)
 	s.Page.IsElementVisibleByText(toggleTabModeButton)
 	s.Page.IsElementVisibleByText(removeAllTabsButton)

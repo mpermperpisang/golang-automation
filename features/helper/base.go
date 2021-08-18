@@ -5,17 +5,12 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"time"
 
 	"github.com/golang-automation/features/helper/formats"
 	"github.com/golang-automation/features/helper/messages"
 )
 
 var FileName string
-
-func WaitElementWithTimeout(timeout time.Duration) {
-	time.Sleep(timeout * time.Second)
-}
 
 func GetPWD() string {
 	pwd, err := os.Getwd()
@@ -42,7 +37,7 @@ func PathName(path, filename string) string {
 	return filepath.Join(path, filename)
 }
 
-func SetFilename(fileformat, prefix, name string) {
+func SetFilename(fileformat, platform, name string) {
 	var format string
 
 	switch fileformat {
@@ -54,5 +49,5 @@ func SetFilename(fileformat, prefix, name string) {
 		LogPanicln(messages.NotExistFileFormat(fileformat))
 	}
 
-	FileName = fmt.Sprintf(format, prefix, name)
+	FileName = fmt.Sprintf(format, platform, name)
 }
