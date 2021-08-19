@@ -1,10 +1,6 @@
 platformName=iOS
 platformVersion=12.0
-deviceName=
+deviceName=mpermperpisang
 automationName=XCUITest
 newCommandTimeout=60
-app=
-fullReset=true
-netspeed=full
-autoGrantPermissions=true
-showXcodeLog=true
+app=/Users/bukalapak/project/go/src/github.com/golang-automation/features/demo/apps/ios.app

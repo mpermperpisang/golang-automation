@@ -17,13 +17,6 @@ pipeline {
     }
 
     stages {
-        stage('Pre Test') {
-            steps {
-                echo 'Dependencies'
-                sh 'go version'
-            }
-        }
-
         stage('Checkout') {
             steps {
                 echo 'Git Checkout'
@@ -31,10 +24,26 @@ pipeline {
             }
         }
 
+        stage('Package') {
+            steps {
+                echo 'Properties'
+                sh 'go mod download'
+            }
+        }
+
+        stage('CP File') {
+            steps {
+                echo 'Properties'
+                sh 'cp env.sample .env'
+                sh 'cp capabilities-web.properties.sample capabilities-web.properties'
+                sh 'cp capabilities-android.properties.sample capabilities-android.properties'
+                sh 'cp capabilities-ios.properties.sample capabilities-ios.properties'
+            }
+        }
+
         stage('Test') {
             steps {
                 echo 'Running test'
-                sh 'go mod download && cp env.sample .env'
                 sh "godog --tags=${params.TAGS} --format=cucumber > test/report/cucumber_report.json --random"
             }
         }

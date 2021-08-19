@@ -1,9 +1,9 @@
 platformName=Android
-platformVersion=
-deviceName=
-app=
-udid=
+platformVersion=8.0.0
+deviceName=mper_8-0
+app=/Users/bukalapak/project/go/src/github.com/golang-automation/features/demo/apps/android.apk
+udid=192.168.59.101:5555
 automationName=UiAutomator2
-fullReset=true
+fullReset=false
 netspeed=full
 autoGrantPermissions=true
