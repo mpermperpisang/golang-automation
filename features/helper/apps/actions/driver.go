@@ -11,11 +11,9 @@ func (s Page) StartDriver() error {
 	return s.driver().Start()
 }
 
-func (s Page) NewDevice() *appium.Device {
+func (s Page) NewDevice() {
 	var err error
 
 	Device, err = s.driver().NewDevice()
 	helper.LogPanicln(err)
-
-	return Device
 }

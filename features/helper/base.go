@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/golang-automation/features/helper/data"
 	"github.com/golang-automation/features/helper/formats"
 	"github.com/golang-automation/features/helper/messages"
 )
@@ -41,13 +42,17 @@ func SetFilename(fileformat, platform, name string) {
 	var format string
 
 	switch fileformat {
-	case "ss":
+	case data.SS:
 		format = formats.Screenshots()
-	case "log":
+	case data.LOGS:
 		format = formats.Logs()
 	default:
 		LogPanicln(messages.NotExistFileFormat(fileformat))
 	}
 
 	FileName = fmt.Sprintf(format, platform, name)
+}
+
+func RemoveContent(content string) error {
+	return os.RemoveAll(GetPWD() + content)
 }

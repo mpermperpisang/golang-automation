@@ -16,9 +16,9 @@ func OpenWebURL(platform, url string) error {
 
 	switch platform {
 	case data.DWEB:
-		base = "BASE_DWEB_URL"
+		base = data.BASE_DWEB
 	case data.MWEB:
-		base = "BASE_MWEB_URL"
+		base = data.BASE_MWEB
 	default:
 		helper.LogPanicln(messages.NotExistPlatform(platform) + " " + messages.PlatformList())
 	}

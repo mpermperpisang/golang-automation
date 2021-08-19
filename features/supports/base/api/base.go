@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/golang-automation/features/helper"
+	"github.com/golang-automation/features/helper/data"
 )
 
 var (
@@ -31,7 +32,7 @@ func SendRequest(method, url string, body io.Reader) *http.Request {
 		url = os.Getenv(helper.TrimENVPrefix(url))
 	}
 
-	endpoint := os.Getenv("BASE_API_URL") + url
+	endpoint := os.Getenv(data.BASE_API) + url
 	request, err := http.NewRequest(method, endpoint, body)
 	helper.LogPanicln(err)
 

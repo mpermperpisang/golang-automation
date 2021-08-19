@@ -34,12 +34,12 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 ## COMMAND
 ### Run
-- [x] godogs --tags=@scenarios
+- [x] godog --tags=@scenarios --format=cucumber > test/report/cucumber_report.json --random
 
-**Contact**<br/>
+## Contact
 `mpermperpisang@gmail.com`
 
-**References**<br/>
+## References**
 - https://krishnachetan.medium.com/setup-appium-on-mac-1e06f1178427
 - https://github.com/sayems/golang.webdriver
 - https://medium.com/inside-bukalapak/recipe-to-boil-web-automation-with-go-language-98b715800d70

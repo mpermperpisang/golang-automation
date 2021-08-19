@@ -2,7 +2,6 @@ package supports
 
 import (
 	"encoding/json"
-	"os"
 	"strings"
 
 	"github.com/cucumber/godog"
@@ -25,14 +24,14 @@ var (
 
 func InitializeTestSuite(s *godog.TestSuiteContext) {
 	s.BeforeSuite(func() {
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("logs", data.WEB))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("logs", data.APPS))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("screenshots", data.WEB))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("screenshots", data.APPS))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("report", data.WEB))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("report", data.APPS))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("xray", data.WEB))
-		os.RemoveAll(helper.GetPWD() + formats.TestPath("xray", data.APPS))
+		helper.RemoveContent(formats.TestPath(data.LOGS, data.WEB))
+		helper.RemoveContent(formats.TestPath(data.LOGS, data.APPS))
+		helper.RemoveContent(formats.TestPath(data.SS, data.WEB))
+		helper.RemoveContent(formats.TestPath(data.SS, data.APPS))
+		helper.RemoveContent(formats.TestPath(data.REPORT, data.WEB))
+		helper.RemoveContent(formats.TestPath(data.REPORT, data.APPS))
+		helper.RemoveContent(formats.TestPath(data.XRAY, data.WEB))
+		helper.RemoveContent(formats.TestPath(data.XRAY, data.APPS))
 	})
 
 	s.AfterSuite(func() {
@@ -77,21 +76,21 @@ func scenarioDetail(scenario interface{}) error {
 }
 
 func platformCheck(tags string) error {
-	if strings.Contains(tags, "@"+data.API) {
+	if strings.Contains(tags, data.API) {
 		platform = data.API
-	} else if strings.Contains(tags, "@"+data.DWEB) {
+	} else if strings.Contains(tags, data.DWEB) {
 		platform = data.DWEB
 
 		webStart(platform)
-	} else if strings.Contains(tags, "@"+data.MWEB) {
+	} else if strings.Contains(tags, data.MWEB) {
 		platform = data.MWEB
 
 		webStart(platform)
-	} else if strings.Contains(tags, "@"+data.ANDROID) {
+	} else if strings.Contains(tags, data.ANDROID) {
 		platform = data.ANDROID
 
 		appsStart(platform)
-	} else if strings.Contains(tags, "@"+data.IOS) {
+	} else if strings.Contains(tags, data.IOS) {
 		platform = data.IOS
 
 		appsStart(platform)
@@ -121,14 +120,14 @@ func appsStart(platform string) {
 }
 
 func createSS() {
-	helper.SetFilename("ss", platform, testCase.Name)
+	helper.SetFilename(data.SS, platform, testCase.Name)
 	screenshots.SSWeb(platform)
 	screenshots.SSAndroid()
 	screenshots.SSIOS()
 }
 
 func createLog(log error) {
-	helper.SetFilename("log", platform, testCase.Name)
+	helper.SetFilename(data.LOGS, platform, testCase.Name)
 	logs.LogWeb(platform, log)
 	logs.LogAndroid(log)
 	logs.LogIOS(log)
