@@ -14,9 +14,9 @@
 - [x] appium doctor 1.16.0
 - [x] appium desktop 1.21.0
 - [x] go 1.17
+- [x] jenkins 2.289.3
 
-## SETUP
-#### Profile
+## PROFILE
 ```
 export JAVA_HOME=$(/usr/libexec/java_home)
 export ANDROID_HOME=/Users/bukalapak/Library/Android/sdk
@@ -27,19 +27,20 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/project/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
-#### Package
+
+## PACKAGE
 - [x] go mod download
-### Jenkins
-- [x] brew install jenkins-lts
+
+## ENV
+- [x] cp env.sample .env
 
 ## COMMAND
-### Run
 - [x] godog --tags=@scenarios --format=cucumber > test/report/cucumber_report.json --random
 
-## Contact
+## CONTACT
 `mpermperpisang@gmail.com`
 
-## References**
+## REFERENCES
 - https://krishnachetan.medium.com/setup-appium-on-mac-1e06f1178427
 - https://github.com/sayems/golang.webdriver
 - https://medium.com/inside-bukalapak/recipe-to-boil-web-automation-with-go-language-98b715800d70

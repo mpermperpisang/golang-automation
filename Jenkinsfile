@@ -12,7 +12,8 @@ pipeline {
     }
 
     parameters {
-        string(name: 'TAGS', description: 'Please change scenario tags')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'Please change repository branch')
+        string(name: 'TAGS', defaultValue: '@scenarios', description: 'Please change scenario tags')
     }
 
     stages {
@@ -25,7 +26,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'go/big-refactor-july-2021', url: 'https://github.com/mpermperpisang/golang-automation-v1.git'
+                echo 'Git Checkout'
+                git branch: "${params.BRANCH}", url: 'https://github.com/mpermperpisang/golang-automation-v1.git'
             }
         }
 
@@ -33,9 +35,14 @@ pipeline {
             steps {
                 echo 'Running test'
                 sh 'go mod download && cp env.sample .env'
-                echo "${params}"
-                sh 'godog --tags=@scenarios --format=cucumber > test/report/cucumber_report.json --random'
+                sh "godog --tags=${params.TAGS} --format=cucumber > test/report/cucumber_report.json --random"
             }
+        }
+    }
+
+    post {
+        always {
+            cucumber '**/cucumber_report.json'
         }
     }
 }
