@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/golang-automation/features/helper"
+	"github.com/golang-automation/features/helper/data"
 	formats "github.com/golang-automation/features/helper/formats/web"
 	supports "github.com/golang-automation/features/supports/drivers"
 	"github.com/golang-automation/features/supports/structs"
@@ -13,16 +14,17 @@ import (
 
 func SSWeb(platform string) {
 	if supports.WebDriver != nil {
-		path := fmt.Sprintf(formats.SSWebPath(), helper.GetPWD(), strings.ToLower(platform))
+		path := fmt.Sprintf(formats.WebPath(data.SS), helper.GetPWD(), strings.ToLower(platform))
 
-		helper.DirectoryCheck(path)
 		takeErrorWebImage(path)
 	}
 }
 
 func takeErrorWebImage(path string) {
+	helper.DirectoryCheck(path)
+
 	web := structs.WebDriverConnect()
-	filePath := path + "/" + helper.FileName
-	err := ioutil.WriteFile(filePath, web.TakeScreenshot(), 0644)
-	helper.LogPanicln(err)
+	filePath := helper.PathName(path, helper.FileName)
+
+	ioutil.WriteFile(filePath, web.TakeScreenshot(), 0644)
 }

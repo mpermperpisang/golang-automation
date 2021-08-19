@@ -24,14 +24,10 @@ var (
 
 func InitializeTestSuite(s *godog.TestSuiteContext) {
 	s.BeforeSuite(func() {
-		helper.RemoveContent(formats.TestPath(data.LOGS, data.WEB))
-		helper.RemoveContent(formats.TestPath(data.LOGS, data.APPS))
-		helper.RemoveContent(formats.TestPath(data.SS, data.WEB))
-		helper.RemoveContent(formats.TestPath(data.SS, data.APPS))
-		helper.RemoveContent(formats.TestPath(data.REPORT, data.WEB))
-		helper.RemoveContent(formats.TestPath(data.REPORT, data.APPS))
-		helper.RemoveContent(formats.TestPath(data.XRAY, data.WEB))
-		helper.RemoveContent(formats.TestPath(data.XRAY, data.APPS))
+		recreateLogs()
+		recreateReport()
+		recreateSS()
+		recreateXray()
 	})
 
 	s.AfterSuite(func() {
@@ -68,14 +64,14 @@ func InitializeScenario(s *godog.ScenarioContext) {
 	})
 }
 
-func scenarioDetail(scenario interface{}) error {
+func scenarioDetail(scenario interface{}) {
 	data, err := json.Marshal(scenario)
 	helper.LogPanicln(err)
 
-	return json.Unmarshal(data, &testCase)
+	json.Unmarshal(data, &testCase)
 }
 
-func platformCheck(tags string) error {
+func platformCheck(tags string) {
 	if strings.Contains(tags, data.API) {
 		platform = data.API
 	} else if strings.Contains(tags, data.DWEB) {
@@ -97,8 +93,6 @@ func platformCheck(tags string) error {
 	} else {
 		helper.LogPanicln(messages.PlatformList())
 	}
-
-	return nil
 }
 
 func webStart(platform string) {
@@ -131,4 +125,32 @@ func createLog(log error) {
 	logs.LogWeb(platform, log)
 	logs.LogAndroid(log)
 	logs.LogIOS(log)
+}
+
+func recreateLogs() {
+	helper.RemoveContent(formats.TestPath(data.LOGS, data.WEB))
+	helper.RemoveContent(formats.TestPath(data.LOGS, data.APPS))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.LOGS, data.WEB))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.LOGS, data.APPS))
+}
+
+func recreateSS() {
+	helper.RemoveContent(formats.TestPath(data.SS, data.WEB))
+	helper.RemoveContent(formats.TestPath(data.SS, data.APPS))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.SS, data.WEB))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.SS, data.APPS))
+}
+
+func recreateReport() {
+	helper.RemoveContent(formats.TestPath(data.REPORT, data.WEB))
+	helper.RemoveContent(formats.TestPath(data.REPORT, data.APPS))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.REPORT, data.WEB))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.REPORT, data.APPS))
+}
+
+func recreateXray() {
+	helper.RemoveContent(formats.TestPath(data.XRAY, data.WEB))
+	helper.RemoveContent(formats.TestPath(data.XRAY, data.APPS))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.XRAY, data.WEB))
+	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.XRAY, data.APPS))
 }

@@ -4,50 +4,99 @@ import (
 	"github.com/golang-automation/features/helper"
 )
 
-func (s Page) IsElementVisibleByXpath(locator string) bool {
-	element, err := s.device().FindByXPath(locator).Visible()
+func (s Page) IsElementVisibleByXpath(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByXPath(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByButton(locator string) bool {
-	element, err := s.device().FindByButton(locator).Visible()
+func (s Page) IsElementVisibleByButton(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByButton(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByClass(locator string) bool {
-	element, err := s.device().FindByClass(locator).Visible()
+func (s Page) IsElementVisibleByClass(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByClass(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByID(locator string) bool {
-	element, err := s.device().FindByID(locator).Visible()
+func (s Page) IsElementVisibleByID(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByID(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByLabel(locator string) bool {
-	element, err := s.device().FindByLabel(locator).Visible()
+func (s Page) IsElementVisibleByLabel(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByLabel(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByLink(locator string) bool {
-	element, err := s.device().FindByLink(locator).Visible()
+func (s Page) IsElementVisibleByLink(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByLink(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element
 }
 
-func (s Page) IsElementVisibleByName(locator string) bool {
-	element, err := s.device().FindByName(locator).Visible()
+func (s Page) IsElementVisibleByName(locator string, timeout ...int) bool {
+	max := helper.CheckEmpty(timeout)
+
+	for loop := 0; loop <= max; loop++ {
+		element, err = s.device().FindByName(locator).Visible()
+
+		helper.WaitElementWithTimeout(element)
+	}
+
 	helper.LogPanicln(err)
 
 	return element

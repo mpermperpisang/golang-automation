@@ -35,7 +35,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 - [x] cp env.sample .env
 
 ## COMMAND
-- [x] godog --tags=@scenarios --format=cucumber > test/report/cucumber_report.json --random
+- [x] godog --tags=@scenarios --random --format=cucumber > test/report/cucumber_report.json
 
 ## CONTACT
 `mpermperpisang@gmail.com`

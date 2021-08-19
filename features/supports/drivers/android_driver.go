@@ -8,13 +8,12 @@ import (
 
 var AndroidDriver *appium.WebDriver
 
-func AndroidProperties() *properties.Properties {
+func androidProperties() *properties.Properties {
 	return properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-android.properties", properties.UTF8)
 }
 
 func AndroidCapabilities() {
-	p := AndroidProperties()
-
+	p := androidProperties()
 	options := appium.Desired(agouti.Capabilities{
 		"platformName":         p.MustGetString("platformName"),
 		"platformVersion":      p.MustGetString("platformVersion"),

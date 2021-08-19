@@ -50,9 +50,9 @@ func SetFilename(fileformat, platform, name string) {
 		LogPanicln(messages.NotExistFileFormat(fileformat))
 	}
 
-	FileName = fmt.Sprintf(format, platform, name)
+	FileName = fmt.Sprintf(format, strings.ToUpper(platform), name)
 }
 
-func RemoveContent(content string) error {
-	return os.RemoveAll(GetPWD() + content)
+func RemoveContent(content string) {
+	os.RemoveAll(GetPWD() + content)
 }

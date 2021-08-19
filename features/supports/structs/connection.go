@@ -4,6 +4,7 @@ import (
 	appsaction "github.com/golang-automation/features/helper/apps/actions"
 	webaction "github.com/golang-automation/features/helper/web/actions"
 	supports "github.com/golang-automation/features/supports/drivers"
+	"github.com/sclevine/agouti/appium"
 )
 
 func WebDriverConnect() webaction.Page {
@@ -14,18 +15,10 @@ func WebDriverConnect() webaction.Page {
 	}
 }
 
-func AndroidDriverConnect() appsaction.Page {
+func AppsDriverConnect(driver *appium.WebDriver) appsaction.Page {
 	return appsaction.Page{
 		Action: appsaction.Apps{
-			Driver: supports.AndroidDriver,
-		},
-	}
-}
-
-func IOSDriverConnect() appsaction.Page {
-	return appsaction.Page{
-		Action: appsaction.Apps{
-			Driver: supports.IOSDriver,
+			Driver: driver,
 		},
 	}
 }
