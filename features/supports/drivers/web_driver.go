@@ -16,7 +16,11 @@ func WebCapabilities() {
 	var err error
 
 	p := webProperties()
-	caps := selenium.Capabilities{"browserName": p.MustGetString("browserName")}
+	
+	caps := selenium.Capabilities{
+		"browserName": p.MustGetString("browserName"),
+	}
+
 	WebDriver, err = selenium.NewRemote(caps, "")
 	helper.LogPanicln(err)
 }

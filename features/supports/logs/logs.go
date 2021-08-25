@@ -12,6 +12,6 @@ func takeErrorLog(path string, log error) {
 
 	content := []byte(fmt.Sprintf("%v", log))
 	filePath := helper.PathName(path, helper.FileName)
-	err := ioutil.WriteFile(filePath, content, 0644)
-	helper.LogPanicln(err)
+
+	ioutil.WriteFile(filePath, content, 0644)
 }

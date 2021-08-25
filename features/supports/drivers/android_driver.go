@@ -14,6 +14,7 @@ func androidProperties() *properties.Properties {
 
 func AndroidCapabilities() {
 	p := androidProperties()
+	
 	options := appium.Desired(agouti.Capabilities{
 		"platformName":         p.MustGetString("platformName"),
 		"platformVersion":      p.MustGetString("platformVersion"),

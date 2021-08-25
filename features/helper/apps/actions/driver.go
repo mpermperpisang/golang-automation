@@ -7,8 +7,8 @@ import (
 
 var Device *appium.Device
 
-func (s Page) StartDriver() error {
-	return s.driver().Start()
+func (s Page) StartDriver() {
+	s.driver().Start()
 }
 
 func (s Page) NewDevice() {

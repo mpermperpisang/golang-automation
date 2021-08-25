@@ -54,5 +54,9 @@ func SetFilename(fileformat, platform, name string) {
 }
 
 func RemoveContent(content string) {
+	os.Remove(GetPWD() + content)
+}
+
+func RemoveAllContent(content string) {
 	os.RemoveAll(GetPWD() + content)
 }

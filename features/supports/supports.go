@@ -64,7 +64,7 @@ func InitializeScenario(s *godog.ScenarioContext) {
 	})
 }
 
-func scenarioDetail(scenario interface{}) {
+func scenarioDetail(scenario *godog.Scenario) {
 	data, err := json.Marshal(scenario)
 	helper.LogPanicln(err)
 
@@ -128,29 +128,29 @@ func createLog(log error) {
 }
 
 func recreateLogs() {
-	helper.RemoveContent(formats.TestPath(data.LOGS, data.WEB))
-	helper.RemoveContent(formats.TestPath(data.LOGS, data.APPS))
+	helper.RemoveAllContent(formats.TestPath(data.LOGS, data.WEB))
+	helper.RemoveAllContent(formats.TestPath(data.LOGS, data.APPS))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.LOGS, data.WEB))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.LOGS, data.APPS))
 }
 
 func recreateSS() {
-	helper.RemoveContent(formats.TestPath(data.SS, data.WEB))
-	helper.RemoveContent(formats.TestPath(data.SS, data.APPS))
+	helper.RemoveAllContent(formats.TestPath(data.SS, data.WEB))
+	helper.RemoveAllContent(formats.TestPath(data.SS, data.APPS))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.SS, data.WEB))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.SS, data.APPS))
 }
 
 func recreateReport() {
-	helper.RemoveContent(formats.TestPath(data.REPORT, data.WEB))
-	helper.RemoveContent(formats.TestPath(data.REPORT, data.APPS))
+	helper.RemoveAllContent(formats.TestPath(data.REPORT, data.WEB))
+	helper.RemoveAllContent(formats.TestPath(data.REPORT, data.APPS))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.REPORT, data.WEB))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.REPORT, data.APPS))
 }
 
 func recreateXray() {
-	helper.RemoveContent(formats.TestPath(data.XRAY, data.WEB))
-	helper.RemoveContent(formats.TestPath(data.XRAY, data.APPS))
+	helper.RemoveAllContent(formats.TestPath(data.XRAY, data.WEB))
+	helper.RemoveAllContent(formats.TestPath(data.XRAY, data.APPS))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.XRAY, data.WEB))
 	helper.DirectoryCheck(helper.GetPWD() + formats.TestPath(data.XRAY, data.APPS))
 }

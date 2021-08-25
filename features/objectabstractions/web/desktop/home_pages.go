@@ -15,7 +15,7 @@ var (
 	subscribeButton = "(//*[@stroke-linecap='round'])[1]"
 	followersLink   = "Followers"
 	aboutLink       = "About"
-	loginWarning    = "Never miss a story from"
+	loginWarning    = "Never miss a stry from"
 )
 
 func (s HomePage) ClickButton(button string) *HomePage {

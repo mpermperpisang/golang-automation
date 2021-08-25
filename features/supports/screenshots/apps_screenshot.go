@@ -5,15 +5,14 @@ import (
 
 	"github.com/golang-automation/features/helper"
 	"github.com/golang-automation/features/helper/data"
-	androidformat "github.com/golang-automation/features/helper/formats/apps/android"
-	iosformat "github.com/golang-automation/features/helper/formats/apps/ios"
+	formats "github.com/golang-automation/features/helper/formats/apps"
 	supports "github.com/golang-automation/features/supports/drivers"
 	"github.com/golang-automation/features/supports/structs"
 )
 
 func SSAndroid() {
 	if supports.AndroidDriver != nil {
-		path := fmt.Sprintf(androidformat.AndroidPath(data.SS), helper.GetPWD())
+		path := fmt.Sprintf(formats.AppsPath(data.SS, data.ANDROID), helper.GetPWD())
 
 		takeErrorAppsImage(path)
 	}
@@ -21,7 +20,7 @@ func SSAndroid() {
 
 func SSIOS() {
 	if supports.IOSDriver != nil {
-		path := fmt.Sprintf(iosformat.IOSPath(data.SS), helper.GetPWD())
+		path := fmt.Sprintf(formats.AppsPath(data.SS, data.IOS), helper.GetPWD())
 
 		takeErrorAppsImage(path)
 	}

@@ -19,7 +19,7 @@
 ## PROFILE
 ```
 export JAVA_HOME=$(/usr/libexec/java_home)
-export ANDROID_HOME=/Users/bukalapak/Library/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/Applications/Genymotion.app/Contents/MacOS/tools
@@ -46,3 +46,4 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 - https://medium.com/inside-bukalapak/recipe-to-boil-web-automation-with-go-language-98b715800d70
 - https://mpermperpisang.medium.com/go-vatar-series-basic-automation-api-with-golang-f817efe217b5
 - https://mpermperpisang.medium.com/go-vatar-series-android-and-golang-alliance-to-form-an-automation-bb5e25773802
+- https://github.com/appium/appium/tree/master/sample-code/apps

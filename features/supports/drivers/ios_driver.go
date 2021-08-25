@@ -14,6 +14,7 @@ func iOSProperties() *properties.Properties {
 
 func IOSCapabilities() {
 	p := iOSProperties()
+	
 	options := appium.Desired(agouti.Capabilities{
 		"platformName":         p.MustGetString("platformName"),
 		"platformVersion":      p.MustGetString("platformVersion"),
