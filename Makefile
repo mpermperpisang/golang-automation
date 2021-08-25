@@ -51,7 +51,7 @@ run-selenium-node:
 
 # download dependencies
 deps:
-	$(GOGET) github.com/cucumber/godog/cmd/godog@v0.12.0
+	$(GOGET) -d github.com/cucumber/godog/cmd/godog@v0.12.0
 	$(GOMOD) download
 	@echo "Get package successfully"
 
