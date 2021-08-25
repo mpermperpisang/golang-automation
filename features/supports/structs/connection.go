@@ -1,9 +1,9 @@
 package structs
 
 import (
-	appsaction "golang-automation/features/helper/apps/actions"
-	webaction "golang-automation/features/helper/web/actions"
-	supports "golang-automation/features/supports/drivers"
+	appsaction "github.com/golang-automation-v1/features/helper/apps/actions"
+	webaction "github.com/golang-automation-v1/features/helper/web/actions"
+	supports "github.com/golang-automation-v1/features/supports/drivers"
 
 	"github.com/sclevine/agouti/appium"
 )

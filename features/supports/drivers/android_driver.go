@@ -1,7 +1,7 @@
 package drivers
 
 import (
-	"golang-automation/features/helper"
+	"github.com/golang-automation-v1/features/helper"
 
 	"github.com/magiconair/properties"
 	"github.com/sclevine/agouti"

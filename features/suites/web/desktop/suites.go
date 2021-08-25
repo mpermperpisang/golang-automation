@@ -1,7 +1,7 @@
 package suites
 
 import (
-	stepdefinitions "golang-automation/features/stepdefinitions/web/desktop"
+	stepdefinitions "github.com/golang-automation-v1/features/stepdefinitions/web/desktop"
 
 	"github.com/cucumber/godog"
 )

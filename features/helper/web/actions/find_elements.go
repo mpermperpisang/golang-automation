@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"golang-automation/features/helper"
+	"github.com/golang-automation-v1/features/helper"
 
 	"github.com/tebeka/selenium"
 )

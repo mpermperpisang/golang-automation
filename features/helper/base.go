@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"golang-automation/features/helper/data"
-	"golang-automation/features/helper/formats"
-	"golang-automation/features/helper/messages"
+	"github.com/golang-automation-v1/features/helper/data"
+	"github.com/golang-automation-v1/features/helper/formats"
+	"github.com/golang-automation-v1/features/helper/messages"
 )
 
 var FileName string

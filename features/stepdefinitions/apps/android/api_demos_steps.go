@@ -1,8 +1,8 @@
 package stepdefinitions
 
 import (
-	pages "golang-automation/features/objectabstractions/apps/android"
-	"golang-automation/features/supports/structs"
+	pages "github.com/golang-automation-v1/features/objectabstractions/apps/android"
+	"github.com/golang-automation-v1/features/supports/structs"
 
 	"github.com/cucumber/godog"
 )

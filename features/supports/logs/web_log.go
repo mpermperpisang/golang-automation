@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"golang-automation/features/helper"
-	"golang-automation/features/helper/data"
-	formats "golang-automation/features/helper/formats/web"
-	supports "golang-automation/features/supports/drivers"
+	"github.com/golang-automation-v1/features/helper"
+	"github.com/golang-automation-v1/features/helper/data"
+	formats "github.com/golang-automation-v1/features/helper/formats/web"
+	supports "github.com/golang-automation-v1/features/supports/drivers"
 )
 
 func LogWeb(platform string, log error) {

@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	apimessages "golang-automation/features/helper/messages/api"
+	apimessages "github.com/golang-automation-v1/features/helper/messages/api"
 
 	"github.com/stretchr/testify/assert"
 )

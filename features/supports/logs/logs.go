@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"golang-automation/features/helper"
+	"github.com/golang-automation-v1/features/helper"
 )
 
 func takeErrorLog(path string, log error) {

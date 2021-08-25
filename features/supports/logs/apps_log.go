@@ -3,10 +3,10 @@ package logs
 import (
 	"fmt"
 
-	"golang-automation/features/helper"
-	"golang-automation/features/helper/data"
-	formats "golang-automation/features/helper/formats/apps"
-	supports "golang-automation/features/supports/drivers"
+	"github.com/golang-automation-v1/features/helper"
+	"github.com/golang-automation-v1/features/helper/data"
+	formats "github.com/golang-automation-v1/features/helper/formats/apps"
+	supports "github.com/golang-automation-v1/features/supports/drivers"
 )
 
 func LogAndroid(log error) {

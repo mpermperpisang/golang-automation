@@ -1,6 +1,6 @@
 package actions
 
-import "golang-automation/features/helper"
+import "github.com/golang-automation-v1/features/helper"
 
 func (s Page) GetAttributeByXpath(locator string, attr string) string {
 	element, err := s.device().FindByXPath(locator).Attribute(attr)

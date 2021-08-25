@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"golang-automation/features/helper"
-	apihelper "golang-automation/features/helper/api"
-	apimessages "golang-automation/features/helper/messages/api"
-	apisupport "golang-automation/features/supports/base/api"
+	"github.com/golang-automation-v1/features/helper"
+	apihelper "github.com/golang-automation-v1/features/helper/api"
+	apimessages "github.com/golang-automation-v1/features/helper/messages/api"
+	apisupport "github.com/golang-automation-v1/features/supports/base/api"
 
 	"github.com/cucumber/godog"
 	"github.com/yalp/jsonpath"

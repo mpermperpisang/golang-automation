@@ -1,7 +1,7 @@
 package suites
 
 import (
-	stepdefinitions "golang-automation/features/stepdefinitions/api"
+	stepdefinitions "github.com/golang-automation-v1/features/stepdefinitions/api"
 
 	"github.com/cucumber/godog"
 )

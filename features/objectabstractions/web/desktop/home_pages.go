@@ -1,9 +1,9 @@
 package pages
 
 import (
-	"golang-automation/features/helper"
-	desktopmessages "golang-automation/features/helper/messages/web/desktop"
-	webaction "golang-automation/features/helper/web/actions"
+	"github.com/golang-automation-v1/features/helper"
+	desktopmessages "github.com/golang-automation-v1/features/helper/messages/web/desktop"
+	webaction "github.com/golang-automation-v1/features/helper/web/actions"
 )
 
 type HomePage struct {
