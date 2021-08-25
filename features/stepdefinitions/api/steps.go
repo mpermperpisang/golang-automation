@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 
 	"github.com/cucumber/godog"
-	"github.com/golang-automation/features/helper"
-	apihelper "github.com/golang-automation/features/helper/api"
-	apimessages "github.com/golang-automation/features/helper/messages/api"
-	apisupport "github.com/golang-automation/features/supports/base/api"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	apihelper "github.com/mpermperpisang/golang-automation-v1/features/helper/api"
+	apimessages "github.com/mpermperpisang/golang-automation-v1/features/helper/messages/api"
+	apisupport "github.com/mpermperpisang/golang-automation-v1/features/supports/base/api"
 	"github.com/yalp/jsonpath"
 )
 

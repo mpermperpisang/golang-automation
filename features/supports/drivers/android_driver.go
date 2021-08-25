@@ -2,6 +2,7 @@ package drivers
 
 import (
 	"github.com/magiconair/properties"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
 	"github.com/sclevine/agouti"
 	"github.com/sclevine/agouti/appium"
 )
@@ -9,7 +10,7 @@ import (
 var AndroidDriver *appium.WebDriver
 
 func androidProperties() *properties.Properties {
-	return properties.MustLoadFile("${GOPATH}/src/github.com/golang-automation/capabilities-android.properties", properties.UTF8)
+	return properties.MustLoadFile(helper.GetPWD()+"/capabilities-android.properties", properties.UTF8)
 }
 
 func AndroidCapabilities() {

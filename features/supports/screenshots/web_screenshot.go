@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/golang-automation/features/helper"
-	"github.com/golang-automation/features/helper/data"
-	formats "github.com/golang-automation/features/helper/formats/web"
-	supports "github.com/golang-automation/features/supports/drivers"
-	"github.com/golang-automation/features/supports/structs"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
+	formats "github.com/mpermperpisang/golang-automation-v1/features/helper/formats/web"
+	supports "github.com/mpermperpisang/golang-automation-v1/features/supports/drivers"
+	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
 )
 
 func SSWeb(platform string) {

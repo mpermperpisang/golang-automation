@@ -31,7 +31,7 @@ pipeline {
             }
         }
 
-        stage('CP File') {
+        stage('Rename Sample File') {
             steps {
                 echo 'Properties'
                 sh 'cp env.sample .env'

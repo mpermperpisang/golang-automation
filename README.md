@@ -1,5 +1,13 @@
 # golang-automation
 
+## ENV
+- [x] go env -w GO111MODULE=on
+
+## REPOSITORY
+- [x] Clone repo inside $GOPATH (Example: `$HOME/go/src/github.com/`)
+or
+- [x] Clone repo outside $GOPATH (Example: `$HOME/project/`)
+
 ## SPECS
 - [x] macOS Big Sur 11.4
 - [x] xcode 12.5.1
@@ -28,14 +36,16 @@ export GOPATH=$HOME/project/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
 
-## PACKAGE
-- [x] go mod download
+## MAKEFILE
+- [x] `make selenium`
+- [x] `make deps`
+- [x] `make cp`
 
-## ENV
-- [x] cp env.sample .env
+### DOCKER
+- [x] `make docker`
 
-## COMMAND
-- [x] godog --tags=@scenarios --random --format=cucumber > test/report/cucumber_report.json
+## RUN
+- [x] <b>`godog --tags=@scenarios --random --format=cucumber > test/report/cucumber_report.json`</b>
 
 ## CONTACT
 `mpermperpisang@gmail.com`
@@ -47,3 +57,4 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 - https://mpermperpisang.medium.com/go-vatar-series-basic-automation-api-with-golang-f817efe217b5
 - https://mpermperpisang.medium.com/go-vatar-series-android-and-golang-alliance-to-form-an-automation-bb5e25773802
 - https://github.com/appium/appium/tree/master/sample-code/apps
+- https://maelvls.dev/go111module-everywhere/

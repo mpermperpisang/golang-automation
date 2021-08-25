@@ -3,4 +3,4 @@ platformVersion=12.0
 deviceName=mpermperpisang
 automationName=XCUITest
 newCommandTimeout=60
-app=/Users/bukalapak/project/go/src/github.com/golang-automation/features/demo/apps/ios.app
+app=/Users/mpermperpisang/Documents/project/golang-automation-v1/features/demo/apps/ios.app

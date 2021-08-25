@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/cucumber/godog"
-	apisuites "github.com/golang-automation/features/suites/api"
-	androidsuites "github.com/golang-automation/features/suites/apps/android"
-	iossuites "github.com/golang-automation/features/suites/apps/ios"
-	desktopsuites "github.com/golang-automation/features/suites/web/desktop"
-	mobilesuites "github.com/golang-automation/features/suites/web/mobile"
-	"github.com/golang-automation/features/supports"
+	apisuites "github.com/mpermperpisang/golang-automation-v1/features/suites/api"
+	androidsuites "github.com/mpermperpisang/golang-automation-v1/features/suites/apps/android"
+	iossuites "github.com/mpermperpisang/golang-automation-v1/features/suites/apps/ios"
+	desktopsuites "github.com/mpermperpisang/golang-automation-v1/features/suites/web/desktop"
+	mobilesuites "github.com/mpermperpisang/golang-automation-v1/features/suites/web/mobile"
+	"github.com/mpermperpisang/golang-automation-v1/features/supports"
 )
 
 func MainTestSuiteContext(s *godog.TestSuiteContext) {

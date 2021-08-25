@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/cucumber/godog"
-	"github.com/golang-automation/features/helper"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
 )
 
 func EnvReader(body *godog.DocString) string {

@@ -1,9 +1,9 @@
 package pages
 
 import (
-	"github.com/golang-automation/features/helper"
-	desktopmessages "github.com/golang-automation/features/helper/messages/web/desktop"
-	webaction "github.com/golang-automation/features/helper/web/actions"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	desktopmessages "github.com/mpermperpisang/golang-automation-v1/features/helper/messages/web/desktop"
+	webaction "github.com/mpermperpisang/golang-automation-v1/features/helper/web/actions"
 )
 
 type HomePage struct {
@@ -15,7 +15,7 @@ var (
 	subscribeButton = "(//*[@stroke-linecap='round'])[1]"
 	followersLink   = "Followers"
 	aboutLink       = "About"
-	loginWarning    = "Never miss a stry from"
+	loginWarning    = "Never miss a story from"
 )
 
 func (s HomePage) ClickButton(button string) *HomePage {

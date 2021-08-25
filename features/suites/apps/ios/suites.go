@@ -2,7 +2,7 @@ package suites
 
 import (
 	"github.com/cucumber/godog"
-	stepdefinitions "github.com/golang-automation/features/stepdefinitions/apps/ios"
+	stepdefinitions "github.com/mpermperpisang/golang-automation-v1/features/stepdefinitions/apps/ios"
 )
 
 func IOSScenarioContext(s *godog.ScenarioContext) {

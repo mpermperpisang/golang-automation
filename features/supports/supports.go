@@ -5,16 +5,16 @@ import (
 	"strings"
 
 	"github.com/cucumber/godog"
-	"github.com/golang-automation/features/helper"
-	"github.com/golang-automation/features/helper/data"
-	"github.com/golang-automation/features/helper/formats"
-	"github.com/golang-automation/features/helper/messages"
-	appsbase "github.com/golang-automation/features/supports/base/apps"
-	webbase "github.com/golang-automation/features/supports/base/web"
-	supports "github.com/golang-automation/features/supports/drivers"
-	"github.com/golang-automation/features/supports/logs"
-	"github.com/golang-automation/features/supports/screenshots"
-	"github.com/golang-automation/features/supports/structs"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper/formats"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper/messages"
+	appsbase "github.com/mpermperpisang/golang-automation-v1/features/supports/base/apps"
+	webbase "github.com/mpermperpisang/golang-automation-v1/features/supports/base/web"
+	supports "github.com/mpermperpisang/golang-automation-v1/features/supports/drivers"
+	"github.com/mpermperpisang/golang-automation-v1/features/supports/logs"
+	"github.com/mpermperpisang/golang-automation-v1/features/supports/screenshots"
+	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
 )
 
 var (

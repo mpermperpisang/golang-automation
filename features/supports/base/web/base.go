@@ -3,10 +3,10 @@ package base
 import (
 	"os"
 
-	"github.com/golang-automation/features/helper"
-	"github.com/golang-automation/features/helper/data"
-	messages "github.com/golang-automation/features/helper/messages"
-	"github.com/golang-automation/features/supports/structs"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
+	messages "github.com/mpermperpisang/golang-automation-v1/features/helper/messages"
+	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
 )
 
 func OpenWebURL(platform, url string) error {
