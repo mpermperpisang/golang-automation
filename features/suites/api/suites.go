@@ -1,8 +1,9 @@
 package suites
 
 import (
+	stepdefinitions "golang-automation/features/stepdefinitions/api"
+
 	"github.com/cucumber/godog"
-	stepdefinitions "github.com/mpermperpisang/golang-automation-v1/features/stepdefinitions/api"
 )
 
 func APIScenarioContext(s *godog.ScenarioContext) {

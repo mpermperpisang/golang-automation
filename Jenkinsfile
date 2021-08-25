@@ -20,7 +20,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Git Checkout'
-                git branch: "${params.BRANCH}", url: 'https://github.com/mpermperpisang/golang-automation-v1.git'
+                git branch: "${params.BRANCH}", url: 'https://golang-automation.git'
             }
         }
 

@@ -5,8 +5,9 @@ import (
 	"regexp"
 	"strings"
 
+	"golang-automation/features/helper"
+
 	"github.com/cucumber/godog"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
 )
 
 func EnvReader(body *godog.DocString) string {

@@ -1,12 +1,12 @@
 package base
 
 import (
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/apps/actions"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/messages"
-	supports "github.com/mpermperpisang/golang-automation-v1/features/supports/drivers"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
+	"golang-automation/features/helper"
+	"golang-automation/features/helper/apps/actions"
+	"golang-automation/features/helper/data"
+	"golang-automation/features/helper/messages"
+	supports "golang-automation/features/supports/drivers"
+	"golang-automation/features/supports/structs"
 )
 
 func OpenApps(platform string) {

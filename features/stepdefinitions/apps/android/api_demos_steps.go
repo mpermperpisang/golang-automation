@@ -1,9 +1,10 @@
 package stepdefinitions
 
 import (
+	pages "golang-automation/features/objectabstractions/apps/android"
+	"golang-automation/features/supports/structs"
+
 	"github.com/cucumber/godog"
-	pages "github.com/mpermperpisang/golang-automation-v1/features/objectabstractions/apps/android"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
 )
 
 func ClickMenu(num *godog.Table) error {

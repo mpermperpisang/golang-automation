@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	"golang-automation/features/helper"
 )
 
 func (s Page) IsElementVisibleByXpath(locator string, timeout ...int) bool {

@@ -1,9 +1,9 @@
 package stepdefinitions
 
 import (
-	formats "github.com/mpermperpisang/golang-automation-v1/features/helper/formats/web/desktop"
-	desktoppages "github.com/mpermperpisang/golang-automation-v1/features/objectabstractions/web/desktop"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
+	formats "golang-automation/features/helper/formats/web/desktop"
+	desktoppages "golang-automation/features/objectabstractions/web/desktop"
+	"golang-automation/features/supports/structs"
 )
 
 func VisitLink(url string) error {

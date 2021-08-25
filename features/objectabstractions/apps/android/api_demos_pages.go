@@ -1,9 +1,9 @@
 package pages
 
 import (
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
-	appsaction "github.com/mpermperpisang/golang-automation-v1/features/helper/apps/actions"
-	messages "github.com/mpermperpisang/golang-automation-v1/features/helper/messages/apps/android"
+	"golang-automation/features/helper"
+	appsaction "golang-automation/features/helper/apps/actions"
+	messages "golang-automation/features/helper/messages/apps/android"
 )
 
 type APIDemos struct {

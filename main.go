@@ -1,8 +1,9 @@
 package main
 
 import (
+	"golang-automation/features/helper"
+
 	"github.com/joho/godotenv"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
 )
 
 func init() {

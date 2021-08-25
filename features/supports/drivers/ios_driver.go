@@ -1,8 +1,9 @@
 package drivers
 
 import (
+	"golang-automation/features/helper"
+
 	"github.com/magiconair/properties"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
 	"github.com/sclevine/agouti"
 	"github.com/sclevine/agouti/appium"
 )
@@ -15,7 +16,7 @@ func iOSProperties() *properties.Properties {
 
 func IOSCapabilities() {
 	p := iOSProperties()
-	
+
 	options := appium.Desired(agouti.Capabilities{
 		"platformName":         p.MustGetString("platformName"),
 		"platformVersion":      p.MustGetString("platformVersion"),

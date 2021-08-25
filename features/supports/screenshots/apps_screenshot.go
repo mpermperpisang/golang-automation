@@ -3,11 +3,11 @@ package screenshots
 import (
 	"fmt"
 
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
-	formats "github.com/mpermperpisang/golang-automation-v1/features/helper/formats/apps"
-	supports "github.com/mpermperpisang/golang-automation-v1/features/supports/drivers"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
+	"golang-automation/features/helper"
+	"golang-automation/features/helper/data"
+	formats "golang-automation/features/helper/formats/apps"
+	supports "golang-automation/features/supports/drivers"
+	"golang-automation/features/supports/structs"
 )
 
 func SSAndroid() {

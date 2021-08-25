@@ -3,7 +3,8 @@ package actions
 import (
 	"strconv"
 
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
+	"golang-automation/features/helper"
+
 	"github.com/tebeka/selenium"
 )
 

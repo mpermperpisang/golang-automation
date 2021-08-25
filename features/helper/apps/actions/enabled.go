@@ -1,6 +1,6 @@
 package actions
 
-import "github.com/mpermperpisang/golang-automation-v1/features/helper"
+import "golang-automation/features/helper"
 
 func (s Page) IsElementEnabledByXpath(locator string, timeout ...int) bool {
 	max := helper.CheckEmpty(timeout)

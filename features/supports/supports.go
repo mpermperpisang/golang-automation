@@ -4,17 +4,18 @@ import (
 	"encoding/json"
 	"strings"
 
+	"golang-automation/features/helper"
+	"golang-automation/features/helper/data"
+	"golang-automation/features/helper/formats"
+	"golang-automation/features/helper/messages"
+	appsbase "golang-automation/features/supports/base/apps"
+	webbase "golang-automation/features/supports/base/web"
+	supports "golang-automation/features/supports/drivers"
+	"golang-automation/features/supports/logs"
+	"golang-automation/features/supports/screenshots"
+	"golang-automation/features/supports/structs"
+
 	"github.com/cucumber/godog"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/formats"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/messages"
-	appsbase "github.com/mpermperpisang/golang-automation-v1/features/supports/base/apps"
-	webbase "github.com/mpermperpisang/golang-automation-v1/features/supports/base/web"
-	supports "github.com/mpermperpisang/golang-automation-v1/features/supports/drivers"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/logs"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/screenshots"
-	"github.com/mpermperpisang/golang-automation-v1/features/supports/structs"
 )
 
 var (

@@ -1,8 +1,9 @@
 package drivers
 
 import (
+	"golang-automation/features/helper"
+
 	"github.com/magiconair/properties"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
 	"github.com/tebeka/selenium"
 )
 
@@ -16,7 +17,7 @@ func WebCapabilities() {
 	var err error
 
 	p := webProperties()
-	
+
 	caps := selenium.Capabilities{
 		"browserName": p.MustGetString("browserName"),
 	}

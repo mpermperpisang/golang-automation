@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/mpermperpisang/golang-automation-v1/features/helper"
-	"github.com/mpermperpisang/golang-automation-v1/features/helper/data"
+	"golang-automation/features/helper"
+	"golang-automation/features/helper/data"
 )
 
 var (
