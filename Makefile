@@ -53,6 +53,7 @@ run-selenium-node:
 deps:
 	$(GOGET) -d github.com/cucumber/godog/cmd/godog@v0.12.0
 	$(GOMOD) download
+	$(GOMOD) tidy
 	@echo "Get package successfully"
 
 # copy paste rename .sample

@@ -1,4 +1,10 @@
-# golang-automation
+# Golang Automation
+Feature List :
+- [x] API
+- [x] Desktop Web
+- [x] Mobile Web
+- [x] Android
+- [x] iOS
 
 ## ENV
 - [x] go env -w GO111MODULE=on
