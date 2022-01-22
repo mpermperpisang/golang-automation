@@ -1,12 +1,9 @@
 package helper
 
-// Contains : check array contain value
-func Contains(arr []string, str string) bool {
-	for _, a := range arr {
-		if a == str {
-			return true
-		}
+func CheckEmpty(array []int) int {
+	if len(array) < 1 {
+		return 1
+	} else {
+		return array[0]
 	}
-
-	return false
 }

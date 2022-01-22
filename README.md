@@ -1,58 +1,65 @@
-# golang-automation
+# Golang Automation
+Feature List :
+- [x] API
+- [x] Web (Desktop & Mobile)
+- [x] Android
+- [x] iOS
 
-**Description**<br/>
-Basic installation can be read in https://medium.com/@mpermperpisang/recipe-to-boil-web-automation-with-go-language-98b715800d70
+## ENV
+- [x] go env -w GO111MODULE=on
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=mpermperpisang_golang-automation)
+## REPOSITORY
+- [x] Clone repo inside default $GOPATH (Example: `$HOME/go/src/github.com/`)
+or
+- [x] Clone repo outside default $GOPATH (Example: `$HOME/Documents/project/`)
 
-**Setup env**<br/>
-`$ cp env.sample .env`<br/>
-`$ cp capabilities-web.properties.sample capabilities-web.properties`<br/>
-`$ cp capabilities-android.properties.sample capabilities-android.properties`<br/>
-`$ cp capabilities-ios.properties.sample capabilities-ios.properties`
+## SPECS
+- [x] macOS Big Sur 11.4
+- [x] xcode 12.5.1
+- [x] genymotion 3.2.1
+- [x] java 1.8.0_181
+- [x] gradle 7.2
+- [x] carthage 0.38.0
+- [x] cmake 3.13.1
+- [x] node 14.15.4
+- [x] npm 6.14.10
+- [x] appium server 1.21.0
+- [x] appium doctor 1.16.0
+- [x] appium desktop 1.21.0
+- [x] go 1.17
+- [x] jenkins 2.289.3
+- [x] docker-machine 0.16.2
 
-**Build Package**<br/>
-Only for once<br/>
-`$ make build-package`
+## PROFILE
+```
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-1.8.0.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/Documents/project/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+```
 
-**Run Package**<br/>
-`$ make run-package`
+## MAKEFILE
+- [x] `make cp`
+- [x] `make deps`
+- [x] `make selenium`
+- [x] `make docker` or `docker-compose up -d` (after test, run this command `docker-compose down`)
 
-**Kill Port 4545**<br/>
-`$ make kill-port`
+## RUN
+- [x] <b>`godog --tags=@scenarios --random --format=cucumber > test/report/cucumber_report.json`</b>
+- [x] <b>`make api` or `npm run api` or `npm run test "api"`</b>
 
-**Setup and running Docker selenium-hub and browser**<br/>
-`$ make docker-clean`<br/>
-`$ make selenium-hub`<br/>
-`$ make selenium-browser`<br/>
-or<br/>
-`$ make`
-
-**Running**<br/>
-This command will not import automation run result to Xray<br/>
-`$ ./godog -t "@example"`<br/>
-`$ ./godog -t "~@example"`<br/>
-`$ ./godog -t "@example && @example-dweb"`<br/>
-`$ ./godog -t "@example && ~@exclude"`<br/>
-`$ ./godog -t "@example,@example-dweb"`<br/>
-
-**Running & Export Xray**<br/>
-This command will do import automation run result to Xray<br/>
-`$ ./godog -x TEST_EXECUTION_ID -t "@example"`
-
-**Running & Open Generate HTML Report**<br/>
-`$ ./godog -r -t "@example"`
-
-**Open Generate HTML Report**<br/>
-`$ node index.js`
-
-**Linter**<br/>
-`$ golint`
-
-**Contact**<br/>
+## CONTACT
 `mpermperpisang@gmail.com`
 
-**References**<br/>
-- https://medium.com/rungo/unit-testing-made-easy-in-go-25077669318
-- https://github.com/gkushang/cucumber-html-reporter
-- https://goinbigdata.com/testing-go-code-with-testify
+## REFERENCES
+- https://krishnachetan.medium.com/setup-appium-on-mac-1e06f1178427
+- https://github.com/sayems/golang.webdriver
+- https://medium.com/inside-bukalapak/recipe-to-boil-web-automation-with-go-language-98b715800d70
+- https://mpermperpisang.medium.com/go-vatar-series-basic-automation-api-with-golang-f817efe217b5
+- https://mpermperpisang.medium.com/go-vatar-series-android-and-golang-alliance-to-form-an-automation-bb5e25773802
+- https://github.com/appium/appium/tree/master/sample-code/apps
+- https://maelvls.dev/go111module-everywhere/
+- https://github.com/eficode/Docker-Selenium-Example

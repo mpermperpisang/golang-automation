@@ -1,28 +1,26 @@
 package main
 
 import (
+	apisuites "github.com/golang-automation-v1/features/suites/api"
+	androidsuites "github.com/golang-automation-v1/features/suites/apps/android"
+	iossuites "github.com/golang-automation-v1/features/suites/apps/ios"
+	desktopsuites "github.com/golang-automation-v1/features/suites/web/desktop"
+	mobilesuites "github.com/golang-automation-v1/features/suites/web/mobile"
+	"github.com/golang-automation-v1/features/supports"
+
 	"github.com/cucumber/godog"
-	"github.com/golang-automation/features/suites"
-	android "github.com/golang-automation/features/suites/android"
-	api "github.com/golang-automation/features/suites/api"
-	desktop "github.com/golang-automation/features/suites/desktop"
-	mobile "github.com/golang-automation/features/suites/mobile"
-	"github.com/golang-automation/features/support"
 )
 
-func GodogMainSuites(s *godog.TestSuiteContext) {
-	support.InitializeTestSuite(s)
+func MainTestSuiteContext(s *godog.TestSuiteContext) {
+	supports.InitializeTestSuite(s)
 }
 
-func GodogMainScenarios(s *godog.ScenarioContext) {
-	support.InitializeScenario(s)
+func MainScenarioContext(s *godog.ScenarioContext) {
+	supports.InitializeScenario(s)
 
-	// general suites
-	suites.ExampleAutomation(s)
-	suites.AutomationGlobal(s)
-	// suites by platform
-	api.AutomationAPI(s)
-	desktop.AutomationDesktop(s)
-	mobile.AutomationMobile(s)
-	android.AutomationAndroid(s)
+	apisuites.APIScenarioContext(s)
+	desktopsuites.DwebScenarioContext(s)
+	mobilesuites.MwebScenarioContext(s)
+	androidsuites.AndroidScenarioContext(s)
+	iossuites.IOSScenarioContext(s)
 }

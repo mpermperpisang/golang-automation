@@ -1,8 +1,14 @@
-## Todos
-- [x] What things you do through this pull request
+## Todo(s)
+- [x] Please give a brief explanation
 
-## Xray
-- [x] Put the test case or the test execution link here
+## Test Case(s)
+- [x] Please give a test case link
 
-## Screenshot
+## Ack-ed By
+- [x] Please mention another QA
+
+## Job Link(s)
+- [x] Please give a running test link in Jenkins
+
+## Screenshot(s)
 Format file in png, jpg, gif, or jpeg
