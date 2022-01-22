@@ -45,6 +45,8 @@ deps:
 	$(GOINSTALL) github.com/cucumber/godog/cmd/godog@v0.12.0
 	$(GOGET) -d github.com/onsi/ginkgo/v2/ginkgo
 	$(GOINSTALL) github.com/onsi/ginkgo/v2/ginkgo
+	$(GOGET) -d github.com/qiniu/checkstyle/gocheckstyle
+	$(GOINSTALL) github.com/qiniu/checkstyle/gocheckstyle
 	$(GOMOD) download
 	$(GOMOD) tidy
 	@echo "Get package successfully"
