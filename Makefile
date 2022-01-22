@@ -54,6 +54,7 @@ run-selenium-node:
 # download dependencies
 deps:
 	$(GOINSTALL) github.com/cucumber/godog/cmd/godog@v0.12.0
+	$(GOGET) -d github.com/onsi/ginkgo/v2/ginkgo
 	$(GOINSTALL) github.com/onsi/ginkgo/v2/ginkgo
 	$(GOMOD) download
 	$(GOMOD) tidy
