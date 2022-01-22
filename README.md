@@ -5,7 +5,7 @@ Feature List :
 - [x] Android
 - [x] iOS
 
-## ENV
+## MODULE ENV
 - [x] go env -w GO111MODULE=on
 
 ## REPOSITORY
@@ -48,8 +48,9 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 - [x] `make docker` or `docker-compose up -d` (after test, run this command `docker-compose down`)
 
 ## RUN
-- [x] <b>`godog --tags=@scenarios --random --format=cucumber > test/report/cucumber_report.json`</b>
-- [x] <b>`make api` or `npm run api` or `npm run test "api"`</b>
+- [x] <b>`make api-godog`</b>
+- [x] <b>`make api-ginkgo`</b>
+- [x] <b>`npm run api` or `npm run test "api"`</b>
 
 ## CONTACT
 `mpermperpisang@gmail.com`

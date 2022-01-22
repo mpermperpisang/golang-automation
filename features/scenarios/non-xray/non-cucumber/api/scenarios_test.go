@@ -36,7 +36,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 	Context(context.EndpointMethod(data.GET), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.GET, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-			apisupport.ReadResponseBody(false)
+			apisupport.DeferResponseReader(false)
 
 			status, _ := jsonpath.Prepare("$.status")
 			method, _ := jsonpath.Prepare("$.method")
@@ -54,7 +54,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 	Context(context.EndpointMethod("POST"), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_201)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.POST, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-			apisupport.ReadResponseBody(false)
+			apisupport.DeferResponseReader(false)
 
 			status, _ := jsonpath.Prepare("$.status")
 			method, _ := jsonpath.Prepare("$.method")
@@ -72,7 +72,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		Context(context.EndpointMethod("PATCH"), func() {
 			It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 				apisupport.ClientDo(apisupport.SendRequest(data.PATCH, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-				apisupport.ReadResponseBody(false)
+				apisupport.DeferResponseReader(false)
 
 				status, _ := jsonpath.Prepare("$.status")
 				method, _ := jsonpath.Prepare("$.method")
@@ -90,7 +90,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		Context(context.EndpointMethod("PUT"), func() {
 			It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 				apisupport.ClientDo(apisupport.SendRequest(data.PUT, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-				apisupport.ReadResponseBody(false)
+				apisupport.DeferResponseReader(false)
 
 				status, _ := jsonpath.Prepare("$.status")
 				method, _ := jsonpath.Prepare("$.method")
@@ -108,7 +108,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		Context(context.EndpointMethod("DELETE"), func() {
 			It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 				apisupport.ClientDo(apisupport.SendRequest(data.DELETE, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-				apisupport.ReadResponseBody(false)
+				apisupport.DeferResponseReader(false)
 
 				status, _ := jsonpath.Prepare("$.status")
 				method, _ := jsonpath.Prepare("$.method")
