@@ -2,7 +2,10 @@ package supports
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
+
+	"github.com/cucumber/godog"
 
 	"github.com/golang-automation-v1/features/helper"
 	"github.com/golang-automation-v1/features/helper/data"
@@ -14,8 +17,6 @@ import (
 	"github.com/golang-automation-v1/features/supports/logs"
 	"github.com/golang-automation-v1/features/supports/screenshots"
 	"github.com/golang-automation-v1/features/supports/structs"
-
-	"github.com/cucumber/godog"
 )
 
 var (
@@ -98,6 +99,7 @@ func platformCheck(tags string) {
 
 func webStart(platform string) {
 	supports.WebCapabilities()
+	fmt.Println("1")
 	webbase.OpenWebURL(platform, "/")
 }
 

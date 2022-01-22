@@ -1,0 +1,14 @@
+{
+  "name": "golang-automation",
+  "version": "1.0.0",
+  "scripts": {
+    "gherkin": "./node_modules/.bin/gplint -c ./node_modules/gplint-config-komid/.gplintrc ./features/scenarios",
+    "api": "ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all",
+    "test": "ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all --label-filter="
+  },
+  "author": "mpermperpisang",
+  "optionalDependencies": {
+    "danger-js-github": "github:mpermperpisang/danger-js-github",
+    "gplint-config-komid": "github:mpermperpisang/gplint-config-komid"
+  }
+}

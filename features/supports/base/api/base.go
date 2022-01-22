@@ -13,18 +13,22 @@ import (
 var (
 	Response     *http.Response
 	ResponseBody []byte
+	err error
 )
 
 func ClientDo(request *http.Request) {
-	var err error
-
 	client := &http.Client{}
 	Response, err = client.Do(request)
 	helper.LogPanicln(err)
+}
+
+func ReadResponseBody(isDefer bool) {
 	ResponseBody, err = ioutil.ReadAll(Response.Body)
 	helper.LogPanicln(err)
 
-	defer Response.Body.Close()
+	if (isDefer) {
+		defer Response.Body.Close()
+	}
 }
 
 func SendRequest(method, url string, body io.Reader) *http.Request {

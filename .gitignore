@@ -14,3 +14,4 @@ logs/*
 komit/
 report/*
 xray/*
+node_modules

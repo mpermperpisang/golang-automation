@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  hub:
+    image: selenium/hub:latest
+    expose:
+      - 4444
+
+  chrome:
+    image: selenium/node-chrome:latest
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - 5900:5900
+    depends_on:
+      - hub
+
+  firefox:
+    image: selenium/node-firefox:latest
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    ports:
+      - 5901:5900
+    depends_on:
+      - hub

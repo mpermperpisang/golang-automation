@@ -1,12 +1,14 @@
 # Parameters
 GOCMD=go
 GOGET=$(GOCMD) get
+GOINSTALL=$(GOCMD) install
 GOMOD=$(GOCMD) mod
 GOENV=$(GOCMD) env
 DOCKERCMD=docker
 DOCKERBUILD=$(DOCKERCMD) build
 DOCKERRUN=$(DOCKERCMD) run
 DOCKERCONTAINER=$(DOCKERCMD) container
+DOCKERRM=$(DOCKERCMD) rm
 DOCKERRMI=$(DOCKERCMD) rmi
 
 # kill selenium port
@@ -18,23 +20,23 @@ docker-rm: container-rm images-rm
 
 # remove all docker container
 container-rm:
-	$(DOCKERCONTAINER) rm $$(docker ps -aq) -f
+	$(DOCKERRM) -vf $(docker ps -aq)
 	@echo "Docker container successfully removed"
 
 # remove all docker images
 images-rm:
-	@$(DOCKERRMI) -f $$(docker images -a -q)
+	$(DOCKERRMI) -f $(docker images -aq)
 	@echo "Docker images successfully removed"
 
 # run docker image
 docker: build-docker run-docker
 
 build-docker:
-	$(DOCKERBUILD) -t automation-docker .
+	$(DOCKERBUILD) --no-cache -t automation-docker .
 	@echo "Build automation-docker successfully"
 
 run-docker:
-	$(DOCKERRUN) automation-docker
+	$(DOCKERRUN) --name test_golang automation-docker godog --tags=@dweb
 	@echo "Run automation-docker successfully"
 
 # run selenium server
@@ -51,7 +53,8 @@ run-selenium-node:
 
 # download dependencies
 deps:
-	$(GOGET) -d github.com/cucumber/godog/cmd/godog@v0.12.0
+	$(GOINSTALL) github.com/cucumber/godog/cmd/godog@v0.12.0
+	$(GOINSTALL) github.com/onsi/ginkgo/v2/ginkgo
 	$(GOMOD) download
 	$(GOMOD) tidy
 	@echo "Get package successfully"
@@ -66,3 +69,6 @@ properties:
 	cp capabilities-android.properties.sample capabilities-android.properties
 	cp capabilities-ios.properties.sample capabilities-ios.properties
 	cp capabilities-web.properties.sample capabilities-web.properties
+
+api:
+	ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all

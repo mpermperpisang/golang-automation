@@ -1,11 +1,11 @@
 package drivers
 
 import (
-	"github.com/golang-automation-v1/features/helper"
-
 	"github.com/magiconair/properties"
 	"github.com/sclevine/agouti"
 	"github.com/sclevine/agouti/appium"
+
+	"github.com/golang-automation-v1/features/helper"
 )
 
 var AndroidDriver *appium.WebDriver

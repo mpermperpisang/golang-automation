@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 
+	"github.com/cucumber/godog"
+	"github.com/yalp/jsonpath"
+
 	"github.com/golang-automation-v1/features/helper"
 	apihelper "github.com/golang-automation-v1/features/helper/api"
 	apimessages "github.com/golang-automation-v1/features/helper/messages/api"
 	apisupport "github.com/golang-automation-v1/features/supports/base/api"
-
-	"github.com/cucumber/godog"
-	"github.com/yalp/jsonpath"
 )
 
 var (
@@ -21,12 +21,14 @@ var (
 
 func HitEndpointWithBody(method, url string, body *godog.DocString) error {
 	apisupport.ClientDo(apisupport.SendRequest(method, url, bytes.NewBuffer([]byte(apihelper.EnvReader(body)))))
+	apisupport.ReadResponseBody(true)
 
 	return nil
 }
 
 func HitEndpointWithoutBody(method, url string) error {
 	apisupport.ClientDo(apisupport.SendRequest(method, url, nil))
+	apisupport.ReadResponseBody(true)
 
 	return nil
 }

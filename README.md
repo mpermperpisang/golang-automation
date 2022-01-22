@@ -1,8 +1,7 @@
 # Golang Automation
 Feature List :
 - [x] API
-- [x] Desktop Web
-- [x] Mobile Web
+- [x] Web (Desktop & Mobile)
 - [x] Android
 - [x] iOS
 
@@ -10,9 +9,9 @@ Feature List :
 - [x] go env -w GO111MODULE=on
 
 ## REPOSITORY
-- [x] Clone repo inside $GOPATH (Example: `$HOME/go/src/github.com/`)
+- [x] Clone repo inside default $GOPATH (Example: `$HOME/go/src/github.com/`)
 or
-- [x] Clone repo outside $GOPATH (Example: `$HOME/project/`)
+- [x] Clone repo outside default $GOPATH (Example: `$HOME/Documents/project/`)
 
 ## SPECS
 - [x] macOS Big Sur 11.4
@@ -29,29 +28,28 @@ or
 - [x] appium desktop 1.21.0
 - [x] go 1.17
 - [x] jenkins 2.289.3
+- [x] docker-machine 0.16.2
 
 ## PROFILE
 ```
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-1.8.0.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-export PATH=$PATH:/Applications/Genymotion.app/Contents/MacOS/tools
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/project/go
+export GOPATH=$HOME/Documents/project/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
 
 ## MAKEFILE
-- [x] `make selenium`
-- [x] `make deps`
 - [x] `make cp`
-
-### DOCKER
-- [x] `make docker`
+- [x] `make deps`
+- [x] `make selenium`
+- [x] `make docker` or `docker-compose up -d` (after test, run this command `docker-compose down`)
 
 ## RUN
 - [x] <b>`godog --tags=@scenarios --random --format=cucumber > test/report/cucumber_report.json`</b>
+- [x] <b>`make api` or `npm run api` or `npm run test "api"`</b>
 
 ## CONTACT
 `mpermperpisang@gmail.com`
@@ -64,3 +62,4 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 - https://mpermperpisang.medium.com/go-vatar-series-android-and-golang-alliance-to-form-an-automation-bb5e25773802
 - https://github.com/appium/appium/tree/master/sample-code/apps
 - https://maelvls.dev/go111module-everywhere/
+- https://github.com/eficode/Docker-Selenium-Example
