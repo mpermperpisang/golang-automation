@@ -9,15 +9,15 @@ type APIDemos struct {
 }
 
 var (
-	computeMenu  = "(//*[@label='Compute Sum'])[2]"
-	alertMenu    = "(//*[@label='show alert'])[2]"
-	gestureMenu  = "(//*[@label='Test Gesture'])[2]"
-	crashMenu    = "(//*[@label='Crash'])[2]"
-	calendarMenu = "(//*[@label='Check calendar authorized'])[2]"
+	computeMenu  = "Compute Sum"
+	alertMenu    = "//*[@value='show alert']"
+	gestureMenu  = "//*[@value='Test Gesture']"
+	crashMenu    = "//*[@value='Crash']"
+	calendarMenu = "//*[@value='Check calendar authorized']"
 )
 
 func (s APIDemos) ValidateButton() *APIDemos {
-	s.Page.IsElementVisibleByXpath(computeMenu, 3)
+	s.Page.IsElementVisibleByName(computeMenu, 3)
 	s.Page.IsElementVisibleByXpath(alertMenu)
 	s.Page.IsElementVisibleByXpath(gestureMenu)
 	s.Page.IsElementVisibleByXpath(crashMenu)
