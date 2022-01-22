@@ -22,7 +22,7 @@ func ClientDo(request *http.Request) {
 	helper.LogPanicln(err)
 }
 
-func ReadResponseBody(isDefer bool) {
+func DeferResponseReader(isDefer bool) {
 	ResponseBody, err = ioutil.ReadAll(Response.Body)
 	helper.LogPanicln(err)
 

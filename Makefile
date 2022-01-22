@@ -28,17 +28,6 @@ images-rm:
 	$(DOCKERRMI) -f $(docker images -aq)
 	@echo "Docker images successfully removed"
 
-# run docker image
-docker: build-docker run-docker
-
-build-docker:
-	$(DOCKERBUILD) --no-cache -t automation-docker .
-	@echo "Build automation-docker successfully"
-
-run-docker:
-	$(DOCKERRUN) --name test_golang automation-docker godog --tags=@dweb
-	@echo "Run automation-docker successfully"
-
 # run selenium server
 selenium: run-selenium-hub run-selenium-node
 
@@ -71,5 +60,8 @@ properties:
 	cp capabilities-ios.properties.sample capabilities-ios.properties
 	cp capabilities-web.properties.sample capabilities-web.properties
 
-api:
+api-godog:
+	godog --tags=@api --random --format=cucumber > test/report/cucumber_report.json
+
+api-ginkgo:
 	ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all

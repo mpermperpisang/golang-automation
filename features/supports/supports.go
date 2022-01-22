@@ -2,7 +2,6 @@ package supports
 
 import (
 	"encoding/json"
-	"fmt"
 	"strings"
 
 	"github.com/cucumber/godog"
@@ -99,7 +98,6 @@ func platformCheck(tags string) {
 
 func webStart(platform string) {
 	supports.WebCapabilities()
-	fmt.Println("1")
 	webbase.OpenWebURL(platform, "/")
 }
 

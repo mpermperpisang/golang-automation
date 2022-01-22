@@ -21,14 +21,14 @@ var (
 
 func HitEndpointWithBody(method, url string, body *godog.DocString) error {
 	apisupport.ClientDo(apisupport.SendRequest(method, url, bytes.NewBuffer([]byte(apihelper.EnvReader(body)))))
-	apisupport.ReadResponseBody(true)
+	apisupport.DeferResponseReader(true)
 
 	return nil
 }
 
 func HitEndpointWithoutBody(method, url string) error {
 	apisupport.ClientDo(apisupport.SendRequest(method, url, nil))
-	apisupport.ReadResponseBody(true)
+	apisupport.DeferResponseReader(true)
 
 	return nil
 }
