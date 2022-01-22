@@ -6,9 +6,13 @@
     "api": "ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all",
     "test": "ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all --label-filter="
   },
+  "pre-commit": [
+    "gherkin"
+  ],
   "author": "mpermperpisang",
   "optionalDependencies": {
     "danger-js-github": "github:mpermperpisang/danger-js-github",
-    "gplint-config-komid": "github:mpermperpisang/gplint-config-komid"
+    "gplint-config-komid": "github:mpermperpisang/gplint-config-komid",
+    "pre-commit": "^1.2.2"
   }
 }
