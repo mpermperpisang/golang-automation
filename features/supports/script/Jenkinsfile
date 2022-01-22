@@ -18,10 +18,32 @@ pipeline {
     }
 
     stages {
+        stage('PR Display Name') {
+            steps {
+                script {
+                    currentBuild.displayName = 'pr_' + currentBuild.number
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
-                echo 'Git Checkout'
                 git branch: "${params.BRANCH}", url: 'https://golang-automation.git'
+            }
+        }
+
+        stage('Linter') {
+            parallel {
+                stage('Danger') {
+                    environment {
+                        DANGER_GITHUB_API_TOKEN = "${env.DANGER_GITHUB_API_TOKEN}"
+                    }
+
+                    steps {
+                        sh 'GIT_SSH_COMMAND="ssh" yarn install'
+                        sh 'yarn danger ci --failOnErrors'
+                    }
+                }
             }
         }
 
