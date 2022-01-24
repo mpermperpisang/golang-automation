@@ -1,8 +1,6 @@
 package drivers
 
 import (
-	"fmt"
-
 	"github.com/magiconair/properties"
 	"github.com/tebeka/selenium"
 
@@ -25,6 +23,5 @@ func WebCapabilities() {
 	}
 
 	WebDriver, err = selenium.NewRemote(caps, "")
-	fmt.Println(err)
 	helper.LogPanicln(err)
 }

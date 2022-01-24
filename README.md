@@ -44,8 +44,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ## MAKEFILE
 - [x] `make cp`
 - [x] `make deps`
-- [x] `make selenium`
-- [x] `make docker` or `docker-compose up -d` (after test, run this command `docker-compose down`)
+- [x] `make selenium` or `docker-compose up -d` (after test, run this command `docker-compose down`)
 
 ## RUN
 - [x] <b>`make api-godog`</b>

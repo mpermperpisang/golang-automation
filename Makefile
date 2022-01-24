@@ -20,12 +20,12 @@ docker-rm: container-rm images-rm
 
 # remove all docker container
 container-rm:
-	$(DOCKERRM) -vf $(docker ps -aq)
+	@$(DOCKERRM) -vf $$(docker ps -aq)
 	@echo "Docker container successfully removed"
 
 # remove all docker images
 images-rm:
-	$(DOCKERRMI) -f $(docker images -aq)
+	@$(DOCKERRMI) -f $$(docker images -aq)
 	@echo "Docker images successfully removed"
 
 # run selenium server
