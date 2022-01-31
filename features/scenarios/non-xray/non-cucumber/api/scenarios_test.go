@@ -69,57 +69,57 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		})
 	})
 
-		Context(context.EndpointMethod("PATCH"), func() {
-			It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
-				apisupport.ClientDo(apisupport.SendRequest(data.PATCH, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-				apisupport.DeferResponseReader(false)
+	Context(context.EndpointMethod("PATCH"), func() {
+		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
+			apisupport.ClientDo(apisupport.SendRequest(data.PATCH, os.Getenv("ENDPOINT_AUTOMATION"), nil))
+			apisupport.DeferResponseReader(false)
 
-				status, _ := jsonpath.Prepare("$.status")
-				method, _ := jsonpath.Prepare("$.method")
-				endpoint, _ := jsonpath.Prepare("$.endpoint")
+			status, _ := jsonpath.Prepare("$.status")
+			method, _ := jsonpath.Prepare("$.method")
+			endpoint, _ := jsonpath.Prepare("$.endpoint")
 
-				json.Unmarshal(apisupport.ResponseBody, &jsonResponse)
+			json.Unmarshal(apisupport.ResponseBody, &jsonResponse)
 
-				Expect(apisupport.Response.StatusCode).To(Equal(data.CODE_200))
-				Expect(status(jsonResponse)).To(Equal("success"))
-				Expect(method(jsonResponse)).To(Equal(data.PATCH))
-				Expect(endpoint(jsonResponse)).To(Equal(os.Getenv("ENDPOINT_AUTOMATION")))
-			})
+			Expect(apisupport.Response.StatusCode).To(Equal(data.CODE_200))
+			Expect(status(jsonResponse)).To(Equal("success"))
+			Expect(method(jsonResponse)).To(Equal(data.PATCH))
+			Expect(endpoint(jsonResponse)).To(Equal(os.Getenv("ENDPOINT_AUTOMATION")))
 		})
+	})
 
-		Context(context.EndpointMethod("PUT"), func() {
-			It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
-				apisupport.ClientDo(apisupport.SendRequest(data.PUT, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-				apisupport.DeferResponseReader(false)
+	Context(context.EndpointMethod("PUT"), func() {
+		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
+			apisupport.ClientDo(apisupport.SendRequest(data.PUT, os.Getenv("ENDPOINT_AUTOMATION"), nil))
+			apisupport.DeferResponseReader(false)
 
-				status, _ := jsonpath.Prepare("$.status")
-				method, _ := jsonpath.Prepare("$.method")
-				endpoint, _ := jsonpath.Prepare("$.endpoint")
+			status, _ := jsonpath.Prepare("$.status")
+			method, _ := jsonpath.Prepare("$.method")
+			endpoint, _ := jsonpath.Prepare("$.endpoint")
 
-				json.Unmarshal(apisupport.ResponseBody, &jsonResponse)
+			json.Unmarshal(apisupport.ResponseBody, &jsonResponse)
 
-				Expect(apisupport.Response.StatusCode).To(Equal(data.CODE_200))
-				Expect(status(jsonResponse)).To(Equal("success"))
-				Expect(method(jsonResponse)).To(Equal(data.PUT))
-				Expect(endpoint(jsonResponse)).To(Equal(os.Getenv("ENDPOINT_AUTOMATION")))
-			})
+			Expect(apisupport.Response.StatusCode).To(Equal(data.CODE_200))
+			Expect(status(jsonResponse)).To(Equal("success"))
+			Expect(method(jsonResponse)).To(Equal(data.PUT))
+			Expect(endpoint(jsonResponse)).To(Equal(os.Getenv("ENDPOINT_AUTOMATION")))
 		})
+	})
 
-		Context(context.EndpointMethod("DELETE"), func() {
-			It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
-				apisupport.ClientDo(apisupport.SendRequest(data.DELETE, os.Getenv("ENDPOINT_AUTOMATION"), nil))
-				apisupport.DeferResponseReader(false)
+	Context(context.EndpointMethod("DELETE"), func() {
+		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
+			apisupport.ClientDo(apisupport.SendRequest(data.DELETE, os.Getenv("ENDPOINT_AUTOMATION"), nil))
+			apisupport.DeferResponseReader(false)
 
-				status, _ := jsonpath.Prepare("$.status")
-				method, _ := jsonpath.Prepare("$.method")
-				endpoint, _ := jsonpath.Prepare("$.endpoint")
+			status, _ := jsonpath.Prepare("$.status")
+			method, _ := jsonpath.Prepare("$.method")
+			endpoint, _ := jsonpath.Prepare("$.endpoint")
 
-				json.Unmarshal(apisupport.ResponseBody, &jsonResponse)
+			json.Unmarshal(apisupport.ResponseBody, &jsonResponse)
 
-				Expect(apisupport.Response.StatusCode).To(Equal(data.CODE_200))
-				Expect(status(jsonResponse)).To(Equal("success"))
-				Expect(method(jsonResponse)).To(Equal(data.DELETE))
-				Expect(endpoint(jsonResponse)).To(Equal(os.Getenv("ENDPOINT_AUTOMATION")))
-			})
+			Expect(apisupport.Response.StatusCode).To(Equal(data.CODE_200))
+			Expect(status(jsonResponse)).To(Equal("success"))
+			Expect(method(jsonResponse)).To(Equal(data.DELETE))
+			Expect(endpoint(jsonResponse)).To(Equal(os.Getenv("ENDPOINT_AUTOMATION")))
 		})
+	})
 })
