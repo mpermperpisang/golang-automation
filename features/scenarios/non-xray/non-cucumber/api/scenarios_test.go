@@ -22,7 +22,7 @@ import (
 
 func TestGolangAutomation(t *testing.T) {
 	RegisterFailHandler(Fail)
-  RunSpecs(t, specs.SUITE)
+	RunSpecs(t, specs.SUITE)
 }
 
 var jsonResponse interface{}
