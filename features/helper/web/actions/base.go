@@ -1,9 +1,9 @@
 package actions
 
 import (
-	"github.com/golang-automation-v1/features/helper"
-
 	"github.com/tebeka/selenium"
+
+	"github.com/golang-automation-v1/features/helper"
 )
 
 func (s Page) AcceptAlert() error {
@@ -19,10 +19,10 @@ func (s Page) BackBrowser() error {
 }
 
 func (s Page) GetCurrentURL() string {
-	element, err := s.driver().CurrentURL()
+	url, err := s.driver().CurrentURL()
 	helper.LogPanicln(err)
 
-	return element
+	return url
 }
 
 func (s Page) GoToURL(url string) error {
@@ -70,8 +70,8 @@ func (s Page) MaxWindow(locator string) error {
 }
 
 func (s Page) TakeScreenshot() []byte {
-	element, err := s.driver().Screenshot()
+	ss, err := s.driver().Screenshot()
 	helper.LogPanicln(err)
 
-	return element
+	return ss
 }

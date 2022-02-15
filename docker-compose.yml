@@ -1,27 +1,29 @@
-version: '3'
-
+version: "3"
 services:
-  hub:
-    image: selenium/hub:latest
-    expose:
-      - 4444
-
   chrome:
-    image: selenium/node-chrome:latest
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-    ports:
-      - 5900:5900
+    image: selenium/node-chrome:4.1.2-20220208
+    shm_size: 2gb
     depends_on:
-      - hub
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
-  firefox:
-    image: selenium/node-firefox:latest
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-    ports:
-      - 5901:5900
+  chrome_video:
+    image: selenium/video:ffmpeg-4.3.1-20220208
+    volumes:
+      - /tmp/videos:/videos
     depends_on:
-      - hub
+      - chrome
+    environment:
+      - DISPLAY_CONTAINER_NAME=chrome
+      - FILE_NAME=chrome_video.mp4
+
+  selenium-hub:
+    image: selenium/hub:4.1.2-20220208
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"

@@ -10,6 +10,7 @@ DOCKERRUN=$(DOCKERCMD) run
 DOCKERCONTAINER=$(DOCKERCMD) container
 DOCKERRM=$(DOCKERCMD) rm
 DOCKERRMI=$(DOCKERCMD) rmi
+DOCKERPULL=$(DOCKERCMD) pull
 
 # kill selenium port
 kill-port:
@@ -29,7 +30,12 @@ images-rm:
 	@echo "Docker images successfully removed"
 
 # run selenium server
-selenium: run-selenium-hub run-selenium-node
+selenium: update-selenium run-selenium-hub run-selenium-node
+
+update-selenium:
+	$(DOCKERPULL) selenium/hub
+	$(DOCKERPULL) selenium/node-chrome
+	$(DOCKERPULL) selenium/node-firefox
 
 run-selenium-hub:
 	$(DOCKERRUN) -d -p 4444:4444 --name selenium-hub selenium/hub
@@ -66,4 +72,4 @@ api-godog:
 	godog --tags=@api --random --format=cucumber > test/report/cucumber_report.json
 
 api-ginkgo:
-	ginkgo features/scenarios/non-xray/non-cucumber/api -p --randomize-all
+	ginkgo -p --randomize-all

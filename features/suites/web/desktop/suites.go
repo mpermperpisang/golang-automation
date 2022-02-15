@@ -1,9 +1,9 @@
 package suites
 
 import (
-	stepdefinitions "github.com/golang-automation-v1/features/stepdefinitions/web/desktop"
-
 	"github.com/cucumber/godog"
+
+	stepdefinitions "github.com/golang-automation-v1/features/stepdefinitions/web/desktop"
 )
 
 func DwebScenarioContext(s *godog.ScenarioContext) {

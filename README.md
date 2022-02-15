@@ -1,7 +1,7 @@
 # Golang Automation
 Feature List :
 - [x] API
-- [x] Web (Desktop & Mobile)
+- [x] Web
 - [x] Android
 - [x] iOS
 
@@ -28,7 +28,6 @@ or
 - [x] appium desktop 1.21.0
 - [x] go 1.17
 - [x] jenkins 2.289.3
-- [x] docker-machine 0.16.2
 
 ## PROFILE
 ```
@@ -44,12 +43,12 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ## MAKEFILE
 - [x] `make cp`
 - [x] `make deps`
-- [x] `make selenium` or `docker-compose up -d` (after test, run this command `docker-compose down`)
+- [x] `docker-compose up -d` (after test, run this command `docker-compose down`)
 
 ## RUN
 - [x] <b>`make api-godog`</b>
 - [x] <b>`make api-ginkgo`</b>
-- [x] <b>`npm run api` or `npm run test "api"`</b>
+- [x] <b>`ginkgo -p --randomize-all --label-filter="get"`</b>. Need to `cd ./features/scenarios/non-xray/non-cucumber/api` first.
 
 ## CONTACT
 `mpermperpisang@gmail.com`
