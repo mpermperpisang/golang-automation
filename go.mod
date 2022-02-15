@@ -7,7 +7,7 @@ require (
 	github.com/cucumber/godog v0.12.4
 	github.com/joho/godotenv v1.4.0
 	github.com/magiconair/properties v1.8.5
-	github.com/onsi/ginkgo/v2 v2.1.0
+	github.com/onsi/ginkgo/v2 v2.1.1
 	github.com/onsi/gomega v1.17.0
 	github.com/sclevine/agouti v3.0.0+incompatible
 	github.com/stretchr/testify v1.7.0

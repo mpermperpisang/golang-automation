@@ -24,4 +24,6 @@ func WebCapabilities() {
 
 	WebDriver, err = selenium.NewRemote(caps, "")
 	helper.LogPanicln(err)
+
+	defer WebDriver.Quit()
 }

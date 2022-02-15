@@ -31,4 +31,6 @@ func AndroidCapabilities() {
 	})
 
 	AndroidDriver = appium.New(options)
+
+	defer AndroidDriver.Stop()
 }

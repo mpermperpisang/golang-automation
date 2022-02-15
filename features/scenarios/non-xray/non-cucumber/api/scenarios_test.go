@@ -27,13 +27,13 @@ func TestGolangAutomation(t *testing.T) {
 
 var jsonResponse interface{}
 
-var _ = Describe(describe.ENDPOINT, Ordered, func() {
+var _ = Describe(describe.ENDPOINT, Label("api"), Ordered, func() {
 	BeforeAll(func() {
 		env := godotenv.Load("../../../../../.env")
 		helper.LogPanicln(env)
 	})
 
-	Context(context.EndpointMethod(data.GET), func() {
+	Context(context.EndpointMethod(data.GET), Label("get"), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.GET, os.Getenv("ENDPOINT_AUTOMATION"), nil))
 			apisupport.DeferResponseReader(false)
@@ -51,7 +51,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		})
 	})
 
-	Context(context.EndpointMethod("POST"), func() {
+	Context(context.EndpointMethod("POST"), Label("post"), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_201)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.POST, os.Getenv("ENDPOINT_AUTOMATION"), nil))
 			apisupport.DeferResponseReader(false)
@@ -69,7 +69,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		})
 	})
 
-	Context(context.EndpointMethod("PATCH"), func() {
+	Context(context.EndpointMethod("PATCH"), Label("patch"), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.PATCH, os.Getenv("ENDPOINT_AUTOMATION"), nil))
 			apisupport.DeferResponseReader(false)
@@ -87,7 +87,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		})
 	})
 
-	Context(context.EndpointMethod("PUT"), func() {
+	Context(context.EndpointMethod("PUT"), Label("put"), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.PUT, os.Getenv("ENDPOINT_AUTOMATION"), nil))
 			apisupport.DeferResponseReader(false)
@@ -105,7 +105,7 @@ var _ = Describe(describe.ENDPOINT, Ordered, func() {
 		})
 	})
 
-	Context(context.EndpointMethod("DELETE"), func() {
+	Context(context.EndpointMethod("DELETE"), Label("delete"), func() {
 		It(it.ResponseCodeAssert(strconv.Itoa(data.CODE_200)), func() {
 			apisupport.ClientDo(apisupport.SendRequest(data.DELETE, os.Getenv("ENDPOINT_AUTOMATION"), nil))
 			apisupport.DeferResponseReader(false)

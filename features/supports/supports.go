@@ -1,6 +1,7 @@
 package supports
 
 import (
+	"context"
 	"encoding/json"
 	"strings"
 
@@ -30,20 +31,10 @@ func InitializeTestSuite(s *godog.TestSuiteContext) {
 		recreateSS()
 		recreateXray()
 	})
-
-	s.AfterSuite(func() {
-		if supports.WebDriver != nil {
-			supports.WebDriver.Quit()
-		} else if supports.AndroidDriver != nil {
-			supports.AndroidDriver.Stop()
-		} else if supports.IOSDriver != nil {
-			supports.IOSDriver.Stop()
-		}
-	})
 }
 
 func InitializeScenario(s *godog.ScenarioContext) {
-	s.BeforeScenario(func(scenario *godog.Scenario) {
+	s.Before(func(ctx context.Context, scenario *godog.Scenario) (context.Context, error) {
 		scenarioDetail(scenario)
 
 		for i := 0; i < len(testCase.Tags); i++ {
@@ -51,17 +42,21 @@ func InitializeScenario(s *godog.ScenarioContext) {
 		}
 
 		platformCheck(scenarioTags)
+
+		return ctx, nil
 	})
 
-	s.AfterScenario(func(scenario *godog.Scenario, log error) {
+	s.After(func(ctx context.Context, scenario *godog.Scenario, log error) (context.Context, error) {
 		scenarioTags = ""
 
 		scenarioDetail(scenario)
 
 		if log != nil {
-			createSS()
+			CreateSS()
 			createLog(log)
 		}
+
+		return ctx, nil
 	})
 }
 
@@ -114,7 +109,7 @@ func appsStart(platform string) {
 	appsbase.OpenApps(platform)
 }
 
-func createSS() {
+func CreateSS() {
 	helper.SetFilename(data.SS, platform, testCase.Name)
 	screenshots.SSWeb(platform)
 	screenshots.SSAndroid()
