@@ -14,11 +14,11 @@ or
 - [x] Clone repo outside default $GOPATH (Example: `$HOME/Documents/project/`)
 
 ## SPECS
-- [x] macOS Big Sur 11.4
+- [x] macOS Big Sur 11.6.1
 - [x] xcode 12.5.1
 - [x] genymotion 3.2.1
-- [x] java 1.8.0_181
-- [x] gradle 7.2
+- [x] java 1.8.0_144
+- [x] gradle 7.4
 - [x] carthage 0.38.0
 - [x] cmake 3.13.1
 - [x] node 14.15.4
