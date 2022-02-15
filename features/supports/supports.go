@@ -52,7 +52,7 @@ func InitializeScenario(s *godog.ScenarioContext) {
 		scenarioDetail(scenario)
 
 		if log != nil {
-			CreateSS()
+			createSS()
 			createLog(log)
 		}
 
@@ -109,7 +109,7 @@ func appsStart(platform string) {
 	appsbase.OpenApps(platform)
 }
 
-func CreateSS() {
+func createSS() {
 	helper.SetFilename(data.SS, platform, testCase.Name)
 	screenshots.SSWeb(platform)
 	screenshots.SSAndroid()
