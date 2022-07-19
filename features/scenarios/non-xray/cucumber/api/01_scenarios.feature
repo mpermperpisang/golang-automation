@@ -15,7 +15,7 @@ Feature: Automation API
       | GET    | 200    |
       | POST   | 201    |
       | PATCH  | 200    |
-      | PUT    | 200    |
+      | PUT    | 201    |
       | DELETE | 200    |
 
   @api-tc-02
